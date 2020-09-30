@@ -1,0 +1,51 @@
+{
+  "demo": {
+    "title": "Chào mừng tới Angular",
+    "text": "Chào"
+  },
+  "english": "Tiếng Anh",
+  "vietnamese": "Tiếng Việt",
+  "form_demo": "Mẫu chạy thử",
+  "information": {
+    "title": "Thông tin người dùng",
+    "username": "Tên đăng nhập",
+    "fullName": "Họ và tên",
+    "email": "Hộp thư",
+    "birth": "Ngày sinh",
+    "current_password": "Mật khẩu hiện tại",
+    "new_password": "Mật khẩu mới",
+    "confirm_password": "Xác nhận mật khẩu",
+    "phone": "Số điện thoại",
+    "id_card": "CMND",
+    "address": "Địa chỉ",
+    "update": "Cập nhật",
+    "cancel": "Hủy",
+    "valid": {
+      "name": "Tên đăng nhập không hợp lệ",
+      "fullName": "Họ và tên không hợp lệ",
+      "email": "Hộp thư không hợp lệ",
+      "birth": "Ngày sinh không hợp lệ",
+      "idCard": "CMND không hợp lệ",
+      "passwordCurrent": "Mật khẩu cũ không hợp lệ",
+      "passwordNew": "Mật khẩu mới không hợp lệ",
+      "passwordConfirm": "Xác nhận mật khẩu không hợp lệ",
+      "phone": "Số điện thoại không hợp lệ",
+      "address": "Địa chỉ không hợp lệ",
+      "password_no_match": "Mật khẩu không trùng khớp"
+    }
+  },
+  "history_register":{
+    "title": "Lịch sử đăng ký đấu giá",
+    "cancel_register": "Hủy đăng ký"
+  },
+  "history_auction":{
+    "title": "Lịch sử đấu giá",
+    "order_number": "Số đơn hàng",
+    "product_name": "Tên sp",
+    "product_information": "Thông tin sản phẩm",
+    "registration_price": "Giá đăng ký",
+    "registration_date": "Ngày đăng ký",
+    "status": "Tình trạng",
+    "cancel_auction": "Hủy đấu giá"
+  }
+}

@@ -1,1 +1,24 @@
-<app-manage-product></app-manage-product>
+<div class="container">
+  <div>
+    <h1>{{ 'form_demo' | translate }}</h1>
+<!--    <select (change)="switchLanguage($event.target.value)">-->
+<!--      <option value="en">{{ 'english' | translate }}</option>-->
+<!--      <option value="vi">{{ 'vietnamese' | translate }}</option>-->
+<!--    </select>-->
+    <br><br>
+    <a [routerLink]="['/info']" id="info">{{ 'information.title' | translate }}</a>
+    <a [routerLink]="['/history-register']" id="history-register">{{ 'history_register.title' | translate }}</a>
+    <a [routerLink]="['/history-auction']" id="history-auction">{{ 'history_auction.title' | translate }}</a>
+    <hr>
+    <label class="switch">
+      <input type="checkbox" id="checkbox" [value] = "language" (click)="switchLanguage($event.target.value)" >
+      <span class="slider round">
+        vi  &nbsp; en
+      </span>
+    </label>
+    <div class="body">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

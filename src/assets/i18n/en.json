@@ -1,0 +1,47 @@
+{
+  "english": "English",
+  "vietnamese": "Vietnamese",
+  "form_demo": "Form Demo",
+  "information": {
+    "title": "Information User",
+    "username": "Username",
+    "fullName": "Full Name",
+    "email": "Email",
+    "birth": "Date of birth",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "phone": "Phone",
+    "id_card": "Id Card",
+    "address": "Address",
+    "update": "Update",
+    "cancel": "Cancel",
+    "valid": {
+      "name": "Username Invalid",
+      "fullName": "FullName Invalid",
+      "email": "Email Invalid",
+      "birth": "Date of Birth Invalid",
+      "idCard": "IdCard Invalid",
+      "passwordCurrent": "Password Current Invalid",
+      "passwordNew": "Password New Invalid",
+      "passwordConfirm": "Password Confirm Invalid",
+      "phone": "Phone Invalid",
+      "address": "Address Invalid",
+      "password_no_match": "Password no match"
+    }
+  },
+  "history_register":{
+    "title": "History Register",
+    "cancel_register": "Cancel Register"
+  },
+  "history_auction":{
+    "title": "History Auction",
+    "order_number": "Order Number",
+    "product_name": "Product Name",
+    "product_information": "Product Information",
+    "registration_price": "Registration Price",
+    "registration_date": "Registration Date",
+    "status": "Status",
+    "cancel_auction": "Cancel Auction"
+  }
+}
