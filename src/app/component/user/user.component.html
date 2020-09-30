@@ -68,6 +68,7 @@
 <!--        <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('passwordConfirm').invalid && infoForm.get('passwordConfirm').touched">-->
 <!--          {{ 'user.valid.passwordConfirm' | translate }}-->
 <!--        </div>-->
+
         <div class="alert alert-danger" role="alert"
              *ngIf="infoForm.hasError('passwordnotmatch', ['pwGroup']) &&
       infoForm.get('pwGroup').touched">

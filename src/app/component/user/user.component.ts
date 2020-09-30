@@ -57,7 +57,6 @@ export class UserComponent implements OnInit {
       this.user = data;
       this.url = data.url;
       this.infoForm.patchValue(data);
-      console.log(this.user);
     });
     // this.url = "../../../assets/pic/avatar.png";
   }
