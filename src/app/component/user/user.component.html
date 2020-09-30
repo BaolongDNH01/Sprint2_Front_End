@@ -4,101 +4,102 @@
       <img [src]="url" class="avatar" alt="">
       <input type="file" id="choiceImg" class="inputImg" (change)="changeImg($event)">
     </div>
-    <h1>{{ 'information.title' | translate }}</h1>
+    <h1>{{ 'user.title' | translate }}</h1>
     <form [formGroup]="infoForm" id="contact" action="" method="post">
       <div class="row">
-        <label>{{ 'information.username' | translate }}</label>
+        <label>{{ 'user.username' | translate }}</label>
         <input  class=" form-control"  type="text" formControlName="username">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('username').invalid && infoForm.get('username').touched">
-        {{ 'information.valid.name' | translate }}
+        {{ 'user.valid.name' | translate }}
       </div>
       <div class="row">
-        <label>{{ 'information.fullName' | translate }}</label>
+        <label>{{ 'user.fullName' | translate }}</label>
         <input  class=" form-control"  type="text" formControlName="fullName">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('fullName').invalid && infoForm.get('fullName').touched">
-        {{ 'information.valid.fullName' | translate }}
+        {{ 'user.valid.fullName' | translate }}
       </div>
 
       <div class="row">
-        <label>{{ 'information.email' | translate }}</label>
+        <label>{{ 'user.email' | translate }}</label>
         <input  class=" form-control"  type="email" formControlName="email" >
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('email').invalid && infoForm.get('email').touched">
-        {{ 'information.valid.email' | translate }}
+        {{ 'user.valid.email' | translate }}
       </div>
 
       <div class="row">
-        <label>{{ 'information.birth' | translate }}</label>
+        <label>{{ 'user.birth' | translate }}</label>
         <input  class=" form-control"  type="date" formControlName="birth" [value]="birth | date: 'dd/MM/yyyy'">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('birth').invalid && infoForm.get('birth').touched">
-        {{ 'information.valid.birth' | translate }}
+        {{ 'user.valid.birth' | translate }}
       </div>
 
       <div class="row">
-        <label>{{ 'information.id_card' | translate }}</label>
+        <label>{{ 'user.id_card' | translate }}</label>
         <input  class=" form-control"  type="text" formControlName="idCard">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('idCard').invalid && infoForm.get('idCard').touched">
-        {{ 'information.valid.idCard' | translate }}
+        {{ 'user.valid.idCard' | translate }}
       </div>
 
       <div class="row">
-        <label>{{ 'information.current_password' | translate }}</label>
+        <label>{{ 'user.current_password' | translate }}</label>
         <input  class=" form-control"  type="text" formControlName="passwordCurrent">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('passwordCurrent').invalid && infoForm.get('passwordCurrent').touched">
-        {{ 'information.valid.passwordCurrent' | translate }}
+        {{ 'user.valid.passwordCurrent' | translate }}
       </div>
 
       <fieldset formGroupName="pwGroup">
         <div class="row">
-          <label>{{ 'information.new_password' | translate }}</label>
+          <label>{{ 'user.new_password' | translate }}</label>
           <input type="password" class="form-control" formControlName="passwordNew">
         </div>
 <!--        <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('passwordNew').invalid && infoForm.get('passwordNew').touched">-->
-<!--          {{ 'information.valid.passwordNew' | translate }}-->
+<!--          {{ 'user.valid.passwordNew' | translate }}-->
 <!--        </div>-->
         <div class="row">
-          <label>{{ 'information.confirm_password' | translate }}</label>
+          <label>{{ 'user.confirm_password' | translate }}</label>
           <input type="password" class="form-control" formControlName="passwordConfirm">
         </div>
 <!--        <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('passwordConfirm').invalid && infoForm.get('passwordConfirm').touched">-->
-<!--          {{ 'information.valid.passwordConfirm' | translate }}-->
+<!--          {{ 'user.valid.passwordConfirm' | translate }}-->
 <!--        </div>-->
+
         <div class="alert alert-danger" role="alert"
              *ngIf="infoForm.hasError('passwordnotmatch', ['pwGroup']) &&
       infoForm.get('pwGroup').touched">
-          {{ 'information.valid.password_no_match' | translate }}
+          {{ 'user.valid.password_no_match' | translate }}
         </div>
       </fieldset>
 
       <div class="row">
-        <label>{{ 'information.phone' | translate }}</label>
+        <label>{{ 'user.phone' | translate }}</label>
         <input  class=" form-control"  type="text"  formControlName="phone">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('phone').invalid && infoForm.get('phone').touched">
-        {{ 'information.valid.phone' | translate }}
+        {{ 'user.valid.phone' | translate }}
       </div>
 
       <div class="row">
-        <label>{{ 'information.address' | translate }}</label>
+        <label>{{ 'user.address' | translate }}</label>
         <input  class=" form-control"  type="text"  formControlName="address">
       </div>
       <div class="alert alert-danger" role="alert" *ngIf="infoForm.get('address').invalid && infoForm.get('address').touched">
-        {{ 'information.valid.address' | translate }}
+        {{ 'user.valid.address' | translate }}
       </div>
     </form>
 
     <div class="row " id="button">
       <button  type="submit" class="edit"
                [disabled]="infoForm.invalid" (click)="editInfo()">
-        {{ 'information.update' | translate }}
+        {{ 'user.update' | translate }}
       </button>
       <button type="button" class="edit" (click)="cancel()">
-        {{ 'information.cancel' | translate }}
+        {{ 'user.cancel' | translate }}
       </button>
     </div>
   </div>

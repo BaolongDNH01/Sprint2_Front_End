@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from 'rxjs';
-import {InformationModel} from '../../model/informaton.model';
-import {InformationService} from '../../service/information.service';
+import {UserService} from '../../service/user.service';
+import {UserModel} from '../../model/user.model';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -13,19 +13,19 @@ function comparePassword(c: AbstractControl) {
 
 @Component({
   selector: 'app-information',
-  templateUrl: './information.component.html',
-  styleUrls: ['./information.component.css']
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class InformationComponent implements OnInit {
+export class UserComponent implements OnInit {
   infoForm: FormGroup;
   editForm: FormGroup;
   url:string | ArrayBuffer;
   public subscription: Subscription;
-  public information: InformationModel;
+  public user: UserModel;
 
   constructor(
     private fb: FormBuilder,
-    public informationService: InformationService
+    public userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -53,11 +53,10 @@ export class InformationComponent implements OnInit {
       phone:  [''],
       address: [''],
     });
-    this.subscription = this.informationService.findOne(1).subscribe((data:InformationModel)=>{
-      this.information = data;
+    this.subscription = this.userService.findOne(1).subscribe((data:UserModel)=>{
+      this.user = data;
       this.url = data.url;
       this.infoForm.patchValue(data);
-      console.log(this.information);
     });
     // this.url = "../../../assets/pic/avatar.png";
   }
@@ -71,7 +70,7 @@ export class InformationComponent implements OnInit {
     this.infoForm.value.idCard=this.editForm.value.idCard;
     this.infoForm.value.phone=this.editForm.value.phone;
     this.infoForm.value.address=this.editForm.value.address;
-    this.informationService.save(this.editForm.value).subscribe(data => {
+    this.userService.save(this.editForm.value).subscribe(data => {
     });
   }
   cancel() {
