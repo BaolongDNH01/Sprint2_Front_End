@@ -1,0 +1,22 @@
+<h1>{{ 'history_register.title' | translate }}</h1>
+<table class="table table-striped table-dark">
+  <thead class="table thead-dark">
+  <tr class="text-muted">
+    <th><p>{{ 'history_auction.product_name' | translate }}</p></th>
+    <th><p>{{ 'history_auction.product_information' | translate }}</p></th>
+    <th><p>{{ 'history_auction.registration_date' | translate }}</p></th>
+    <th><p>{{ 'history_auction.status' | translate }}</p></th>
+    <th><p>{{ 'history_register.cancel_register' | translate }}</p></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let item of historyRegister">
+    <td>{{item.productName}}</td>
+    <td>{{item.productInformation}}</td>
+    <td>{{item.registrationDate}}</td>
+    <td>{{item.statusRegister}}</td>
+    <td>{{item.cancelRegister}}</td>
+  </tr>
+
+  </tbody>
+</table>
