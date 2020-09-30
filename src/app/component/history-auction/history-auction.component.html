@@ -1,0 +1,25 @@
+<h1>{{ 'history_auction.title' | translate }}</h1>
+<table class="table table-striped text-center">
+  <thead class="table thead-dark">
+  <tr class="text-muted">
+    <th><p>{{ 'history_auction.order_number' | translate }}</p></th>
+    <th><p>{{ 'history_auction.product_name' | translate }}</p></th>
+    <th><p>{{ 'history_auction.product_information' | translate }}</p></th>
+    <th><p>{{ 'history_auction.registration_price' | translate }}</p></th>
+    <th><p>{{ 'history_auction.registration_date' | translate }}</p></th>
+    <th><p>{{ 'history_auction.status' | translate }}</p></th>
+    <th><p>{{ 'history_auction.cancel_auction' | translate }}</p></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of historyAuction">
+    <td>{{item.orderNumber}}</td>
+    <td>{{item.productName}}</td>
+    <td>{{item.productInformation}}</td>
+    <td>{{item.registrationPrice}}</td>
+    <td>{{item.registrationDate}}</td>
+    <td>{{item.statusAuction}}</td>
+    <td>{{item.cancelAuction}}</td>
+  </tr>
+  </tbody>
+</table>
