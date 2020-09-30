@@ -10,7 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { InformationComponent } from './component/information/information.component';
+import { UserComponent } from './component/user/user.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HistoryAuctionComponent } from './component/history-auction/history-auction.component';
 import { HistoryRegisterComponent } from './component/history-register/history-register.component';
@@ -22,7 +22,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    InformationComponent,
+    UserComponent,
     HistoryAuctionComponent,
     HistoryRegisterComponent
   ],
