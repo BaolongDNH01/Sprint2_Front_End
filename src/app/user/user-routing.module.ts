@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {ListUserComponent} from './list-user/list-user.component';
 import {LockUserComponent} from './lock-user/lock-user.component';
 
@@ -14,7 +14,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule.forRoot(routes)
   ]
 })
 export class UserRoutingModule { }
