@@ -1,0 +1,47 @@
+<div class="row border m-auto" style="width: 1000px">
+  <div class="col-md-12 card-header">
+    Khóa thành viên
+  </div>
+  <form [formGroup]="formLock" style="width: 100%">
+    <div class="col-md-12 card-body">
+      <div class="row mb-4 mt-3">
+        <div class="col-md-1"></div>
+        <div class="col-md-3 mt-1">Thời gian khóa <span class="text-danger">  *</span></div>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-1 m-auto">Từ</div>
+            <div class="col-md-5">
+              <input readonly formControlName="timeLockBegin" class="form-control" type="date">
+            </div>
+            <div class="col-md-1 m-auto">Đến</div>
+            <div class="col-md-5">
+              <input formControlName="timeLockEnd" class="form-control" type="date">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">Bạn có thực sự muốn khóa<span class="text-danger">  *</span></div>
+        <div class="col-md-6">
+          <textarea readonly formControlName="listUser" class="form-control" type="text" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">Lý do</div>
+        <div class="col-md-6">
+          <textarea name="d" class="form-control" type="text" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <button (click)="lockUser()" class="btn btn-outline-secondary">Khóa</button>
+          <button class="btn btn-outline-secondary">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
