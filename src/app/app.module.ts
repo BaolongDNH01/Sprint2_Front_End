@@ -9,7 +9,9 @@ import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
+import {UserModule} from './user/user.module';
 import {ProductListModule} from './product-list/product-list.module';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {ProductListModule} from './product-list/product-list.module';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ProductListModule
+    UserModule,
+    ProductListModule,
+
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
