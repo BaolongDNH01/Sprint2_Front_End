@@ -68,7 +68,7 @@
           <option value="">Đã đấu giá</option>
         </select>
       </div>
-      <button type="button" style="width: 25%"  class="btn btn-info btn-sm width-search">Lọc kết quả</button>
+      <button type="button" style="width: 25%" class="btn btn-info btn-sm width-search">Lọc kết quả</button>
     </div>
   </div>
 
@@ -93,17 +93,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr *ngFor="let product of productList | paginate: {
+          id: 'listing_pagination',
+          itemsPerPage: 4,
+          currentPage: currentPage,
+          totalItems: totalItem}">
           <th scope="col">1</th>
           <td>
             <label>
               <input type="checkbox">
             </label>
           </td>
-          <td>99</td>
-          <td>Redmi 7</td>
-          <td>Điện tử</td>
-          <td>Khánh</td>
+          <td>{{product.productId}}</td>
+          <td>{{product.productName}}</td>
+          <td></td>
+          <td>{{product}}</td>
           <td>999.000 VND</td>
           <td>Đã duyệt</td>
           <td>Chưa đấu giá</td>

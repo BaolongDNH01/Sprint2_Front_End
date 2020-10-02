@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {isElementScrolledOutsideView} from '@angular/cdk/overlay/position/scroll-clip';
-import {computeStartOfLinePositions} from '@angular/compiler-cli/ngcc/src/sourcemaps/source_file';
+import {ProductService} from '../product.service';
+import {Product} from '../product';
 
 @Component({
   selector: 'app-product-manage',
@@ -12,11 +12,25 @@ export class ProductManageComponent implements OnInit {
   posterKeySearch: '';
   suggestions: boolean;
   arrProductSuggest: string[];
+  productList: Product[] = [];
+  currentPage: number;
+  totalItem: number;
 
-  constructor() {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit(): void {
+    this.getAllProduct();
+  }
+
+  getAllProduct(): void {
+    this.productService.getAllProduct().subscribe(
+      list => {
+        this.productList = list;
+        this.totalItem = this.productList.length;
+      },
+      err => console.log('err: ' + err)
+    );
   }
 
   search(arr: string[]): void {
