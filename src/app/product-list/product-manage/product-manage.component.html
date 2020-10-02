@@ -13,9 +13,10 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Tên sản phẩm</span>
         </div>
-        <input (focus)="hasSuggest(true)" (focusout)="hasSuggest(false)" (input)="findSuggest(nameProductKeySearch)"
+        <input [(ngModel)]="nameProductKeySearch" (focusin)="hasSuggest(true)" (focusout)="hasSuggest(false)"
+               (click)="findSuggest(nameProductKeySearch)" (input)="findSuggest(nameProductKeySearch)"
                data-toggle="collapse" data-target="#nameProduct" aria-expanded="false"
-               aria-controls="nameProduct" [(ngModel)]="nameProductKeySearch" class="border" type="text"
+               aria-controls="nameProduct" class="border" type="text"
                style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
         <div *ngIf="suggestions" class="collapse bg-light z-index" id="nameProduct">
           <span *ngFor="let a of arrProductSuggest" class="list-group-item">{{a}}</span>
@@ -36,7 +37,8 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Người đăng</span>
         </div>
-        <input (focus)="hasSuggest(true)" (focusout)="hasSuggest(false)" (input)="findSuggest(posterKeySearch)" [(ngModel)]="posterKeySearch"
+        <input [(ngModel)]="posterKeySearch" (focusin)="hasSuggest(true)" (click)="findSuggest(posterKeySearch)"
+               (focusout)="hasSuggest(false)" (input)="findSuggest(posterKeySearch)"
                data-toggle="collapse" data-target="#poster" aria-expanded="false"
                aria-controls="poster" type="text" class="" style="width: 50%"
                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
