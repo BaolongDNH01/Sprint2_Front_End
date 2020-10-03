@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../User';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
@@ -34,34 +34,26 @@ export class LockUserComponent implements OnInit {
         }, () => {
           this.userList.push(this.user);
           this.stringFullUser += this.user.fullName + '\n';
-          const date = new Date();
-          let month: string;
-          let day: string;
-          if (date.getMonth() + 1 < 10){
-            month = '0' + (date.getMonth() + 1);
-          }else {
-            month = String(date.getMonth() + 1);
-          }
-          if (date.getDate() < 10){
-            day = '0' + date.getDate();
-          }else {
-            day = String(date.getDate());
-          }
-          this.dateHt = date.getFullYear() + '-' + month + '-' + day;
           this.formLock.patchValue({listUser: this.stringFullUser});
-          this.formLock.patchValue({timeLockBegin: this.dateHt});
         }
       );
     }
     this.formLock = this.fb.group({
-      timeLockBegin: [''],
-      timeLockEnd: [''],
+      timeLock: ['', [Validators.min(1), Validators.required]],
       listUser: ['']
     });
     console.log(this.formLock.value.timeLockEnd);
   }
   lockUser(): void{
-    console.log(this.formLock.value.timeLockBegin);
+    console.log(this.userList.length);
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < this.userList.length; i++){
+      this.userList[i].timeLock = this.formLock.value.timeLock * 24 * 60 * 60 * 1000;
+    }
+    this.userService.lockUser(this.userList).subscribe(
+      next => {},
+      error => {}
+    );
   }
 
 }
