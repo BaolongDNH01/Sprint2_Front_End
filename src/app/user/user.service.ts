@@ -21,7 +21,7 @@ export class UserService {
   saveUser(user: User): Observable<any>{
     return this.httpClient.post<any>(this.API_URL + '/add-user', user);
   }
-  lockUser(user: User): Observable<any>{
+  lockUser(user: User[]): Observable<any>{
     return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
   }
 }
