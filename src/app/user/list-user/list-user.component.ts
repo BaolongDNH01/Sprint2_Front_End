@@ -21,7 +21,7 @@ export class ListUserComponent implements OnInit {
   valueEmail = '';
   valueRank = '';
   page = 1;
-  pageSize = 2;
+  pageSize = 5;
   pageMax: number;
   constructor(private userService: UserService, private rankService: RankService, private router: Router) {
     userService.findAllUser().subscribe(
