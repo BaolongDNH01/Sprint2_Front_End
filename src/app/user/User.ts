@@ -14,7 +14,7 @@ export class User {
   flag: string;
   timeLock: number;
   rank: string;
-
+  check = false;
   constructor() {
   }
 }

@@ -34,7 +34,7 @@
       <tbody>
       <tr *ngFor="let user of userList | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize">
         <th scope="row">{{user.userId}}</th>
-        <td><input type="checkbox"></td>
+        <td><input [checked]="user.check" value="{{user.userId}}" (change)="addUser($event.target.value)" type="checkbox"></td>
         <td>{{user.userId}}</td>
         <td>{{user.fullName}}</td>
         <td>{{user.rank}}</td>
@@ -47,8 +47,8 @@
     </table>
   </div>
   <div class="col-md-12 card-body" style="display: flex">
-    <button class="form-control ml-3" style="width: 100px">Xóa  <span class="fa fa-trash"></span></button>
-    <button class="form-control ml-2" style="width: 100px">Khóa   <span class="fa fa-lock"></span></button>
+    <button  class="form-control ml-3" style="width: 100px">Xóa  <span class="fa fa-trash"></span></button>
+    <button (click)="lockUser()" class="form-control ml-2" style="width: 100px">Khóa   <span class="fa fa-lock"></span></button>
     <button class="form-control ml-2" style="width:120px">Mở khóa  <span class="fa fa-unlock-alt"></span></button>
     <button class="form-control ml-2 " style="width:120px">Thêm mới <span class="fa fa-user-plus"></span></button>
     <nav class="ml-5" aria-label="...">
