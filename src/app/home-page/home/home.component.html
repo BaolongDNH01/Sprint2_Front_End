@@ -338,7 +338,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link"  [routerLink]="['auction-guide']"  >Hướng dẫn</a>
+                <a class="nav-link"  [routerLink]="['/auction-guide']"  >Hướng dẫn</a>
               </li>
 
             </ul>
@@ -355,7 +355,7 @@
 
   <div class="info-product-common mt-2 ">
 
-    <div *ngFor="let productDisplayList of productList" class="borderStyle">
+    <div *ngFor="let productDisplayList of productList1" class="borderStyle">
       <a href="https://www.youtube.com/">
         <div class="img-product"><img src="{{productDisplayList.image}}" alt=""></div>
         <div class="black-bg-product"></div>
@@ -365,9 +365,9 @@
           <p class="title-product-info">Click vào để xem chi tiết sản phẩm !</p>
           <div class="auction">
             <div class="time">
-              <span id="h">{{h}}</span>:
-              <span id="m">{{m}}</span>:
-              <span id="s">{{s}}</span>
+              <span>{{productDisplayList.auctionTime / 3600 | number: '1.0-0'}}</span>:
+              <span>{{productDisplayList.auctionTime / 60 | number: '1.0-0'}}</span>:
+              <span>{{productDisplayList.auctionTime % 60}}</span>
             </div>
 <!--            <div class="time">-->
 <!--              {{productDisplayList.auctionTime}}-->

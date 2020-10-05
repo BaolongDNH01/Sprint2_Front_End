@@ -9,7 +9,8 @@ import {RouterModule} from '@angular/router';
 @NgModule({
   declarations: [HomeComponent, AuctionGuideComponent],
   exports: [
-    HomeComponent
+    HomeComponent,
+    AuctionGuideComponent
   ],
   imports: [
     CommonModule,

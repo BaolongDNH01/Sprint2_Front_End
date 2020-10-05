@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Status} from 'tslint/lib/runner';
 import {Product} from '../product';
 import {ProductService} from '../product.service';
@@ -15,21 +15,21 @@ export class ApprovalProductComponent implements OnInit {
   id: number;
   approvalProduct: FormGroup;
   statusList: Status[];
-  productList: Product[];
+
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
-    this.getAllProduct();
     this.findAllStatus();
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
-      this.productService.findById(1).subscribe(
+      this.productService.findById(2).subscribe(
         next => {
           this.product = next;
           this.id = this.product.productId;
@@ -46,7 +46,6 @@ export class ApprovalProductComponent implements OnInit {
             userId: this.product.userId,
           });
         }, error => {
-          console.log('daday');
         });
     });
     this.approvalProduct = new FormGroup({
@@ -75,22 +74,12 @@ export class ApprovalProductComponent implements OnInit {
     );
   }
 
-  getAllProduct(): void {
-    this.productService.getAllProduct().subscribe(
-      next => {
-        this.productList = next;
-      }
-    );
-  }
 
   onApprovalProduct(): void {
     this.product = Object.assign({}, this.approvalProduct.value);
     this.product.productId = this.id;
-    this.productService.editProduct(this.product).subscribe(
-      next => {
-        console.log('ok');
-      }
-    );
+    this.productService.editProduct(this.product).subscribe();
+    location.reload();
   }
 
 }

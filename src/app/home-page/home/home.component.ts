@@ -12,13 +12,7 @@ import {timeout} from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
   productList: Product[];
-  productList1: number;
-  a = [];
-  m = 0; // Phút
-  h = 0; // Giờ
-  s = 0; // Giây
-  timeout = null;
-
+  productList1 = [];
 
   constructor(
     private router: Router,
@@ -38,15 +32,21 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProduct().subscribe(
       next => {
         this.productList = next;
-        for (let i = 0; i < this.productList.length; i++) {
-          this.productService.findById(this.productList[i].auctionTime).subscribe();
-          this.m = this.productList[i].auctionTime;
-          this.a.push(this.m);
-
-          console.log(this.a);
-
+        for (let j = 0; j < this.productList.length; j++) {
+          console.log('ok chua');
+          console.log(this.productList[j].statusId);
+          if (this.productList[j].statusId === 2) {
+            console.log('hihhhi');
+            console.log(this.productList[j]);
+            this.productList1.push(this.productList[j]);
+            console.log(this.productList1 + 'sss');
+          }
         }
-      }
+        for (let i = 0; i < this.productList.length; i++) {
+          this.productList[i].auctionTime *= 60;
+        }
+      }, e => console.log(e),
+      () => this.time()
     );
 
   }
@@ -65,48 +65,20 @@ export class HomeComponent implements OnInit {
   }
 
   auctionGuide(): void {
-    this.router.navigateByUrl('/auction-guide');
+    console.log('ok');
+    this.router.navigateByUrl('auction-guide');
   }
 
   time(): void {
-    var h = this.h; // Giờ
-    var m = this.m; // Phút
-    var s = this.s; // Giây
-
-    var timeout = null; // Timeout
-    start();
-
-    function start(): void {
-      console.log('jii');
-      if (s === -1) {
-        m -= 1;
-        s = 59;
+    for (let i = 0; i < this.productList.length; i++) {
+      if (this.productList[i].auctionTime === 0) {
+        this.productList[i].auctionTime += 30;
+      } else {
+        this.productList[i].auctionTime -= 1;
+        console.log(this.productList[i].auctionTime);
       }
-
-      if (m === -1) {
-        h -= 1;
-        m = 59;
-      }
-
-      if (h === -1) {
-        clearTimeout(timeout);
-        document.getElementById('show').innerText = 'ending....';
-      }
-
-      document.getElementById('h').innerText = h.toString();
-      document.getElementById('m').innerText = m.toString();
-      document.getElementById('s').innerText = s.toString();
-      /*BƯỚC 1: GIẢM PHÚT XUỐNG 1 GIÂY VÀ GỌI LẠI SAU 1 GIÂY */
-      timeout = setTimeout(function() {
-        s--;
-        start();
-      }, 1000);
     }
-
-    function stop(): void {
-      clearTimeout(timeout);
-    }
-
+    setTimeout(() => this.time(), 1000);
   }
 
 
