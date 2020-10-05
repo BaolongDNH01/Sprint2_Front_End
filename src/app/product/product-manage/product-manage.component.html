@@ -1,0 +1,137 @@
+<div class="container font header-border">
+  <!--    table title-->
+  <div class="row header">
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 p-2">
+      Quản lí sản phẩm
+    </div>
+  </div>
+
+  <!--    search area-->
+  <div class="row">
+    <div class="display-flex mt-2 ml-4">
+      <div class="input-group input-group-sm mb-3 width-search">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Tên sản phẩm</span>
+        </div>
+        <input [(ngModel)]="nameProductKeySearch" (focusin)="hasSuggest(true)" (focusout)="hasSuggest(false)"
+               (click)="findSuggest(nameProductKeySearch, 'productName')" (input)="findSuggest(nameProductKeySearch, 'productName')"
+               data-toggle="collapse" data-target="#nameProduct" aria-expanded="false"
+               aria-controls="nameProduct" class="border" type="text"
+               style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <div *ngIf="suggestions" class="collapse bg-light z-index" id="nameProduct">
+          <span *ngFor="let a of arrProductSuggest" (click)="findEach(a, 'productName')" class="list-group-item">{{a}}</span>
+        </div>
+      </div>
+      <div class="input-group input-group-sm mb-3 width-search">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Loại sản phẩm</span>
+        </div>
+        <select (change)="findEach($event.target.value, 'categoryName')" type="text" class="" style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <option value="Tất cả">Tất cả</option>
+          <option value="Điện tử">Điện tử</option>
+          <option value="Gia dụng">Gia dụng</option>
+          <option value="Xe">Xe</option>
+        </select>
+      </div>
+      <div class="input-group input-group-sm mb-3 width-search">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Người đăng</span>
+        </div>
+        <input [(ngModel)]="posterKeySearch" (focusin)="hasSuggest(true)" (click)="findSuggest(posterKeySearch, 'poster')"
+               (focusout)="hasSuggest(false)" (input)="findSuggest(posterKeySearch, 'poster')"
+               data-toggle="collapse" data-target="#poster" aria-expanded="false"
+               aria-controls="poster" type="text" class="" style="width: 50%"
+               aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <div *ngIf="suggestions" class="collapse bg-light z-index" id="poster">
+          <span *ngFor="let a of arrProductSuggest" (click)="findEach(a, 'poster')" class="list-group-item">{{a}}</span>
+        </div>
+      </div>
+      <div class="input-group input-group-sm mb-3 width-search">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Giá</span>
+        </div>
+        <select (change)="findEach($event.target.value, 'initialPrice')" type="text" class="" style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <option value="">Tất cả</option>
+          <option value="">0 - 100k</option>
+          <option value="">100k - 1000k</option>
+          <option value="">trên 1000k</option>
+        </select>
+      </div>
+      <div class="input-group input-group-sm mb-3 width-search">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Tình trạng</span>
+        </div>
+        <select (change)="findEach($event.target.value, 'statusName')" type="text" class="" style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          <option value="">Tất cả</option>
+          <option value="">Chưa đấu giá</option>
+          <option value="">Đang đấu giá</option>
+          <option value="">Đã đấu giá</option>
+        </select>
+      </div>
+      <button type="button" style="width: 25%" class="btn btn-info btn-sm width-search">Lọc kết quả</button>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 p-0 m-0">
+      <table class="table table-bordered table-responsive-md text-center">
+        <thead class="header">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Chọn</th>
+          <th scope="col">ID sản phẩm</th>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Chủng loại</th>
+          <th scope="col">Người đăng</th>
+          <th scope="col">Giá ban đầu</th>
+          <th scope="col">Trạng thái duyệt</th>
+          <th scope="col">Tình trạng</th>
+          <th scope="col">Chi tiết sản phẩm</th>
+          <th scope="col">Hình ảnh</th>
+          <th scope="col">Sửa</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of productList | paginate: {
+          id: 'listing_pagination',
+          itemsPerPage: 4,
+          currentPage: currentPage,
+          totalItems: totalItem}">
+          <th scope="col">1</th>
+          <td>
+            <label>
+              <input type="checkbox">
+            </label>
+          </td>
+          <td>{{product.productId}}</td>
+          <td>{{product.productName}}</td>
+          <td>{{product.categoryName}}</td>
+          <td>{{product.poster}}</td>
+          <td>{{product.initialPrice}}</td>
+          <td>{{product.statusName}}</td>
+          <td>{{product.statusName}}</td>
+          <td>{{product.productDetail}}</td>
+          <td>{{product.image}}</td>
+          <td><a href="#">Sửa</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-2 col-sm-4">
+      <button id="import" class="btn btn-outline-info" style="width: 140px; height: 40px">
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        Xóa
+      </button>
+    </div>
+    <div class="col-md-2 col-sm-4">
+      <button class="btn btn-outline-info" style="width: 140px; height: 40px">
+        <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
+        Thêm mới
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="loginbox">
+  <h1>Thông tin người dùng</h1>
+  <form *ngIf="infoForm" [formGroup]="infoForm" id="contact" action="" method="post">
+    <div class="row">
+      <label>Tên đăng nhập</label>
+      <input  class="form-control form" formControlName="accountName" type="text" >
+    </div>
+    <div class="row">
+      <label>Họ và tên</label>
+      <input  class="form-control" formControlName="name" type="text" >
+    </div>
+
+    <div class="row">
+      <label>Hộp thư</label>
+      <input class="form-control" formControlName="email" type="email" >
+    </div>
+
+    <div class="row">
+      <label>Ngày sinh</label>
+      <input  class="form-control" formControlName="birthday" type="date" >
+    </div>
+
+    <div class="row">
+      <label>CMND</label>
+      <input  class="form-control" formControlName="idCard" type="text" >
+    </div>
+
+    <div class="row">
+      <label>Mật khẩu hiện tại</label>
+      <input  class="form-control" formControlName="oldPassword" type="text" >
+    </div>
+
+    <div class="row">
+      <label>Mật khẩu mới</label>
+      <input  class="form-control" formControlName="newPassword" type="text" >
+    </div>
+
+    <div class="row">
+      <label>Xác nhận mật khẩu</label>
+      <input class="form-control" type="text" >
+    </div>
+
+    <div class="row">
+      <label>Số điện thoại</label>
+      <input  class="form-control" formControlName="phoneNumber" type="text"  >
+    </div>
+
+    <div class="row">
+      <label>Địa chỉ</label>
+      <input  class="form-control" formControlName="address" type="text"  >
+    </div>
+
+    <div class="row " id="button">
+      <button  type="button" class="edit" style="float: left"
+               [disabled]="infoForm.invalid" >
+        Cập nhật
+      </button>
+      <button type="button" class="edit">
+        Hủy
+      </button>
+    </div>
+  </form>
+</div>
