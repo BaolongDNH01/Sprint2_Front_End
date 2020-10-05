@@ -10,8 +10,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './user/user.module';
-import {ProductListModule} from './product-list/product-list.module';
 import {HomePageModule} from './home-page/home-page.module';
+import {UserManageModule} from './user-manage/user-manage.module';
+import {ProductListModule} from './product/product-list.module';
 
 
 @NgModule({
@@ -28,8 +29,8 @@ import {HomePageModule} from './home-page/home-page.module';
     ReactiveFormsModule,
     UserModule,
     ProductListModule,
-    HomePageModule
-
+    HomePageModule,
+    UserManageModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
