@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Status} from 'tslint/lib/runner';
 import {Product} from '../product';
 import {ProductService} from '../product.service';
+import {Auction} from '../../auction/auction';
+import {AuctionService} from '../../auction/auction.service';
 
 @Component({
   selector: 'app-approval-product',
@@ -16,10 +18,15 @@ export class ApprovalProductComponent implements OnInit {
   approvalProduct: FormGroup;
   statusList: Status[];
   productList: Product[];
+  auction: Auction;
+  auctionForm: FormGroup;
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private auctionService: AuctionService,
+    private router: Router
   ) {
   }
 
