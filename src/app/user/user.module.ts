@@ -5,11 +5,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import { LockUserComponent } from './lock-user/lock-user.component';
 import {UserRoutingModule} from './user-routing.module';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 
 @NgModule({
-  declarations: [ListUserComponent, LockUserComponent],
+  declarations: [ListUserComponent, LockUserComponent, AddUserComponent],
   exports: [
     ListUserComponent
   ],

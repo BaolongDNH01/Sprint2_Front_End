@@ -14,4 +14,5 @@ export interface Product {
   userId: number;
   fullName: string;
   auctionListId: number[];
+
 }
