@@ -1,4 +1,4 @@
-export interface Product {
+export class Product {
   productId: number;
   productName: string;
   initialPrice: number;
@@ -15,4 +15,6 @@ export interface Product {
   fullName: string;
   auctionListId: number[];
 
+  constructor() {
+  }
 }
