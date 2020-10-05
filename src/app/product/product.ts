@@ -5,12 +5,14 @@ export interface Product {
   eachIncrease: number;
   image: string;
   productDetail: string;
-  category_id: number;
+  categoryId: number;
   categoryName: string;
-  status_id: number;
+  statusId: number;
   statusName: string;
-  time_id: number;
-  user_id: number;
-  poster: string;
-  auctionList_id: number[];
+  timeId: number;
+  auctionTime: number;
+  userId: number;
+  fullName: string;
+  auctionListId: number[];
+
 }

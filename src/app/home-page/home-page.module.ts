@@ -1,0 +1,19 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home/home.component';
+import { AuctionGuideComponent } from './auction-guide/auction-guide.component';
+import {RouterModule} from '@angular/router';
+
+
+
+@NgModule({
+  declarations: [HomeComponent, AuctionGuideComponent],
+  exports: [
+    HomeComponent
+  ],
+  imports: [
+    CommonModule,
+    RouterModule
+  ]
+})
+export class HomePageModule { }

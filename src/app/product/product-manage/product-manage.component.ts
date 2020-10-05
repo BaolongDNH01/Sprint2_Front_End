@@ -58,8 +58,8 @@ export class ProductManageComponent implements OnInit {
       }
     } else if (property === 'poster') {
       for (let i = 0; i < this.productList.length; i++) {
-        if (this.productList[i].poster.toLowerCase().match(key.toLowerCase())) {
-          this.arrProductSuggest.push(this.productList[i].poster);
+        if (this.productList[i].fullName.toLowerCase().match(key.toLowerCase())) {
+          this.arrProductSuggest.push(this.productList[i].fullName);
         }
       }
     }else{
@@ -86,7 +86,7 @@ export class ProductManageComponent implements OnInit {
         }
       } else if (property === 'poster') {
         this.productListShow = this.productList.filter(res => {
-          return res.poster.toLocaleLowerCase().match(key.toLocaleLowerCase());
+          return res.fullName.toLocaleLowerCase().match(key.toLocaleLowerCase());
         });
       } else if (property === 'initialPrice') {
         if (key === 'price1') {
