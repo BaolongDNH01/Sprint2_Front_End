@@ -3,7 +3,7 @@ export class Product {
   productName: string;
   initialPrice: number;
   eachIncrease: number;
-  image: string;
+  image: number[];
   productDetail: string;
   categoryId: number;
   categoryName: string;
