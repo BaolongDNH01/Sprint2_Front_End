@@ -1,9 +1,9 @@
-export interface Product {
+export class Product {
   productId: number;
   productName: string;
   initialPrice: number;
   eachIncrease: number;
-  image: string;
+  image: number[];
   productDetail: string;
   categoryId: number;
   categoryName: string;
@@ -15,4 +15,6 @@ export interface Product {
   fullName: string;
   auctionListId: number[];
 
+  constructor() {
+  }
 }
