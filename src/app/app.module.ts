@@ -10,14 +10,16 @@ import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './user/user.module';
+import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
 import {UserManageModule} from './user-manage/user-manage.module';
 import {ProductListModule} from './product/product-list.module';
 
 
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,7 @@ import {ProductListModule} from './product/product-list.module';
     ReactiveFormsModule,
     UserModule,
     ProductListModule,
+    AuctionModule,
     HomePageModule,
     UserManageModule
   ],
