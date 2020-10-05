@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './user/user.module';
 import {ProductListModule} from './product-list/product-list.module';
+import {HomePageModule} from './home-page/home-page.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ProductListModule} from './product-list/product-list.module';
     ReactiveFormsModule,
     UserModule,
     ProductListModule,
+    HomePageModule
 
   ],
   providers: [AngularFirestore],
