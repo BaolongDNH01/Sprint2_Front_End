@@ -11,11 +11,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './user/user.module';
 import {ProductListModule} from './product-list/product-list.module';
+import {AuctionModule} from './auction/auction.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,7 @@ import {ProductListModule} from './product-list/product-list.module';
     ReactiveFormsModule,
     UserModule,
     ProductListModule,
-
+    AuctionModule
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
