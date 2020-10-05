@@ -5,9 +5,12 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 
 
 @NgModule({
-  declarations: [ProductDetailsComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [ProductDetailsComponent],
+    exports: [
+        ProductDetailsComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class ProductModule { }
