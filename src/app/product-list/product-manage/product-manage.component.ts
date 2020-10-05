@@ -50,7 +50,6 @@ export class ProductManageComponent implements OnInit {
 
   findSuggest(key: string, property: string): void {
     this.arrProductSuggest = [];
-
     if (property === 'productName') {
       for (let i = 0; i < this.productList.length; i++) {
         if (this.productList[i].productName.toLowerCase().match(key.toLowerCase())) {
