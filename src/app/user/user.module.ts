@@ -7,11 +7,14 @@ import { LockUserComponent } from './lock-user/lock-user.component';
 import {UserRoutingModule} from './user-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
 import { RegisterComponent } from './register/register.component';
+import {SendMailComponent} from './send-mail/send-mail.component';
+import {ActivatedAccountComponent} from './activated-account/activated-account.component';
+
 
 
 
 @NgModule({
-  declarations: [ListUserComponent, LockUserComponent, AddUserComponent, RegisterComponent],
+  declarations: [ListUserComponent, LockUserComponent, AddUserComponent, RegisterComponent, SendMailComponent, ActivatedAccountComponent],
   exports: [
     ListUserComponent
   ],

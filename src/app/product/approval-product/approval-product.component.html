@@ -7,57 +7,60 @@
         </nav>
         <div class="row ">
           <div class="col-md-6 margin-auto">
-            <form [formGroup]="approvalProduct" (submit)="onApprovalProduct()"  >
-                <div *ngFor="let productList of productList">
-                  <label  ><img src="{{productList.image}}" style="width: 100px" class="img-fluid"
-                                                       alt="Responsive image"></label>
-                  <input formControlName="image" type="text" hidden>
-                  <label > Ma sản phẩm : {{productList.productId}}</label><br>
-                  <input formControlName="productId" type="text" hidden>
-                  <label > Tên sản phẩm : {{productList.productName}}</label><br>
-                  <input formControlName="productName" type="text" hidden>
-                  <label> Giá ban đầu : {{productList.initialPrice}}</label><br>
-                  <input formControlName="initialPrice" type="text" hidden>
-                  <label > Bước giá : {{productList.eachIncrease}}</label><br>
-                  <input formControlName="eachIncrease" type="text" hidden>
-                  <label > Chi tiết sản phẩm : {{productList.productDetail}}</label><br>
-                  <input formControlName="productDetail" type="text" hidden>
+            <form [formGroup]="approvalProduct" (submit)="onApprovalProduct()">
+              <div>
+                <label><img src="{{product.imageURL}}" style="width: 100px" class="img-fluid"
+                            alt="Responsive image"></label>
+<!--                <input formControlName="image" type="text" hidden>-->
+                <label> Ma sản phẩm : {{product.productId}}</label><br>
+                <input formControlName="productId" type="text" hidden>
+                <label> Tên sản phẩm : {{product.productName}}</label><br>
+                <input formControlName="productName" type="text" hidden>
+                <label> Giá ban đầu : {{product.initialPrice}}</label><br>
+                <input formControlName="initialPrice" type="text" hidden>
+                <label> Bước giá : {{product.eachIncrease}}</label><br>
+                <input formControlName="eachIncrease" type="text" hidden>
+                <label> Chi tiết sản phẩm : {{product.productDetail}}</label><br>
+                <input formControlName="productDetail" type="text" hidden>
 
 
-                  <input formControlName="categoryId" type="text" hidden>
+                <input formControlName="categoryId" type="text" hidden>
 
-                  <input formControlName="timeId" type="text" hidden>
+                <input formControlName="timeId" type="text" hidden>
 
-                  <input formControlName="userId" type="text" hidden>
-
-
-
-                  <label> Tên người đăng : {{productList.fullName}}</label><br>
-
-                  <label > Thời gian : {{productList.auctionTime}}</label><br>
-
-                  <label > Loại sản phẩm : {{productList.categoryName}}</label><br>
-
-                  <label > Trạng thái sản phẩm : {{productList.statusName}}</label><br>
-
-                </div>
+                <input formControlName="userId" type="text" hidden>
 
 
+                <label> Tên người đăng : {{product.fullName}}</label><br>
 
-              <div *ngFor="let status of statusList" >
-                <label>{{status.statusName}}</label>
-                <input formControlName="statusId" type="radio"  value="{{status.statusId}}">
+                <label> Thời gian : {{product.auctionTime}}</label><br>
+
+                <label> Loại sản phẩm : {{product.categoryName}}</label><br>
+
+                <label> Trạng thái sản phẩm : {{product.statusName}}</label><br>
+
+              </div>
+              <hr>
+              <div >
+                <ul>
+                  <h4>Chọn trạng thái sản phẩm</h4>
+                  <li *ngFor="let status of statusList">
+                    <label>{{status.statusName}}</label>
+                    <input formControlName="statusId" type="radio" value="{{status.statusId}}">
+                  </li>
+                </ul>
+
               </div>
 
               <div class="btn-group ">
-              <button class="btn btn-primary btn-sm" data-toggle="modal"
-                      data-target="#myModal">Duyệt
-              </button>
-              <button  class="btn btn-danger" data-toggle="modal"
-                      data-target="#exampleModal" data-whatever="ok">Không duyệt
-              </button>
-              <button  class="btn btn-primary btn-sm">Quay lại</button>
-            </div>
+                <button class="btn btn-primary btn-sm" data-toggle="modal"
+                        data-target="#myModal">Duyệt
+                </button>
+                <button class="btn btn-danger" data-toggle="modal"
+                        data-target="#exampleModal" data-whatever="ok">Không duyệt
+                </button>
+                <button class="btn btn-primary btn-sm">Quay lại</button>
+              </div>
 
             </form>
 
@@ -81,11 +84,12 @@
               </div>
             </div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 >Sản phẩm không được duyệt</h5>
+                    <h5>Sản phẩm không được duyệt</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>

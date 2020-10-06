@@ -7,18 +7,19 @@ import { ModalComponent } from './modal/modal.component';
 import {LoginModule} from '../login/login.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {ModalFormDirective} from './modalForm.directive';
+import { DisplayProductAutionComponent } from './display-product-aution/display-product-aution.component';
+
 
 
 @NgModule({
-  declarations: [HomeComponent, AuctionGuideComponent, ModalComponent, NavBarComponent, ModalFormDirective],
+  declarations: [HomeComponent, AuctionGuideComponent, DisplayProductAutionComponent,  ModalComponent, NavBarComponent, ModalFormDirective],
   exports: [
     HomeComponent,
-    NavBarComponent
+    AuctionGuideComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        LoginModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule
+  ]
 })
 export class HomePageModule { }
