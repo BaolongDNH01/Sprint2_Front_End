@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="text-info">Lịch sử đấu giá</h1>
+  <table class="table table-bordered table-responsive-md text-center">
+    <thead class="table thead-light">
+    <tr>
+      <th>Số đơn hàng</th>
+      <th>Tên sp</th>
+      <th>Thông tin sản phẩm</th>
+      <th>Giá đăng ký</th>
+      <th>Ngày đăng ký</th>
+      <th>Tình trạng</th>
+      <th>Hủy đấu giá</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bidder of listBidder |paginate: {
+          id: 'listing_pagination',
+          itemsPerPage: 4,
+          currentPage: currentPage,
+          totalItems: totalItem} ">
+      <td>{{bidder.productId}}</td>
+      <td>{{bidder.productName}}</td>
+      <td>{{bidder.productDetail}}</td>
+      <td>{{bidder.priceBidder}}</td>
+      <td>{{bidder.dateBidder}}</td>
+      <td>{{bidder.auctionStatus}}</td>
+      <td>{{bidder.cancellerAuction}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
