@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../product/product';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
@@ -14,7 +14,6 @@ export class DisplayProductAutionComponent implements OnInit {
   productList: Product[];
   productList1 = [];
   error: boolean;
-  show = true;
 
   constructor(
     private router: Router,
@@ -35,13 +34,9 @@ export class DisplayProductAutionComponent implements OnInit {
       next => {
         this.productList = next;
         for (let j = 0; j < this.productList.length; j++) {
-          console.log('ok chua');
-          console.log(this.productList[j].statusId);
           if (this.productList[j].statusId === 2) {
-            console.log('hihhhi');
             console.log(this.productList[j]);
             this.productList1.push(this.productList[j]);
-            console.log(this.productList1 + 'sss');
           }
         }
         for (let i = 0; i < this.productList.length; i++) {
@@ -78,7 +73,6 @@ export class DisplayProductAutionComponent implements OnInit {
     }
     setTimeout(() => this.time(), 1000);
   }
-
 
 
 }

@@ -9,9 +9,9 @@
           <div class="col-md-6 margin-auto">
             <form [formGroup]="approvalProduct" (submit)="onApprovalProduct()">
               <div>
-                <label><img src="{{product.image}}" style="width: 100px" class="img-fluid"
+                <label><img src="{{product.imageURL}}" style="width: 100px" class="img-fluid"
                             alt="Responsive image"></label>
-                <input formControlName="image" type="text" hidden>
+<!--                <input formControlName="image" type="text" hidden>-->
                 <label> Ma sản phẩm : {{product.productId}}</label><br>
                 <input formControlName="productId" type="text" hidden>
                 <label> Tên sản phẩm : {{product.productName}}</label><br>
