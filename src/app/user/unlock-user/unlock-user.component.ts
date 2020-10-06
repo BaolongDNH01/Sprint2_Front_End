@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../User';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-unlock-user',
@@ -16,8 +16,7 @@ export class UnlockUserComponent implements OnInit {
   user: User;
   stringFullUser = '';
   formLock: FormGroup;
-  dateHt = '';
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private router: Router, private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('ids');
     });
@@ -39,7 +38,6 @@ export class UnlockUserComponent implements OnInit {
       );
     }
     this.formLock = this.fb.group({
-      timeLock: ['', [Validators.min(1), Validators.required]],
       listUser: ['']
     });
     console.log(this.formLock.value.timeLockEnd);
@@ -47,7 +45,13 @@ export class UnlockUserComponent implements OnInit {
   unlockUser(): void{
     this.userService.unlockUser(this.userList).subscribe(
       next => {},
-      error => {}
+      error => {},
+      () => {
+        this.router.navigateByUrl('/');
+      }
     );
+  }
+  close(): void{
+    this.router.navigateByUrl('/');
   }
 }
