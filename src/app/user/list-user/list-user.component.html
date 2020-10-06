@@ -32,8 +32,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of userList | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize" ng-rep>
-        <th scope="row"></th>
+      <tr *ngFor="let user of userList | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize | paginate: {itemsPerPage: 10, currentPage: 1}; let i = index">
+        <th scope="row">{{i+1}}</th>
         <td><input [checked]="user.check" value="{{user.userId}}" (change)="addUser($event.target.value)" type="checkbox"></td>
         <td>{{user.userId}} <span *ngIf="user.flag == 'false'" class="fa fa-lock"></span></td>
         <td>{{user.fullName}}</td>
