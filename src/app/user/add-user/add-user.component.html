@@ -1,0 +1,110 @@
+<div class="row m-auto border" style="width: 1000px">
+  <form style="width: 100%" [formGroup]="formUser">
+    <div class="col-md-12 card-header">
+      Thêm thành viên
+    </div>
+    <div class="col-md-12 card-body mt-3 ">
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Họ và tên<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="fullName" class="form-control" type="text" placeholder="Họ và tên">
+          <div *ngIf="(formUser.get('fullName').hasError('required')) && formUser.get('fullName').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Họ và tên không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Tên đăng nhập<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="username" class="form-control" type="text" placeholder="Tên đăng nhập">
+          <div *ngIf="(formUser.get('username').hasError('required')) && formUser.get('username').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Tên đăng nhập không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Mật khẩu<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="password" class="form-control" type="text" placeholder="mật khẩu">
+          <div *ngIf="(formUser.get('password').hasError('required')) && formUser.get('password').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Mật khẩu không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Email<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="email" class="form-control" type="text" placeholder=Email>
+          <div *ngIf="(formUser.get('email').hasError('required')) && formUser.get('email').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Email không được để trống!
+          </div>
+          <div *ngIf="(!formUser.get('email').hasError('required') && formUser.get('email').hasError('pattern')) && formUser.get('email').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Email phải có dạng abc@abc.abc!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Ngày sinh<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="birthDay" class="form-control" type="date">
+          <div *ngIf="(formUser.get('birthDay').hasError('required')) && formUser.get('birthDay').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Ngày sinh không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Địa chỉ<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="address" class="form-control" type="text" placeholder="Địa chỉ">
+          <div *ngIf="(formUser.get('address').hasError('required')) && formUser.get('address').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Địa chỉ không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Số điện thoại<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="phone" class="form-control" type="text" placeholder="Số điện thoại">
+          <div *ngIf="(formUser.get('phone').hasError('required')) && formUser.get('phone').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Số điện thọa không được để trống!
+          </div>
+          <div *ngIf="(!formUser.get('phone').hasError('required') &&
+          (formUser.get('phone').hasError('pattern') || formUser.get('phone').hasError('minlength') || formUser.get('phone').hasError('maxlength'))) &&
+          formUser.get('phone').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Số điện thoại phải từ 9 đến 12 chữ số!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Chứng minh nhân dân<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="idCard" class="form-control" type="text" placeholder="Chứng minh nhân dân">
+          <div *ngIf="(formUser.get('idCard').hasError('required')) && formUser.get('idCard').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Chứng minh thư không được để trống!
+          </div>
+          <div *ngIf="(!formUser.get('phone').hasError('required') &&
+          (formUser.get('idCard').hasError('pattern') || formUser.get('idCard').hasError('minlength') || formUser.get('idCard').hasError('maxlength'))) &&
+          formUser.get('idCard').touched" class="list-inline mt-3 ml-2 text-danger">
+            *Chứng minh thư phải từ 9 đến 12 chữ số!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+          <button (click)="addUser()" [disabled]="formUser.invalid" class="btn btn-outline-secondary">Thêm</button>
+          <button (click)="reset()" class="btn btn-outline-secondary">Nhập lại</button>
+          <button (click)="close()" class="btn btn-outline-secondary">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
