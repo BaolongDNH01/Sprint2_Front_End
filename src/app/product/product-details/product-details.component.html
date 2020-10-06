@@ -1,1 +1,225 @@
-<p>product-details works!</p>
+<div class="container bg-light">
+  <h4 class="pt-md-4">Bàn phím giả cơ R18-1822</h4>
+  <div class="row">
+    <div class="col-md-3">
+      <!-- Full-width images with number text -->
+      <div class="mySlides">
+        <img class="img-show" src="images/keyboard1.jpg">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="images/keyboard2.jpg">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="images/keyboard3.jpg">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="images/keyboard4.jpg">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="images/keyboard5.jpg">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="images/keyboard6.jpg">
+      </div>
+
+      <!-- Next and previous buttons -->
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+      <!-- Image text -->
+      <div class="caption-container">
+        <p id="caption"></p>
+      </div>
+    </div>
+    <div class="col-md-4 pl-4">
+      <p>ID: 34909</p>
+      <p>Bắt đầu: 11h00 23/9/2020</p>
+      <p>Kết thúc: 12h00 23/9/2020</p>
+      <p>Thời gian còn lại: 00:30:47</p>
+      <p>Giá gốc 100.000 VNĐ</p>
+      <p>Giá hiện tại: 190.000 VNĐ</p>
+      <p>Mỗi lần tăng ít nhất: 10.000 VNĐ</p>
+      <div class="row">
+        <div class="col-md-3 info-product pt-md-3">
+          Giá đấu:
+        </div>
+        <div class="col-md-5 info-product px-0 align-content-center">
+
+          <div class="price form-group d-flex text-center">
+            <a href="#" id="tung" class=" border rounded-left pt-md-2 pl-md-2 pr-md-2 ">
+              <i class="fa fa-minus" aria-hidden="true"></i>
+            </a>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>190.000</option>
+              <option>200.000</option>
+              <option>210.000</option>
+              <option>220.000</option>
+              <option>230.000</option>
+            </select>
+            <a href="#" id="tung1" class="border rounded-right pt-md-2 pl-md-2 pr-md-2 ">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </a>
+          </div>
+
+
+        </div>
+        <div class="col-md-4 info-product">
+          <button class="btn btn-primary">Đấu giá</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+        <table class="table table-bordered table-striped mb-0 ">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Số tiền</th>
+            <th scope="col">Thời gian đấu giá</th>
+            <th scope="col">Thành viên</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>190.000</td>
+            <td>10:00 23/9/2020</td>
+            <td>Tùng</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>180.000</td>
+            <td>9:00 23/9/2020</td>
+            <td>Quân</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>170.000</td>
+            <td>8:00 23/9/2020</td>
+            <td>Thiện</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>160.000</td>
+            <td>7:00 23/9/2020</td>
+            <td>Hùng</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td>150.000</td>
+            <td>6:00 23/9/2020</td>
+            <td>Phương</td>
+          </tr>
+          <tr>
+            <th scope="row">6</th>
+            <td>140.000</td>
+            <td>5:00 23/9/2020</td>
+            <td>Long</td>
+          </tr>
+          <tr>
+            <th scope="row">7</th>
+            <td>130.000</td>
+            <td>4:00 23/9/2020</td>
+            <td>Khánh</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h3>Hình ảnh</h3>
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="images/keyboard1.jpg" onclick="currentSlide(1)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="images/keyboard2.jpg" onclick="currentSlide(2)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="images/keyboard3.jpg" onclick="currentSlide(3)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="images/keyboard4.jpg" onclick="currentSlide(4)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="images/keyboard5.jpg" onclick="currentSlide(5)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="images/keyboard6.jpg" onclick="currentSlide(6)">
+    </div>
+  </div>
+  <hr>
+  <h3>Thông tin chi tiết</h3>
+  <ul>
+    <li>Bàn phím treo chống nước và nhạy với ánh sáng nền cầu vồng</li>
+    <li>Được làm từ chất liệu cao cấp, bền, kiểu dáng đẹp và thiết kế tiện dụng</li>
+    <li>Có công tắc đèn nền và các phím mờ</li>
+    <li>Double-Shot Injection tạo thêm không gian cho đèn LED khi bật</li>
+    <li>Công tắc mái vòm cao su</li>
+    <li>12 Phím nóng Đa phương tiện và 26 phím chống bóng mờ giúp nâng cao trải nghiệm chơi game</li>
+    <li>Bàn phím có thể chịu được tới 50 triệu lần nhấn phím</li>
+    <li>Chip chơi game tích hợp đưa việc chơi game lên một tầm cao mới</li>
+    <li>Tương thích với cả hệ điều hành WINDOWS và MAC</li>
+    <li>Kích thước: 13,5 x 2 x 44 cm</li>
+    <li>Bảo hành 1 năm từ nhà sản xuất</li>
+  </ul>
+  <hr>
+  <h3>Thông tin nhận hàng</h3>
+  <ul>
+    <li>Địa chỉ nhận hàng: 114 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
+    <li>ĐT: 0898241303</li>
+  </ul>
+  <img class="google-map" src="images/google-map.png">
+  <hr>
+  <h3>Bình luận</h3>
+  <textarea class="form-control" aria-label="With textarea" disabled>
+    </textarea>
+  <div class="input-group pt-md-3 pb-md-5">
+        <textarea class="form-control" aria-label="With textarea">
+        </textarea>
+    <div class="input-group-prepend">
+      <span class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nhận xét</span>
+    </div>
+  </div>
+
+
+</div>
+<script>
+  var slideIndex = 1;
+  showSlides(slideIndex);
+
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
+
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    var captionText = document.getElementById("caption");
+    if (n > slides.length) {
+      slideIndex = 1
+    }
+    if (n < 1) {
+      slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+    captionText.innerHTML = dots[slideIndex - 1].alt;
+  }
+</script>

@@ -7,16 +7,19 @@ import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore'
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
+import {ProductModule} from './product/product.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './user/user.module';
-import {ProductListModule} from './product-list/product-list.module';
+import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
+import {UserManageModule} from './user-manage/user-manage.module';
+import {ProductListModule} from './product/product-list.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +31,13 @@ import {HomePageModule} from './home-page/home-page.module';
     ReactiveFormsModule,
     UserModule,
     ProductListModule,
-    HomePageModule
-
+    AuctionModule,
+    HomePageModule,
+    UserManageModule,
+   AppRoutingModule,
+  ProductModule
   ],
+
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
