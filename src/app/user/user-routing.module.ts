@@ -6,11 +6,13 @@ import {LockUserComponent} from './lock-user/lock-user.component';
 import {AddUserComponent} from './add-user/add-user.component';
 import {SendMailComponent} from './send-mail/send-mail.component';
 import {ActivatedAccountComponent} from './activated-account/activated-account.component';
+import {UnlockUserComponent} from './unlock-user/unlock-user.component';
 
 const routes: Routes = [
   {path: '', children: [
       {path: '', component: ListUserComponent},
       {path: 'lock-user/:ids', component: LockUserComponent},
+      {path: 'unlock-user/:ids', component: UnlockUserComponent},
       {path: 'add-user', component: AddUserComponent},
       {path: 'send-email', component: SendMailComponent},
       {path: 'activated-account/:token', component: ActivatedAccountComponent}
