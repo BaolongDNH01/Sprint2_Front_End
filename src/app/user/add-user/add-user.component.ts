@@ -12,6 +12,8 @@ import {Router} from '@angular/router';
 export class AddUserComponent implements OnInit {
   formUser: FormGroup;
   user: User;
+  userList: User[];
+  error = '';
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
@@ -25,18 +27,36 @@ export class AddUserComponent implements OnInit {
       address: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       idCard: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
+      confirmPassword: ['false'],
+      enabled: ['false']
     });
   }
-  addUser(): void{
+  addUser(): void {
+    this.error = '';
     this.user = Object.assign({}, this.formUser.value);
     this.user.rank = 'Bạc';
     this.user.point = 0;
     this.user.flag = 'true';
-    this.userService.saveUser(this.user).subscribe(
-      next => {},
-      error => {},
+    console.log(this.user);
+    this.userService.findAllUser().subscribe(
+      next => {
+        this.userList = next;
+      }, error => {},
       () => {
-        this.router.navigateByUrl('/');
+        for (let i = 0; i < this.userList.length; i++){
+          // tslint:disable-next-line:triple-equals
+          if (this.userList[i].username == this.user.username){
+            this.error = 'Tài khoản đã tồn tại';
+            return;
+          }
+        }
+        this.userService.sendEmail(this.user).subscribe(
+          next => {},
+          error => {},
+          () => {
+            this.router.navigateByUrl('/send-email');
+          }
+        );
       }
     );
   }
@@ -50,9 +70,12 @@ export class AddUserComponent implements OnInit {
       address: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       idCard: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
+      confirmPassword: ['false'],
+      enabled: ['false']
     });
   }
   close(): void{
     this.router.navigateByUrl('/');
   }
 }
+
