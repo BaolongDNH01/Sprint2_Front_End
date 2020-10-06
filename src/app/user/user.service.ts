@@ -30,4 +30,7 @@ export class UserService {
   getUserByUserName(userName: string): Observable<User>{
     return this.httpClient.get<User>(this.API_URL + '/getUserByUserName/' + userName);
   }
+  findAllUserActivated(): Observable<User[]>{
+    return this.httpClient.get<User[]>(this.API_URL + '/user-activated');
+  }
 }
