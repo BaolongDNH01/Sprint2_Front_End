@@ -1,12 +1,4 @@
-
-<div class="container-fluid">
-<app-nav-bar [modal] = "modal" ></app-nav-bar>
-</div>
-
-<router-outlet></router-outlet>
-<!--<app-product-manage></app-product-manage>-->
-<div class="container-fluid">
-  <div id="nav" class="row">
+ <div id="nav" class="row">
     <nav class="col-md-12 navbar navbar-expand-lg">
       <div class="col-md-4 d-flex justify-content-center">
         <div class="logo">
@@ -29,7 +21,7 @@
             Auctions</a>
         </div>
         <div id="signIn" class="nav-item mt-auto mb-auto mr-5">
-          <a class="nav-link text-white" data-toggle="modal"
+          <a class="nav-link text-white" (click)="renderComponent(0)" data-toggle="modal"
              data-target="#login"><i class="fa fa-lock mr-2"
                                      aria-hidden="true"></i>
             Sign In</a>
@@ -44,7 +36,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <app-auth-login></app-auth-login>
+                <ng-template modalForm ></ng-template>
               </div>
             </div>
           </div>
@@ -52,6 +44,5 @@
       </div>
     </nav>
   </div>
-</div>
-<app-home></app-home>
+
 

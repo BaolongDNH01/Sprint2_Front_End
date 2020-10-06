@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './product';
 import {Status} from 'tslint/lib/runner';
+import {Category} from './category';
+import {AuctionTime} from './auction-time';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +32,13 @@ export class ProductService {
 
   findAllStatusProduct(): Observable<Status[]> {
     return this.httpClient.get<Status[]>(this.API_URL + '/list-status');
+  }
+
+  findAllCategory(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(this.API_URL + '/list-category');
+  }
+
+  findAllAuctionTime(): Observable<AuctionTime[]> {
+    return this.httpClient.get<AuctionTime[]>(this.API_URL + '/list-time');
   }
 }
