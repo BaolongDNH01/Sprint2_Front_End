@@ -29,7 +29,7 @@ export class ApprovalProductComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
-      this.productService.findById(2).subscribe(
+      this.productService.findById(1).subscribe(
         next => {
           this.product = next;
           this.id = this.product.productId;

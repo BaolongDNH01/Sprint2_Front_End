@@ -28,7 +28,6 @@ export class ProductService {
 
   editProduct(product: Product): Observable<void> {
     return this.httpClient.patch<void>(this.API_URL + '/product-edit/' + product.productId, product);
-    console.log('toi roi');
   }
 
   findAllStatusProduct(): Observable<Status[]> {
