@@ -14,6 +14,8 @@ export class Product {
   userId: number;
   fullName: string;
   auctionListId: number[];
+  listImageProduct: number[];
+  imageURL: string;
 
   constructor() {
   }
