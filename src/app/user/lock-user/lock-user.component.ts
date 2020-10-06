@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../User';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
   selector: 'app-lock-user',
@@ -17,7 +17,7 @@ export class LockUserComponent implements OnInit {
   stringFullUser = '';
   formLock: FormGroup;
   dateHt = '';
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
+  constructor(private router: Router, private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder){
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('ids');
     });
@@ -52,8 +52,14 @@ export class LockUserComponent implements OnInit {
     }
     this.userService.lockUser(this.userList).subscribe(
       next => {},
-      error => {}
+      error => {},
+      () => {
+        this.router.navigateByUrl('/');
+      }
     );
+  }
+  close(): void{
+    this.router.navigateByUrl('/');
   }
 
 }
