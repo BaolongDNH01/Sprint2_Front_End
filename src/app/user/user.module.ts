@@ -6,11 +6,12 @@ import {RouterModule} from '@angular/router';
 import { LockUserComponent } from './lock-user/lock-user.component';
 import {UserRoutingModule} from './user-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
 @NgModule({
-  declarations: [ListUserComponent, LockUserComponent, AddUserComponent],
+  declarations: [ListUserComponent, LockUserComponent, AddUserComponent, RegisterComponent],
   exports: [
     ListUserComponent
   ],
