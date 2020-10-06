@@ -1,0 +1,48 @@
+<div class="container">
+  <h3 class="text-center">Đăng sản phẩm</h3>
+  <form class="w-75 mx-auto">
+    <div class="form-group">
+      <p>Tên sản phẩm :</p>
+      <input type="text" class="form-control">
+    </div>
+    <div>
+      <p>Chủng loại :</p>
+      <select class="form-control">
+        <option value="Điện tử">Điện tử</option>
+        <option value="Quần áo">Quần áo</option>
+        <option value="Phụ kiện">Phụ kiện</option>
+      </select><br>
+    </div>
+    <div>
+      <p>Giá ban đầu :</p>
+      <input class="form-control" type="text">
+    </div>
+    <div>
+      <p>Mỗi lần tăng ít nhất :</p>
+      <input class="form-control" type="text"><br>
+    </div>
+    <div>
+      <p>Hình ảnh sản phẩm :  <input  id="files" type="file" multiple  max="5" onChange='getNameImg()'><br></p>
+      <!--        accept="image/*"-->
+      <input id="nameImg" class="form-control" type="text" disabled><br>
+    </div>
+    <div>
+      <p>Thông tin chi tiết :</p>
+      <textarea class="form-control" id="comment" ></textarea><br>
+    </div>
+    <div>
+      <p>Đấu giá trong thời gian :</p>
+      <select class="form-control">
+        <option value="1h">01:00</option>
+        <option value="3h">03:00</option>
+        <option value="5h">08:00</option>
+        <option value="24h">1 ngày</option>
+        <option value="24h">3 ngày</option>
+        <option value="24h">7 ngày</option>
+      </select><br>
+    </div>
+    <div class="row d-flex justify-content-center mt-4">
+      <input class="btn btn-success" type="submit" value="Đăng">
+    </div>
+  </form>
+</div>
