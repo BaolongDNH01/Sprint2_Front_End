@@ -13,9 +13,10 @@ import {User} from '../User';
 export class ActivatedAccountComponent implements OnInit {
   token: string;
   tokenList: Token[];
-  idUser: number;
+  idUser = 0;
   idToken: number;
   user: User;
+  activated = '';
   constructor(private userService: UserService, private tokenService: TokenService, private activatedRoute: ActivatedRoute) {
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.token = paramMap.get('token');
@@ -35,24 +36,31 @@ export class ActivatedAccountComponent implements OnInit {
             this.idToken = this.tokenList[i].id;
           }
         }
-        this.userService.findUserById(this.idUser).subscribe(
-          next => {
-            this.user = next;
-          }, error => {},
-          () => {
-            this.user.enabled = 'true';
-            this.userService.saveUser(this.user).subscribe(
-              next => {},
-              error => {},
-              () => {
-                this.tokenService.delete(this.idToken).subscribe(
-                  next => {},
-                  error => {}
-                );
-              }
-            );
-          }
-        );
+        // tslint:disable-next-line:triple-equals
+        if (this.idUser == 0){
+          this.activated = 'Kích hoạt tài khoản không thành công, tài khoản đã hết hạn!';
+        }
+        else {
+          this.activated = 'Kích hoạt tài khoản thành công';
+          this.userService.findUserById(this.idUser).subscribe(
+            next => {
+              this.user = next;
+            }, error => {},
+            () => {
+              this.user.enabled = 'true';
+              this.userService.saveUser(this.user).subscribe(
+                next => {},
+                error => {},
+                () => {
+                  this.tokenService.delete(this.idToken).subscribe(
+                    next => {},
+                    error => {}
+                  );
+                }
+              );
+            }
+          );
+        }
       }
     );
   }
