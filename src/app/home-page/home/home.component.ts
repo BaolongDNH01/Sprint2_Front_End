@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {Product} from '../../product-list/product';
-import {ProductService} from '../../product-list/product.service';
 import {timeout} from 'rxjs/operators';
+import {Product} from '../../product/product';
+import {ProductService} from '../../product/product.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.chatbox();
+    // this.chatbox();
     this.getAllProduct();
     this.time();
 
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit {
     this.productService.getAllProduct().subscribe(
       next => {
         this.productList = next;
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < this.productList.length; i++) {
           this.productService.findById(this.productList[i].auctionTime).subscribe();
           this.m = this.productList[i].auctionTime;
@@ -52,28 +53,29 @@ export class HomeComponent implements OnInit {
   }
 
 
-  chatbox(): void {
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function() {
-      var s1 = document.createElement('script'), s0 = document.getElementsByTagName('script')[0];
-      s1.async = true;
-      s1.src = 'https://embed.tawk.to/5f6964cef0e7167d001284f1/default';
-      s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
-    })();
-  }
+  // chatbox(): void {
+  //   // tslint:disable-next-line:variable-name prefer-const
+  //   let Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+  //   (function() {
+  //     let s1 = document.createElement('script'), s0 = document.getElementsByTagName('script')[0];
+  //     s1.async = true;
+  //     s1.src = 'https://embed.tawk.to/5f6964cef0e7167d001284f1/default';
+  //     s1.charset = 'UTF-8';
+  //     s1.setAttribute('crossorigin', '*');
+  //     s0.parentNode.insertBefore(s1, s0);
+  //   })();
+  // }
 
   auctionGuide(): void {
     this.router.navigateByUrl('/auction-guide');
   }
 
   time(): void {
-    var h = this.h; // Giờ
-    var m = this.m; // Phút
-    var s = this.s; // Giây
+    let h = this.h; // Giờ
+    let m = this.m; // Phút
+    let s = this.s; // Giây
 
-    var timeout = null; // Timeout
+    let timeout = null; // Timeout
     start();
 
     function start(): void {

@@ -10,7 +10,8 @@ import {Bidder} from '../bidder';
   styleUrls: ['./list-bidder.component.css']
 })
 export class ListBidderComponent implements OnInit {
-  @Input idProduct: number;
+  @Input()
+  idProduct: number;
 
   bidderList: Bidder[];
 
