@@ -1,25 +1,26 @@
 <div class="container">
   <h3 class="text-center">Đăng sản phẩm</h3>
-  <form class="w-75 mx-auto">
+  <form class="w-75 mx-auto" [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <p>Tên sản phẩm :</p>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" formControlName="productName">
     </div>
     <div>
       <p>Chủng loại :</p>
-      <select class="form-control">
-        <option value="Điện tử">Điện tử</option>
-        <option value="Quần áo">Quần áo</option>
-        <option value="Phụ kiện">Phụ kiện</option>
-      </select><br>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
+          {{category.categoryName}}
+        </mat-option>
+      </mat-select>
+      <br>
     </div>
     <div>
       <p>Giá ban đầu :</p>
-      <input class="form-control" type="text">
+      <input class="form-control" type="text" formControlName="initialPrice">
     </div>
     <div>
       <p>Mỗi lần tăng ít nhất :</p>
-      <input class="form-control" type="text"><br>
+      <input class="form-control" type="text" formControlName="eachIncrease"><br>
     </div>
     <div>
       <p>Hình ảnh sản phẩm :  <input  id="files" type="file" multiple  max="5" onChange='getNameImg()'><br></p>
@@ -28,21 +29,20 @@
     </div>
     <div>
       <p>Thông tin chi tiết :</p>
-      <textarea class="form-control" id="comment" ></textarea><br>
+      <textarea class="form-control" id="comment" formControlName="productDetail"></textarea><br>
     </div>
     <div>
       <p>Đấu giá trong thời gian :</p>
-      <select class="form-control">
-        <option value="1h">01:00</option>
-        <option value="3h">03:00</option>
-        <option value="5h">08:00</option>
-        <option value="24h">1 ngày</option>
-        <option value="24h">3 ngày</option>
-        <option value="24h">7 ngày</option>
-      </select><br>
+      <mat-select formControlName="categoryId">
+        <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
+          {{time.auctionTime}}
+        </mat-option>
+      </mat-select><br>
     </div>
     <div class="row d-flex justify-content-center mt-4">
       <input class="btn btn-success" type="submit" value="Đăng">
     </div>
   </form>
+  {{ productForm.value | json}}
+
 </div>
