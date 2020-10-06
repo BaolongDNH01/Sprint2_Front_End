@@ -33,4 +33,7 @@ export class UserService {
   findAllUserActivated(): Observable<User[]>{
     return this.httpClient.get<User[]>(this.API_URL + '/user-activated');
   }
+  unlockUser(userList: User[]): Observable<any>{
+    return this.httpClient.post(this.API_URL + '/unlock-user', userList);
+  }
 }
