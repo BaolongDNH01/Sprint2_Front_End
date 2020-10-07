@@ -36,4 +36,7 @@ export class UserService {
   unlockUser(userList: User[]): Observable<any>{
     return this.httpClient.post(this.API_URL + '/unlock-user', userList);
   }
+  deleteUsers(ids: string[]): Observable<any>{
+    return this.httpClient.delete<any>(this.API_URL + '/delete-users/' + ids);
+  }
 }

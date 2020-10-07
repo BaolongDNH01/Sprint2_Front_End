@@ -157,4 +157,12 @@ export class ListUserComponent implements OnInit {
       this.router.navigateByUrl('/unlock-user/' + idList);
     }
   }
+  delete(): void{
+      if (this.ids.length == 0){
+      this.errorCheck = 'Bạn cần chọn ít nhất 1 thành viên';
+    }else {
+      this.router.navigateByUrl('/delete/' + this.ids);
+    }
+  }
+
 }

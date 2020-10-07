@@ -1,0 +1,25 @@
+<div class="row border m-auto" style="width: 1000px">
+  <div class="col-md-12 card-header">
+    Khóa thành viên
+  </div>
+  <form [formGroup]="formLock" style="width: 100%">
+    <div class="col-md-12 card-body">
+      <div class="row mb-4">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">Bạn có thực sự muốn mở khóa<span class="text-danger">  *</span></div>
+        <div class="col-md-6">
+          <textarea readonly formControlName="listUser" class="form-control" type="text" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <button (click)="delete()" [disabled]="formLock.invalid" class="btn btn-outline-secondary">Mỏ khóa</button>
+          <button (click)="close()" class="btn btn-outline-secondary">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
