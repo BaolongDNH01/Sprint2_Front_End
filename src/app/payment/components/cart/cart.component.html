@@ -1,0 +1,140 @@
+<div class="container-fluid p-0">
+  <div class="row chil-navbar d-flex justify-content-end p-2 m-0 fixed-top">
+    <div class="col-md-2 chil-logo chil-logo-icon">
+      Chilindo
+    </div>
+    <div class="col-md-7">
+      <nav class="navbar navbar-expand-sm d-flex justify-content-md-start">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link chil-icon-cart mr-2" href="#">Giỏ hàng</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link chil-icon-hammer mr-2" href="#">Đấu giá của tôi</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link chil-icon-language mr-2" href="#">
+              <div class=""></div>
+              <span>Set Language</span>
+              <img src="https://cdn.webshopapp.com/shops/94414/files/54968496/vietnam-flag-image-free-download.jpg"
+                alt="vn.jpg">
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Chào mừng [User]
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item text-dark" href="#">Cá nhân</a>
+              <a class="dropdown-item text-dark" href="#">Đơn hàng</a>
+              <a class="dropdown-item text-dark" href="#">Đăng xuất</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-around p-0 chil-main">
+    <div class="col-md-7 shadow">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-6 chil-tab-menu text-center">
+          <a href="#" class="chil-tab-menu-cart">My cart</a>
+        </div>
+        <div class="col-md-6 chil-tab-menu text-center">
+          <a href="#" class="chil-tab-menu-saved">Saved for Later</a>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-between p-2 mt-3 mx-1 bg-light">
+        <span>Sản phẩm</span>
+        <span>Giá từng phần</span>
+      </div>
+
+      <!-- accordion -->
+      <div id="accordion">
+
+        <div class="card border-0 ">
+          <div class="card-header row d-flex justify-content-between p-2 m-1 chil-title text-light border-0">
+            <span>Shipment1: Receive 05-April to 12-April</span>
+            <a>
+              <i class="fa fa-chevron-up chil-up-arrow-collapse" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
+            </a>
+          </div>
+          <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+              <div class="row p-3 m-1 chil-product bg-light" *ngFor="let item of cartResponse.cartItemList">
+                <div class="col-md-3 p-0">
+                  <img src="{{item.product.image}}" alt="macbook">
+                </div>
+                <div class="col-md-6">
+                  <h5>{{item.product.productName}}</h5>
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link text-dark" href="#">-</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="#">+</a></li>
+                  </ul>
+                  <span class="badge badge-light">Color: Grey</span>
+                </div>
+                <div class="col-md-3">
+                  <p>{{item.product.price}}</p>
+                  <span>
+                    <a class="text-primary" href="#">
+                      <i class="fa fa-bookmark" aria-hidden="true"></i>
+                      Save for later
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 chil-summary">
+      <div class="shadow p-3 border rounded">
+        <h5>Tóm tắt đơn hàng</h5>
+        <table class="table table-borderless">
+          <tr>
+            <td>Item total</td>
+            <td class="text-right font-weight-bold text-primary">89.100,00</td>
+          </tr>
+          <tr>
+            <td>Giao hàng</td>
+            <td class="text-right font-weight-bold text-primary">49000</td>
+          </tr>
+          <tr>
+            <td>Tổng</td>
+            <td class="text-right font-weight-bold text-primary">138,100</td>
+          </tr>
+        </table>
+        <button class="btn btn-success chil-btn-success p-2">Hoàn tất ngay</button>
+        <!-- <div class="alert alert-danger">
+        You must choose at least of one product !
+      </div> -->
+        <span class="chil-shipping d-block mt-3">Giao hàng toàn quốc | từ 49.000 đ </span>
+        <img class="chil-payment-bank mt-3"
+          src="https://scontent.smarttourism.vn/resources/portal//Images/BDG/superadminportal.bdg/Tien%20ich/vcb_636966368969566050.jpg"
+          alt="vietcombank">
+        <img class="chil-payment-bank mt-2"
+          src="https://scontent.smarttourism.vn/resources/portal//Images/NTN/nguyenhaan/Ti%E1%BB%87n%20%C3%ADch/246x0w_636892088212276736.jpg"
+          alt="vietcombank">
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center chil-bottom-question shadow">
+    <div class="col-md-4 border p-4">
+      <p class="font-weight-bold">KHI NÀO TÔI NHẬN ĐƯỢC HÀNG?</p>
+      <span>Trong vòng 1 - 3 ngày làm việc</span>
+    </div>
+    <div class="col-md-4 border p-4">
+      <p class="font-weight-bold">ĐIỀU KHOẢN HOÀN TRẢ CỦA CHILINDO LÀ GÌ?</p>
+      <span>Nếu bạn không hài lòng với kiện hàng, bạn có thể hoàn lại trong 30 ngày</span>
+    </div>
+    <div class="col-md-4 border p-4">
+      <p class="font-weight-bold">THAY ĐỔI ĐƠN HÀNG?</p>
+      <span>Gọi chúng tôi theo số (090) 1923985743</span>
+    </div>
+  </div>
+</div>
