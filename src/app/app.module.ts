@@ -15,7 +15,6 @@ import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
 import {UserManageModule} from './user-manage/user-manage.module';
 import {ProductListModule} from './product/product-list.module';
-import { NewComponentComponent } from './new-component/new-component.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
@@ -24,15 +23,14 @@ import {
   GoogleLoginProvider,
   SocialAuthService,
   SocialAuthServiceConfig, SocialLoginModule
-} from "angularx-social-login";
-import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
+} from 'angularx-social-login';
+import {AuthLoginComponent} from './login/components/auth-login/auth-login.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewComponentComponent,
     ProductCreateComponent,
   ],
   imports: [
