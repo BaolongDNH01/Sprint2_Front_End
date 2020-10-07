@@ -37,22 +37,15 @@ export class AddUserComponent implements OnInit {
     this.user.rank = 'Bạc';
     this.user.point = 0;
     this.user.flag = 'true';
-    console.log(this.user);
+    console.log('ok');
     this.userService.findAllUser().subscribe(
       next => {
         this.userList = next;
-      }, error => {},
+      }, error => {console.log('error');},
       () => {
-        for (let i = 0; i < this.userList.length; i++){
-          // tslint:disable-next-line:triple-equals
-          if (this.userList[i].username == this.user.username){
-            this.error = 'Tài khoản đã tồn tại';
-            return;
-          }
-        }
         this.userService.sendEmail(this.user).subscribe(
           next => {},
-          error => {},
+          error => {this.error = 'Tài khoản đã tồn tại';},
           () => {
             this.router.navigateByUrl('/send-email');
           }

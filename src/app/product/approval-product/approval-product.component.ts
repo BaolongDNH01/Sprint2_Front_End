@@ -4,6 +4,9 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Status} from 'tslint/lib/runner';
 import {Product} from '../product';
 import {ProductService} from '../product.service';
+import {Auction} from '../../auction/auction';
+import {AuctionService} from '../../auction/auction.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-approval-product',
@@ -15,12 +18,15 @@ export class ApprovalProductComponent implements OnInit {
   id: number;
   approvalProduct: FormGroup;
   statusList: Status[];
-
+  auction: Auction;
+  myDate = new Date();
 
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private auctionService: AuctionService,
+    private datePipe: DatePipe
   ) {
   }
 
@@ -29,7 +35,7 @@ export class ApprovalProductComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
-      this.productService.findById(2).subscribe(
+      this.productService.findById(1).subscribe(
         next => {
           this.product = next;
           this.id = this.product.productId;
@@ -80,6 +86,11 @@ export class ApprovalProductComponent implements OnInit {
     this.product.productId = this.id;
     this.productService.editProduct(this.product).subscribe();
     location.reload();
+
+    // tạo phiên đấu giá sau khi duyệt
+    this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
+    this.auction.statusAuction = 1;
+    this.auction.product = this.product.productId;
   }
 
 }

@@ -9,6 +9,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { RegisterComponent } from './register/register.component';
 import {SendMailComponent} from './send-mail/send-mail.component';
 import {ActivatedAccountComponent} from './activated-account/activated-account.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -23,7 +24,8 @@ import {ActivatedAccountComponent} from './activated-account/activated-account.c
     FormsModule,
     RouterModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class UserModule { }

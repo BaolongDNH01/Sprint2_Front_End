@@ -24,7 +24,7 @@ export class ListUserComponent implements OnInit {
   pageSize = 5;
   pageMax: number;
   constructor(private userService: UserService, private rankService: RankService, private router: Router) {
-    userService.findAllUser().subscribe(
+    userService.findAllUserActivated().subscribe(
       next => {
         this.userList = next;
         this.userListCheck = next;
@@ -46,7 +46,7 @@ export class ListUserComponent implements OnInit {
   }
 
   search(): void{
-    this.userService.findAllUser().subscribe(
+    this.userService.findAllUserActivated().subscribe(
       next => {
         this.userList = next;
       }, error => {
