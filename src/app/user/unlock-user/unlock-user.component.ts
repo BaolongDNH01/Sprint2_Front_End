@@ -5,19 +5,18 @@ import {UserService} from '../user.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-lock-user',
-  templateUrl: './lock-user.component.html',
-  styleUrls: ['./lock-user.component.css']
+  selector: 'app-unlock-user',
+  templateUrl: './unlock-user.component.html',
+  styleUrls: ['./unlock-user.component.css']
 })
-export class LockUserComponent implements OnInit {
+export class UnlockUserComponent implements OnInit {
   id: string;
   ids: string[];
   userList: User[] = new Array();
   user: User;
   stringFullUser = '';
   formLock: FormGroup;
-  dateHt = '';
-  constructor(private router: Router, private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder){
+  constructor(private router: Router, private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder) {
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('ids');
     });
@@ -39,18 +38,12 @@ export class LockUserComponent implements OnInit {
       );
     }
     this.formLock = this.fb.group({
-      timeLock: ['', [Validators.min(1), Validators.required]],
       listUser: ['']
     });
     console.log(this.formLock.value.timeLockEnd);
   }
-  lockUser(): void{
-    console.log(this.userList.length);
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.userList.length; i++){
-      this.userList[i].timeLock = this.formLock.value.timeLock * 24 * 60 * 60 * 1000;
-    }
-    this.userService.lockUser(this.userList).subscribe(
+  unlockUser(): void{
+    this.userService.unlockUser(this.userList).subscribe(
       next => {},
       error => {},
       () => {
@@ -61,5 +54,4 @@ export class LockUserComponent implements OnInit {
   close(): void{
     this.router.navigateByUrl('/');
   }
-
 }
