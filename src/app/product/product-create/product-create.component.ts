@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../product';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../category';
 import {AuctionTime} from '../auction-time';
 import {ProductService} from '../product.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-create',
@@ -17,7 +18,7 @@ export class ProductCreateComponent implements OnInit {
   categoryList: Category[];
   auctionTimeList: AuctionTime[];
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -35,15 +36,15 @@ export class ProductCreateComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    //   // this.khachHang = Object.assign({}, this.khachHangForm.value);
-    //   // this.khachhangService.save(this.khachHang).subscribe(
-    //   //   next => {
-    //   //     console.log('Create process!');
-    //   //   }, error => {
-    //   //     console.log('Create failed!');
-    //   //   }
-    //   // );
-    //   // this.router.navigateByUrl('');
+    this.product = Object.assign({}, this.productForm.value);
+    this.productService.save(this.product).subscribe(
+      next => {
+        console.log('Create process!');
+      }, error => {
+        console.log('Create failed!');
+      }
+    );
+    this.router.navigateByUrl('');
   }
 
   findAllCategory(): void {

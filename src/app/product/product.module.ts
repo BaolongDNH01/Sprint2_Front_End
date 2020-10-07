@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import {AuctionModule} from '../auction/auction.module';
 
 
 
@@ -9,8 +10,10 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     exports: [
         ProductDetailsComponent
     ],
-    imports: [
-        CommonModule
-    ]
+  imports: [
+    CommonModule,
+    AuctionModule
+  ],
+  providers:[DatePipe]
 })
 export class ProductModule { }

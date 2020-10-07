@@ -9,6 +9,7 @@ import {AuctionService} from './auction.service';
 @NgModule({
   declarations: [ ListBidderComponent],
   exports: [
+    ListBidderComponent
   ],
   imports: [
     CommonModule,
