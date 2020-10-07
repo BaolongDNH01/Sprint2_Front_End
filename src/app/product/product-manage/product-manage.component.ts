@@ -51,12 +51,14 @@ export class ProductManageComponent implements OnInit {
   findSuggest(key: string, property: string): void {
     this.arrProductSuggest = [];
     if (property === 'productName') {
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.productList.length; i++) {
         if (this.productList[i].productName.toLowerCase().match(key.toLowerCase())) {
           this.arrProductSuggest.push(this.productList[i].productName);
         }
       }
     } else if (property === 'poster') {
+      // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.productList.length; i++) {
         if (this.productList[i].fullName.toLowerCase().match(key.toLowerCase())) {
           this.arrProductSuggest.push(this.productList[i].fullName);
