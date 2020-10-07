@@ -32,6 +32,8 @@ export class ProductCreateComponent implements OnInit {
       timeId: ['', [Validators.required]],
       userId: ['', [Validators.required]],
     });
+    this.findAllCategory();
+    this.findAllAuctionTime();
   }
 
   // tslint:disable-next-line:typedef
