@@ -54,12 +54,12 @@ export class LockUserComponent implements OnInit {
       next => {},
       error => {},
       () => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/list-user');
       }
     );
   }
   close(): void{
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/list-user');
   }
 
 }
