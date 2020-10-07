@@ -19,7 +19,13 @@ import { NewComponentComponent } from './new-component/new-component.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
 import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
-import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} from "angularx-social-login";
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthService,
+  SocialAuthServiceConfig, SocialLoginModule
+} from "angularx-social-login";
+import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
 
 
 
@@ -44,7 +50,8 @@ import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} fro
     UserManageModule,
     AppRoutingModule,
     LoginModule,
-    ProductModule
+    ProductModule,
+    SocialLoginModule
   ],
 
   providers: [AngularFirestore,
@@ -66,8 +73,9 @@ import {FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig} fro
           },
         ],
       } as SocialAuthServiceConfig,
-    },],
-  bootstrap: [AppComponent]
+    }, ],
+  bootstrap: [AppComponent],
+  entryComponents: [AuthLoginComponent]
 })
 export class AppModule {
 }

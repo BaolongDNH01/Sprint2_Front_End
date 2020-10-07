@@ -6,13 +6,17 @@ import {RouterModule} from '@angular/router';
 import { LockUserComponent } from './lock-user/lock-user.component';
 import {UserRoutingModule} from './user-routing.module';
 import { AddUserComponent } from './add-user/add-user.component';
+import { RegisterComponent } from './register/register.component';
 import {SendMailComponent} from './send-mail/send-mail.component';
 import {ActivatedAccountComponent} from './activated-account/activated-account.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { UnlockUserComponent } from './unlock-user/unlock-user.component';
+
 
 
 
 @NgModule({
-  declarations: [ListUserComponent, LockUserComponent, AddUserComponent, SendMailComponent, ActivatedAccountComponent],
+  declarations: [ListUserComponent, LockUserComponent, AddUserComponent, RegisterComponent, SendMailComponent, ActivatedAccountComponent, UnlockUserComponent],
   exports: [
     ListUserComponent
   ],
@@ -21,7 +25,8 @@ import {ActivatedAccountComponent} from './activated-account/activated-account.c
     FormsModule,
     RouterModule,
     UserRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class UserModule { }

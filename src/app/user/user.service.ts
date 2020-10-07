@@ -27,4 +27,13 @@ export class UserService {
   sendEmail(user: User): Observable<any>{
     return this.httpClient.post<any>(this.API_URL + '/register', user);
   }
+  getUserByUserName(userName: string): Observable<User>{
+    return this.httpClient.get<User>(this.API_URL + '/getUserByUserName/' + userName);
+  }
+  findAllUserActivated(): Observable<User[]>{
+    return this.httpClient.get<User[]>(this.API_URL + '/user-activated');
+  }
+  unlockUser(userList: User[]): Observable<any>{
+    return this.httpClient.post(this.API_URL + '/unlock-user', userList);
+  }
 }

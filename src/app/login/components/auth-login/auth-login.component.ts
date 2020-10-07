@@ -9,7 +9,6 @@ import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-logi
 import { LoginInfo } from '../../models/login-info';
 import { AuthService } from '../../services/auth.service';
 import { JwtService } from '../../services/jwt.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth-login',
@@ -33,15 +32,15 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
 
   checkboxMarked = false;
 
-  socialSignUpInfo: SocialSignUpInfo;
-  socialUser: SocialUser;
+  // socialSignUpInfo: SocialSignUpInfo;
+  // socialUser: SocialUser;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private jwtService: JwtService,
-    private socialAuthService: SocialAuthService,
-    private formatUsername: FormatUsernameService,
+    // private socialAuthService: SocialAuthService,
+    // private formatUsername: FormatUsernameService,
   ) {
   }
 
@@ -75,10 +74,10 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
       this.username = this.jwtService.getUsername();
     }
 
-    this.subscription = this.socialAuthService.authState.subscribe((user) => {
-      this.socialUser = user;
-      this.isLoggedIn = (user != null);
-    });
+    // this.subscription = this.socialAuthService.authState.subscribe((user) => {
+    //   this.socialUser = user;
+    //   this.isLoggedIn = (user != null);
+    // });
   }
 
   onLogin(): void {
@@ -113,50 +112,50 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  loginSocial(social: string): void {
-    switch (social) {
-      case 'fb':
-        this.processSocialLogin(FacebookLoginProvider.PROVIDER_ID);
-        break;
-      case 'gg':
-        this.processSocialLogin(GoogleLoginProvider.PROVIDER_ID);
-        break;
-      default:
-        alert('Something went wrong !');
-        break;
-    }
-  }
-
-  processSocialLogin(socialProvider: string): void {
-    this.socialAuthService.signIn(socialProvider)
-      .then(userData => {
-        const usernameConverted = this.formatUsername.removeVietnameseTones(userData.name).replace(/\s/g, '');
-        this.socialSignUpInfo = new SocialSignUpInfo(
-          usernameConverted,
-          userData.name,
-          userData.email,
-          userData.provider,
-          userData.id,
-          userData.photoUrl,
-        );
-
-        this.subscription = this.authService.signUpSocialUser(this.socialSignUpInfo).subscribe({
-          next: () => {
-            this.loginInfo = new LoginInfo(
-              this.socialSignUpInfo.username,
-              this.socialSignUpInfo.userPassword);
-            this.authLogin(this.loginInfo);
-          },
-          error: () => {
-            // By passing status code 409 -> Still login when account has existed
-            this.loginInfo = new LoginInfo(
-              this.socialSignUpInfo.username,
-              this.socialSignUpInfo.userPassword);
-            this.authLogin(this.loginInfo);
-          }
-        });
-      });
-  }
+  // loginSocial(social: string): void {
+  //   switch (social) {
+  //     case 'fb':
+  //       this.processSocialLogin(FacebookLoginProvider.PROVIDER_ID);
+  //       break;
+  //     case 'gg':
+  //       this.processSocialLogin(GoogleLoginProvider.PROVIDER_ID);
+  //       break;
+  //     default:
+  //       alert('Something went wrong !');
+  //       break;
+  //   }
+  // }
+  //
+  // processSocialLogin(socialProvider: string): void {
+  //   this.socialAuthService.signIn(socialProvider)
+  //     .then(userData => {
+  //       const usernameConverted = this.formatUsername.removeVietnameseTones(userData.name).replace(/\s/g, '');
+  //       this.socialSignUpInfo = new SocialSignUpInfo(
+  //         usernameConverted,
+  //         userData.name,
+  //         userData.email,
+  //         userData.provider,
+  //         userData.id,
+  //         userData.photoUrl,
+  //       );
+  //
+  //       this.subscription = this.authService.signUpSocialUser(this.socialSignUpInfo).subscribe({
+  //         next: () => {
+  //           this.loginInfo = new LoginInfo(
+  //             this.socialSignUpInfo.username,
+  //             this.socialSignUpInfo.userPassword);
+  //           this.authLogin(this.loginInfo);
+  //         },
+  //         error: () => {
+  //           // By passing status code 409 -> Still login when account has existed
+  //           this.loginInfo = new LoginInfo(
+  //             this.socialSignUpInfo.username,
+  //             this.socialSignUpInfo.userPassword);
+  //           this.authLogin(this.loginInfo);
+  //         }
+  //       });
+  //     });
+  // }
 
   valid(field: string, errorCode: string): boolean {
     return (
@@ -181,6 +180,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   isRememberChecked(e: any): void {
     this.checkboxMarked = e.target.checked;
   }
+
 
   ngOnDestroy(): void {
     if (this.subscription) {

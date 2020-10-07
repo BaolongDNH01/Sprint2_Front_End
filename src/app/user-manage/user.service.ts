@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './user';
+import {Product} from './product';
+import {Bidder} from './bidder';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,8 @@ import {User} from './user';
 export class UserService {
   private getUserByUserNameApi = 'http://localhost:8080/getUserByUserName';
   private editUserApi = 'http://localhost:8080/editUserInfo';
+  private getAllProductByUNameApi = 'http://localhost:8080/getAllProductByUserName';
+  private getAllBidderByUNameApi = 'http://localhost:8080/getAllBidderByUserName';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -17,7 +21,15 @@ export class UserService {
     return this.httpClient.get<User>(this.getUserByUserNameApi + '/' + userName);
   }
 
-  editUserInfo(user: User, userNAme: string): Observable<void>{
+  editUserInfo(user: User, userNAme: string): Observable<void> {
     return this.httpClient.post<void>(`${this.editUserApi}/${userNAme}`, user);
+  }
+
+  getAllProductByUName(userName: string): Observable<Product[]> {
+    return this.httpClient.get<Product[]>(this.getAllProductByUNameApi + '/' + userName);
+  }
+
+  getAllBidderByUName(userName: string): Observable<Bidder[]> {
+    return this.httpClient.get<Bidder[]>(this.getAllBidderByUNameApi + '/' + userName);
   }
 }

@@ -1,0 +1,28 @@
+<div class="container">
+  <h1 class="text-info">Lịch sử đăng ký đấu giá</h1>
+  <table class="table table-bordered table-responsive-md text-center">
+    <thead class="table thead-light">
+    <tr>
+      <th scope="col">Tên sản phẩm</th>
+      <th scope="col">Thông tin sản phẩm</th>
+      <th scope="col">Ngày đăng ký</th>
+      <th scope="col">Tình trạng<</th>
+      <th scope="col">Hủy đăng ký</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of productList |paginate: {
+          id: 'listing_pagination',
+          itemsPerPage: 4,
+          currentPage: currentPage,
+          totalItems: totalItem} ">
+      <td>{{product.productName}}</td>
+      <td>{{product.productDetail}}</td>
+      <td>{{product.statusName}}</td>
+      <td>DDDDD</td>
+      <td>EEEEE</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

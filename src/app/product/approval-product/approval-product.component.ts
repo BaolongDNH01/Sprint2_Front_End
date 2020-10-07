@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Status} from 'tslint/lib/runner';
 import {Product} from '../product';
 import {ProductService} from '../product.service';
 import {Auction} from '../../auction/auction';
 import {AuctionService} from '../../auction/auction.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-approval-product',
@@ -17,21 +18,19 @@ export class ApprovalProductComponent implements OnInit {
   id: number;
   approvalProduct: FormGroup;
   statusList: Status[];
-  productList: Product[];
   auction: Auction;
-  auctionForm: FormGroup;
+  myDate = new Date();
 
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    private router: Router,
     private auctionService: AuctionService,
-    private router: Router
+    private datePipe: DatePipe
   ) {
   }
 
   ngOnInit(): void {
-    this.getAllProduct();
     this.findAllStatus();
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
@@ -53,7 +52,6 @@ export class ApprovalProductComponent implements OnInit {
             userId: this.product.userId,
           });
         }, error => {
-          console.log('daday');
         });
     });
     this.approvalProduct = new FormGroup({
@@ -82,22 +80,17 @@ export class ApprovalProductComponent implements OnInit {
     );
   }
 
-  getAllProduct(): void {
-    this.productService.getAllProduct().subscribe(
-      next => {
-        this.productList = next;
-      }
-    );
-  }
 
   onApprovalProduct(): void {
     this.product = Object.assign({}, this.approvalProduct.value);
     this.product.productId = this.id;
-    this.productService.editProduct(this.product).subscribe(
-      next => {
-        console.log('ok');
-      }
-    );
+    this.productService.editProduct(this.product).subscribe();
+    location.reload();
+
+    // tạo phiên đấu giá sau khi duyệt
+    this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
+    this.auction.statusAuction = 1;
+    this.auction.product = this.product.productId;
   }
 
 }

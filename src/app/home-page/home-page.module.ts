@@ -4,19 +4,22 @@ import { HomeComponent } from './home/home.component';
 import { AuctionGuideComponent } from './auction-guide/auction-guide.component';
 import {RouterModule} from '@angular/router';
 import { ModalComponent } from './modal/modal.component';
-import {LoginModule} from "../login/login.module";
+import {LoginModule} from '../login/login.module';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import {ModalFormDirective} from './modalForm.directive';
+import { DisplayProductAutionComponent } from './display-product-aution/display-product-aution.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, AuctionGuideComponent, ModalComponent],
+  declarations: [HomeComponent, AuctionGuideComponent, DisplayProductAutionComponent,  ModalComponent, NavBarComponent, ModalFormDirective],
   exports: [
-    HomeComponent
+    HomeComponent,
+    AuctionGuideComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        LoginModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule
+  ]
 })
 export class HomePageModule { }
