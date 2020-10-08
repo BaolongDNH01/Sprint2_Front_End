@@ -8,15 +8,17 @@ import {LoginModule} from '../login/login.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {ModalFormDirective} from './modalForm.directive';
 import { DisplayProductAutionComponent } from './display-product-aution/display-product-aution.component';
+import { DisplayProductAjaxComponent } from './display-product-ajax/display-product-ajax.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, AuctionGuideComponent, DisplayProductAutionComponent,  ModalComponent, NavBarComponent, ModalFormDirective],
+  declarations: [HomeComponent, AuctionGuideComponent, DisplayProductAutionComponent,  ModalComponent, NavBarComponent, ModalFormDirective, DisplayProductAjaxComponent],
   exports: [
     HomeComponent,
     AuctionGuideComponent,
-    NavBarComponent
+    NavBarComponent,
+    DisplayProductAjaxComponent
   ],
     imports: [
         CommonModule,

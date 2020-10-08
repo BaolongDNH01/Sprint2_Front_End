@@ -5,6 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {ProductService} from '../../product/product.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Status} from 'tslint/lib/runner';
+import {Auction} from '../../auction/auction';
+import {AuctionService} from '../../auction/auction.service';
 
 @Component({
   selector: 'app-display-product-aution',
@@ -12,45 +14,43 @@ import {Status} from 'tslint/lib/runner';
   styleUrls: ['../home/home.component.css']
 })
 export class DisplayProductAutionComponent implements OnInit {
-  productList: Product[];
+  auctionList: Auction[];
   productList1 = [];
   error: boolean;
   timeoutAuction: FormGroup;
   product: Product;
-  statusList: Status[];
+  auction: Auction;
   id: number;
 
   constructor(
     private router: Router,
     private httpClient: HttpClient,
-    private productService: ProductService
+    private productService: ProductService,
+    private auctionService: AuctionService
   ) {
   }
 
   ngOnInit(): void {
     this.chatbox();
-    this.getAllProduct();
-    this.findAllStatus();
+    // this.getAllProduct();
+    // this.findAllStatus();
+    this.displayProductAuction();
   }
+
 
   findProductTimeOutById(id: number): void {
     console.log('ok');
-    this.productService.findById(id).subscribe(
+    this.auctionService.findById(id).subscribe(
       next => {
-        this.product = next;
-        this.id = this.product.productId;
-        console.log(this.product.productId);
-        console.log(this.product.productName);
+        this.auction = next;
+        // console.log(next);
+        this.id = this.auction.auctionId;
         this.timeoutAuction = new FormGroup({
-          productId: new FormControl(this.product.productId),
-          productName: new FormControl(this.product.productName),
-          initialPrice: new FormControl(this.product.initialPrice),
-          eachIncrease: new FormControl(this.product.eachIncrease),
-          productDetail: new FormControl(this.product.productDetail),
-          categoryId: new FormControl(this.product.categoryId),
+          auctionId: new FormControl(this.auction.auctionId),
+          dayTimeStart: new FormControl(111),
+          dayTimeEnd: new FormControl(this.auction.dayTimeEnd),
+          productId: new FormControl(this.auction.productId),
           statusId: new FormControl(3),
-          timeId: new FormControl(this.product.timeId),
-          userId: new FormControl(this.product.userId),
         });
 
       }, error => {
@@ -58,27 +58,27 @@ export class DisplayProductAutionComponent implements OnInit {
         this.onTimeOut();
       });
   }
-
-  getAllProduct(): void {
-    this.productService.getAllProduct().subscribe(
-      next => {
-        this.productList = next;
-        for (let j = 0; j < this.productList.length; j++) {
-          if (this.productList[j].statusId === 2) {
-            console.log(this.productList[j]);
-            this.productList1.push(this.productList[j]);
-          }
-        }
-        for (let i = 0; i < this.productList.length; i++) {
-          this.productList[i].auctionTime *= 60;
-        }
-      }, e => console.log(e),
-      () => this.time()
-    );
-
-  }
-
-
+  //
+  // getAllProduct(): void {
+  //   this.productService.getAllProduct().subscribe(
+  //     next => {
+  //       this.productList = next;
+  //       for (let j = 0; j < this.productList.length; j++) {
+  //         if (this.productList[j].statusId === 2) {
+  //           console.log(this.productList[j]);
+  //           this.productList1.push(this.productList[j]);
+  //         }
+  //       }
+  //       for (let i = 0; i < this.productList.length; i++) {
+  //         this.productList[i].auctionTime *= 60;
+  //       }
+  //     }, e => console.log(e),
+  //     () => this.time()
+  //   );
+  //
+  // }
+  //
+  //
   chatbox(): void {
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function() {
@@ -91,35 +91,46 @@ export class DisplayProductAutionComponent implements OnInit {
     })();
   }
 
+  //
   time(): void {
-    for (let i = 0; i < this.productList1.length; i++) {
-      if (this.productList1[i].auctionTime === 0) {
-        console.log(this.productList1[i].productId);
-        this.findProductTimeOutById(this.productList1[i].productId);
+    for (let i = 0; i < this.auctionList.length; i++) {
+      if (this.auctionList[i].auctionTime === 0) {
+        // // console.log(this.productList1[i].productId);
+        console.log('khi bang o thi toi day');
+        console.log(this.auctionList[i].auctionId);
+        this.findProductTimeOutById(this.auctionList[i].auctionId);
+        // xu ly khi = 0
       } else {
-        this.productList1[i].auctionTime -= 1;
-        console.log(this.productList1[i].auctionTime);
+        this.auctionList[i].auctionTime -= 1;
+        // console.log(this.productList1[i].auctionTime);
       }
     }
-    setTimeout(() => this.time(), 1000);
+    setTimeout(() => this.time(), 100 );
   }
 
-
+  //
+  //
   onTimeOut(): void {
-    this.product = Object.assign({}, this.timeoutAuction.value);
-    this.product.productId = this.id;
-    this.productService.editProduct(this.product).subscribe();
+    this.auction = Object.assign({}, this.timeoutAuction.value);
+    console.log(this.timeoutAuction.value);
+    this.auction.auctionId = this.id;
+    this.auctionService.editAuction(this.auction).subscribe();
     return;
   }
 
 
-  findAllStatus(): void {
-    this.productService.findAllStatusProduct().subscribe(
-      next => {
-        this.statusList = next;
-        console.log(this.statusList);
-      }, error => {
-        this.statusList = new Array();
+  displayProductAuction(): void {
+    this.auctionService.findAllProductAuction().subscribe(
+      list => {
+        this.auctionList = list;
+        console.log(list);
+        for (let i = 0; i < this.auctionList.length; i++) {
+          this.auctionList[i].auctionTime *= 60;
+        }
+      }, error1 => {
+
+      }, () => {
+        this.time();
       }
     );
   }
