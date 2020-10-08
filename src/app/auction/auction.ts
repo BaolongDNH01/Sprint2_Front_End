@@ -3,8 +3,13 @@ export class Auction {
   dayTimeStart: string;
   dayTimeEnd: string;
   statusAuction: number;
-  product: number;
+  productId: number;
+  productName: string;
+  imageURL: string;
+  eachIncrease: number;
   bidderList: number[];
+  auctionTime: number;
+  statusId: number;
   constructor() {
   }
 }
