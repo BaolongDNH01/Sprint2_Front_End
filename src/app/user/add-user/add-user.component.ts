@@ -15,6 +15,7 @@ export class AddUserComponent implements OnInit {
   userList: User[];
   error = '';
   errorPassword = '';
+  load = '';
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
@@ -24,7 +25,7 @@ export class AddUserComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z0-9]+')]],
-      birthDay: ['', [Validators.required]],
+      birthday: ['', [Validators.required]],
       address: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       idCard: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
@@ -38,6 +39,7 @@ export class AddUserComponent implements OnInit {
       return;
     }
     this.error = '';
+    this.load = 'https://img.idesign.vn/2018/10/23/id-loading-1.gif';
     console.log(this.formUser.value.fullName);
     this.user = Object.assign({}, this.formUser.value)
     console.log(this.user);
@@ -67,7 +69,7 @@ export class AddUserComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.][a-zA-Z0-9]+')]],
-      birthDay: ['', [Validators.required]],
+      birthday: ['', [Validators.required]],
       address: ['', [Validators.required]],
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       idCard: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
