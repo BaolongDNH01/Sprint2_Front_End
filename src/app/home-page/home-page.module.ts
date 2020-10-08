@@ -15,11 +15,13 @@ import { DisplayProductAutionComponent } from './display-product-aution/display-
   declarations: [HomeComponent, AuctionGuideComponent, DisplayProductAutionComponent,  ModalComponent, NavBarComponent, ModalFormDirective],
   exports: [
     HomeComponent,
-    AuctionGuideComponent
+    AuctionGuideComponent,
+    NavBarComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        LoginModule
+    ]
 })
 export class HomePageModule { }

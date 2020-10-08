@@ -7,7 +7,7 @@
     </div>
     <div>
       <p>Chủng loại :</p>
-      <mat-select formControlName="categoryId">
+      <mat-select class="form-control" formControlName="categoryId">
         <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
           {{category.categoryName}}
         </mat-option>
@@ -33,7 +33,7 @@
     </div>
     <div>
       <p>Đấu giá trong thời gian :</p>
-      <mat-select formControlName="categoryId">
+      <mat-select class="form-control" formControlName="timeId">
         <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
           {{time.auctionTime}}
         </mat-option>

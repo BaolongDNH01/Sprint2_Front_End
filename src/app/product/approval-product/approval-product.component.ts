@@ -5,8 +5,8 @@ import {Status} from 'tslint/lib/runner';
 import {Product} from '../product';
 import {ProductService} from '../product.service';
 import {Auction} from '../../auction/auction';
-import {AuctionService} from '../../auction/auction.service';
 import {DatePipe} from '@angular/common';
+import {AuctionService} from '../../auction/auction.service';
 
 @Component({
   selector: 'app-approval-product',
@@ -25,8 +25,8 @@ export class ApprovalProductComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private auctionService: AuctionService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private auctionService: AuctionService
   ) {
   }
 
@@ -35,38 +35,24 @@ export class ApprovalProductComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
-      this.productService.findById(1).subscribe(
+      this.productService.findById(2).subscribe(
         next => {
           this.product = next;
           this.id = this.product.productId;
-          this.approvalProduct.patchValue({
-            productId: this.product.productId,
-            productName: this.product.productName,
-            initialPrice: this.product.initialPrice,
-            eachIncrease: this.product.eachIncrease,
-            productDetail: this.product.productDetail,
-            categoryId: this.product.categoryId,
-            statusId: this.product.statusId,
-            image: this.product.image,
-            timeId: this.product.timeId,
-            userId: this.product.userId,
+          this.approvalProduct = new FormGroup({
+            productId: new FormControl(this.product.productId),
+            productName: new FormControl(this.product.productName),
+            initialPrice: new FormControl(this.product.initialPrice),
+            eachIncrease: new FormControl(this.product.eachIncrease),
+            productDetail: new FormControl(this.product.productDetail),
+            categoryId: new FormControl(this.product.categoryId),
+            statusId: new FormControl(2),
+            timeId: new FormControl(this.product.timeId),
+            userId: new FormControl(this.product.userId),
           });
         }, error => {
         });
     });
-    this.approvalProduct = new FormGroup({
-      productId: new FormControl(''),
-      productName: new FormControl(''),
-      initialPrice: new FormControl(''),
-      eachIncrease: new FormControl(''),
-      productDetail: new FormControl(''),
-      categoryId: new FormControl(''),
-      statusId: new FormControl(''),
-      image: new FormControl(''),
-      timeId: new FormControl(''),
-      userId: new FormControl(''),
-    });
-
   }
 
   findAllStatus(): void {
@@ -85,12 +71,16 @@ export class ApprovalProductComponent implements OnInit {
     this.product = Object.assign({}, this.approvalProduct.value);
     this.product.productId = this.id;
     this.productService.editProduct(this.product).subscribe();
-    location.reload();
 
-    // tạo phiên đấu giá sau khi duyệt
+    // tạo auction khi duyệt
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auction.statusAuction = 1;
     this.auction.product = this.product.productId;
+    this.auctionService.save(this.auction);
+
+    location.reload();
   }
 
+  noApprovalProduct(): void {
+  }
 }

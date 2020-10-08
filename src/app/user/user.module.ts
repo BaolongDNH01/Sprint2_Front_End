@@ -11,12 +11,18 @@ import {SendMailComponent} from './send-mail/send-mail.component';
 import {ActivatedAccountComponent} from './activated-account/activated-account.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UnlockUserComponent } from './unlock-user/unlock-user.component';
-
-
-
-
+import {DeleteUserComponent} from './delete-user/delete-user.component';
 @NgModule({
-  declarations: [ListUserComponent, LockUserComponent, AddUserComponent, RegisterComponent, SendMailComponent, ActivatedAccountComponent, UnlockUserComponent],
+  declarations: [
+    ListUserComponent,
+    LockUserComponent,
+    AddUserComponent,
+    RegisterComponent,
+    SendMailComponent,
+    ActivatedAccountComponent,
+    UnlockUserComponent,
+    DeleteUserComponent
+  ],
   exports: [
     ListUserComponent
   ],
