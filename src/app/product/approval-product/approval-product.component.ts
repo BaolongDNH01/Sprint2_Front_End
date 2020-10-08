@@ -77,6 +77,7 @@ export class ApprovalProductComponent implements OnInit {
     this.auction.statusAuction = 1;
     this.auction.product = this.product.productId;
     this.auctionService.save(this.auction);
+
     location.reload();
   }
 
