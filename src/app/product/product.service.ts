@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './product';
-import {Status} from 'tslint/lib/runner';
+
 import {Category} from './category';
 import {AuctionTime} from './auction-time';
+import {Status} from './status';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,16 @@ export class ProductService {
 
   findAllAuctionTime(): Observable<AuctionTime[]> {
     return this.httpClient.get<AuctionTime[]>(this.API_URL + '/list-time');
+  }
+
+  private getAllCategoryDtoApi = 'http://localhost:8080/getAllCategoryDto';
+  private deleteProductsApi = 'http://localhost:8080/deleteProducts';
+
+  findAllCategoryDto(): Observable<Category[]> {
+    return this.httpClient.get<Category[]>(this.getAllCategoryDtoApi);
+  }
+
+  deleteProducts(list: number[]): Observable<any> {
+    return this.httpClient.post<any>(this.deleteProductsApi, list);
   }
 }
