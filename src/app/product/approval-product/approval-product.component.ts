@@ -6,6 +6,7 @@ import {Product} from '../product';
 import {ProductService} from '../product.service';
 import {Auction} from '../../auction/auction';
 import {DatePipe} from '@angular/common';
+import {AuctionService} from '../../auction/auction.service';
 
 @Component({
   selector: 'app-approval-product',
@@ -24,7 +25,8 @@ export class ApprovalProductComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private auctionService: AuctionService
   ) {
   }
 
@@ -74,6 +76,8 @@ export class ApprovalProductComponent implements OnInit {
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auction.statusAuction = 1;
     this.auction.product = this.product.productId;
+    this.auctionService.save(this.auction);
+
     location.reload();
   }
 
