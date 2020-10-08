@@ -40,7 +40,6 @@ export class DeleteUserComponent implements OnInit {
     this.formLock = this.fb.group({
       listUser: ['']
     });
-    console.log(this.formLock.value.timeLockEnd);
   }
   delete(): void{
     this.userService.deleteUsers(this.ids).subscribe(

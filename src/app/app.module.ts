@@ -24,12 +24,16 @@ import {
   SocialAuthServiceConfig, SocialLoginModule
 } from "angularx-social-login";
 import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
+import { TransactionManagementComponent } from './transaction-management/transaction-management.component';
+import {ApprovalProductComponent} from './product/approval-product/approval-product.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TransactionManagementComponent,
+    ApprovalProductComponent,
   ],
   imports: [
     BrowserModule,
