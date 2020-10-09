@@ -15,7 +15,7 @@ export class AddUserComponent implements OnInit {
   userList: User[];
   error = '';
   errorPassword = '';
-  load = '';
+  load = false;
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
@@ -39,7 +39,7 @@ export class AddUserComponent implements OnInit {
       return;
     }
     this.error = '';
-    this.load = 'https://img.idesign.vn/2018/10/23/id-loading-1.gif';
+    this.load = true;
     console.log(this.formUser.value.fullName);
     this.user = Object.assign({}, this.formUser.value)
     console.log(this.user);
