@@ -25,7 +25,7 @@ export class ProductService {
   findById(id: number): Observable<Product> {
     return this.httpClient.get<Product>(this.API_URL + '/product/' + id);
   }
-
+  // Châu => func dùng để thay đổi status khi product được duyệt
   editProduct(product: Product): Observable<void> {
     return this.httpClient.patch<void>(this.API_URL + '/product-edit/' + product.productId, product);
   }

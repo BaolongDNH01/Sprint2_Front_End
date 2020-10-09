@@ -10,6 +10,7 @@ export class Auction {
   bidderList: number[];
   auctionTime: number;
   statusId: number;
+  statusName: string;
   constructor() {
   }
 }

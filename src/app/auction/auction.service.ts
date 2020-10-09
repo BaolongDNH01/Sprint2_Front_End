@@ -17,15 +17,17 @@ export class AuctionService {
     return this.httpClient.get<Bidder>(`${this.URL}/get-bidder-auction/${auctionId}`);
   }
 
+  // Châu => hàm lấy về tất cả product trong auction
   findAllProductAuction(): Observable<Auction[]> {
     return this.httpClient.get<Auction[]>(this.URL + '/getAllAuction');
   }
 
+  // Châu => func lấy product trong auction theo id
   findById(id: number): Observable<Auction> {
-    console.log('toi roi ne');
     return this.httpClient.get<Auction>(this.URL + '/auction/' + id);
   }
 
+  // Châu => function sửa trong auction
   editAuction(auction: Auction): Observable<void> {
     console.log('toi day roi');
     return this.httpClient.patch<void>(this.URL + '/auction-edit/' + auction.auctionId, auction);

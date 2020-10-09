@@ -15,7 +15,7 @@ import {AuctionService} from '../../auction/auction.service';
 })
 export class DisplayProductAutionComponent implements OnInit {
   auctionList: Auction[];
-  productList1 = [];
+  auctionList1 = [];
   error: boolean;
   timeoutAuction: FormGroup;
   product: Product;
@@ -32,18 +32,14 @@ export class DisplayProductAutionComponent implements OnInit {
 
   ngOnInit(): void {
     this.chatbox();
-    // this.getAllProduct();
-    // this.findAllStatus();
     this.displayProductAuction();
   }
 
 
   findProductTimeOutById(id: number): void {
-    console.log('ok');
     this.auctionService.findById(id).subscribe(
       next => {
         this.auction = next;
-        // console.log(next);
         this.id = this.auction.auctionId;
         this.timeoutAuction = new FormGroup({
           auctionId: new FormControl(this.auction.auctionId),
@@ -58,27 +54,8 @@ export class DisplayProductAutionComponent implements OnInit {
         this.onTimeOut();
       });
   }
-  //
-  // getAllProduct(): void {
-  //   this.productService.getAllProduct().subscribe(
-  //     next => {
-  //       this.productList = next;
-  //       for (let j = 0; j < this.productList.length; j++) {
-  //         if (this.productList[j].statusId === 2) {
-  //           console.log(this.productList[j]);
-  //           this.productList1.push(this.productList[j]);
-  //         }
-  //       }
-  //       for (let i = 0; i < this.productList.length; i++) {
-  //         this.productList[i].auctionTime *= 60;
-  //       }
-  //     }, e => console.log(e),
-  //     () => this.time()
-  //   );
-  //
-  // }
-  //
-  //
+
+  // Châu => Nơi nhúng chat box
   chatbox(): void {
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function() {
@@ -91,21 +68,24 @@ export class DisplayProductAutionComponent implements OnInit {
     })();
   }
 
-  //
+  // Châu =>  Hàm tính toán thời gian
+
   time(): void {
-    for (let i = 0; i < this.auctionList.length; i++) {
-      if (this.auctionList[i].auctionTime === 0) {
+    for (let i = 0; i < this.auctionList1.length; i++) {
+      if (this.auctionList1[i].auctionTime === 0) {
+        this.auctionList1[i].auctionTime = null;
         // // console.log(this.productList1[i].productId);
-        console.log('khi bang o thi toi day');
-        console.log(this.auctionList[i].auctionId);
-        this.findProductTimeOutById(this.auctionList[i].auctionId);
+        this.findProductTimeOutById(this.auctionList1[i].auctionId);
         // xu ly khi = 0
       } else {
-        this.auctionList[i].auctionTime -= 1;
+        this.auctionList1[i].auctionTime -= 1;
+        if (this.auctionList1[i].auctionTime < 0) {
+          this.auctionList1[i].auctionTime = null;
+        }
         // console.log(this.productList1[i].auctionTime);
       }
     }
-    setTimeout(() => this.time(), 100 );
+    setTimeout(() => this.time(), 100);
   }
 
   //
@@ -118,14 +98,19 @@ export class DisplayProductAutionComponent implements OnInit {
     return;
   }
 
-
+  // Châu => Hiển thị tất cả sản phẩm có status là đang trong phiên đấu giá lên homepage
   displayProductAuction(): void {
     this.auctionService.findAllProductAuction().subscribe(
       list => {
         this.auctionList = list;
-        console.log(list);
         for (let i = 0; i < this.auctionList.length; i++) {
-          this.auctionList[i].auctionTime *= 60;
+          console.log(this.auctionList[i].statusId);
+          if (this.auctionList[i].statusId === 2) {
+            this.auctionList1.push(this.auctionList[i]);
+            console.log('toi rui');
+            console.log(this.auctionList1);
+            this.auctionList[i].auctionTime *= 60;
+          }
         }
       }, error1 => {
 
