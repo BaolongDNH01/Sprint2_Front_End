@@ -36,7 +36,7 @@
         <th scope="row">{{i+1}}</th>
         <td><input [checked]="user.check" value="{{user.userId}}" (change)="addUser($event.target.value)" type="checkbox"></td>
         <td>{{user.userId}} <span *ngIf="user.flag == 'false'" class="fa fa-lock"></span></td>
-        <td>{{user.fullName}}</td>
+        <td><a [routerLink]="['/user/' + user.userId]">{{user.fullName}}</a></td>
         <td>{{user.rank}}</td>
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
