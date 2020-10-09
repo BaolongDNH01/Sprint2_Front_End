@@ -29,9 +29,19 @@
         <div class="col-md-2"></div>
         <div class="col-md-3">Mật khẩu<span class="text-danger"> *</span></div>
         <div class="col-md-5">
-          <input formControlName="password" class="form-control" type="text" placeholder="mật khẩu">
+          <input formControlName="password" class="form-control" type="password" placeholder="mật khẩu">
           <div *ngIf="(formUser.get('password').hasError('required')) && formUser.get('password').touched" class="list-inline mt-3 ml-2 text-danger">
             *Mật khẩu không được để trống!
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-3">Nhập lại mật khẩu<span class="text-danger"> *</span></div>
+        <div class="col-md-5">
+          <input formControlName="confirmPassword" (click)="resetErrorPass()"  class="form-control" type="password" placeholder="mật khẩu">
+          <div *ngIf="errorPassword != ''"  class="list-inline mt-3 ml-2 text-danger">
+            {{errorPassword}}
           </div>
         </div>
       </div>
@@ -52,8 +62,8 @@
         <div class="col-md-2"></div>
         <div class="col-md-3">Ngày sinh<span class="text-danger"> *</span></div>
         <div class="col-md-5">
-          <input formControlName="birthDay" class="form-control" type="date">
-          <div *ngIf="(formUser.get('birthDay').hasError('required')) && formUser.get('birthDay').touched" class="list-inline mt-3 ml-2 text-danger">
+          <input formControlName="birthday" class="form-control" type="date">
+          <div *ngIf="(formUser.get('birthday').hasError('required')) && formUser.get('birthday').touched" class="list-inline mt-3 ml-2 text-danger">
             *Ngày sinh không được để trống!
           </div>
         </div>
@@ -98,13 +108,18 @@
           </div>
         </div>
       </div>
-      <div class="row mb-3">
+      <div class="row">
         <div class="col-md-5"></div>
         <div class="col-md-7">
-          <button (click)="addUser()" [disabled]="formUser.invalid" class="btn btn-outline-secondary">Thêm</button>
-          <button (click)="reset()" class="btn btn-outline-secondary">Nhập lại</button>
+          <button (click)="addUser()" [disabled]="formUser.invalid" class="btn btn-outline-secondary mr-2">Thêm</button>
+          <button (click)="reset()" class="btn btn-outline-secondary mr-2">Nhập lại</button>
           <button (click)="close()" class="btn btn-outline-secondary">Hủy</button>
         </div>
+      </div>
+      <div *ngIf="load !== ''" class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2"><img width="150" height="100" src="{{load}}" alt=""></div>
+        <div class="col-md-5"></div>
       </div>
     </div>
   </form>

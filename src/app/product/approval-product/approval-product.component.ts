@@ -24,7 +24,8 @@ export class ApprovalProductComponent implements OnInit {
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private auctionService
   ) {
   }
 

@@ -28,7 +28,7 @@ export class ProductCreateComponent implements OnInit {
       eachIncrease: ['', [Validators.required, Validators.pattern(/\d+/)]],
       productDetail: ['', [Validators.required]],
       categoryId: ['', [Validators.required]],
-      statusId: ['', [Validators.required]],
+      statusId: ['1', [Validators.required]],
       timeId: ['', [Validators.required]],
       userId: ['', [Validators.required]],
     });
@@ -39,6 +39,7 @@ export class ProductCreateComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onSubmit() {
     this.product = Object.assign({}, this.productForm.value);
+    console.log(this.product);
     this.productService.save(this.product).subscribe(
       next => {
         console.log('Create process!');
@@ -53,7 +54,6 @@ export class ProductCreateComponent implements OnInit {
     this.productService.findAllCategory().subscribe(
       next => {
         this.categoryList = next;
-        console.log(this.categoryList);
       }, error => {
         this.categoryList = new Array();
       }
@@ -64,7 +64,7 @@ export class ProductCreateComponent implements OnInit {
     this.productService.findAllAuctionTime().subscribe(
       next => {
         this.auctionTimeList = next;
-        console.log(this.auctionTimeList);
+        console.log(next);
       }, error => {
         this.auctionTimeList = new Array();
       }

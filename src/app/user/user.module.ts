@@ -12,6 +12,7 @@ import {ActivatedAccountComponent} from './activated-account/activated-account.c
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UnlockUserComponent } from './unlock-user/unlock-user.component';
 import {DeleteUserComponent} from './delete-user/delete-user.component';
+import { DetailUserComponent } from './detail-user/detail-user.component';
 @NgModule({
   declarations: [
     ListUserComponent,
@@ -21,7 +22,8 @@ import {DeleteUserComponent} from './delete-user/delete-user.component';
     SendMailComponent,
     ActivatedAccountComponent,
     UnlockUserComponent,
-    DeleteUserComponent
+    DeleteUserComponent,
+    DetailUserComponent
   ],
   exports: [
     ListUserComponent
