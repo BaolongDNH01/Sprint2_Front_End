@@ -14,7 +14,7 @@ import {UserModule} from './user/user.module';
 import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
 import {UserManageModule} from './user-manage/user-manage.module';
-import {ProductListModule} from './product/product-list.module';
+// import {ProductListModule} from './product/product-list.module';
 import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
 import {
@@ -25,7 +25,6 @@ import {
 } from "angularx-social-login";
 import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
 import { TransactionManagementComponent } from './transaction-management/transaction-management.component';
-import {ApprovalProductComponent} from './product/approval-product/approval-product.component';
 
 
 
@@ -33,7 +32,6 @@ import {ApprovalProductComponent} from './product/approval-product/approval-prod
   declarations: [
     AppComponent,
     TransactionManagementComponent,
-    ApprovalProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +42,7 @@ import {ApprovalProductComponent} from './product/approval-product/approval-prod
     HttpClientModule,
     ReactiveFormsModule,
     UserModule,
-    ProductListModule,
+    // ProductListModule,
     AuctionModule,
     HomePageModule,
     UserManageModule,

@@ -6,6 +6,7 @@ import {Product} from '../product';
 import {ProductService} from '../product.service';
 import {Auction} from '../../auction/auction';
 import {DatePipe} from '@angular/common';
+import {AuctionService} from '../../auction/auction.service';
 
 @Component({
   selector: 'app-approval-product',
@@ -25,12 +26,11 @@ export class ApprovalProductComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private datePipe: DatePipe,
-    private auctionService
+    private auctionService: AuctionService
   ) {
   }
 
   ngOnInit(): void {
-    this.findAllStatus();
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
@@ -53,18 +53,6 @@ export class ApprovalProductComponent implements OnInit {
         });
     });
   }
-
-  findAllStatus(): void {
-    this.productService.findAllStatusProduct().subscribe(
-      next => {
-        this.statusList = next;
-        console.log(this.statusList);
-      }, error => {
-        this.statusList = new Array();
-      }
-    );
-  }
-
 
   onApprovalProduct(): void {
     this.product = Object.assign({}, this.approvalProduct.value);
