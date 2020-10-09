@@ -39,11 +39,12 @@ export class DisplayProductAutionComponent implements OnInit {
   findProductTimeOutById(id: number): void {
     this.auctionService.findById(id).subscribe(
       next => {
+        console.log(next);
         this.auction = next;
         this.id = this.auction.auctionId;
         this.timeoutAuction = new FormGroup({
           auctionId: new FormControl(this.auction.auctionId),
-          dayTimeStart: new FormControl(111),
+          dayTimeStart: new FormControl(this.auction.dayTimeStart),
           dayTimeEnd: new FormControl(this.auction.dayTimeEnd),
           productId: new FormControl(this.auction.productId),
           statusId: new FormControl(3),
@@ -88,8 +89,7 @@ export class DisplayProductAutionComponent implements OnInit {
     setTimeout(() => this.time(), 100);
   }
 
-  //
-  //
+
   onTimeOut(): void {
     this.auction = Object.assign({}, this.timeoutAuction.value);
     console.log(this.timeoutAuction.value);
@@ -104,11 +104,8 @@ export class DisplayProductAutionComponent implements OnInit {
       list => {
         this.auctionList = list;
         for (let i = 0; i < this.auctionList.length; i++) {
-          console.log(this.auctionList[i].statusId);
           if (this.auctionList[i].statusId === 2) {
             this.auctionList1.push(this.auctionList[i]);
-            console.log('toi rui');
-            console.log(this.auctionList1);
             this.auctionList[i].auctionTime *= 60;
           }
         }
