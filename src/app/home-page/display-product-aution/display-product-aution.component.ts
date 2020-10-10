@@ -3,6 +3,8 @@ import {Product} from '../../product/product';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ProductService} from '../../product/product.service';
+import {FormControl, FormGroup} from '@angular/forms';
+import {Status} from 'tslint/lib/runner';
 
 @Component({
   selector: 'app-display-product-aution',
@@ -10,10 +12,13 @@ import {ProductService} from '../../product/product.service';
   styleUrls: ['../home/home.component.css']
 })
 export class DisplayProductAutionComponent implements OnInit {
-
   productList: Product[];
   productList1 = [];
   error: boolean;
+  timeoutAuction: FormGroup;
+  product: Product;
+  statusList: Status[];
+  id: number;
 
   constructor(
     private router: Router,
@@ -25,8 +30,33 @@ export class DisplayProductAutionComponent implements OnInit {
   ngOnInit(): void {
     this.chatbox();
     this.getAllProduct();
-    this.time();
+    this.findAllStatus();
+  }
 
+  findProductTimeOutById(id: number): void {
+    console.log('ok');
+    this.productService.findById(id).subscribe(
+      next => {
+        this.product = next;
+        this.id = this.product.productId;
+        console.log(this.product.productId);
+        console.log(this.product.productName);
+        this.timeoutAuction = new FormGroup({
+          productId: new FormControl(this.product.productId),
+          productName: new FormControl(this.product.productName),
+          initialPrice: new FormControl(this.product.initialPrice),
+          eachIncrease: new FormControl(this.product.eachIncrease),
+          productDetail: new FormControl(this.product.productDetail),
+          categoryId: new FormControl(this.product.categoryId),
+          statusId: new FormControl(3),
+          timeId: new FormControl(this.product.timeId),
+          userId: new FormControl(this.product.userId),
+        });
+
+      }, error => {
+      }, () => {
+        this.onTimeOut();
+      });
   }
 
   getAllProduct(): void {
@@ -61,18 +91,36 @@ export class DisplayProductAutionComponent implements OnInit {
     })();
   }
 
-
   time(): void {
-    for (let i = 0; i < this.productList.length; i++) {
-      if (this.productList[i].auctionTime === 0) {
-        // this.productList[i].auctionTime += 30;
+    for (let i = 0; i < this.productList1.length; i++) {
+      if (this.productList1[i].auctionTime === 0) {
+        console.log(this.productList1[i].productId);
+        this.findProductTimeOutById(this.productList1[i].productId);
       } else {
-        this.productList[i].auctionTime -= 1;
-        console.log(this.productList[i].auctionTime);
+        this.productList1[i].auctionTime -= 1;
+        console.log(this.productList1[i].auctionTime);
       }
     }
     setTimeout(() => this.time(), 1000);
   }
 
 
+  onTimeOut(): void {
+    this.product = Object.assign({}, this.timeoutAuction.value);
+    this.product.productId = this.id;
+    this.productService.editProduct(this.product).subscribe();
+    return;
+  }
+
+
+  findAllStatus(): void {
+    this.productService.findAllStatusProduct().subscribe(
+      next => {
+        this.statusList = next;
+        console.log(this.statusList);
+      }, error => {
+        this.statusList = new Array();
+      }
+    );
+  }
 }

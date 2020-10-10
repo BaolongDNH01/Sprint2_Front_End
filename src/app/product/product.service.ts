@@ -41,4 +41,8 @@ export class ProductService {
   findAllAuctionTime(): Observable<AuctionTime[]> {
     return this.httpClient.get<AuctionTime[]>(this.API_URL + '/list-time');
   }
+
+  save(product: Product): Observable<Product> {
+    return this.httpClient.post<Product>(this.API_URL + '/create-product', product);
+  }
 }

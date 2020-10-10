@@ -23,11 +23,11 @@ import {AuthLoginComponent} from '../login/components/auth-login/auth-login.comp
     AuctionGuideComponent,
     NavBarComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    LoginModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        LoginModule
+    ]
 })
 export class HomePageModule {
 }
