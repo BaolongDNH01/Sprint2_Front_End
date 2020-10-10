@@ -36,7 +36,7 @@
         <th scope="row">{{i+1}}</th>
         <td><input [checked]="user.check" value="{{user.userId}}" (change)="addUser($event.target.value)" type="checkbox"></td>
         <td>{{user.userId}} <span *ngIf="user.flag == 'false'" class="fa fa-lock"></span></td>
-        <td>{{user.fullName}}</td>
+        <td><a [routerLink]="['/user/' + user.userId]">{{user.fullName}}</a></td>
         <td>{{user.rank}}</td>
         <td>{{user.email}}</td>
         <td>{{user.phone}}</td>
@@ -50,10 +50,10 @@
     <div class="ml-5">{{errorCheck}}</div>
   </div>
   <div class="col-md-12 card-body" style="display: flex">
-    <button  class="form-control ml-3" style="width: 100px">Xóa  <span class="fa fa-trash"></span></button>
-    <button (click)="lockUser()" class="form-control ml-2" style="width: 100px">Khóa   <span class="fa fa-lock"></span></button>
-    <button (click)="unlockUser()" class="form-control ml-2" style="width:120px">Mở khóa  <span class="fa fa-unlock-alt"></span></button>
-    <button [routerLink]="['/add-user']" class="form-control ml-2 " style="width:120px">Thêm mới <span class="fa fa-user-plus"></span></button>
+    <button (click)="delete()" class="btn btn-outline-secondary ml-3" style="width: 100px; height: 40px">Xóa  <span class="fa fa-trash"></span></button>
+    <button (click)="lockUser()" class="btn btn-outline-secondary ml-2" style="width: 100px; height: 40px">Khóa   <span class="fa fa-lock"></span></button>
+    <button (click)="unlockUser()" class="btn btn-outline-secondary ml-2" style="width:120px; height: 40px">Mở khóa  <span class="fa fa-unlock-alt"></span></button>
+    <button [routerLink]="['/add-user']" class="btn btn-outline-secondary ml-2 " style="width:120px; height: 40px">Thêm mới <span class="fa fa-user-plus"></span></button>
     <nav class="ml-5" aria-label="...">
       <ul class="pagination">
         <li class="page-item">

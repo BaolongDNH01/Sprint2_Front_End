@@ -71,12 +71,12 @@ export class JwtService {
     window.sessionStorage.clear();
   }
 
-  public saveUser(user) {
+  public saveUser(user): void {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, JSON.stringify(user));
   }
 
-  public getUser() {
+  public getUser(): void {
     return JSON.parse(sessionStorage.getItem(USERNAME_KEY));
   }
 }

@@ -1,5 +1,5 @@
 <div class="info-product-common mt-2 ">
-  <div *ngFor="let productDisplayList of productList1" class="borderStyle">
+  <div *ngFor="let productDisplayList of auctionList1" class="borderStyle">
     <a href="https://www.youtube.com/">
       <div class="img-product"><img src="{{productDisplayList.imageURL}}" alt=""></div>
       <div class="black-bg-product"></div>
@@ -9,7 +9,7 @@
         <p class="title-product-info">Click vào để xem chi tiết sản phẩm !</p>
         <div class="auction">
           <div class="time">
-            <div *ngIf="productDisplayList.auctionTime != 0; else loggedOut">
+            <div *ngIf="productDisplayList.auctionTime != null; else loggedOut">
               <span>{{productDisplayList.auctionTime / 3600 | number: '1.0-0'}}</span>:
               <span>{{productDisplayList.auctionTime / 60 | number: '1.0-0'}}</span>:
               <span>{{productDisplayList.auctionTime % 60}}</span>

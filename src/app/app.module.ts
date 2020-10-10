@@ -23,8 +23,10 @@ import {
   GoogleLoginProvider,
   SocialAuthService,
   SocialAuthServiceConfig, SocialLoginModule
-} from 'angularx-social-login';
-import {AuthLoginComponent} from './login/components/auth-login/auth-login.component';
+} from "angularx-social-login";
+import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
+import { TransactionManagementComponent } from './transaction-management/transaction-management.component';
+
 
 
 
@@ -32,6 +34,7 @@ import {AuthLoginComponent} from './login/components/auth-login/auth-login.compo
   declarations: [
     AppComponent,
     ProductCreateComponent,
+    TransactionManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,7 @@ import {AuthLoginComponent} from './login/components/auth-login/auth-login.compo
     HttpClientModule,
     ReactiveFormsModule,
     UserModule,
-    ProductListModule,
+    // ProductListModule,
     AuctionModule,
     HomePageModule,
     UserManageModule,

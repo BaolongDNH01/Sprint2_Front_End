@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../User';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../user.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {UserService} from '../user.service';
 
 @Component({
-  selector: 'app-unlock-user',
-  templateUrl: './unlock-user.component.html',
-  styleUrls: ['./unlock-user.component.css']
+  selector: 'app-delete-user',
+  templateUrl: './delete-user.component.html',
+  styleUrls: ['./delete-user.component.css']
 })
-export class UnlockUserComponent implements OnInit {
+export class DeleteUserComponent implements OnInit {
   id: string;
   ids: string[];
   userList: User[] = new Array();
@@ -40,10 +40,9 @@ export class UnlockUserComponent implements OnInit {
     this.formLock = this.fb.group({
       listUser: ['']
     });
-    console.log(this.formLock.value.timeLockEnd);
   }
-  unlockUser(): void{
-    this.userService.unlockUser(this.userList).subscribe(
+  delete(): void{
+    this.userService.deleteUsers(this.ids).subscribe(
       next => {},
       error => {},
       () => {
