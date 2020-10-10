@@ -17,3 +17,8 @@
 .card-header {
   background-color: #1AB7EA;
 }
+
+#avatar {
+  height: 2rem;
+  width: 2rem;
+}

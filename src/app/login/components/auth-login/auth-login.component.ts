@@ -1,6 +1,6 @@
 import { FormatUsernameService } from '../../services/format-username.service';
 import { SocialSignUpInfo } from '../../models/social-signup-info';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
@@ -9,6 +9,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-logi
 import { LoginInfo } from '../../models/login-info';
 import { AuthService } from '../../services/auth.service';
 import { JwtService } from '../../services/jwt.service';
+import {ModalServiceService} from "../../../home-page/modal-service.service";
 
 @Component({
   selector: 'app-auth-login',
@@ -31,6 +32,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   avatar: string;
 
   checkboxMarked = false;
+  @Output() loadComponent = new EventEmitter<number>();
 
   // socialSignUpInfo: SocialSignUpInfo;
   // socialUser: SocialUser;
@@ -39,9 +41,14 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private jwtService: JwtService,
+    private modalServiceService: ModalServiceService
     // private socialAuthService: SocialAuthService,
     // private formatUsername: FormatUsernameService,
   ) {
+  }
+
+  loadRegisterForm(): void{
+    this.modalServiceService.load(1);
   }
 
   ngOnInit(): void {
@@ -156,6 +163,8 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   //       });
   //     });
   // }
+
+
 
   valid(field: string, errorCode: string): boolean {
     return (

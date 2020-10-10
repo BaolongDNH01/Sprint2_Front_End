@@ -1,4 +1,4 @@
-import {Directive, ViewContainerRef} from '@angular/core';
+import {Directive, EventEmitter, Output, ViewContainerRef} from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -6,4 +6,5 @@ import {Directive, ViewContainerRef} from '@angular/core';
 })
 export class ModalFormDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
+  @Output() loadComponent = new EventEmitter<number>();
 }

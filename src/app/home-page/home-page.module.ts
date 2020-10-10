@@ -9,7 +9,7 @@ import {NavBarComponent} from './nav-bar/nav-bar.component';
 import {ModalFormDirective} from './modalForm.directive';
 import {DisplayProductAutionComponent} from './display-product-aution/display-product-aution.component';
 import {AuthLoginComponent} from '../login/components/auth-login/auth-login.component';
-import { DisplayProductAjaxComponent } from './display-product-ajax/display-product-ajax.component';
+import {DisplayProductAjaxComponent} from './display-product-ajax/display-product-ajax.component';
 
 @NgModule({
   declarations: [HomeComponent,
@@ -18,18 +18,18 @@ import { DisplayProductAjaxComponent } from './display-product-ajax/display-prod
     ModalComponent,
     NavBarComponent,
     ModalFormDirective,
-	DisplayProductAjaxComponent],
+    DisplayProductAjaxComponent],
   exports: [
     HomeComponent,
     AuctionGuideComponent,
     NavBarComponent,
     DisplayProductAjaxComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        LoginModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    LoginModule
+  ]
 })
 export class HomePageModule {
 }
