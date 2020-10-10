@@ -1,0 +1,56 @@
+<div class="row container w-auto mt-4" style="font-size: 120%">
+  <div class="col-md-3 ca"></div>
+  <div class="col-md-9">
+  <div class="row border">
+  <div class="col-md-5 mt-2">
+    <div class="row border">
+      <img class="m-auto" src="{{user.avatar}}" width="100" height="100" alt=""></div>
+    <div class="row">
+      <a class="m-auto" [routerLink]="['/delete/' + user.userId]">Xóa</a>
+    </div>
+    <div class="row">
+      <a *ngIf="user.flag == 'true'" class="m-auto" [routerLink]="['/lock-user/'+ user.userId]">Khóa</a>
+      <a *ngIf="user.flag == 'false'" class="m-auto" [routerLink]="['/unlock-user/'+ user.userId]">Mỏ Khóa</a>
+    </div>
+  </div>
+  <div class="col-md-7">
+    <div class="row mt-2">
+      <div class="col-md-4">Tên: </div>
+      <div class="col-md-6">{{user.fullName}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Tài khoản: </div>
+      <div class="col-md-6">{{user.username}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Địa chỉ: </div>
+      <div class="col-md-6">{{user.address}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Email: </div>
+      <div class="col-md-6">{{user.email}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Ngày sinh: </div>
+      <div class="col-md-6">{{user.birthday | date: 'dd/MM/yyyy'}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Số điện thoại: </div>
+      <div class="col-md-6">{{user.phone}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Chứng minh thư: </div>
+      <div class="col-md-6">{{user.idCard}}</div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-4">Xếp bậc: </div>
+      <div class="col-md-6">{{user.rank}}</div>
+    </div>
+    <div class="row mt-2 mb-2">
+      <div class="col-md-4">Điểm: </div>
+      <div class="col-md-6">{{user.point}}</div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>

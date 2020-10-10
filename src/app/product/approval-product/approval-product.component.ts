@@ -31,7 +31,6 @@ export class ApprovalProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.findAllStatus();
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
@@ -55,18 +54,6 @@ export class ApprovalProductComponent implements OnInit {
     });
   }
 
-  findAllStatus(): void {
-    this.productService.findAllStatusProduct().subscribe(
-      next => {
-        this.statusList = next;
-        console.log(this.statusList);
-      }, error => {
-        this.statusList = new Array();
-      }
-    );
-  }
-
-
   onApprovalProduct(): void {
     this.product = Object.assign({}, this.approvalProduct.value);
     this.product.productId = this.id;
@@ -75,9 +62,7 @@ export class ApprovalProductComponent implements OnInit {
     // tạo auction khi duyệt
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auction.statusAuction = 1;
-    this.auction.product = this.product.productId;
-    this.auctionService.save(this.auction);
-
+    this.auction.productId = this.product.productId;
     location.reload();
   }
 

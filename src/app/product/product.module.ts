@@ -5,14 +5,18 @@ import {AuctionModule} from '../auction/auction.module';
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {MatSelectModule} from '@angular/material/select';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ApprovalProductComponent} from './approval-product/approval-product.component';
 
 
 @NgModule({
   declarations: [ProductCreateComponent,
-    ProductDetailsComponent],
+    ProductDetailsComponent,
+    ApprovalProductComponent
+    ],
   exports: [
     ProductCreateComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ApprovalProductComponent
   ],
   imports: [
     CommonModule,
@@ -22,5 +26,4 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   providers: [DatePipe]
 })
-export class ProductModule {
-}
+export class ProductModule { }

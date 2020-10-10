@@ -15,6 +15,7 @@ import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
 import {UserManageModule} from './user-manage/user-manage.module';
 import {ProductListModule} from './product/product-list.module';
+import { ProductCreateComponent } from './product/product-create/product-create.component';
 import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
 import {
@@ -24,12 +25,16 @@ import {
   SocialAuthServiceConfig, SocialLoginModule
 } from "angularx-social-login";
 import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
+import { TransactionManagementComponent } from './transaction-management/transaction-management.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProductCreateComponent,
+    TransactionManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,7 @@ import {AuthLoginComponent} from "./login/components/auth-login/auth-login.compo
     HttpClientModule,
     ReactiveFormsModule,
     UserModule,
-    ProductListModule,
+    // ProductListModule,
     AuctionModule,
     HomePageModule,
     UserManageModule,

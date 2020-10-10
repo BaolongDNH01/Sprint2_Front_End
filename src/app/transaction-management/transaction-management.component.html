@@ -1,0 +1,169 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 margin-auto">
+      <div class="border">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-5">
+
+              <li class="nav-item ml-2">
+                <a class="nav-link" href="#">Quản lý thành viên </a>
+              </li>
+
+              <li class="nav-item ml-2">
+                <a class="nav-link" href="#">Quản lý sản phẩm </a>
+              </li>
+
+              <li class="nav-item ml-2">
+                <a class="nav-link" href="#">Quản lý giao dịch </a>
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+        <div class="row">
+          <div class="display-flex mt-2 ml-4" >
+            <div class="input-group input-group-sm mb-3 width-search">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >Người đăng</span>
+              </div>
+              <input type="text" class="" style="width: 50%;" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3 width-search">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >Người mua</span>
+              </div>
+              <input type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3 width-search">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >Tên sản phẩm</span>
+              </div>
+              <input type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3 width-search">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >Thành tiền</span>
+              </div>
+              <input type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+
+            <div class="input-group input-group-sm mb-3 width-search">
+              <div class="input-group-prepend">
+                <span class="input-group-text" >Tình trạng</span>
+              </div>
+              <select type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                <option value="">Thành công</option>
+              </select>
+            </div>
+
+            <button type="button" style="width: 20%" class="btn btn-primary btn-sm width-search ml-5"> Lọc </button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-striped table-responsive-md">
+              <thead>
+              <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Mã giao dịch</th>
+                <th scope="col">Thời gian đấu giá thành công</th>
+                <th scope="col">Người đăng</th>
+                <th scope="col">Người mua</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col">Phí dịch vụ</th>
+                <th scope="col">Tình trạng giao dịch</th>
+                <th scope="col">Xóa</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>123</td>
+                <td>22/06/2020</td>
+                <td>Đặng Ngọc Minh Châu</td>
+                <td>Lê thị A</td>
+                <td>Nồi cơm điện</td>
+                <td>1</td>
+                <td>450000</td>
+                <td>5000</td>
+                <td>Thành công</td>
+                <td><input type="checkbox"></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>123</td>
+                <td>22/06/2020</td>
+                <td>Đặng Ngọc Minh Châu</td>
+                <td>Lê thị A</td>
+                <td>Nồi cơm điện</td>
+                <td>1</td>
+                <td>450000</td>
+                <td>5000</td>
+                <td>Thành công</td>
+                <td><input type="checkbox"></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>123</td>
+                <td>22/06/2020</td>
+                <td>Đặng Ngọc Minh Châu</td>
+                <td>Lê thị A</td>
+                <td>Nồi cơm điện</td>
+                <td>1</td>
+                <td>450000</td>
+                <td>5000</td>
+                <td>Thành công</td>
+                <td><input type="checkbox"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1">
+
+          </div>
+          <div class="col-md-7">
+
+            <div>
+              <button type="button" class="btn btn-primary btn-sm"><i class="far fa-trash-alt">xóa</i></button>
+            </div>
+
+
+          </div>
+
+          <div class="col-md-3">
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

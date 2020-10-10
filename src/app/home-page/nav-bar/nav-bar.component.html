@@ -20,11 +20,15 @@
           <a class="nav-link text-white" href="#"><i class="fa fa-gavel mr-2" aria-hidden="true"></i>My
             Auctions</a>
         </div>
-        <div id="signIn" class="nav-item mt-auto mb-auto mr-5">
-          <a class="nav-link text-white" (click)="renderComponent(0)" data-toggle="modal"
+        <div [ngSwitch]="loggedIn" id="signIn" class="nav-item mt-auto mb-auto mr-5">
+          <a *ngSwitchCase="false"  class="nav-link text-white" (click)="renderComponent(0)" data-toggle="modal"
              data-target="#login"><i class="fa fa-lock mr-2"
                                      aria-hidden="true"></i>
             Sign In</a>
+          <ng-template *ngSwitchCase="true">
+            <img [src]="avatar" alt="">
+          <a class="nav-link text-dark">{{username}}</a>
+          </ng-template>
         </div>
         <div class="modal" id="login" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
