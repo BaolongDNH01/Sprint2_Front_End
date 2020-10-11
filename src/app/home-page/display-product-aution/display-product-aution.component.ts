@@ -33,6 +33,7 @@ export class DisplayProductAutionComponent implements OnInit {
   ngOnInit(): void {
     this.chatbox();
     this.displayProductAuction();
+    // this.localStoreage();
   }
 
 
@@ -69,33 +70,13 @@ export class DisplayProductAutionComponent implements OnInit {
     })();
   }
 
-  // Châu =>  Hàm tính toán thời gian
-
-  time(): void {
-    for (let i = 0; i < this.auctionList1.length; i++) {
-      if (this.auctionList1[i].auctionTime === 0) {
-        this.auctionList1[i].auctionTime = null;
-        // // console.log(this.productList1[i].productId);
-        this.findProductTimeOutById(this.auctionList1[i].auctionId);
-        // xu ly khi = 0
-      } else {
-        this.auctionList1[i].auctionTime -= 1;
-        if (this.auctionList1[i].auctionTime < 0) {
-          this.auctionList1[i].auctionTime = null;
-        }
-        // console.log(this.productList1[i].auctionTime);
-      }
-    }
-    setTimeout(() => this.time(), 100);
-  }
-
-
+  // Châu => Khi time out thì set lại status
   onTimeOut(): void {
     this.auction = Object.assign({}, this.timeoutAuction.value);
     console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe();
-    return;
+    location.reload();
   }
 
   // Châu => Hiển thị tất cả sản phẩm có status là đang trong phiên đấu giá lên homepage
@@ -107,13 +88,48 @@ export class DisplayProductAutionComponent implements OnInit {
           if (this.auctionList[i].statusId === 2) {
             this.auctionList1.push(this.auctionList[i]);
             this.auctionList[i].auctionTime *= 60;
+            // console.log(parseInt(localStorage.getItem('time' + i)));
+            // console.log(parseInt(localStorage.getItem('time' + 2)));
+            // @ts-ignore
+            // localStorage.setItem('time' + i, this.auctionList[i].auctionTime);
+            if (localStorage.getItem('time' + i) == 0) {
+              // @ts-ignore
+              localStorage.setItem('time' + i, this.auctionList[i].auctionTime);
+            }
           }
         }
       }, error1 => {
 
       }, () => {
-        this.time();
+        // this.time();
+        this.localStoreage();
       }
     );
+  }
+
+  // Châu =>  xử lý load trang giữ lại time now
+  localStoreage(): void {
+    for (let i = 0; i < this.auctionList1.length; i++) {
+      console.log('cheiu dai mang' + this.auctionList1.length);
+      console.log('id' + this.auctionList1[i].auctionId);
+      console.log(this.auctionList1[i].auctionTime + 'get time');
+
+      // @ts-ignore
+      this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId - 1)));
+      // Châu  => Xử lý khi time auction product = 0
+      if (this.auctionList1[i].auctionTime == 0) {
+        // this.auctionList1[i].auctionTime = null;
+        localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+        this.findProductTimeOutById(this.auctionList1[i].auctionId);
+      } else {
+        this.auctionList1[i].auctionTime -= 1;
+        localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), this.auctionList1[i].auctionTime);
+        if (this.auctionList1[i].auctionTime < 0) {
+          localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+
+        }
+      }
+    }
+    setTimeout(() => this.localStoreage(), 1000);
   }
 }
