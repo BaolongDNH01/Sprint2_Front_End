@@ -15,6 +15,7 @@ import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
 import {UserManageModule} from './user-manage/user-manage.module';
 // import {ProductListModule} from './product/product-list.module';
+import { ProductCreateComponent } from './product/product-create/product-create.component';
 import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
 import {
@@ -22,9 +23,11 @@ import {
   GoogleLoginProvider,
   SocialAuthService,
   SocialAuthServiceConfig, SocialLoginModule
-} from "angularx-social-login";
-import {AuthLoginComponent} from "./login/components/auth-login/auth-login.component";
+} from 'angularx-social-login';
+import {AuthLoginComponent} from './login/components/auth-login/auth-login.component';
 import { TransactionManagementComponent } from './transaction-management/transaction-management.component';
+import {ModalServiceService} from "./home-page/modal-service.service";
+
 
 
 
@@ -52,7 +55,7 @@ import { TransactionManagementComponent } from './transaction-management/transac
     SocialLoginModule
   ],
 
-  providers: [AngularFirestore,
+  providers: [AngularFirestore, ModalServiceService,
     httpInterceptorProviders,
     {
       provide: 'SocialAuthServiceConfig',

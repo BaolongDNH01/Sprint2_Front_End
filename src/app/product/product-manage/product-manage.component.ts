@@ -34,7 +34,7 @@ export class ProductManageComponent implements OnInit {
       list => this.categoryList = list
     );
     this.productService.findAllStatusProduct().subscribe(
-      list => this.statusList = list
+      // list => this.statusList = list
     );
   }
 

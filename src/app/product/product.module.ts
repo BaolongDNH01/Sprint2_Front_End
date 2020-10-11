@@ -11,12 +11,12 @@ import {ApprovalProductComponent} from './approval-product/approval-product.comp
 @NgModule({
   declarations: [ProductCreateComponent,
     ProductDetailsComponent,
-    ApprovalProductComponent
-    ],
+    ApprovalProductComponent,
+  ],
   exports: [
     ProductCreateComponent,
     ProductDetailsComponent,
-    ApprovalProductComponent
+    ApprovalProductComponent,
   ],
   imports: [
     CommonModule,
@@ -26,4 +26,5 @@ import {ApprovalProductComponent} from './approval-product/approval-product.comp
   ],
   providers: [DatePipe]
 })
-export class ProductModule { }
+export class ProductModule {
+}

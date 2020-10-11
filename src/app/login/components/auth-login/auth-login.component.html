@@ -1,29 +1,38 @@
 <div id="login-form" class="modal-spl">
-  <form class="pl-5 pr-5 pt-3">
+  <form class="pl-5 pr-5 pt-3" [formGroup]="loginForm" (ngSubmit)="onLogin()">
     <div class="card-header-pills">
       <p class="font-weight-bold text-center">Đăng Nhập Hoặc Đăng Ký Tài Khoản Để Bắt Đầu Đấu Giá
       </p>
     </div>
     <div class="form-group">
-      <input type="text" autofocus
+      <input formControlName="username" type="text" autofocus
              class="form-control  border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
              id="inputUserName" aria-describedby="emailHelp" placeholder="Tên đăng nhập">
     </div>
+    <div class="alert alert-danger p-1" role="alert" *ngIf="valid('username', 'required')">
+      Must not be empty !
+    </div>
     <div class="form-group">
-      <input type="password"
+      <input formControlName="password" type="password"
              class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
              id="exampleInputPassword1" placeholder="Mật khẩu">
     </div>
+    <div class="alert alert-danger p-1" role="alert" *ngIf="valid('password', 'required')">
+      Must not be empty !
+    </div>
     <div class="form-check d-flex">
-      <input type="checkbox" class="form-check-input" id="rememberCheck">
+      <input (change)="isRememberChecked($event)" type="checkbox" class="form-check-input" id="rememberCheck">
       <label class="form-check-label" for="rememberCheck">Ghi Nhớ Tài Khoản</label>
       <a class="ml-auto" href="#">Quên Mật Khẩu?</a>
     </div>
+    <div class="modal-footer mt-2 justify-content-center border-top-0">
+      <button type="submit" class="btn btn-primary rounded-pill">Đăng Nhập</button>
+      <button id="signUp" (click)="loadRegisterForm()" type="button" class="btn btn-secondary rounded-pill">
+        Đăng Ký
+      </button>
+    </div>
   </form>
-  <div class="modal-footer mt-2 justify-content-center border-top-0">
-    <button type="submit" class="btn btn-primary rounded-pill">Đăng Nhập</button>
-    <button id="signUp" type="button" class="btn btn-secondary rounded-pill">
-      Đăng Ký
-    </button>
+  <div *ngIf="loginForm.dirty && isLogInFailed" class="alert alert-danger p-1 mt-2">
+    Account doesn't exist !
   </div>
 </div>

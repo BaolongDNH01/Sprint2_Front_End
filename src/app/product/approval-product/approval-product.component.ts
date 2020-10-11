@@ -62,7 +62,7 @@ export class ApprovalProductComponent implements OnInit {
     // tạo auction khi duyệt
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auction.statusAuction = 1;
-    this.auction.product = this.product.productId;
+    this.auction.productId = this.product.productId;
     location.reload();
   }
 

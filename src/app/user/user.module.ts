@@ -10,21 +10,23 @@ import { RegisterComponent } from './register/register.component';
 import {SendMailComponent} from './send-mail/send-mail.component';
 import {ActivatedAccountComponent} from './activated-account/activated-account.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { RecoverPasswordComponent } from './recover-password/recover-password.component';
 import { UnlockUserComponent } from './unlock-user/unlock-user.component';
 import {DeleteUserComponent} from './delete-user/delete-user.component';
 import { DetailUserComponent } from './detail-user/detail-user.component';
+
+
 @NgModule({
-  declarations: [
-    ListUserComponent,
-    LockUserComponent,
-    AddUserComponent,
-    RegisterComponent,
-    SendMailComponent,
-    ActivatedAccountComponent,
-    UnlockUserComponent,
+  declarations: [ListUserComponent,
+  LockUserComponent,
+  AddUserComponent,
+  RegisterComponent,
+  SendMailComponent,
+  ActivatedAccountComponent,
+  UnlockUserComponent,
+  RecoverPasswordComponent,
     DeleteUserComponent,
-    DetailUserComponent
-  ],
+    DetailUserComponent],
   exports: [
     ListUserComponent
   ],
