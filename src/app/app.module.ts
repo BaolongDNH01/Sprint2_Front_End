@@ -15,7 +15,6 @@ import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
 import {UserManageModule} from './user-manage/user-manage.module';
 // import {ProductListModule} from './product/product-list.module';
-import { ProductCreateComponent } from './product/product-create/product-create.component';
 import {LoginModule} from './login/login.module';
 import {httpInterceptorProviders} from './login/auth/auth-http.interceptor';
 import {
@@ -26,7 +25,13 @@ import {
 } from 'angularx-social-login';
 import {AuthLoginComponent} from './login/components/auth-login/auth-login.component';
 import { TransactionManagementComponent } from './transaction-management/transaction-management.component';
-import {ModalServiceService} from "./home-page/modal-service.service";
+import {ModalServiceService} from './home-page/modal-service.service';
+import {
+  RECAPTCHA_LANGUAGE,
+  RECAPTCHA_SETTINGS,
+  RecaptchaFormsModule, RecaptchaModule,
+  RecaptchaSettings
+} from 'ng-recaptcha';
 
 
 
@@ -52,11 +57,21 @@ import {ModalServiceService} from "./home-page/modal-service.service";
     AppRoutingModule,
     LoginModule,
     ProductModule,
-    SocialLoginModule
+    SocialLoginModule,
+    RecaptchaFormsModule,
+    RecaptchaModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,
     httpInterceptorProviders,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: { siteKey: '6LclFdYZAAAAAIKFeb0k5ViLlQ3Vp37_JVR5_C7M', } as RecaptchaSettings,
+    },
+    {
+      provide: RECAPTCHA_LANGUAGE,
+      useValue: 'en',
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

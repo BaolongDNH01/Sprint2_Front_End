@@ -24,8 +24,8 @@ export class UserService {
   lockUser(user: User[]): Observable<any>{
     return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
   }
-  sendEmail(user: User): Observable<any>{
-    return this.httpClient.post<any>(this.API_URL + '/register', user);
+  sendEmail(user: User, response?: any): Observable<any>{
+    return this.httpClient.post<any>(this.API_URL + '/register', user );
   }
   getUserByUserName(userName: string): Observable<User>{
     return this.httpClient.get<User>(this.API_URL + '/getUserByUserName/' + userName);
