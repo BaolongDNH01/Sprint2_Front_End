@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
-
+  selected = '1';
   product: Product;
   productForm: FormGroup;
   categoryList: Category[];
