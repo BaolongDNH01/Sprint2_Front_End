@@ -47,8 +47,8 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  loadRegisterForm(): void{
-    this.modalServiceService.load(1);
+  loadForm(index: number): void{
+    this.modalServiceService.load(index);
   }
 
   ngOnInit(): void {

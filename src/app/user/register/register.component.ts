@@ -57,8 +57,8 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  backLogin(): void {
-    this.modalServiceService.load(0);
+  loadForm(index: number): void {
+    this.modalServiceService.load(index);
   }
 
   onSubmit(): void {
