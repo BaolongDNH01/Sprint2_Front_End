@@ -72,6 +72,6 @@ export class ListAuctionComponent implements OnInit {
     console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe();
-    return;
+    location.reload();
   }
 }

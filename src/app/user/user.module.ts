@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListUserComponent } from './list-user/list-user.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -14,6 +14,8 @@ import { RecoverPasswordComponent } from './recover-password/recover-password.co
 import { UnlockUserComponent } from './unlock-user/unlock-user.component';
 import {DeleteUserComponent} from './delete-user/delete-user.component';
 import { DetailUserComponent } from './detail-user/detail-user.component';
+import {RecaptchaLoaderService, RecaptchaModule} from 'ng-recaptcha';
+import { RecoverPasswordCodeComponent } from './recover-password-code/recover-password-code.component';
 
 
 @NgModule({
@@ -26,17 +28,19 @@ import { DetailUserComponent } from './detail-user/detail-user.component';
   UnlockUserComponent,
   RecoverPasswordComponent,
     DeleteUserComponent,
-    DetailUserComponent],
+    DetailUserComponent,
+    RecoverPasswordCodeComponent],
   exports: [
     ListUserComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    RouterModule,
-    UserRoutingModule,
-    ReactiveFormsModule,
-    NgxPaginationModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        RouterModule,
+        UserRoutingModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        RecaptchaModule
+    ]
 })
 export class UserModule { }

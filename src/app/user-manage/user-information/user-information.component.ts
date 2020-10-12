@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
 import {UserService} from '../user.service';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-user-information',
@@ -13,15 +14,22 @@ export class UserInformationComponent implements OnInit {
   user: User;
   userEdit: User;
   passWord: string;
-  userName = 'khanhquoc';
+  userName: string;
   message: string;
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private jwtService: JwtService) {
   }
 
   ngOnInit(): void {
-    this.getUser();
+    this.userName = this.jwtService.getUsername();
+    if (this.userName === '' || this.userName === undefined || this.userName === null) {
+      //  đưa ra thông báo login
+      document.getElementById('control').click();
+    } else {
+      this.getUser();
+    }
   }
 
   getUser(): void {
@@ -100,5 +108,9 @@ export class UserInformationComponent implements OnInit {
         return true;
       }
     }
+  }
+
+  backToMenu(): void {
+  //  về trang trước
   }
 }

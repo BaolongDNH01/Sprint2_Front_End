@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './User';
+import {RecoverPassword} from "./recover-password/RecoverPassword";
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,8 @@ export class UserService {
   lockUser(user: User[]): Observable<any>{
     return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
   }
-  sendEmail(user: User): Observable<any>{
-    return this.httpClient.post<any>(this.API_URL + '/register', user);
+  sendEmail(user: User, response?: any): Observable<any>{
+    return this.httpClient.post<any>(this.API_URL + '/register?g-recaptcha-response=' + response, user );
   }
   getUserByUserName(userName: string): Observable<User>{
     return this.httpClient.get<User>(this.API_URL + '/getUserByUserName/' + userName);
@@ -38,5 +39,8 @@ export class UserService {
   }
   deleteUsers(ids: string[]): Observable<any>{
     return this.httpClient.delete<any>(this.API_URL + '/delete-users/' + ids);
+  }
+  recoverRequest(recoverPassword: RecoverPassword): Observable<any>{
+    return this.httpClient.post<any>(this.API_URL + '/recover-password', recoverPassword);
   }
 }

@@ -50,7 +50,7 @@ export class AddUserComponent implements OnInit {
     this.userService.findAllUser().subscribe(
       next => {
         this.userList = next;
-      }, error => {console.log('error');},
+      }, error => {console.log('error'); },
       () => {
         this.userService.sendEmail(this.user).subscribe(
           next => {},
