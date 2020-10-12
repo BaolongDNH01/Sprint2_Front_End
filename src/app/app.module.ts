@@ -32,6 +32,7 @@ import {
   RecaptchaFormsModule, RecaptchaModule,
   RecaptchaSettings
 } from 'ng-recaptcha';
+import {PaymentModule} from './payment/payment.module';
 
 
 
@@ -50,7 +51,7 @@ import {
     HttpClientModule,
     ReactiveFormsModule,
     UserModule,
-    // ProductListModule,
+    PaymentModule,
     AuctionModule,
     HomePageModule,
     UserManageModule,
