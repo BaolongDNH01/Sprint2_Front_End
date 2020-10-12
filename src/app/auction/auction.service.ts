@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Bidder} from './bidder';
 import {Auction} from './auction';
+import {Product} from '../product/product';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class AuctionService {
   editAuction(auction: Auction): Observable<void> {
     console.log('toi day roi');
     return this.httpClient.patch<void>(this.URL + '/auction-edit/' + auction.auctionId, auction);
+  }
+
+  save(auction: Auction): Observable<Auction> {
+    return this.httpClient.post<Auction>(this.URL + '/create-auction', auction);
   }
 }

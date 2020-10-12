@@ -100,3 +100,19 @@
     </form>
   </div>
 </div>
+<button id="control" data-toggle="modal" data-target="#exampleModal" hidden></button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Đăng nhập!</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="backToMenu()">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="confirmBody">Bạn chưa đăng nhập? <a href="">Đăng nhập ngay</a></div>
+      </div>
+    </div>
+  </div>
+</div>
