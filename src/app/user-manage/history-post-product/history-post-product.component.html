@@ -3,6 +3,7 @@
   <table class="table table-bordered table-responsive-md text-center">
     <thead class="table thead-light">
     <tr>
+      <th scope="col">#</th>
       <th scope="col">Tên sản phẩm</th>
       <th scope="col">Thông tin sản phẩm</th>
       <th scope="col">Ngày đăng ký</th>
@@ -11,18 +12,34 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of productList |paginate: {
+    <tr *ngFor="let product of productList | paginate: {
           id: 'listing_pagination',
           itemsPerPage: 4,
           currentPage: currentPage,
-          totalItems: totalItem} ">
+          totalItems: totalItem}, index as i ">
+      <th scope="col">{{i}}</th>
       <td>{{product.productName}}</td>
       <td>{{product.productDetail}}</td>
+      <td>{{product.datePost}}</td>
       <td>{{product.statusName}}</td>
-      <td>DDDDD</td>
-      <td>EEEEE</td>
     </tr>
     </tbody>
   </table>
+</div>
+<button id="control" data-toggle="modal" data-target="#exampleModal" hidden></button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Đăng nhập!</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true" (click)="backToMenu()">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="confirmBody">Bạn chưa đăng nhập? <a href="">Đăng nhập ngay</a></div>
+      </div>
+    </div>
+  </div>
 </div>
 

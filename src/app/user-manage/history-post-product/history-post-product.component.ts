@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../product';
 import {UserService} from '../user.service';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-history-post-product',
@@ -9,17 +10,25 @@ import {UserService} from '../user.service';
 })
 export class HistoryPostProductComponent implements OnInit {
   productList: Product[];
-  userName = 'khanhne';
+  userName: string;
   currentPage: number;
   totalItem: number;
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit(): void {
-    this.getAllProduct();
+  constructor(private userService: UserService,
+              private jwtService: JwtService) {
   }
 
-  getAllProduct(): void{
+  ngOnInit(): void {
+    this.userName = this.jwtService.getUsername();
+    if (this.userName === '' || this.userName === undefined || this.userName === null) {
+      //  đưa ra thông báo login
+      document.getElementById('control').click();
+    } else {
+      this.getAllProduct();
+    }
+  }
+
+  getAllProduct(): void {
     this.userService.getAllProductByUName(this.userName).subscribe(
       list => {
         this.productList = list;
@@ -27,5 +36,9 @@ export class HistoryPostProductComponent implements OnInit {
       },
       error => console.log(error)
     );
+  }
+
+  backToMenu(): void {
+  //  trả về trang trước khi vào
   }
 }

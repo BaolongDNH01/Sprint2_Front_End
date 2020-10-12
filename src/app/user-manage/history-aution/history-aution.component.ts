@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Bidder} from '../bidder';
 import {UserService} from '../user.service';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-history-aution',
@@ -13,10 +14,17 @@ export class HistoryAutionComponent implements OnInit {
   currentPage: number;
   totalItem: number;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private jwtService: JwtService) { }
 
   ngOnInit(): void {
-    this.getAllBidderByU();
+    this.userName = this.jwtService.getUsername();
+    if (this.userName === '' || this.userName === undefined || this.userName === null) {
+      //  đưa ra thông báo login
+      document.getElementById('control').click();
+    } else {
+      this.getAllBidderByU();
+    }
   }
 
   getAllBidderByU(): void{
@@ -26,5 +34,9 @@ export class HistoryAutionComponent implements OnInit {
         this.totalItem = this.listBidder.length;
       },
     );
+  }
+
+  backToMenu(): void {
+  //  về trang trước
   }
 }
