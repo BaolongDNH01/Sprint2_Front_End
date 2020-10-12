@@ -5,5 +5,4 @@ export class Bidder {
   priceBidder: number;
   dateBidder: string;
   auctionStatus: string;
-  cancellerAuction: string;
 }
