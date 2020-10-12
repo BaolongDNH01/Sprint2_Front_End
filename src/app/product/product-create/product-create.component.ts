@@ -10,6 +10,7 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Image} from '../image';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-product-create',
@@ -29,6 +30,7 @@ export class ProductCreateComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private productService: ProductService,
               private router: Router,
+              private jwt: JwtService,
               private angularFireStorage: AngularFireStorage,
               private angularFirestore: AngularFirestore) {
   }
@@ -42,7 +44,6 @@ export class ProductCreateComponent implements OnInit {
       categoryId: ['', [Validators.required]],
       statusId: ['1', [Validators.required]],
       timeId: ['', [Validators.required]],
-      userId: ['1', [Validators.required]],
     });
     this.findAllCategory();
     this.findAllAuctionTime();
@@ -51,6 +52,7 @@ export class ProductCreateComponent implements OnInit {
   // tslint:disable-next-line:typedef
   onSubmit() {
     this.product = Object.assign({}, this.productForm.value);
+    this.product.userName = this.jwt.getUsername();
     console.log(this.product);
     this.productService.save(this.product).subscribe(
       next => {

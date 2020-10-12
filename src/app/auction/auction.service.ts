@@ -37,4 +37,8 @@ export class AuctionService {
   save(auction: Auction): Observable<Auction> {
     return this.httpClient.post<Auction>(this.URL + '/create-auction', auction);
   }
+
+  saveBidderDto(bidder: Bidder): Observable<Bidder> {
+    return this.httpClient.post<Bidder>(this.URL + '/create-bidder', bidder);
+  }
 }

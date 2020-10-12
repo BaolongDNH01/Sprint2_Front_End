@@ -5,6 +5,8 @@ import {ProductService} from '../product.service';
 import {Product} from '../product';
 import {DatePipe} from '@angular/common';
 import {UserService} from '../../user/user.service';
+import {JwtService} from '../../login/services/jwt.service';
+import {AuctionService} from '../../auction/auction.service';
 
 
 @Component({
@@ -22,7 +24,9 @@ export class ProductDetailsComponent implements OnInit {
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
               private datePipe: DatePipe,
-              private userService: UserService) {
+              private userService: UserService,
+              private jwt: JwtService,
+              private auctionService: AuctionService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +42,7 @@ export class ProductDetailsComponent implements OnInit {
   onSubmitBid() {
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     // this.bidder.bidPrice=
-    // this.bidder.userId
+    this.bidder.userName = this.jwt.getUsername();
+    this.auctionService.saveBidderDto(this.bidder);
   }
 }
