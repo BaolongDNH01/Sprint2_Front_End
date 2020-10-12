@@ -1,4 +1,4 @@
-export class Status {
+export class StatusProduct {
   statusId: number;
   statusName: string;
 }
