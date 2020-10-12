@@ -25,6 +25,7 @@ export class DisplayProductAutionComponent implements OnInit {
   time = this.timeSet;
   display;
   interval;
+  curpage = 1;
 
   constructor(
     private router: Router,
@@ -138,7 +139,6 @@ export class DisplayProductAutionComponent implements OnInit {
   // }
 
   localStoreage(): void {
-
     for (let i = 0; i < this.auctionList1.length; i++) {
       console.log('cheiu dai mang' + this.auctionList1.length);
       console.log('id' + this.auctionList1[i].auctionId);

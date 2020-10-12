@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-10">
-      <div class="border-dark">
-        <nav class="navbar navbar-expand-lg navbar-dark border-dark">
-          Danh sách các sản phẩm đấu gía
+    <div class="col-10 m-auto">
+      <div>
+        <nav class=" col-10 mt-5 bg-title border-dark">
+         <h1 class="title">Danh sách phiên đấu giá</h1>
         </nav>
-        <table class="table">
+        <table class="table border col-10">
           <thead class="thead-light">
           <tr>
             <th scope="col">#</th>
@@ -14,21 +14,37 @@
             <th scope="col">Trạng thái sản phẩm</th>
             <th scope="col">Thời gian bắt đầu đấu giá</th>
             <th scope="col">Thời gian kêt thúc đấu giá</th>
-            <th scope="col">click</th>
+            <th scope="col">Chọn</th>
+            <th>
+              <div class="row ">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{statusNameDr}}
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a *ngFor="let status of statusList" class="dropdown-item" (click)="find(status.statusName)">{{status.statusName}}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let list of auctionList">
-            <th scope="row">1</th>
+          <tr *ngFor="let list of auctionListShow | paginate : {itemsPerPage: 10, currentPage:curpage}">
+            <th scope="row">{{list.no}}</th>
             <td>{{list.auctionId}}</td>
             <td>{{list.productName}}</td>
             <td>{{list.statusName}}</td>
             <td>{{list.dayTimeStart | date: 'dd/MM/yyyy h:mm:ss a '}}</td>
             <td>{{list.dayTimeEnd}}</td>
             <td><a href="" (click)="onStatusAuction(list.auctionId)">Cho phép</a></td>
+            <td></td>
           </tr>
           </tbody>
         </table>
+        <pagination-controls (pageChange)="curpage = $event"></pagination-controls>
       </div>
 
 
