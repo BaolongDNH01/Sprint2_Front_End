@@ -26,7 +26,7 @@ export class UserService {
     return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
   }
   sendEmail(user: User, response?: any): Observable<any>{
-    return this.httpClient.post<any>(this.API_URL + '/register', user );
+    return this.httpClient.post<any>(this.API_URL + '/register?g-recaptcha-response=' + response, user );
   }
   getUserByUserName(userName: string): Observable<User>{
     return this.httpClient.get<User>(this.API_URL + '/getUserByUserName/' + userName);

@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
         birthday: ['', Validators.required],
         address: ['', [Validators.required, Validators.maxLength(255)]],
         phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{9,12}$')]],
-        // recaptchaReactive: ['', Validators.required],
+        recaptchaReactive: ['', Validators.required],
         idCard: ['', [Validators.required, Validators.pattern('^[0-9]{9}$')]]
       }
     );
@@ -53,8 +53,8 @@ export class RegisterComponent implements OnInit {
 
   resolved(captchaResponse: string): void {
     console.log(`Resolved response token: ${captchaResponse}`);
-    this.registerForm.value.recaptchaReactive = captchaResponse;
-
+    this.registerForm.controls.recaptchaReactive.setValue(captchaResponse);
+    console.log(this.registerForm.value.recaptchaReactive);
   }
 
   loadForm(index: number): void {

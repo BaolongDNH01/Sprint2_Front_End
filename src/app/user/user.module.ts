@@ -15,6 +15,7 @@ import { UnlockUserComponent } from './unlock-user/unlock-user.component';
 import {DeleteUserComponent} from './delete-user/delete-user.component';
 import { DetailUserComponent } from './detail-user/detail-user.component';
 import {RecaptchaLoaderService, RecaptchaModule} from 'ng-recaptcha';
+import { RecoverPasswordCodeComponent } from './recover-password-code/recover-password-code.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {RecaptchaLoaderService, RecaptchaModule} from 'ng-recaptcha';
   UnlockUserComponent,
   RecoverPasswordComponent,
     DeleteUserComponent,
-    DetailUserComponent],
+    DetailUserComponent,
+    RecoverPasswordCodeComponent],
   exports: [
     ListUserComponent
   ],
