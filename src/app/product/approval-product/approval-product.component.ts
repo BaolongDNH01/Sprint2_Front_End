@@ -18,7 +18,7 @@ export class ApprovalProductComponent implements OnInit {
   id: number;
   approvalProduct: FormGroup;
   statusList: Status[];
-  auction: Auction;
+  auction: Auction=new Auction();
   myDate = new Date();
 
   constructor(
@@ -58,12 +58,14 @@ export class ApprovalProductComponent implements OnInit {
     this.product = Object.assign({}, this.approvalProduct.value);
     this.product.productId = this.id;
     this.productService.editProduct(this.product).subscribe();
-
+    console.log(this.product);
     // tạo auction khi duyệt
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
-    this.auction.statusAuction = 1;
+    this.auction.statusId = 1;
     this.auction.productId = this.product.productId;
-    location.reload();
+    console.log(this.auction);
+    this.auctionService.save(this.auction);
+    // location.reload();
   }
 
   noApprovalProduct(): void {
