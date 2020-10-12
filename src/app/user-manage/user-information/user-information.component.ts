@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user';
 import {UserService} from '../user.service';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-user-information',
@@ -11,36 +12,105 @@ import {UserService} from '../user.service';
 export class UserInformationComponent implements OnInit {
   infoForm: FormGroup;
   user: User;
-  userName = '';
+  userEdit: User;
+  passWord: string;
+  userName: string;
+  message: string;
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService) {
+              private userService: UserService,
+              private jwtService: JwtService) {
   }
 
   ngOnInit(): void {
-     this.userService.getUserByUName(this.userName).subscribe(
-       u => this.user = u,
-       () => null,
-       () => this.createForm()
-     );
+    this.userName = this.jwtService.getUsername();
+    if (this.userName === '' || this.userName === undefined || this.userName === null) {
+      //  đưa ra thông báo login
+      document.getElementById('control').click();
+    } else {
+      this.getUser();
+    }
+  }
+
+  getUser(): void {
+    this.userService.getUserByUName(this.userName).subscribe(
+      u => {
+        this.user = u;
+      },
+      () => null,
+      () => this.createForm()
+    );
   }
 
   createForm(): void {
     this.infoForm = this.formBuilder.group({
-      accountName: [this.user.accountName, [Validators.required, Validators.pattern('^[a-zA-Z0-9 - ]{4-20}$')]],
-      name: [this.user.name, [Validators.required]],
-      email: [this.user.email, [Validators.required, Validators.pattern('^[a-zA-Z0-9.]{1, 50}@[a-zA-Z0-9]{1, 20}(.[a-zA-Z0-9]){1,4}')]],
+      username: [this.user.username, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,20}$')]],
+      fullName: [this.user.fullName, [Validators.required]],
+      email: [this.user.email, [Validators.required, Validators.pattern('^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$')]],
       birthday: [this.user.birthday, [Validators.required]],
       idCard: [this.user.idCard, [Validators.required, Validators.pattern('^[0-9]{6,20}')]],
-      oldPassword: ['', [Validators.required, Validators.pattern(this.user.password)]],
-      newPassword: ['', [Validators.required]],
-      phoneNumber: [this.user.phoneNumber, [Validators.required]],
-      address: [this.user.address, [Validators.required]]
+      phone: [this.user.phone, [Validators.required]],
+      address: [this.user.address, [Validators.required]],
+      pass: ['']
     });
   }
 
-  editInfo(): void{
-    this.user = this.infoForm.value;
-    this.userService.editUserInfo(this.user, this.userName);
+  editInfo(): void {
+    if (this.checkEditPassword()) {
+      this.userEdit = this.infoForm.value;
+      this.userEdit.password = this.passWord;
+      this.userService.editUserInfo(this.userEdit, this.userName).subscribe(
+        () => null,
+        error => {
+          document.getElementById('message').style.color = 'yellow';
+          this.message = '*cập nhật không thành công!';
+        },
+        () => {
+          document.getElementById('message').style.color = '#4ef73c';
+          this.message = '*cập nhật thành công!';
+          this.getUser();
+        }
+      );
+    } else {
+      document.getElementById('message').style.color = 'yellow';
+      this.message = '*lỗi các trường mật khẩu!';
+    }
+  }
+
+  checkEditPassword(): boolean {
+    const oldPass = document.getElementById('oldPass') as HTMLInputElement;
+    const newPass = document.getElementById('newPass') as HTMLInputElement;
+    const reNewPass = document.getElementById('reNewPass') as HTMLInputElement;
+    this.passWord = '';
+    if (oldPass.value === '') {
+      oldPass.style.border = 'none';
+      newPass.style.border = 'none';
+      reNewPass.style.border = 'none';
+      this.passWord = this.user.password;
+      return true;
+    }
+
+    if (oldPass.value !== this.user.password) {
+      oldPass.style.border = '2px solid red';
+      newPass.style.border = 'none';
+      reNewPass.style.border = 'none';
+      return false;
+    } else {
+      oldPass.style.border = 'none';
+      if (newPass.value !== reNewPass.value || newPass.value === '') {
+        reNewPass.style.border = '2px solid red';
+        newPass.style.border = '2px solid red';
+        return false;
+      } else {
+        reNewPass.style.border = 'none';
+        newPass.style.border = 'none';
+        this.passWord = newPass.value;
+        return true;
+      }
+    }
+  }
+
+  backToMenu(): void {
+  //  về trang trước
   }
 }

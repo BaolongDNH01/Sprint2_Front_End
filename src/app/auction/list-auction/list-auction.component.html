@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <table class="table">
+        <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Mã đấu giá</th>
+          <th scope="col">Sản phẩm đấu giá</th>
+          <th scope="col">Trạng thái sản phẩm</th>
+          <th scope="col">Thời gian bắt đầu đấu giá</th>
+          <th scope="col">Thời gian kêt thúc đấu giá</th>
+          <th scope="col">click</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let list of auctionList">
+          <th scope="row">1</th>
+          <td>{{list.auctionId}}</td>
+          <td>{{list.productName}}</td>
+          <td>{{list.statusName}}</td>
+          <td>{{list.dayTimeStart | date: 'dd/MM/yyyy h:mm:ss a '}}</td>
+          <td>{{list.dayTimeEnd}}</td>
+          <td><a (click)="onStatusAuction(list.auctionId)">Cho phép</a></td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

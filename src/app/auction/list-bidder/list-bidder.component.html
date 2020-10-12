@@ -1,1 +1,21 @@
-<p>list-bidder works!</p>
+<div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+  <table class="table table-bordered table-striped mb-0 ">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">STT</th>
+      <th scope="col">Số tiền</th>
+      <th scope="col">Thời gian đấu giá</th>
+      <th scope="col">Thành viên</th>
+    </tr>
+    </thead>
+      <tbody *ngFor="let bidder of bidderList ;let i=index;">
+      <tr>
+        <th scope="row">{{i+1}}</th>
+        <td>{{bidder.bidPrice}}</td>
+        <td>{{bidder.bidDateTime}}</td>
+        <td>{{bidder.userId}}</td>
+      </tr>
+      </tbody>
+  </table>
+</div>

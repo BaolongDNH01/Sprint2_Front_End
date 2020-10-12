@@ -23,8 +23,9 @@ export class ListUserComponent implements OnInit {
   page = 1;
   pageSize = 5;
   pageMax: number;
+  errorCheck = '';
   constructor(private userService: UserService, private rankService: RankService, private router: Router) {
-    userService.findAllUser().subscribe(
+    userService.findAllUserActivated().subscribe(
       next => {
         this.userList = next;
         this.userListCheck = next;
@@ -46,7 +47,7 @@ export class ListUserComponent implements OnInit {
   }
 
   search(): void{
-    this.userService.findAllUser().subscribe(
+    this.userService.findAllUserActivated().subscribe(
       next => {
         this.userList = next;
       }, error => {
@@ -96,13 +97,12 @@ export class ListUserComponent implements OnInit {
     this.page = page;
   }
   addUser(id: number): void{
+    this.errorCheck = '';
     for (let i = 0; i < this.userList.length; i++){
-      // tslint:disable-next-line:triple-equals
-      if (id == this.userList[i].userId && this.userList[i].check === false){
+      if (id === this.userList[i].userId && this.userList[i].check === false){
         this.userList[i].check = true;
       }
-      // tslint:disable-next-line:triple-equals
-      else if (id == this.userList[i].userId && this.userList[i].check === true){
+      else if (id === this.userList[i].userId && this.userList[i].check === true){
         this.userList[i].check = false;
       }
       // tslint:disable-next-line:triple-equals
@@ -130,6 +130,46 @@ export class ListUserComponent implements OnInit {
     console.log(this.ids);
   }
   lockUser(): void{
-    this.router.navigateByUrl('/lock-user/' + this.ids);
+    if (this.ids.length === 0){
+      this.errorCheck = 'Bạn cần chọn ít nhất 1 thành viên';
+    }
+    const idList = new Array();
+    for (let i = 0; i < this.userList.length; i++){
+      if (this.userList[i].flag === 'true' && this.userList[i].check === true){
+        idList.push(this.userList[i].userId);
+      }
+    }
+    if (idList.length === 0){
+      this.errorCheck = 'Các thành viên bạn đã bị khóa';
+    }
+    else {
+      this.router.navigateByUrl('/lock-user/' + idList);
+    }
   }
+  unlockUser(): void{
+    if (this.ids.length === 0){
+      this.errorCheck = 'Bạn cần chọn ít nhất 1 thành viên';
+      return;
+    }
+    const idList = new Array();
+    for (let i = 0; i < this.userList.length; i++){
+      if (this.userList[i].flag === 'false' && this.userList[i].check === true){
+        idList.push(this.userList[i].userId);
+      }
+    }
+    if (idList.length === 0){
+      this.errorCheck = 'Các thành viên bạn chọn chưa bị khóa';
+    }
+    else {
+      this.router.navigateByUrl('/unlock-user/' + idList);
+    }
+  }
+  delete(): void{
+      if (this.ids.length === 0){
+      this.errorCheck = 'Bạn cần chọn ít nhất 1 thành viên';
+    }else {
+      this.router.navigateByUrl('/delete/' + this.ids);
+    }
+  }
+
 }

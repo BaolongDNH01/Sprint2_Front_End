@@ -7,59 +7,40 @@
         </nav>
         <div class="row ">
           <div class="col-md-6 margin-auto">
-            <form [formGroup]="approvalProduct" (submit)="onApprovalProduct()"  >
-                <div *ngFor="let productList of productList">
-                  <label  ><img src="{{productList.image}}" style="width: 100px" class="img-fluid"
-                                                       alt="Responsive image"></label>
-                  <input formControlName="image" type="text" hidden>
-                  <label > Ma sản phẩm : {{productList.productId}}</label><br>
-                  <input formControlName="productId" type="text" hidden>
-                  <label > Tên sản phẩm : {{productList.productName}}</label><br>
-                  <input formControlName="productName" type="text" hidden>
-                  <label> Giá ban đầu : {{productList.initialPrice}}</label><br>
-                  <input formControlName="initialPrice" type="text" hidden>
-                  <label > Bước giá : {{productList.eachIncrease}}</label><br>
-                  <input formControlName="eachIncrease" type="text" hidden>
-                  <label > Chi tiết sản phẩm : {{productList.productDetail}}</label><br>
-                  <input formControlName="productDetail" type="text" hidden>
+            <div>
+<!--              <label><img src="{{product.imageURL}}" style="width: 200px" class="img-fluid"-->
+<!--                          alt="Responsive image"></label><br>-->
+              <label> Ma sản phẩm : {{product.productId}}</label><br>
+
+              <label> Tên sản phẩm : {{product.productName}}</label><br>
+
+              <label> Giá ban đầu : {{product.initialPrice}}</label><br>
+
+              <label> Bước giá : {{product.eachIncrease}}</label><br>
+
+              <label> Chi tiết sản phẩm : {{product.productDetail}}</label><br>
 
 
-                  <input formControlName="categoryId" type="text" hidden>
+              <label> Tên người đăng : {{product.fullName}}</label><br>
 
-                  <input formControlName="timeId" type="text" hidden>
+              <label> Thời gian : {{product.auctionTime}}</label><br>
 
-                  <input formControlName="userId" type="text" hidden>
+              <label> Loại sản phẩm : {{product.categoryName}}</label><br>
 
+              <label> Trạng thái sản phẩm : {{product.statusName}}</label><br>
 
-
-                  <label> Tên người đăng : {{productList.fullName}}</label><br>
-
-                  <label > Thời gian : {{productList.auctionTime}}</label><br>
-
-                  <label > Loại sản phẩm : {{productList.categoryName}}</label><br>
-
-                  <label > Trạng thái sản phẩm : {{productList.statusName}}</label><br>
-
-                </div>
-
-
-
-              <div *ngFor="let status of statusList" >
-                <label>{{status.statusName}}</label>
-                <input formControlName="statusId" type="radio"  value="{{status.statusId}}">
-              </div>
-
-              <div class="btn-group ">
-              <button class="btn btn-primary btn-sm" data-toggle="modal"
-                      data-target="#myModal">Duyệt
-              </button>
-              <button  class="btn btn-danger" data-toggle="modal"
-                      data-target="#exampleModal" data-whatever="ok">Không duyệt
-              </button>
-              <button  class="btn btn-primary btn-sm">Quay lại</button>
             </div>
 
-            </form>
+            <div class="btn-group ">
+              <button (click)="onApprovalProduct()" class="btn btn-primary btn-sm" data-toggle="modal"
+                      data-target="#myModal">Duyệt
+              </button>
+              <button class="btn btn-danger" data-toggle="modal"
+                      data-target="#exampleModal" data-whatever="ok">Không duyệt
+              </button>
+              <button class="btn btn-primary btn-sm">Quay lại</button>
+            </div>
+
 
 
             <div class="modal fade" id="myModal">
@@ -81,30 +62,31 @@
               </div>
             </div>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 >Sản phẩm không được duyệt</h5>
+                    <h5>Sản phẩm không được duyệt</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
-                    <form>
+
                       <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Tên sản phẩm :</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" value="{{product.productName}}" class="form-control" id="recipient-name">
                       </div>
                       <div class="form-group">
                         <label for="message-text" class="col-form-label">Lý do:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                       </div>
-                    </form>
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary">Gửi</button>
+                    <button (click)="noApprovalProduct()" type="button" class="btn btn-primary">Gửi</button>
                   </div>
                 </div>
               </div>
@@ -117,16 +99,3 @@
     </div>
   </div>
 </div>
-
-
-<!--<script>-->
-<!--  $('#exampleModal').on('show.bs.modal', function (event) {-->
-<!--    var button = $(event.relatedTarget) // Button that triggered the modal-->
-<!--    var recipient = button.data('whatever') // Extract info from data-* attributes-->
-<!--    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).-->
-<!--    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.-->
-<!--    var modal = $(this)-->
-<!--    modal.find('.modal-title').text('New message to ' + recipient)-->
-<!--    modal.find('.modal-body input').val(recipient)-->
-<!--  })-->
-<!--</script>-->

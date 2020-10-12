@@ -4,12 +4,22 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListUserComponent} from './list-user/list-user.component';
 import {LockUserComponent} from './lock-user/lock-user.component';
 import {AddUserComponent} from './add-user/add-user.component';
+import {SendMailComponent} from './send-mail/send-mail.component';
+import {ActivatedAccountComponent} from './activated-account/activated-account.component';
+import {UnlockUserComponent} from './unlock-user/unlock-user.component';
+import {DeleteUserComponent} from './delete-user/delete-user.component';
+import {DetailUserComponent} from './detail-user/detail-user.component';
 
 const routes: Routes = [
   {path: '', children: [
-      {path: '', component: ListUserComponent},
+      {path: 'list-user', component: ListUserComponent},
       {path: 'lock-user/:ids', component: LockUserComponent},
-      {path: 'add-user', component: AddUserComponent}
+      {path: 'unlock-user/:ids', component: UnlockUserComponent},
+      {path: 'user/:id', component: DetailUserComponent},
+      {path: 'add-user', component: AddUserComponent},
+      {path: 'send-email', component: SendMailComponent},
+      {path: 'delete/:ids', component: DeleteUserComponent},
+      {path: 'activated-account/:token', component: ActivatedAccountComponent}
     ]}
 ];
 

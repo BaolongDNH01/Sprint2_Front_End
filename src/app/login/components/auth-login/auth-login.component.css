@@ -1,0 +1,19 @@
+#nav, .modal-header {
+  background-color: #1AB7EA;
+}
+
+.nav-item, #back :hover {
+  cursor: pointer;
+}
+
+#back {
+  color: #1AB7EA;
+}
+
+#headerModal {
+  font-size: 32px;
+}
+
+.card-header {
+  background-color: #1AB7EA;
+}

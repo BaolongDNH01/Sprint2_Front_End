@@ -1,21 +1,22 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AddAuctionComponent } from './add-auction/add-auction.component';
-import { ListBidderComponent } from './list-bidder/list-bidder.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ListBidderComponent} from './list-bidder/list-bidder.component';
 import {FormsModule} from '@angular/forms';
-import {NgxPaginationModule} from 'ngx-pagination';
-
+import {AuctionService} from './auction.service';
+import {ListAuctionComponent} from './list-auction/list-auction.component';
 
 
 @NgModule({
-  declarations: [AddAuctionComponent, ListBidderComponent],
+  declarations: [ListBidderComponent, ListAuctionComponent],
   exports: [
-    AddAuctionComponent
+    ListBidderComponent,
+    ListAuctionComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    NgxPaginationModule
-  ]
+  ],
+  providers: [AuctionService]
 })
-export class AuctionModule { }
+export class AuctionModule {
+}

@@ -1,0 +1,25 @@
+#nav, .modal-header {
+  background-color: #1AB7EA;
+}
+
+.nav-item, #back :hover {
+  cursor: pointer;
+}
+
+#back {
+  color: #1AB7EA;
+}
+
+#modal-title {
+  font-size: 24px;
+}
+
+
+.card-header {
+  background-color: #1AB7EA;
+}
+
+#avatar {
+  height: 2rem;
+  width: 2rem;
+}
