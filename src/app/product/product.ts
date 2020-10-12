@@ -16,6 +16,7 @@ export class Product {
   auctionListId: number[];
   listImageProduct: number[];
   imageURL: string;
+  displayTime: number;
 
   constructor() {
   }

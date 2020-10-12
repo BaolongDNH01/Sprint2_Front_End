@@ -10,9 +10,7 @@
         <div class="auction">
           <div class="time">
             <div *ngIf="productDisplayList.auctionTime != 0; else loggedOut">
-              <span>{{productDisplayList.auctionTime / 3600 | number: '1.0-0'}}</span>:
-              <span>{{productDisplayList.auctionTime / 60 | number: '1.0-0'}}</span>:
-              <span>{{productDisplayList.auctionTime % 60}}</span>
+              <span>{{productDisplayList.displayTime}}</span>
             </div>
             <ng-template #loggedOut>
               ending...
@@ -24,3 +22,4 @@
     </a>
   </div>
 </div>
+

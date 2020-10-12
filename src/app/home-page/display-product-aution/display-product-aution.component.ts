@@ -21,6 +21,10 @@ export class DisplayProductAutionComponent implements OnInit {
   product: Product;
   auction: Auction;
   id: number;
+  timeSet = 5 * 60;
+  time = this.timeSet;
+  display;
+  interval;
 
   constructor(
     private router: Router,
@@ -108,28 +112,60 @@ export class DisplayProductAutionComponent implements OnInit {
   }
 
   // Châu =>  xử lý load trang giữ lại time now
+  // localStoreage(): void {
+  //   for (let i = 0; i < this.auctionList1.length; i++) {
+  //     console.log('cheiu dai mang' + this.auctionList1.length);
+  //     console.log('id' + this.auctionList1[i].auctionId);
+  //     console.log(this.auctionList1[i].auctionTime + 'get time');
+  //
+  //     // @ts-ignore
+  //     this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId - 1)));
+  //     // Châu  => Xử lý khi time auction product = 0
+  //     if (this.auctionList1[i].auctionTime == 0) {
+  //       // this.auctionList1[i].auctionTime = null;
+  //       localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+  //       this.findProductTimeOutById(this.auctionList1[i].auctionId);
+  //     } else {
+  //       this.auctionList1[i].auctionTime -= 1;
+  //       localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), this.auctionList1[i].auctionTime);
+  //       if (this.auctionList1[i].auctionTime < 0) {
+  //         localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+  //
+  //       }
+  //     }
+  //   }
+  //   setTimeout(() => this.localStoreage(), 1000);
+  // }
+
   localStoreage(): void {
+
     for (let i = 0; i < this.auctionList1.length; i++) {
       console.log('cheiu dai mang' + this.auctionList1.length);
       console.log('id' + this.auctionList1[i].auctionId);
       console.log(this.auctionList1[i].auctionTime + 'get time');
-
       // @ts-ignore
       this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId - 1)));
-      // Châu  => Xử lý khi time auction product = 0
-      if (this.auctionList1[i].auctionTime == 0) {
-        // this.auctionList1[i].auctionTime = null;
-        localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
-        this.findProductTimeOutById(this.auctionList1[i].auctionId);
-      } else {
-        this.auctionList1[i].auctionTime -= 1;
-        localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), this.auctionList1[i].auctionTime);
-        if (this.auctionList1[i].auctionTime < 0) {
+      console.log(this.auctionList1[i].auctionTime);
+      this.interval = setInterval(() => {
+        if (this.auctionList1[i].auctionTime == 0) {
+          this.auctionList1[i].auctionTime = null;
           localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
-
+          this.findProductTimeOutById(this.auctionList1[i].auctionId);
+        } else {
+          this.auctionList1[i].auctionTime -= 1;
+          localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), this.auctionList1[i].auctionTime);
+          if (this.auctionList1[i].auctionTime < 0) {
+            localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+          }
         }
-      }
+        this.auctionList1[i].displayTime = this.transformTime(this.auctionList1[i].auctionTime);
+      }, 1000);
     }
-    setTimeout(() => this.localStoreage(), 1000);
   }
+
+  transformTime(value: number): string {
+    const minutes: number = Math.floor(value / 60);
+    return minutes + ':' + (value - minutes * 60);
+  }
+
 }
