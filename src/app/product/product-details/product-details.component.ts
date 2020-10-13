@@ -35,6 +35,9 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.findById(id).subscribe((next) => {
         this.product = next;
         this.idProduct = this.product.productId;
+        this.product.displayTime = parseInt(localStorage.getItem('time' + (this.idProduct - 1)));
+        console.log(this.product.displayTime );
+        // localStorage.setItem('time' + (this.idProduct - 1) , (this.product.displayTime).toString());
       });
     });
   }
