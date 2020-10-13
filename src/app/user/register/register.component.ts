@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   passwordForm: FormGroup;
   newUser = new User();
   KEY = '6LcIN88ZAAAAANNmXRhyKgePhkgK_kx1MJMRyGsE';
+  usernameExist = false;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -79,7 +80,7 @@ export class RegisterComponent implements OnInit {
       console.log(this.newUser);
       this.userService.sendEmail(this.newUser, this.registerForm.value.recaptchaReactive).subscribe(
         () => {},
-        error => {console.log(error); },
+        error => {this.usernameExist = true; },
         () => {this.router.navigateByUrl('/send-mail'); });
     }else { console.log('error'); }
   }

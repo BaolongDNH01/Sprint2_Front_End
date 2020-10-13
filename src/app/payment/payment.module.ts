@@ -8,6 +8,8 @@ import { CartComponent } from './components/cart/cart.component';
   declarations: [CartComponent],
   imports: [
     CommonModule
+  ],
+  providers: [
   ]
 })
 export class PaymentModule { }

@@ -4,25 +4,31 @@ import {ProductDetailsComponent} from './product-details/product-details.compone
 import {AuctionModule} from '../auction/auction.module';
 import {ProductCreateComponent} from './product-create/product-create.component';
 import {MatSelectModule} from '@angular/material/select';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApprovalProductComponent} from './approval-product/approval-product.component';
+import {ProductManageComponent} from './product-manage/product-manage.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [ProductCreateComponent,
     ProductDetailsComponent,
     ApprovalProductComponent,
+    ProductManageComponent
   ],
   exports: [
     ProductCreateComponent,
     ProductDetailsComponent,
     ApprovalProductComponent,
+    ProductManageComponent
   ],
   imports: [
     CommonModule,
     AuctionModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [DatePipe]
 })
