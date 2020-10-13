@@ -4,7 +4,8 @@ import {Observable} from 'rxjs';
 import {Bidder} from './bidder';
 import {Auction} from './auction';
 import {Product} from '../product/product';
-import {Status} from '../product/status';
+import {StatusProduct} from '../product/statusProduct';
+
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,9 @@ export class AuctionService {
   }
 
 
-  getAllStatusAuction(): Observable<Status[]> {
+  getAllStatusAuction(): Observable<StatusProduct[]> {
     console.log('chua qua lun ne');
-    return this.httpClient.get<Status[]>(this.URL + '/getAllStatusAuction');
+    return this.httpClient.get<StatusProduct[]>(this.URL + '/getAllStatusAuction');
   }
   saveBidderDto(bidder: Bidder): Observable<Bidder> {
     return this.httpClient.post<Bidder>(this.URL + '/create-bidder', bidder);

@@ -4,7 +4,7 @@ import {AuctionService} from '../auction.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Product} from '../../product/product';
 import {Router} from '@angular/router';
-import {Status} from '../../product/status';
+import {StatusProduct} from '../../product/statusProduct';
 
 @Component({
   selector: 'app-list-auction',
@@ -15,12 +15,12 @@ export class ListAuctionComponent implements OnInit {
   auctionList: Auction[];
   auctionList1: Auction[] = [];
   auctionListShow: Auction[] = [];
-  status = new Status();
+  status = new StatusProduct();
   timeoutAuction: FormGroup;
   product: Product;
   auction: Auction;
   id: number;
-  statusList: Status[];
+  statusList: StatusProduct[];
   statusNameDr = 'Tất cả các phiên';
   numberCount = 1;
   curpage = 1;
@@ -50,6 +50,7 @@ export class ListAuctionComponent implements OnInit {
       }, error => {
       },
       () => {
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < this.auctionList.length; i++) {
           this.auctionList[i].no = this.numberCount++;
         }
