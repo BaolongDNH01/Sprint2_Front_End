@@ -11,14 +11,16 @@ export class CartComponent implements OnInit {
 
   cartResponse: Cart;
   itemList: any[];
-  itemAmount = 0;
+
+  // tslint:disable-next-line: radix
+  userId = parseInt(window.sessionStorage.getItem('userId'));
 
   constructor(
     private cartService: CartService,
   ) { }
 
   ngOnInit(): void {
-    this.cartService.getCartByUserId(1).subscribe({
+    this.cartService.getCartByUserId(this.userId).subscribe({
       next: cartData => {
         this.cartResponse = cartData;
         console.log(this.cartResponse);

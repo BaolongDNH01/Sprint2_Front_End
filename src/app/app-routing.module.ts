@@ -1,3 +1,4 @@
+import { CartComponent } from './payment/components/cart/cart.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageModule} from './home-page/home-page.module';
@@ -15,6 +16,19 @@ const routes: Routes = [
       {path: '', component: DisplayProductAutionComponent},
       {path: 'list-auction', component: ListAuctionComponent},
       {path: 'recover-password', component: RecoverPasswordCodeComponent}
+    ]
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'cart',
+    children: [
+      {
+        path: 'get',
+        component: CartComponent
+      }
     ]
   }
 ];

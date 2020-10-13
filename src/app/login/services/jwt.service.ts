@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+const USER_ID = 'userId';
 const TOKEN_KEY = 'token';
 const USERNAME_KEY = 'username';
 const EMAIL_KEY = 'email';
@@ -14,6 +15,15 @@ export class JwtService {
   private roles: Array<string> = [];
 
   constructor() { }
+
+  saveUserId(userId: string): void {
+    window.sessionStorage.removeItem(USER_ID);
+    window.sessionStorage.setItem(USER_ID, userId);
+  }
+
+  getUserId(): string {
+    return sessionStorage.getItem(USER_ID);
+  }
 
   saveToken(token: string): void {
     window.sessionStorage.removeItem(TOKEN_KEY);
