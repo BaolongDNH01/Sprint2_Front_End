@@ -1,25 +1,25 @@
-<div class="container bg-light">
+<div class="container-fluid bg-light">
   <h4 class="pt-md-4">{{product.productName}}</h4>
   <div class="row">
     <div class="col-md-3">
       <!-- Full-width images with number text -->
       <div class="mySlides">
-        <img class="img-show" src="images/keyboard1.jpg">
+        <img class="img-show" src="{{product.imageURL}}">
       </div>
       <div class="mySlides">
-        <img class="img-show" src="images/keyboard2.jpg">
+        <img class="img-show" src="{{product.imageURL}}">
       </div>
       <div class="mySlides">
-        <img class="img-show" src="images/keyboard3.jpg">
+        <img class="img-show" src="{{product.imageURL}}">
       </div>
       <div class="mySlides">
-        <img class="img-show" src="images/keyboard4.jpg">
+        <img class="img-show" src="{{product.imageURL}}">
       </div>
       <div class="mySlides">
-        <img class="img-show" src="images/keyboard5.jpg">
+        <img class="img-show" src="{{product.imageURL}}">
       </div>
       <div class="mySlides">
-        <img class="img-show" src="images/keyboard6.jpg">
+        <img class="img-show" src="{{product.imageURL}}">
       </div>
 
       <!-- Next and previous buttons -->
@@ -33,7 +33,12 @@
     </div>
     <div class="col-md-4 pl-4">
       <p>ID: {{product.productId}}</p>
-      <p>Thời gian: {{product.displayTime}}</p>
+      <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:
+        <span class="colorTime">{{product.displayTimeDetail}}</span>
+      </p>
+      <ng-template #loggedOut>
+        <span class="colorTime m-0">Đã hết thời gian đấu giá</span>
+      </ng-template>
       <p>Giá gốc: {{product.initialPrice}}</p>
       <p>Mỗi lần tăng ít nhất: {{product.eachIncrease}}</p>
       <div class="row">
@@ -72,38 +77,28 @@
   <!-- Thumbnail images -->
   <div class="row">
     <div class="column">
-      <img class="demo cursor" src="images/keyboard1.jpg" onclick="currentSlide(1)">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(1)">
     </div>
     <div class="column">
-      <img class="demo cursor" src="images/keyboard2.jpg" onclick="currentSlide(2)">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(2)">
     </div>
     <div class="column">
-      <img class="demo cursor" src="images/keyboard3.jpg" onclick="currentSlide(3)">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(3)">
     </div>
     <div class="column">
-      <img class="demo cursor" src="images/keyboard4.jpg" onclick="currentSlide(4)">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(4)">
     </div>
     <div class="column">
-      <img class="demo cursor" src="images/keyboard5.jpg" onclick="currentSlide(5)">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(5)">
     </div>
     <div class="column">
-      <img class="demo cursor" src="images/keyboard6.jpg" onclick="currentSlide(6)">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(6)">
     </div>
   </div>
   <hr>
   <h3>Thông tin chi tiết</h3>
   <ul>
-    <li>Bàn phím treo chống nước và nhạy với ánh sáng nền cầu vồng</li>
-    <li>Được làm từ chất liệu cao cấp, bền, kiểu dáng đẹp và thiết kế tiện dụng</li>
-    <li>Có công tắc đèn nền và các phím mờ</li>
-    <li>Double-Shot Injection tạo thêm không gian cho đèn LED khi bật</li>
-    <li>Công tắc mái vòm cao su</li>
-    <li>12 Phím nóng Đa phương tiện và 26 phím chống bóng mờ giúp nâng cao trải nghiệm chơi game</li>
-    <li>Bàn phím có thể chịu được tới 50 triệu lần nhấn phím</li>
-    <li>Chip chơi game tích hợp đưa việc chơi game lên một tầm cao mới</li>
-    <li>Tương thích với cả hệ điều hành WINDOWS và MAC</li>
-    <li>Kích thước: 13,5 x 2 x 44 cm</li>
-    <li>Bảo hành 1 năm từ nhà sản xuất</li>
+    <p>{{product.productDetail}}</p>
   </ul>
   <hr>
   <h3>Thông tin nhận hàng</h3>
@@ -111,7 +106,6 @@
     <li>Địa chỉ nhận hàng: 114 Nguyễn Lương Bằng, Liên Chiểu, Đà Nẵng</li>
     <li>ĐT: 0898241303</li>
   </ul>
-  <img class="google-map" src="images/google-map.png">
   <hr>
   <h3>Bình luận</h3>
   <textarea class="form-control" aria-label="With textarea" disabled>
@@ -126,39 +120,87 @@
 
 
 </div>
+
+
+<!--Click de chuyen anh-->
 <script>
-    var slideIndex = 1;
-    showSlides(slideIndex);
+  var slideIndex = 1;
+  showSlides(slideIndex);
 
-    // Next/previous controls
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
+  // Next/previous controls
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
 
-    // Thumbnail image controls
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
+  // Thumbnail image controls
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
 
-    function showSlides(n) {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
-        var captionText = document.getElementById("caption");
-        if (n > slides.length) {
-            slideIndex = 1
-        }
-        if (n < 1) {
-            slideIndex = slides.length
-        }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-        captionText.innerHTML = dots[slideIndex - 1].alt;
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("demo");
+    var captionText = document.getElementById("caption");
+    if (n > slides.length) {
+      slideIndex = 1
     }
+    if (n < 1) {
+      slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+    captionText.innerHTML = dots[slideIndex - 1].alt;
+  }
 </script>
+
+<!--IPA comment facebook-->
+<script>
+  //Kiem tra dang nhap fb
+  FB.getLoginStatus(function (response) {
+    statusChangeCallback(response);
+  })
+
+  //Trang thai cua nguoi comment fb
+
+  // {
+  //   status: 'connected',
+  //     authResponse: {
+  //   accessToken: '...',
+  //     expiresIn:'...',
+  //     signedRequest:'...',
+  //     userID:'...'
+  // }
+  }
+
+
+  window.fbAsyncInit = function () {
+    FB.init({
+      appId: '{your-app-id}',
+      cookie: true,
+      xfbml: true,
+      version: '{api-version}'
+    });
+
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {
+      return;
+    }
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
