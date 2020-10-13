@@ -5,6 +5,11 @@
       <p>Tên sản phẩm :</p>
       <input type="text" class="form-control" formControlName="productName">
     </div>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('productName').invalid && productForm.get('productName').touched">
+      Không được để trống
+    </div>
+    <br>
     <div>
       <p>Chủng loại :</p>
       <mat-select  class="form-control" formControlName="categoryId" required>
@@ -13,15 +18,31 @@
         </mat-option>
       </mat-select>
       <mat-error *ngIf="productForm.hasError('categoryId')">Please choose an category</mat-error>
-    </div><br>
+    </div>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('categoryId').invalid && productForm.get('categoryId').touched">
+      Không được để trống
+    </div>
+    <br>
     <div>
       <p>Giá ban đầu :</p>
       <input class="form-control" type="text" formControlName="initialPrice">
     </div>
+    <br>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('initialPrice').invalid && productForm.get('initialPrice').touched">
+      Giá trị phải nhập là kiểu số
+    </div>
+    <br>
     <div>
       <p>Mỗi lần tăng ít nhất :</p>
       <input class="form-control" type="text" formControlName="eachIncrease"><br>
     </div>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('eachIncrease').invalid && productForm.get('eachIncrease').touched">
+      Giá trị phải nhập là kiểu số
+    </div>
+    <br>
     <div>
       <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" onChange='uploadFileImg()'><br></p>
       <!--        accept="image/*"-->
@@ -31,17 +52,26 @@
       <p>Thông tin chi tiết :</p>
       <textarea class="form-control" id="comment" formControlName="productDetail"></textarea><br>
     </div>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('productDetail').invalid && productForm.get('productDetail').touched">
+      Không được để trống
+    </div>
+    <br>
     <div>
       <p>Đấu giá trong thời gian :</p>
       <mat-select class="form-control " formControlName="timeId">
         <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
-          {{time.auctionTime}}
+          {{time.moTa}}
         </mat-option>
       </mat-select>
+      <div class="notice" role="alert"
+           *ngIf="productForm.get('timeId').invalid && productForm.get('timeId').touched">
+        Không được để trống
+      </div>
       <br>
     </div>
     <div class="row d-flex justify-content-center mt-4">
-      <input class="btn btn-success" type="submit" value="Đăng">
+      <input class="btn btn-success" type="submit" value="Đăng" [disabled]="productForm.invalid">
     </div>
   </form>
   {{ productForm.value | json}}
