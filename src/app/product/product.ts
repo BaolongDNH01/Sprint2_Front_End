@@ -18,6 +18,7 @@ export class Product {
   listImageProduct: number[];
   imageURL: [];
   displayTime: number;
+  displayTimeDetail: number;
 
   constructor() {
   }

@@ -11,6 +11,7 @@ import {DisplayProductAutionComponent} from './display-product-aution/display-pr
 import {AuthLoginComponent} from '../login/components/auth-login/auth-login.component';
 import {DisplayProductAjaxComponent} from './display-product-ajax/display-product-ajax.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { DefaultLoadComponent } from './default-load/default-load.component';
 
 @NgModule({
   declarations: [HomeComponent,
@@ -19,7 +20,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ModalComponent,
     NavBarComponent,
     ModalFormDirective,
-    DisplayProductAjaxComponent],
+    DisplayProductAjaxComponent,
+    DefaultLoadComponent],
   exports: [
     HomeComponent,
     AuctionGuideComponent,

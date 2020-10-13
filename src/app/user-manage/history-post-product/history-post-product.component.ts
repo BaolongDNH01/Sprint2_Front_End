@@ -39,6 +39,14 @@ export class HistoryPostProductComponent implements OnInit {
   }
 
   backToMenu(): void {
-  //  trả về trang trước khi vào
+    //  trả về trang trước khi vào
+  }
+
+  postProduct(productId: number): void {
+    this.userService.postProduct(productId).subscribe(
+      () => {},
+      e => console.log(e),
+      () => this.getAllProduct()
+    );
   }
 }

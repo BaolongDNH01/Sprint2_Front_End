@@ -110,3 +110,7 @@ div .view-all{
 .table-wrapper-scroll-y {
   display: block;
 }
+
+.colorTime{
+  color: red;
+}
