@@ -2,17 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './product';
-import {Status} from 'tslint/lib/runner';
 import {Category} from './category';
 import {AuctionTime} from './auction-time';
 import {StatusProduct} from './statusProduct';
+import {Image} from './image';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   product: Product;
-  status: Status;
+  status: StatusProduct;
   API_URL = 'http://localhost:8080';
   private getAllProductApi = 'http://localhost:8080/getAllProduct';
 
@@ -56,5 +57,9 @@ export class ProductService {
 
   deleteProducts(list: number[]): Observable<any> {
     return this.httpClient.post<any>(this.deleteProductsApi, list);
+  }
+
+  saveImg(image: Image): Observable<Image> {
+    return this.httpClient.post<Image>(this.API_URL + '/create-image', image);
   }
 }

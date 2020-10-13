@@ -35,6 +35,11 @@
             class="errors mt-1 col-sm-12">
                 Trường này không được để trống
               </span>
+          <span
+            *ngIf="(usernameExist == true) && registerForm.controls['username'].touched"
+            class="errors mt-1 col-sm-12">
+                Trường này không được để trống
+              </span>
         </div>
         <div class="col-md-1">
           <span style="color: red">*</span>

@@ -1,6 +1,6 @@
 <div class="info-product-common mt-2 ">
-  <div *ngFor="let productDisplayList of auctionList1" class="borderStyle">
-    <a href="https://www.youtube.com/">
+  <div *ngFor="let productDisplayList of auctionList1 | paginate: {itemsPerPage: 3, currentPage: curpage }" class="borderStyle">
+    <a [routerLink]="['/product-details/', productDisplayList.productId]">
       <div class="img-product"><img src="{{productDisplayList.imageURL}}" alt=""></div>
       <div class="black-bg-product"></div>
       <img class="eye" src="../../../assets/img/icon/right-arrow.svg" alt="">
@@ -10,9 +10,7 @@
         <div class="auction">
           <div class="time">
             <div *ngIf="productDisplayList.auctionTime != 0; else loggedOut">
-              <span>{{productDisplayList.auctionTime / 3600 | number: '1.0-0'}}</span>:
-              <span>{{productDisplayList.auctionTime / 60 | number: '1.0-0'}}</span>:
-              <span>{{productDisplayList.auctionTime % 60}}</span>
+              <span>{{productDisplayList.displayTime}}</span>
             </div>
             <ng-template #loggedOut>
               ending...
@@ -24,3 +22,4 @@
     </a>
   </div>
 </div>
+<pagination-controls  (pageChange)="curpage = $event"></pagination-controls>

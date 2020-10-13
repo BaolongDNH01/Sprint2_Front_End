@@ -10,6 +10,8 @@ import {ModalFormDirective} from './modalForm.directive';
 import {DisplayProductAutionComponent} from './display-product-aution/display-product-aution.component';
 import {AuthLoginComponent} from '../login/components/auth-login/auth-login.component';
 import {DisplayProductAjaxComponent} from './display-product-ajax/display-product-ajax.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { DefaultLoadComponent } from './default-load/default-load.component';
 
 @NgModule({
   declarations: [HomeComponent,
@@ -18,18 +20,20 @@ import {DisplayProductAjaxComponent} from './display-product-ajax/display-produc
     ModalComponent,
     NavBarComponent,
     ModalFormDirective,
-    DisplayProductAjaxComponent],
+    DisplayProductAjaxComponent,
+    DefaultLoadComponent],
   exports: [
     HomeComponent,
     AuctionGuideComponent,
     NavBarComponent,
     DisplayProductAjaxComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    LoginModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        LoginModule,
+        NgxPaginationModule
+    ]
 })
 export class HomePageModule {
 }
