@@ -25,6 +25,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   isLogInFailed = false;
 
+  userId: string;
   roles: string[] = [];
   username: string;
   authority: string;
@@ -98,6 +99,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   authLogin(loginInfo: LoginInfo): void {
     this.subscription = this.authService.authLogin(loginInfo).subscribe({
       next: data => {
+        this.jwtService.saveUserId(data.userId);
         this.jwtService.saveToken(data.token);
         this.jwtService.saveUsername(data.username);
         this.jwtService.saveAuthorities(data.authorities);
