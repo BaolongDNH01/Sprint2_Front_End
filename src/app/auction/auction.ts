@@ -1,4 +1,5 @@
 export class Auction {
+  no: number;
   auctionId: number;
   dayTimeStart: string;
   dayTimeEnd: string;

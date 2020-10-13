@@ -1,0 +1,11 @@
+.bg-title{
+  background: #1AB7EA;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.title {
+  color: #D9EDF7;
+  text-align: center;
+
+}

@@ -88,43 +88,17 @@
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>123</td>
-                <td>22/06/2020</td>
-                <td>Đặng Ngọc Minh Châu</td>
-                <td>Lê thị A</td>
-                <td>Nồi cơm điện</td>
-                <td>1</td>
-                <td>450000</td>
-                <td>5000</td>
-                <td>Thành công</td>
-                <td><input type="checkbox"></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>123</td>
-                <td>22/06/2020</td>
-                <td>Đặng Ngọc Minh Châu</td>
-                <td>Lê thị A</td>
-                <td>Nồi cơm điện</td>
-                <td>1</td>
-                <td>450000</td>
-                <td>5000</td>
-                <td>Thành công</td>
-                <td><input type="checkbox"></td>
-              </tr>
-              <tr>
+              <tr *ngFor="let list of cartItemList">
                 <th scope="row">3</th>
-                <td>123</td>
-                <td>22/06/2020</td>
-                <td>Đặng Ngọc Minh Châu</td>
-                <td>Lê thị A</td>
-                <td>Nồi cơm điện</td>
+                <td>{{list.cartItemId}}</td>
+                <td>{{list.bidDateTime}}</td>
+                <td>{{list.userName}}</td>
+                <td>{{list.userNameBuy}}</td>
+                <td>{{list.productName}}</td>
                 <td>1</td>
-                <td>450000</td>
-                <td>5000</td>
-                <td>Thành công</td>
+                <td>{{list.totalPrice}}</td>
+                <td>{{list.shipCost}}</td>
+                <td>{{list.statusCart}}</td>
                 <td><input type="checkbox"></td>
               </tr>
               </tbody>
