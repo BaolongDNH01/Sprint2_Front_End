@@ -7,13 +7,13 @@
     </div>
     <div>
       <p>Chủng loại :</p>
-      <mat-select class="form-control" formControlName="categoryId">
+      <mat-select  class="form-control" formControlName="categoryId" required>
         <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
           {{category.categoryName}}
         </mat-option>
       </mat-select>
-      <br>
-    </div>
+      <mat-error *ngIf="productForm.hasError('categoryId')">Please choose an category</mat-error>
+    </div><br>
     <div>
       <p>Giá ban đầu :</p>
       <input class="form-control" type="text" formControlName="initialPrice">
@@ -23,7 +23,7 @@
       <input class="form-control" type="text" formControlName="eachIncrease"><br>
     </div>
     <div>
-      <p>Hình ảnh sản phẩm :  <input  id="files" type="file" multiple  max="5" onChange='getNameImg()'><br></p>
+      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" onChange='uploadFileImg()'><br></p>
       <!--        accept="image/*"-->
       <input id="nameImg" class="form-control" type="text" disabled><br>
     </div>
@@ -33,11 +33,12 @@
     </div>
     <div>
       <p>Đấu giá trong thời gian :</p>
-      <mat-select class="form-control" formControlName="timeId">
+      <mat-select class="form-control " formControlName="timeId">
         <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
           {{time.auctionTime}}
         </mat-option>
-      </mat-select><br>
+      </mat-select>
+      <br>
     </div>
     <div class="row d-flex justify-content-center mt-4">
       <input class="btn btn-success" type="submit" value="Đăng">

@@ -39,7 +39,6 @@ export class AddUserComponent implements OnInit {
       return;
     }
     this.error = '';
-    this.load = true;
     console.log(this.formUser.value.fullName);
     this.user = Object.assign({}, this.formUser.value)
     console.log(this.user);
@@ -47,14 +46,18 @@ export class AddUserComponent implements OnInit {
     this.user.point = 0;
     this.user.flag = 'true';
     console.log('ok');
+    this.load = true;
     this.userService.findAllUser().subscribe(
       next => {
         this.userList = next;
-      }, error => {console.log('error');},
+      }, error => {console.log('error'); },
       () => {
         this.userService.sendEmail(this.user).subscribe(
           next => {},
-          error => {this.error = 'Tài khoản đã tồn tại';},
+          error => {
+            this.error = 'Tài khoản đã tồn tại';
+            this.load = false;
+          },
           () => {
             this.router.navigateByUrl('/send-email');
           }

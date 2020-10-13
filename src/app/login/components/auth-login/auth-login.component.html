@@ -23,11 +23,11 @@
     <div class="form-check d-flex">
       <input (change)="isRememberChecked($event)" type="checkbox" class="form-check-input" id="rememberCheck">
       <label class="form-check-label" for="rememberCheck">Ghi Nhớ Tài Khoản</label>
-      <a class="ml-auto" href="#">Quên Mật Khẩu?</a>
+      <a class="ml-auto" (click)="loadForm(2)">Quên Mật Khẩu?</a>
     </div>
     <div class="modal-footer mt-2 justify-content-center border-top-0">
       <button type="submit" class="btn btn-primary rounded-pill">Đăng Nhập</button>
-      <button id="signUp" (click)="loadRegisterForm()" type="button" class="btn btn-secondary rounded-pill">
+      <button id="signUp" (click)="loadForm(1)" type="button" class="btn btn-secondary rounded-pill">
         Đăng Ký
       </button>
     </div>

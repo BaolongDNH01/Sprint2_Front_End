@@ -11,6 +11,8 @@ import { PaymentOrderComponent } from './components/payment-order/payment-order.
   declarations: [CartComponent, PaymentAddressComponent, PaymentMethodComponent, PaymentOrderComponent],
   imports: [
     CommonModule
+  ],
+  providers: [
   ]
 })
 export class PaymentModule { }

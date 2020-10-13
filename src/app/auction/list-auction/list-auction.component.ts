@@ -3,6 +3,8 @@ import {Auction} from '../auction';
 import {AuctionService} from '../auction.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Product} from '../../product/product';
+import {Router} from '@angular/router';
+import {StatusProduct} from '../../product/statusProduct';
 
 @Component({
   selector: 'app-list-auction',
@@ -11,15 +13,22 @@ import {Product} from '../../product/product';
 })
 export class ListAuctionComponent implements OnInit {
   auctionList: Auction[];
+  auctionList1: Auction[] = [];
+  auctionListShow: Auction[] = [];
+  status = new StatusProduct();
   timeoutAuction: FormGroup;
   product: Product;
   auction: Auction;
   id: number;
-
+  statusList: StatusProduct[];
+  statusNameDr = 'Tất cả các phiên';
+  numberCount = 1;
+  curpage = 1;
   public now: Date = new Date();
 
   constructor(
     private auctionService: AuctionService,
+    private router: Router
   ) {
   }
 
@@ -37,12 +46,25 @@ export class ListAuctionComponent implements OnInit {
     this.auctionService.findAllProductAuction().subscribe(
       list => {
         this.auctionList = list;
+        this.auctionListShow = this.auctionList;
+      }, error => {
+      },
+      () => {
+        // tslint:disable-next-line:prefer-for-of
+        for (let i = 0; i < this.auctionList.length; i++) {
+          this.auctionList[i].no = this.numberCount++;
+        }
+        this.auctionService.getAllStatusAuction().subscribe(
+          list => {
+            this.statusList = list;
+            console.log(this.statusList);
+          }
+        );
       }
     );
   }
 
   findProductByAuction(id: number): void {
-    console.log('toi chua');
     this.auctionService.findById(id).subscribe(
       next => {
         this.auction = next;
@@ -72,6 +94,17 @@ export class ListAuctionComponent implements OnInit {
     console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe();
-    return;
+    this.router.navigateByUrl('');
+  }
+
+  find(statusName: string): void {
+    this.auctionListShow = [];
+    this.statusNameDr = statusName;
+    console.log(this.auctionList);
+    this.auctionList.forEach(q => {
+      if (q.statusName === statusName) {
+        this.auctionListShow.push(q);
+      }
+    });
   }
 }

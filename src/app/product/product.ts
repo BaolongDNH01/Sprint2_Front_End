@@ -12,10 +12,12 @@ export class Product {
   timeId: number;
   auctionTime: number;
   userId: number;
+  userName: string;
   fullName: string;
   auctionListId: number[];
   listImageProduct: number[];
   imageURL: string;
+  displayTime: number;
 
   constructor() {
   }

@@ -1,52 +1,192 @@
-<div id="signUp-form">
-  <form class="pl-5 pr-5 pt-3">
+<div id="signUp-form row">
+  <form class="pl-5 pr-5 pt-3" [formGroup]="registerForm" (submit)="onSubmit()">
     <div class="card-header-pills d-flex align-content-center">
-      <a type="button" id="back" class="btn border-0" onclick="loadSignInForm()"><i
+      <a type="button" id="back" class="btn border-0" (click)="loadForm(0)"><i
         class="fa fa-arrow-circle-left fa-3x" style="color: #1AB7EA" aria-hidden="true"></i></a>
       <span id="headerModal" class="h3 font-italic font-weight-bold m-auto">Đăng Ký Tài Khoản</span>
     </div>
     <hr>
-    <div class="form-group">
-      <input autofocus class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
-             type="text" id="fullName" placeholder="Họ Tên">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="fullName" autofocus
+                 class="col-sm-12 form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
+                 type="text" id="fullName" placeholder="Họ Tên">
+          <span
+            *ngIf="registerForm.controls['fullName'].hasError('required') && registerForm.controls['fullName'].touched"
+            class="errors mt-1 col-sm-12">
+                Trường này không được để trống
+              </span>
+        </div>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary" type="text"
-             id="username" placeholder="Tên Đăng Nhập">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="username"
+                 class="col-sm-12 form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
+                 type="text"
+                 id="username" placeholder="Tên Đăng Nhập">
+          <span
+            *ngIf="registerForm.controls['username'].hasError('required') && registerForm.controls['username'].touched"
+            class="errors mt-1 col-sm-12">
+                Trường này không được để trống
+              </span>
+          <span
+            *ngIf="(usernameExist == true) && registerForm.controls['username'].touched"
+            class="errors mt-1 col-sm-12">
+                Trường này không được để trống
+              </span>
+        </div>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
-             type="password" id="password" placeholder="Mật Khẩu">
+    <div formGroupName="user_password" class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="password" type="password" class="form-control border-top-0 border-left-0
+         border-right-0 border-bottom border-secondary col-md-12 " id="inputPassword" placeholder="Mật Khẩu">
+          <span
+            *ngIf="passwordForm.controls['password'].hasError('required') && passwordForm.controls['password'].touched"
+            class="errors mt-1 col-sm-12">
+                Trường này không được để trống
+              </span>
+          <span
+            *ngIf="passwordForm.controls['password'].hasError('maxlength') && passwordForm.controls['password'].touched"
+            class="errors mt-1 col-sm-12">
+                Độ dài không được vượt quá 16 ký tự.
+              </span>
+        </div>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
-             type="password" id="confirmPassword" placeholder="Xác Nhận Mật Khẩu">
+    <div formGroupName="user_password" class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input type="password" formControlName="confirm_password" class="form-control border-top-0 border-left-0
+         border-right-0 border-bottom border-secondary col-md-12 " id="inputRePassword" placeholder="Xác Nhận Mật Khẩu">
+          <span
+            *ngIf="passwordForm.hasError('mismatchedPasswords') && passwordForm.controls['confirm_password'].touched"
+            class="errors mt-1 col-sm-12">
+                Mật khẩu xác nhận phải trùng với mật khẩu đã nhập.
+              </span>
+        </div>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
-             type="email" id="email" placeholder="Email: abc@def.com">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="email"
+                 class="form-control col-md-11 border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
+                 type="email" id="email" placeholder="Email: abc@def.com">
+          <span *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched"
+                class="errors mt-1 col-sm-12">
+                Trường này không được để trống
+              </span>
+          <span *ngIf="registerForm.get('email').hasError('maxlength') && registerForm.get('email').touched"
+                class="errors mt-1 col-sm-12">
+                Độ dài không được vượt quá 55 ký tự.
+              </span>
+          <span *ngIf="registerForm.get('email').hasError('pattern') && registerForm.get('email').touched"
+                class="errors mt-1 col-sm-12">
+                Email phải theo định dạng: xxx@xxx.xxx với x là: số, chữ và _ .
+              </span>
+        </div>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary" type="date"
-             id="birthDay" placeholder="DD/MM/YYYY">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="birthday" class="form-control col-sm-12 border-top-0 border-left-0
+           border-right-0 border-bottom border-secondary" type="date" id="birthDay" placeholder="DD/MM/YYYY">
+          <span *ngIf="(registerForm.get('birthday').hasError('required')) && registerForm.get('birthday').touched"
+                class="errors mt-1 col-sm-12">
+            Trường này không được để trống
+          </span>
+        </div>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary" type="text"
-             id="phoneNumber" placeholder="Số Điện Thoại">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="phoneNumber" class="form-control col-md-12 border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
+                 type="text"
+                 id="phoneNumber" placeholder="Số Điện Thoại">
+          <span *ngIf="(registerForm.get('phoneNumber').hasError('required')) && registerForm.get('phoneNumber').touched"
+                class="errors mt-1 col-sm-12">
+            Trường này không được để trống
+          </span>
+          <span *ngIf="(registerForm.get('phoneNumber').hasError('pattern')) && registerForm.get('phoneNumber').touched"
+                class="errors mt-1 col-sm-12">
+            Số điện thoại phải có độ dài từ 9 tới 13 chữ số.
+          </span>
+        </div>
+
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary" type="text"
-             id="cmnd" placeholder="Chứng Minh Nhân Dân">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="idCard" class="form-control col-md-11 border-top-0 border-left-0 border-right-0
+           border-bottom border-secondary" type="text" id="cmnd" placeholder="Chứng Minh Nhân Dân">
+          <span *ngIf="(registerForm.get('idCard').hasError('required')) && registerForm.get('idCard').touched"
+                class="errors mt-1 col-sm-12">
+            Trường này không được để trống
+          </span>
+          <span *ngIf="(registerForm.get('idCard').hasError('pattern')) && registerForm.get('idCard').touched"
+                class="errors mt-1 col-sm-12">
+            Số CMND phải chứa chính xác 9 chữ số
+          </span>
+        </div>
+
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <input class="form-control border-top-0 border-left-0 border-right-0 border-bottom border-secondary" type="text"
-             id="address" placeholder="Địa Chỉ">
+    <div class="form-group col-md-12">
+      <div class="row">
+        <div class="col-sm-11">
+          <input formControlName="address" class="form-control col-md-12 border-top-0 border-left-0 border-right-0 border-bottom border-secondary"
+                 type="text"
+                 id="address" placeholder="Địa Chỉ">
+        </div>
+        <span *ngIf="(registerForm.get('address').hasError('required')) && registerForm.get('address').touched"
+              class="errors mt-1 col-sm-12">
+            Trường này không được để trống
+          </span>
+        <div class="col-md-1">
+          <span style="color: red">*</span>
+        </div>
+      </div>
     </div>
     <div class="form-group d-flex justify-content-center">
-      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+      <re-captcha (resolved)="resolved($event)"
+                  ></re-captcha>
+    </div>
+    <div class="modal-footer justify-content-center">
+      <button type="submit" class="btn btn-primary rounded-pill mt-2">Đăng Ký</button>
     </div>
   </form>
 </div>
-<div class="modal-footer justify-content-center">
-  <button type="submit" class="btn btn-primary rounded-pill mt-2">Đăng Ký</button>
-</div>
+
+

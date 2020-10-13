@@ -1,8 +1,8 @@
 export class Auction {
+  no: number;
   auctionId: number;
   dayTimeStart: string;
   dayTimeEnd: string;
-  statusAuction: number;
   productId: number;
   productName: string;
   imageURL: string;
