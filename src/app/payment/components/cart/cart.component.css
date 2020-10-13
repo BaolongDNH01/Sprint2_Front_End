@@ -10,9 +10,18 @@
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
   padding: 2% 0;
+
+}
+
+.chil-tab-menu:first-child {
+  border-bottom: 4px solid #1AB7EA;
 }
 
 .chil-tab-menu:hover {
+  border-bottom: 4px solid #1AB7EA;
+}
+
+.chil-tab-menu:active {
   border-bottom: 4px solid #1AB7EA;
 }
 
@@ -71,4 +80,8 @@
 }
 a {
   color: white;
+}
+
+.empty-cover {
+  overflow: hidden;
 }

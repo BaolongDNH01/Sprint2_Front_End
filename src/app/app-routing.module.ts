@@ -9,6 +9,7 @@ import {ListAuctionComponent} from './auction/list-auction/list-auction.componen
 import {RecoverPasswordCodeComponent} from './user/recover-password-code/recover-password-code.component';
 import {DefaultLoadComponent} from './home-page/default-load/default-load.component';
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
+import { ErrorPageComponent } from './payment/components/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'get',
         component: CartComponent
+      },
+      {
+        path: 'error-page',
+        component: ErrorPageComponent
       }
     ]
   }

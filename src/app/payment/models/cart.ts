@@ -1,14 +1,13 @@
 export class Cart {
   cartId: number;
-  totalPrice: number;
-  shipCost: number;
-  status: number;
+  currentTotalPrice: number;
+  cartStatus: string;
   cartItemList: any[];
 
-  constructor(cartId: number, totalPrice: number, shipCost: number, cartItemList: any[]) {
+  constructor(cartId: number, currentTotalPrice: number,  cartStatus: string, cartItemList: any[]) {
     this.cartId = cartId;
-    this.totalPrice = totalPrice;
-    this.shipCost = shipCost;
+    this.currentTotalPrice = currentTotalPrice;
+    this.cartStatus = cartStatus;
     this.cartItemList = cartItemList;
   }
 }
