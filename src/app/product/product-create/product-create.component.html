@@ -12,7 +12,7 @@
     <br>
     <div>
       <p>Chủng loại :</p>
-      <mat-select  class="form-control" formControlName="categoryId" required>
+      <mat-select class="form-control" formControlName="categoryId" required>
         <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
           {{category.categoryName}}
         </mat-option>
@@ -44,8 +44,7 @@
     </div>
     <br>
     <div>
-      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" onChange='uploadFileImg()'><br></p>
-      <!--        accept="image/*"-->
+      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)' accept="image/*" ><br></p>
       <input id="nameImg" class="form-control" type="text" disabled><br>
     </div>
     <div>
