@@ -56,3 +56,8 @@ div.input-shadow{
 .z-index{
   z-index: 1;
 }
+
+button{
+  white-space: nowrap;
+  overflow: hidden;
+}

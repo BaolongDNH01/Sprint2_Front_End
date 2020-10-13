@@ -5,7 +5,9 @@ import {Product} from './product';
 import {Status} from 'tslint/lib/runner';
 import {Category} from './category';
 import {AuctionTime} from './auction-time';
+import {StatusProduct} from './statusProduct';
 import {Image} from './image';
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +33,8 @@ export class ProductService {
     return this.httpClient.patch<void>(this.API_URL + '/product-edit/' + product.productId, product);
   }
 
-  findAllStatusProduct(): Observable<Status[]> {
-    return this.httpClient.get<Status[]>(this.API_URL + '/list-status');
+  findAllStatusProduct(): Observable<StatusProduct[]> {
+    return this.httpClient.get<StatusProduct[]>(this.API_URL + '/list-status');
   }
 
   findAllCategory(): Observable<Category[]> {
