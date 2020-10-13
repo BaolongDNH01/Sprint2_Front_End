@@ -3,6 +3,7 @@ import {User} from '../User';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-lock-user',
@@ -17,7 +18,19 @@ export class LockUserComponent implements OnInit {
   stringFullUser = '';
   formLock: FormGroup;
   dateHt = '';
-  constructor(private router: Router, private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder){
+  roles: string[];
+  constructor(private router: Router, private userService: UserService, private activatedRoute: ActivatedRoute, private fb: FormBuilder,
+              jwt: JwtService){
+    this.roles = jwt.getAuthorities();
+    if (this.roles.length === 0){
+      router.navigateByUrl('**');
+    }
+    this.roles.every(role => {
+      if (role === 'ROLE_MEMBER'){
+        router.navigateByUrl('**');
+        return;
+      }
+    });
     activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       this.id = paramMap.get('ids');
     });

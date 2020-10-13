@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
 import {User} from '../User';
 import {Router} from '@angular/router';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-add-user',
@@ -16,7 +17,18 @@ export class AddUserComponent implements OnInit {
   error = '';
   errorPassword = '';
   load = false;
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  roles: string[];
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private jwt: JwtService) {
+    this.roles = jwt.getAuthorities();
+    if (this.roles.length === 0){
+      router.navigateByUrl('**');
+    }
+    this.roles.every(role => {
+      if (role === 'ROLE_MEMBER'){
+        router.navigateByUrl('**');
+        return;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -42,8 +54,8 @@ export class AddUserComponent implements OnInit {
     console.log(this.formUser.value.fullName);
     this.user = Object.assign({}, this.formUser.value)
     console.log(this.user);
-    this.user.rank = 'Bạc';
-    this.user.point = 0;
+    this.user.rank = 'Đồng';
+    this.user.point = 10;
     this.user.flag = 'true';
     console.log('ok');
     this.load = true;
