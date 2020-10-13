@@ -4,6 +4,7 @@ export class Bidder {
   bidDateTime: string;
   auctionId: number;
   userId: number;
+  userName: string;
 
   constructor() {
   }
