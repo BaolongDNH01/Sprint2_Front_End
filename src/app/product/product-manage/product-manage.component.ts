@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../product.service';
 import {Product} from '../product';
 import {Category} from '../category';
-import {Status} from '../status';
+import {StatusProduct} from '../statusProduct';
 
 @Component({
   selector: 'app-product-manage',
@@ -19,7 +19,7 @@ export class ProductManageComponent implements OnInit {
   productListApi: Product[] = [];
   productListShow: Product[] = [];
   categoryList: Category[];
-  statusList: Status[];
+  statusList: StatusProduct[];
   currentPage: number;
   totalItem: number;
   countItemSuggest = 10;
@@ -34,7 +34,7 @@ export class ProductManageComponent implements OnInit {
       list => this.categoryList = list
     );
     this.productService.findAllStatusProduct().subscribe(
-      // list => this.statusList = list
+      list => this.statusList = list
     );
   }
 
@@ -210,6 +210,7 @@ export class ProductManageComponent implements OnInit {
     } else {
       this.listProductsDelete.push(testId);
     }
+    console.log(this.listProductsDelete);
   }
 
   deleteProducts(): void {

@@ -83,8 +83,7 @@
       <button (click)="search()" type="button" style="width: 13%" class="btn btn-info btn-sm width-search">Lọc kết quả
       </button>
       <button (click)="cancel()" type="button" style="width: 13%"
-              class="btn btn-outline-danger btn-sm width-search ml-2">Hủy kết
-        quả
+              class="btn btn-outline-danger btn-sm width-search ml-2 text">Hủy kết quả
       </button>
     </div>
   </div>
@@ -129,7 +128,7 @@
           <td>{{product.statusName}}</td>
           <td>{{product.statusName}}</td>
           <td>{{product.productDetail}}</td>
-          <td>{{product.image}}</td>
+          <td><img src="{{product.image}}" alt="{{product.productName}}"></td>
           <td><a href="#">Sửa</a></td>
         </tr>
         </tbody>
@@ -138,20 +137,18 @@
   </div>
 
   <div class="row mb-3">
-    <div class="col-md-2 col-sm-4">
+    <div class="col-md-4 col-sm-6">
       <button [disabled]="listProductsDelete.length === 0" data-toggle="modal" data-target="#exampleModal" id="import"
-              class="btn btn-outline-info" style="width: 140px; height: 40px">
+              class="btn btn-outline-info">
         <i class="fa fa-trash-o" aria-hidden="true"></i>
         Xóa
       </button>
-    </div>
-    <div class="col-md-2 col-sm-4">
-      <button class="btn btn-outline-info" style="width: 140px; height: 40px">
+      <button class="btn btn-outline-info ml-2">
         <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
         Thêm mới
       </button>
     </div>
-    <div class="col-md-6 col-sm-4 text-center">
+    <div class="col-md-6 col-sm-6 text-center">
       <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
     </div>
   </div>
@@ -161,7 +158,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Thông báo xóa</h5>
+        <h4 class="modal-title" id="exampleModalLabel">Thông báo xóa</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

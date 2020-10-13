@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {Bidder} from './bidder';
 import {Auction} from './auction';
 import {Product} from '../product/product';
+import {StatusProduct} from '../product/statusProduct';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +32,6 @@ export class AuctionService {
 
   // Châu => function sửa trong auction
   editAuction(auction: Auction): Observable<void> {
-    console.log('toi day roi');
     return this.httpClient.patch<void>(this.URL + '/auction-edit/' + auction.auctionId, auction);
   }
 
@@ -38,6 +39,11 @@ export class AuctionService {
     return this.httpClient.post<Auction>(this.URL + '/create-auction', auction);
   }
 
+
+  getAllStatusAuction(): Observable<StatusProduct[]> {
+    console.log('chua qua lun ne');
+    return this.httpClient.get<StatusProduct[]>(this.URL + '/getAllStatusAuction');
+  }
   saveBidderDto(bidder: Bidder): Observable<Bidder> {
     return this.httpClient.post<Bidder>(this.URL + '/create-bidder', bidder);
   }

@@ -4,6 +4,7 @@ import {ListBidderComponent} from './list-bidder/list-bidder.component';
 import {FormsModule} from '@angular/forms';
 import {AuctionService} from './auction.service';
 import {ListAuctionComponent} from './list-auction/list-auction.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -12,10 +13,11 @@ import {ListAuctionComponent} from './list-auction/list-auction.component';
     ListBidderComponent,
     ListAuctionComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgxPaginationModule,
+    ],
   providers: [AuctionService]
 })
 export class AuctionModule {

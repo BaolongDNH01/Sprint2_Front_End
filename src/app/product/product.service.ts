@@ -2,17 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './product';
-import {Status} from 'tslint/lib/runner';
 import {Category} from './category';
 import {AuctionTime} from './auction-time';
+import {StatusProduct} from './statusProduct';
 import {Image} from './image';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   product: Product;
-  status: Status;
+  status: StatusProduct;
   API_URL = 'http://localhost:8080';
   private getAllProductApi = 'http://localhost:8080/getAllProduct';
 
@@ -31,8 +32,8 @@ export class ProductService {
     return this.httpClient.patch<void>(this.API_URL + '/product-edit/' + product.productId, product);
   }
 
-  findAllStatusProduct(): Observable<Status[]> {
-    return this.httpClient.get<Status[]>(this.API_URL + '/list-status');
+  findAllStatusProduct(): Observable<StatusProduct[]> {
+    return this.httpClient.get<StatusProduct[]>(this.API_URL + '/list-status');
   }
 
   findAllCategory(): Observable<Category[]> {
