@@ -42,7 +42,7 @@ export class AuctionService {
   getAllStatusAuction(): Observable<Status[]> {
     console.log('chua qua lun ne');
     return this.httpClient.get<Status[]>(this.URL + '/getAllStatusAuction');
-
+  }
   saveBidderDto(bidder: Bidder): Observable<Bidder> {
     return this.httpClient.post<Bidder>(this.URL + '/create-bidder', bidder);
   }

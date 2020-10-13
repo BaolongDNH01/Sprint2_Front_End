@@ -5,6 +5,7 @@ import {AuctionGuideComponent} from './home-page/auction-guide/auction-guide.com
 import {HomeComponent} from './home-page/home/home.component';
 import {DisplayProductAutionComponent} from './home-page/display-product-aution/display-product-aution.component';
 import {ListAuctionComponent} from './auction/list-auction/list-auction.component';
+import {RecoverPasswordCodeComponent} from './user/recover-password-code/recover-password-code.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     children: [
       {path: 'auction-guide', component: AuctionGuideComponent },
       {path: '', component: DisplayProductAutionComponent},
-      {path: 'list-auction', component: ListAuctionComponent}
+      {path: 'list-auction', component: ListAuctionComponent},
+      {path: 'recover-password', component: RecoverPasswordCodeComponent}
     ]
   }
 ];
