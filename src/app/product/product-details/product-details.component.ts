@@ -42,6 +42,7 @@ export class ProductDetailsComponent implements OnInit {
   onSubmitBid() {
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     // this.bidder.bidPrice=
+    this.bidder.auctionId = this.product.productId;
     this.bidder.userName = this.jwt.getUsername();
     this.auctionService.saveBidderDto(this.bidder);
   }
