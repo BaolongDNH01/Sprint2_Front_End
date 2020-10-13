@@ -23,7 +23,7 @@
       <input class="form-control" type="text" formControlName="eachIncrease"><br>
     </div>
     <div>
-      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" onChange='getNameImg()'><br></p>
+      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" onChange='uploadFileImg()'><br></p>
       <!--        accept="image/*"-->
       <input id="nameImg" class="form-control" type="text" disabled><br>
     </div>
@@ -33,7 +33,7 @@
     </div>
     <div>
       <p>Đấu giá trong thời gian :</p>
-      <mat-select class="form-control" formControlName="timeId">
+      <mat-select class="form-control " formControlName="timeId">
         <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
           {{time.auctionTime}}
         </mat-option>
