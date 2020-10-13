@@ -1,0 +1,46 @@
+
+
+.concept-color {
+  background:  #1AB7EA;
+}
+
+.chil-main {
+  margin: 2% 10%;
+}
+
+.chil-active {
+  background: #1AB7EA;
+  color: white;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.chil-active::before {
+  content: '';
+  background: #1AB7EA;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  transform: rotate(45deg);
+  top: 70%;
+  left: 30px;
+}
+
+.chil-payment-bank {
+  width: 5%;
+  margin-right: 15px;
+}
+
+.chil-choose-bank img {
+  width: 20%;
+}
+
+.chil-footer {
+  background: #FCFCE8
+}
+
+.chil-footer button {
+  margin-top: 50%;
+  background:#1AB7EA;
+  color: white;
+}

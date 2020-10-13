@@ -1,6 +1,6 @@
 <div class="info-product-common mt-2 ">
   <div *ngFor="let productDisplayList of auctionList1 | paginate: {itemsPerPage: 3, currentPage: curpage }" class="borderStyle">
-    <a href="https://www.youtube.com/">
+    <a [routerLink]="['/product-details/', productDisplayList.productId]">
       <div class="img-product"><img src="{{productDisplayList.imageURL}}" alt=""></div>
       <div class="black-bg-product"></div>
       <img class="eye" src="../../../assets/img/icon/right-arrow.svg" alt="">
