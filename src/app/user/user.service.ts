@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './User';
-import {RecoverPassword} from "./recover-password/RecoverPassword";
+import {RecoverPassword} from './recover-password/RecoverPassword';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,9 @@ export class UserService {
   }
   recoverRequest(recoverPassword: RecoverPassword): Observable<any>{
     return this.httpClient.post<any>(this.API_URL + '/recover-password', recoverPassword);
+  }
+  checkCode(confirmCode: string, username: string): Observable<string>{
+    return this.httpClient.post<string>(this.API_URL + '/check-code/' + confirmCode, {username});
   }
   increasePoint(user: User, point: number): Observable<any>{
     user.point = user.point + point;

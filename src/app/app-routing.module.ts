@@ -6,13 +6,14 @@ import {HomeComponent} from './home-page/home/home.component';
 import {DisplayProductAutionComponent} from './home-page/display-product-aution/display-product-aution.component';
 import {ListAuctionComponent} from './auction/list-auction/list-auction.component';
 import {RecoverPasswordCodeComponent} from './user/recover-password-code/recover-password-code.component';
+import {DefaultLoadComponent} from './home-page/default-load/default-load.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
       {path: 'auction-guide', component: AuctionGuideComponent },
-      {path: '', component: DisplayProductAutionComponent},
+      {path: '', component: DefaultLoadComponent},
       {path: 'list-auction', component: ListAuctionComponent},
       {path: 'recover-password', component: RecoverPasswordCodeComponent}
     ]
