@@ -117,7 +117,7 @@
           <th scope="col">{{i + 1}}</th>
           <td>
             <label>
-              <input type="checkbox" (click)="chooseToDelete(product.productId)">
+              <input [checked]="listProductsDelete.includes(product.productId)" type="checkbox" (click)="chooseToDelete(product.productId)">
             </label>
           </td>
           <td>{{product.productId}}</td>
@@ -132,6 +132,9 @@
           <td><a href="#">Sửa</a></td>
         </tr>
         </tbody>
+        <tr>
+          <td *ngIf="productListShow.length === 0">Do not have any product data</td>
+        </tr>
       </table>
     </div>
   </div>
