@@ -19,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   bidder: Bidder = new Bidder();
   myDate = new Date();
+  interval;
 
 
   constructor(private productService: ProductService,
@@ -36,13 +37,33 @@ export class ProductDetailsComponent implements OnInit {
         this.product = next;
         this.idProduct = this.product.productId;
         this.product.displayTime = parseInt(localStorage.getItem('time' + (this.idProduct - 1)));
-        console.log(this.product.displayTime );
-        // localStorage.setItem('time' + (this.idProduct - 1) , (this.product.displayTime).toString());
+        this.localStoreage();
       });
     });
   }
 
-  onSubmitBid() {
+  localStoreage(): void {
+    this.interval = setInterval(() => {
+        if (this.product.displayTime === 0) {
+          console.log('co bang ko hay ko bang ko');
+          this.product.displayTime = 0;
+        } else {
+          this.product.displayTime -= 1;
+        }
+        console.log(this.product.displayTime);
+        // @ts-ignore
+      this.product.displayTimeDetail = this.transformTime(this.product.displayTime);
+      }, 1000
+    );
+  }
+
+
+  transformTime(value: number): string {
+    const minutes: number = Math.floor(value / 60);
+    return minutes + ':' + (value - minutes * 60);
+  }
+
+  onSubmitBid(): void {
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     // this.bidder.bidPrice=
     this.bidder.userName = this.jwt.getUsername();
