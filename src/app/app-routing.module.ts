@@ -11,6 +11,7 @@ import {DefaultLoadComponent} from './home-page/default-load/default-load.compon
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
 import { ErrorPageComponent } from './payment/components/error-page/error-page.component';
 import {ProductCreateComponent} from './product/product-create/product-create.component';
+import { PaymentAddressComponent } from './payment/components/payment-address/payment-address.component';
 import {ListUserComponent} from './user/list-user/list-user.component';
 import {LockUserComponent} from './user/lock-user/lock-user.component';
 import {UnlockUserComponent} from './user/unlock-user/unlock-user.component';
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'error-page',
         component: ErrorPageComponent
+      },
+      {
+        path: 'payment-address',
+        component: PaymentAddressComponent
       }
     ]
   },

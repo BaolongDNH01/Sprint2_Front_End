@@ -53,79 +53,79 @@
       <!-- accordion -->
       <div id="accordion">
         <div class="card border-0 ">
-          <div class="card-header row d-flex justify-content-between p-2 m-1 chil-title text-light border-0">
+          <!-- <div class="card-header row d-flex justify-content-between p-2 m-1 chil-title text-light border-0">
             <span>Shipment1: Receive 05-April to 12-April</span>
             <a>
-              <i class="fa fa-chevron-up chil-up-arrow-collapse" aria-hidden="true" data-toggle="collapse" href="#collapseOne"></i>
+              <i class="fa fa-chevron-up chil-up-arrow-collapse" aria-hidden="true" data-toggle="collapse"
+                href="#collapseOne"></i>
             </a>
-          </div>
+          </div> -->
           <div class="empty-cover d-flex justify-content-center" *ngIf="isEmpty; else notEmpty">
-            <img src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png?compress=1&resize=400x300" alt="empty.jpg">
+            <img src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png?compress=1&resize=400x300"
+              alt="empty.jpg">
           </div>
 
           <ng-template #notEmpty>
-            not empty
-          </ng-template>
-
-          <div id="collapseOne" class="collapse show" data-parent="#accordion">
-            <!-- <div class="card-body">
-              <div class="row p-3 m-1 chil-product bg-light" *ngFor="let item of cartResponse.cartItemList">
-                <div class="col-md-3 p-0">
-                  <img src="{{item.product.image}}" alt="macbook">
-                </div>
-                <div class="col-md-6">
-                  <h5>{{item.product.productName}}</h5>
-                  <ul class="pagination">
-                    <li class="page-item"><a class="page-link text-dark" href="#">-</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-dark" href="#">+</a></li>
-                  </ul>
-                  <span class="badge badge-light">Color: Grey</span>
-                </div>
-                <div class="col-md-3">
-                  <p>{{item.product.price}}</p>
-                  <span>
-                    <a class="text-primary" href="#">
-                      <i class="fa fa-bookmark" aria-hidden="true"></i>
-                      Save for later
-                    </a>
-                  </span>
+            <div id="collapseOne" class="collapse show" data-parent="#accordion">
+              <div class="card-body p-0 round">
+                <div class="row p-3 mx-1 mt-1 mb-3 chil-product bg-light" *ngFor="let item of cartResponse.cartItemList">
+                  <div class="col-md-3 p-0 " *ngFor="let img of item.product.imageProductList">
+                    <img class="w-100" src="{{img.imageURL}}" alt="product.png">
+                  </div>
+                  <div class="col-md-6">
+                    <h2>{{item.product.productName}}</h2>
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link text-dark" disabled>1</a></li>
+                    </ul>
+                    <span class="badge badge-light">{{ item.product.category.categoryName}}</span>
+                  </div>
+                  <div class="col-md-3">
+                    <h3>{{item.winPrice | currency:'VND'}}</h3>
+                    <span>
+                      <a class="text-primary" href="#">
+                        <i class="fa fa-bookmark" aria-hidden="true"></i>
+                        Save for later
+                      </a>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div> -->
-          </div>
+            </div>
+          </ng-template>
+
+
         </div>
       </div>
     </div>
 
     <div class="col-md-4 chil-summary">
       <div class="shadow p-3 border rounded">
-        <h5>Tóm tắt đơn hàng</h5>
+        <h1>Tóm tắt đơn hàng</h1>
         <table class="table table-borderless">
           <tr>
-            <td>Item total</td>
-            <td class="text-right font-weight-bold text-primary">89.100,00</td>
+            <td>Giá trị giỏ hàng</td>
+            <td class="text-right text-primary cost">{{cartResponse.currentTotalPrice | currency:'VND  '}}</td>
           </tr>
           <tr>
-            <td>Giao hàng</td>
-            <td class="text-right font-weight-bold text-primary">49000</td>
+            <td>Phí giao hàng</td>
+            <td class="text-right text-primary cost">{{shipCost | currency:'VND  '}}</td>
           </tr>
           <tr>
             <td>Tổng</td>
-            <td class="text-right font-weight-bold text-primary">138,100</td>
+            <td class="text-right font-weight-bold text-primary cost">{{total | currency:'VND  '}}</td>
           </tr>
         </table>
-        <button class="btn btn-success chil-btn-success p-2">Hoàn tất ngay</button>
+        <button class="btn btn-success chil-btn-success p-2" (click)="redirect()">Hoàn tất ngay</button>
         <!-- <div class="alert alert-danger">
         You must choose at least of one product !
       </div> -->
         <span class="chil-shipping d-block mt-3">Giao hàng toàn quốc | từ 49.000 đ </span>
         <img class="chil-payment-bank mt-3"
           src="https://scontent.smarttourism.vn/resources/portal//Images/BDG/superadminportal.bdg/Tien%20ich/vcb_636966368969566050.jpg"
-          alt="vietcombank">
+          alt="vietcombank" title="Chức năng đang bảo trì" data-toggle="tooltip">
         <img class="chil-payment-bank mt-2"
           src="https://scontent.smarttourism.vn/resources/portal//Images/NTN/nguyenhaan/Ti%E1%BB%87n%20%C3%ADch/246x0w_636892088212276736.jpg"
-          alt="vietcombank">
+          alt="vietcombank" title="Chức năng đang bảo trì" data-toggle="tooltip">
       </div>
     </div>
   </div>
