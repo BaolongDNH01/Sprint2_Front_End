@@ -1,4 +1,4 @@
-import { CartComponent } from './payment/components/cart/cart.component';
+import {CartComponent} from './payment/components/cart/cart.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageModule} from './home-page/home-page.module';
@@ -10,17 +10,19 @@ import {RecoverPasswordCodeComponent} from './user/recover-password-code/recover
 import {DefaultLoadComponent} from './home-page/default-load/default-load.component';
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
 import { ErrorPageComponent } from './payment/components/error-page/error-page.component';
+import {ProductCreateComponent} from './product/product-create/product-create.component';
 
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      {path: 'auction-guide', component: AuctionGuideComponent },
+      {path: 'auction-guide', component: AuctionGuideComponent},
       {path: '', component: DefaultLoadComponent},
       {path: 'list-auction', component: ListAuctionComponent},
       {path: 'recover-password', component: RecoverPasswordCodeComponent},
-      {path: 'product-details/:id', component: ProductDetailsComponent}
+      {path: 'product-details/:id', component: ProductDetailsComponent},
+      {path: 'product-create', component: ProductCreateComponent}
     ]
   },
   {

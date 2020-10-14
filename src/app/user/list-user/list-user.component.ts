@@ -4,6 +4,7 @@ import {User} from '../User';
 import {RankService} from '../rank.service';
 import {Rank} from '../rank';
 import {Router} from '@angular/router';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-list-user',
@@ -24,7 +25,18 @@ export class ListUserComponent implements OnInit {
   pageSize = 5;
   pageMax: number;
   errorCheck = '';
-  constructor(private userService: UserService, private rankService: RankService, private router: Router) {
+  roles: string[];
+  constructor(private userService: UserService, private rankService: RankService, private router: Router, private jwt: JwtService) {
+    this.roles = jwt.getAuthorities();
+    if (this.roles.length === 0){
+      router.navigateByUrl('**');
+    }
+    this.roles.every(role => {
+      if (role === 'ROLE_MEMBER'){
+        router.navigateByUrl('**');
+        return;
+      }
+    });
     userService.findAllUserActivated().subscribe(
       next => {
         this.userList = next;

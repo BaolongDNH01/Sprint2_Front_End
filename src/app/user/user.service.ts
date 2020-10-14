@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './User';
+
+// import {RecoverPassword} from "./recover-password/RecoverPassword";
+import {JwtService} from '../login/services/jwt.service';
 import {RecoverPassword} from './recover-password/RecoverPassword';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   API_URL = 'http://localhost:8080';
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private jwt: JwtService) { }
   findAllUser(): Observable<User[]>{
     return this.httpClient.get<User[]>(this.API_URL + '/user');
   }
@@ -23,6 +27,8 @@ export class UserService {
     return this.httpClient.post<any>(this.API_URL + '/add-user', user);
   }
   lockUser(user: User[]): Observable<any>{
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwt.getToken());
     return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
   }
   sendEmail(user: User, response?: any): Observable<any>{
@@ -35,9 +41,13 @@ export class UserService {
     return this.httpClient.get<User[]>(this.API_URL + '/user-activated');
   }
   unlockUser(userList: User[]): Observable<any>{
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwt.getToken());
     return this.httpClient.post(this.API_URL + '/unlock-user', userList);
   }
   deleteUsers(ids: string[]): Observable<any>{
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwt.getToken());
     return this.httpClient.delete<any>(this.API_URL + '/delete-users/' + ids);
   }
   recoverRequest(recoverPassword: RecoverPassword): Observable<any>{
@@ -71,6 +81,20 @@ export class UserService {
       return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
     }else {
       return this.httpClient.delete<User>(this.API_URL + '/delete-user/' + user.userId);
+    }
+  }
+  endowUser(user: User): number {
+    switch (user.rank) {
+      case 'Kim cương':
+        return 1;
+      case 'Bạch kim':
+        return 2;
+      case 'Vàng':
+        return 3;
+      case 'Bạc':
+        return 4;
+      case 'Đồng':
+        return 5;
     }
   }
 }

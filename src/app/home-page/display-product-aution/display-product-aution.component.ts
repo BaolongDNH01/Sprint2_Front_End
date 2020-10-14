@@ -38,7 +38,6 @@ export class DisplayProductAutionComponent implements OnInit {
   ngOnInit(): void {
     this.chatbox();
     this.displayProductAuction();
-    // this.localStoreage();
   }
 
 
@@ -140,16 +139,13 @@ export class DisplayProductAutionComponent implements OnInit {
 
   localStoreage(): void {
     for (let i = 0; i < this.auctionList1.length; i++) {
-      console.log('cheiu dai mang' + this.auctionList1.length);
-      console.log('id' + this.auctionList1[i].auctionId);
-      console.log(this.auctionList1[i].auctionTime + 'get time');
       // @ts-ignore
       this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId - 1)));
       console.log(this.auctionList1[i].auctionTime);
       this.interval = setInterval(() => {
         if (this.auctionList1[i].auctionTime == 0) {
           this.auctionList1[i].auctionTime = null;
-          localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+          localStorage.removeItem('time' + (this.auctionList1[i].auctionId - 1));
           this.findProductTimeOutById(this.auctionList1[i].auctionId);
         } else {
           this.auctionList1[i].auctionTime -= 1;

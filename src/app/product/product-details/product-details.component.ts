@@ -7,6 +7,7 @@ import {DatePipe} from '@angular/common';
 import {UserService} from '../../user/user.service';
 import {JwtService} from '../../login/services/jwt.service';
 import {AuctionService} from '../../auction/auction.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -19,14 +20,19 @@ export class ProductDetailsComponent implements OnInit {
   product: Product;
   bidder: Bidder = new Bidder();
   myDate = new Date();
-
+  interval;
+  bidderForm: FormGroup;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private userService: UserService,
               private jwt: JwtService,
-              private auctionService: AuctionService) {
+              private auctionService: AuctionService,
+              private fb: FormBuilder) {
+    this.bidderForm = this.fb.group({
+      bidPrice: ['', [Validators.required]],
+    });
   }
 
   ngOnInit(): void {
@@ -36,17 +42,40 @@ export class ProductDetailsComponent implements OnInit {
         this.product = next;
         this.idProduct = this.product.productId;
         this.product.displayTime = parseInt(localStorage.getItem('time' + (this.idProduct - 1)));
-        console.log(this.product.displayTime );
-        // localStorage.setItem('time' + (this.idProduct - 1) , (this.product.displayTime).toString());
+        this.localStoreage();
       });
     });
   }
 
-  onSubmitBid() {
+  localStoreage(): void {
+    this.interval = setInterval(() => {
+        if (this.product.displayTime === 0) {
+          console.log('co bang ko hay ko bang ko');
+          this.product.displayTime = 0;
+        } else {
+          this.product.displayTime -= 1;
+        }
+        console.log(this.product.displayTime);
+        // @ts-ignore
+        this.product.displayTimeDetail = this.transformTime(this.product.displayTime);
+      }, 1000
+    );
+  }
+
+
+  transformTime(value: number): string {
+    const minutes: number = Math.floor(value / 60);
+    return minutes + ':' + (value - minutes * 60);
+  }
+
+  onSubmitBid(): void {
+    this.bidder = Object.assign({}, this.bidderForm.value);
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
-    // this.bidder.bidPrice=
     this.bidder.auctionId = this.product.productId;
     this.bidder.userName = this.jwt.getUsername();
     this.auctionService.saveBidderDto(this.bidder);
+    location.reload();
   }
 }
+
+

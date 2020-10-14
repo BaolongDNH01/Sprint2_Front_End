@@ -4,11 +4,12 @@
     <thead class="table thead-light">
     <tr>
       <th scope="col">#</th>
+      <th scope="col">ID</th>
       <th scope="col">Tên sản phẩm</th>
       <th scope="col">Thông tin sản phẩm</th>
       <th scope="col">Ngày đăng ký</th>
-      <th scope="col">Tình trạng<</th>
-      <th scope="col">Hủy đăng ký</th>
+      <th scope="col">Tình trạng</th>
+      <th scope="col">Đăng bán</th>
     </tr>
     </thead>
     <tbody>
@@ -17,11 +18,15 @@
           itemsPerPage: 4,
           currentPage: currentPage,
           totalItems: totalItem}, index as i ">
-      <th scope="col">{{i}}</th>
+      <th scope="col">{{i + 1}}</th>
+      <td>{{product.productId}}</td>
       <td>{{product.productName}}</td>
       <td>{{product.productDetail}}</td>
       <td>{{product.datePost}}</td>
       <td>{{product.statusName}}</td>
+      <td><button *ngIf="product.statusName === 'Chưa đăng'" (click)="postProduct(product.productId)" class="text-success">đăng bán</button>
+        <span *ngIf="product.statusName !== 'Chưa đăng'" class="text-success">đã đăng bán</span>
+      </td>
     </tr>
     </tbody>
   </table>

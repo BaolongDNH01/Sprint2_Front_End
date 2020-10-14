@@ -13,6 +13,7 @@ export class CartService {
   constructor(private http: HttpClient) { }
 
   getCartByUserId(userId: number): Observable<Cart> {
+    console.log('toi roi ne may');
     return this.http.get<Cart>(`${this.CART_API}/${userId}`);
   }
 }
