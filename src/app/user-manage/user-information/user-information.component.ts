@@ -23,15 +23,14 @@ export class UserInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.userName = this.jwtService.getUsername();
-    // if (this.userName === '' || this.userName === undefined || this.userName === null) {
-    //   //  đưa ra thông báo login
-    //   document.getElementById('control').click();
-    // } else {
-    //   this.getUser();
-    // }
+    this.userName = this.jwtService.getUsername();
     this.userName = 'khanhquoc';
-    this.getUser();
+    if (this.userName === '' || this.userName === undefined || this.userName === null) {
+      //  đưa ra thông báo login
+      document.getElementById('control').click();
+    } else {
+      this.getUser();
+    }
   }
 
   getUser(): void {
