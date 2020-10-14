@@ -42,11 +42,11 @@ export class TransactionManagementComponent implements OnInit {
   ) {
     this.roles = jwt.getAuthorities();
     if (this.roles.length === 0) {
-      router.navigateByUrl('/');
+      router.navigateByUrl('**');
     }
     this.roles.every(role => {
       if (role === 'ROLE_MEMBER') {
-        router.navigateByUrl('/');
+        router.navigateByUrl('**');
         return;
       }
     });
