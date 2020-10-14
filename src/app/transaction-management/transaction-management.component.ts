@@ -15,11 +15,18 @@ import {User} from '../user/User';
 })
 export class TransactionManagementComponent implements OnInit {
   cartItemList: CartItem[];
+  cartItemListAPI: CartItem[];
   listBidder: Bidder[];
   listCartByUser: Cart;
   listCart = [];
+  listCartItemDelete: number [] = [];
   user: User;
   listUser = [];
+  keyWordUserPoster: string;
+  keyWordUserBuy: string;
+  keyWordProductName: string;
+  keyWordTotalPrice: string;
+  keyWordStatus: string;
 
   constructor(
     private cartItemService: CartItemService,
@@ -59,9 +66,7 @@ export class TransactionManagementComponent implements OnInit {
                   this.listCartByUser = listCartByUser;
                   console.log(this.listCartByUser);
                   this.listCart.push(this.listCartByUser);
-                  console.log('toi');
                   for (let k = 0; k < this.listCart.length; k++) {
-                    console.log('vo ko');
                     this.cartItemList[i].shipCost = this.listCart[k].shipCost;
                     console.log(this.cartItemList[i].shipCost);
                     this.cartItemList[i].totalPrice = this.listCart[k].totalPrice;
@@ -72,7 +77,41 @@ export class TransactionManagementComponent implements OnInit {
             }
           );
         }
+      }, error => {
+      }, () => {
+        this.cartItemListAPI = this.cartItemList;
       });
   }
+
+  search(): void {
+    this.cartItemList = this.cartItemListAPI.filter(res => {
+      return res.userName.match(this.keyWordUserPoster) &&
+        res.userNameBuy.match(this.keyWordUserBuy) &&
+        res.productName.match(this.keyWordProductName) &&
+        res.statusCart.toString().match(this.keyWordStatus) &&
+        res.totalPrice.toString().match(this.keyWordTotalPrice);
+    });
+  }
+
+  chooseToDelete(cartItemId: number): void {
+    if (this.listCartItemDelete.includes(cartItemId)) {
+      this.listCartItemDelete.splice(this.listCartItemDelete.indexOf(cartItemId), 1);
+    } else {
+      this.listCartItemDelete.push(cartItemId);
+    }
+  }
+
+  deleteCartItem(): void {
+    this.cartItemService.deleteCartItem(this.listCartItemDelete).subscribe(
+      next => {
+
+      }, error => {
+
+      }, () => {
+        location.reload();
+      }
+    );
+  }
+
 
 }

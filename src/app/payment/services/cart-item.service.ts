@@ -15,6 +15,11 @@ export class CartItemService {
   }
 
   getAllCartItem(): Observable<CartItem[]> {
-    return this.httpClient.get<CartItem[]>(this.URL + '/getAllCartItem');
+    return this.httpClient.get<CartItem[]>(this.URL + '/cart/getAllCartItem');
+  }
+
+  deleteCartItem(cartIds: number[]): Observable<any> {
+    console.log('toi roi teo');
+    return this.httpClient.post<any>(this.URL + '/cart/removeCartItem' , cartIds);
   }
 }
