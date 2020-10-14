@@ -11,6 +11,7 @@ import {DefaultLoadComponent} from './home-page/default-load/default-load.compon
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
 import { ErrorPageComponent } from './payment/components/error-page/error-page.component';
 import {ProductCreateComponent} from './product/product-create/product-create.component';
+import { PaymentAddressComponent } from './payment/components/payment-address/payment-address.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'error-page',
         component: ErrorPageComponent
+      },
+      {
+        path: 'payment-address',
+        component: PaymentAddressComponent
       }
     ]
   }
