@@ -9,7 +9,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-logi
 import { LoginInfo } from '../../models/login-info';
 import { AuthService } from '../../services/auth.service';
 import { JwtService } from '../../services/jwt.service';
-import {ModalServiceService} from "../../../home-page/modal-service.service";
+import {ModalServiceService} from '../../../home-page/modal-service.service';
 
 @Component({
   selector: 'app-auth-login',

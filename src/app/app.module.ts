@@ -34,6 +34,7 @@ import {
 } from 'ng-recaptcha';
 import {PaymentModule} from './payment/payment.module';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -42,6 +43,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
   declarations: [
     AppComponent,
     TransactionManagementComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
