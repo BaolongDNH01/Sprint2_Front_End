@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <app-nav-bar></app-nav-bar>
   <div class="row m-auto justify-content-center align-content-center min-vh-100">
-  <router-outlet></router-outlet>
+    <!-- Thien: Fix bug: bị bóp giao diện -->
+  <div class="fix-bop-themes"> 
+    <router-outlet></router-outlet>
+  </div>
   </div>
 </div>
 
