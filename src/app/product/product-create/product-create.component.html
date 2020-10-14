@@ -17,8 +17,8 @@
           {{category.categoryName}}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="productForm.hasError('categoryId')">Please choose an category</mat-error>
     </div>
+    <br>
     <div class="notice" role="alert"
          *ngIf="productForm.get('categoryId').invalid && productForm.get('categoryId').touched">
       Không được để trống
@@ -44,8 +44,9 @@
     </div>
     <br>
     <div>
-      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)' accept="image/*" ><br></p>
-      <input id="nameImg" class="form-control" type="text" disabled><br>
+      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)'
+                                    accept="image/*"><br></p>
+      <input id="nameImg" class="form-control" type="text" value="{{this.nameImg}}"  disabled><br>
     </div>
     <div>
       <p>Thông tin chi tiết :</p>
@@ -63,14 +64,15 @@
           {{time.moTa}}
         </mat-option>
       </mat-select>
-      <div class="notice" role="alert"
-           *ngIf="productForm.get('timeId').invalid && productForm.get('timeId').touched">
-        Không được để trống
-      </div>
-      <br>
+    </div>
+    <br>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('timeId').invalid && productForm.get('timeId').touched">
+      Không được để trống
     </div>
     <div class="row d-flex justify-content-center mt-4">
-      <input class="btn btn-success" type="submit" value="Đăng" [disabled]="productForm.invalid">
+      <input class="btn btn-success" type="submit" value="Đăng" (click)="uploadDbImg()"
+             [disabled]="productForm.invalid">
     </div>
   </form>
   {{ productForm.value | json}}

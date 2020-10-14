@@ -1,5 +1,10 @@
-#nav, .modal-header {
+#nav, .modal-header, .dropdown-menu {
   background-color: #1AB7EA;
+
+}
+
+.dropdown-menu{
+  color: white;
 }
 
 .nav-item, #back :hover {
