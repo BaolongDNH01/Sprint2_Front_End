@@ -1,58 +1,54 @@
- <div id="nav" class="row">
-    <nav class="col-md-12 navbar navbar-expand-lg">
-      <div class="col-md-4 d-flex justify-content-center">
-        <div class="logo">
-          <a class="navbar-brand text-white font-weight-bold font-italic" [routerLink]="">Bidding</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<div id="nav" class="row">
+  <nav class="col-md-12 navbar navbar-expand-lg">
+    <div class="col-md-4 d-flex justify-content-center">
+      <div class="logo">
+        <a class="navbar-brand text-white font-weight-bold font-italic" [routerLink]="">Bidding</a>
       </div>
-      <div class="col-md-8 collapse navbar-collapse d-flex align-content-center justify-content-end">
-        <div class="nav-item mt-auto mb-auto">
-          <a class="nav-link text-white" routerLink="cart/error-page"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
-            My Cart</a>
-        </div>
-        <div class="nav-item mt-auto mb-auto">
-          <a class="nav-link text-white" [routerLink]=""><i class="fa fa-gavel mr-2" aria-hidden="true"></i>
-            My Auctions</a>
-        </div>
-        <ng-container [ngSwitch]="loggedIn" >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="col-md-8 collapse navbar-collapse d-flex align-content-center justify-content-end">
+      <div class="nav-item mt-auto mb-auto">
+        <a class="nav-link text-white" routerLink="cart/get"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
+          My Cart</a>
+      </div>
+      <div class="nav-item mt-auto mb-auto">
+        <a class="nav-link text-white" [routerLink]=""><i class="fa fa-gavel mr-2" aria-hidden="true"></i>
+          My Auctions</a>
+      </div>
+      <ng-container [ngSwitch]="loggedIn">
         <div *ngSwitchCase="false" id="signIn" class="nav-item mt-auto mb-auto mr-5">
-          <a  class="nav-link text-white" (click)="renderComponent(0)" data-toggle="modal"
-             data-target="#login"><i class="fa fa-lock mr-2"
-                                     aria-hidden="true"></i>
+          <a class="nav-link text-white" (click)="renderComponent(0)" data-toggle="modal" data-target="#login"><i
+              class="fa fa-lock mr-2" aria-hidden="true"></i>
             Sign In</a>
         </div>
         <div *ngSwitchCase="true" class="d-inline-flex" id="signed">
-          <div *ngIf="avatar"  class="nav-item mt-auto mb-auto mr-auto">
+          <div *ngIf="avatar" class="nav-item mt-auto mb-auto mr-auto">
             <img [src]="getSantizeUrl(avatar)" class="rounded-circle" alt="avatar.jpg" id="avatar">
           </div>
           <div class="nav-item mt-auto mb-auto mr-auto">
             <a class="nav-link text-white" [routerLink]="">{{username | titlecase}}</a>
           </div>
         </div>
-        </ng-container>
-        <div class="modal" id="login" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 id = "modal-title" class="modal-title text-white font-italic font-weight-bold m-0">Bidding</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <ng-template modalForm>
-                </ng-template>
-              </div>
+      </ng-container>
+      <div class="modal" id="login" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 id="modal-title" class="modal-title text-white font-italic font-weight-bold m-0">Bidding</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ng-template modalForm>
+              </ng-template>
             </div>
           </div>
         </div>
       </div>
-    </nav>
-  </div>
-
-
+    </div>
+  </nav>
+</div>

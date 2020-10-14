@@ -11,6 +11,7 @@ import {Image} from '../image';
 import {JwtService} from '../../login/services/jwt.service';
 import {finalize} from 'rxjs/operators';
 import {newArray} from '@angular/compiler/src/util';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-product-create',
@@ -23,11 +24,16 @@ export class ProductCreateComponent implements OnInit {
   categoryList: Category[];
   auctionTimeList: AuctionTime[];
   selectedFile = new Array<File>();
-  downloadURL = new Array<string>();
+  downloadURL: Observable<string>;
+  myDate = new Date();
+  idProduct: number;
+  nameImg: string;
+  image = new Image();
 
   constructor(private fb: FormBuilder, private productService: ProductService,
               private router: Router,
               private jwt: JwtService,
+              private datePipe: DatePipe,
               private angularFireStorage: AngularFireStorage) {
     this.productForm = this.fb.group({
       productName: ['', [Validators.required]],
@@ -37,20 +43,29 @@ export class ProductCreateComponent implements OnInit {
       categoryId: ['', [Validators.required]],
       statusId: ['7', [Validators.required]],
       timeId: ['', [Validators.required]],
-      // imageURL: [this.downloadURL]
     });
+
   }
 
   ngOnInit(): void {
     this.findAllCategory();
     this.findAllAuctionTime();
+
+    const arrDayTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss').toString().split(' ');
+    const idProductArr = arrDayTime[1].split(':');
+    // tslint:disable-next-line:radix
+    this.idProduct = parseInt(Math.floor(Math.random() * Math.floor(2500)) + idProductArr.join(''));
+
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
     this.product = Object.assign({}, this.productForm.value);
-    this.product.userName = this.jwt.getUsername();
 
+    this.product.fullName = this.jwt.getUsername();
+    this.product.productId = this.idProduct;
+
+    console.log(this.idProduct);
 
     console.log(this.product);
     this.productService.save(this.product).subscribe(
@@ -86,27 +101,32 @@ export class ProductCreateComponent implements OnInit {
   // tslint:disable-next-line:typedef
   uploadFileImg(event) {
     this.selectedFile = [];
+    this.nameImg = '';
     // this.downloadURL = [];
     for (let i = 0; i < event.target.files.length; i++) {
       this.selectedFile.push(event.target.files.item(i));
+      this.nameImg += this.selectedFile[i].name + ' ; ';
+
     }
-    console.log(this.selectedFile);
-    // upload lên firebase
-    // tslint:disable-next-line:prefer-for-of
-    this.uploadDbImg();
   }
 
+  // upload lên firebase
   // tslint:disable-next-line:typedef
   uploadDbImg() {
+    // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.selectedFile.length; i++) {
       const filePath = 'files/' + Math.random() + this.selectedFile[i];
       const fileRef = this.angularFireStorage.ref(filePath);
       const task = this.angularFireStorage.upload(filePath, this.selectedFile[i]);
-      // lấy url vào mảng imageUrl
       task.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().toPromise().then((url) => {
-            this.downloadURL.push(url);
+            this.downloadURL = url;
+            this.image.productId = this.idProduct;
+            // @ts-ignore
+            this.image.imageURL = this.downloadURL;
+            console.log(this.image);
+            this.productService.saveImg(this.image).subscribe();
           }).catch(err => {
             console.log(err);
           });
@@ -114,6 +134,6 @@ export class ProductCreateComponent implements OnInit {
       )
         .subscribe();
     }
-    console.log(this.downloadURL);
+
   }
 }

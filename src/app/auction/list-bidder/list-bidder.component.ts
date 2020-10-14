@@ -11,17 +11,19 @@ import {Bidder} from '../bidder';
   styleUrls: ['./list-bidder.component.css']
 })
 export class ListBidderComponent implements OnInit {
-  @Input() idProduct: number;
-
+  @Input() idAuction: number;
   bidderList: Bidder[];
 
   constructor(private auctionService: AuctionService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.auctionService.findBidderByAuctionId(this.idProduct).subscribe(
+    console.log(this.idAuction);
+
+    this.auctionService.findBidderByAuctionId(this.idAuction).subscribe(
       next => {
         this.bidderList = next;
+        console.log(this.bidderList);
       }
     );
   }
