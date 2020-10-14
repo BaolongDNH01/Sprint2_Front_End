@@ -1,17 +1,31 @@
-<div id="create" class="container-fluid">
-  <h2 class="text-center">Đăng sản phẩm</h2>
+<div class="col-md-8 m-auto card-body">
+<p class="text-center h3 font-weight-bold card-header ">Đăng sản phẩm</p>
   <form class="w-75 mx-auto" [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <p>Tên sản phẩm :</p>
-      <input type="text" class="form-control" formControlName="productName">
+    <div class="form-group col-sm-12">
+      <label>Tên sản phẩm :</label>
+      <input type="text" id="productName" class="form-control" formControlName="productName">
+    </div>
+    <div class="form-group col-sm-12 d-flex">
+      <label  for="idUser">ID người đăng :</label>
+      <input class="form-control-lg col-md-4 m-auto" id="idUser" formControlName="userId"  type="text">
+      <div class="col-md-2">
+        <button type="button" class="btn btn-outline-secondary" (click)="loadUser()">Kiểm Tra</button>
+      </div>
+      <div class="col-md-2">
+        <a (click)="clearDetail()"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div class="form-group input-group-lg col-sm-12">
+      <label  for="detailUser">Thông tin người đăng :</label>
+      <textarea class="form-control col-md-8" id="detailUser" type="text"></textarea>
     </div>
     <div class="notice" role="alert"
          *ngIf="productForm.get('productName').invalid && productForm.get('productName').touched">
       Không được để trống
     </div>
     <br>
-    <div>
-      <p>Chủng loại :</p>
+    <div class="form-group col-sm-12">
+      <label>Chủng loại :</label>
       <mat-select class="form-control" formControlName="categoryId" required>
         <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
           {{category.categoryName}}
@@ -24,8 +38,8 @@
       Không được để trống
     </div>
     <br>
-    <div>
-      <p>Giá ban đầu :</p>
+    <div class="form-group col-sm-12">
+      <label>Giá ban đầu :</label>
       <input class="form-control" type="text" formControlName="initialPrice">
     </div>
     <br>
@@ -34,8 +48,8 @@
       Giá trị phải nhập là kiểu số
     </div>
     <br>
-    <div>
-      <p>Mỗi lần tăng ít nhất :</p>
+    <div class="form-group col-sm-12">
+      <label>Mỗi lần tăng ít nhất :</label>
       <input class="form-control" type="text" formControlName="eachIncrease"><br>
     </div>
     <div class="notice" role="alert"
@@ -43,13 +57,13 @@
       Giá trị phải nhập là kiểu số
     </div>
     <br>
-    <div>
-      <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)'
-                                    accept="image/*"><br></p>
+    <div class="form-group col-sm-12">
+      <label>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)'
+                                    accept="image/*"><br></label>
       <input id="nameImg" class="form-control" type="text" value="{{this.nameImg}}"  disabled><br>
     </div>
-    <div>
-      <p>Thông tin chi tiết :</p>
+    <div class="form-group col-sm-12">
+      <label>Thông tin chi tiết :</label>
       <textarea class="form-control" id="comment" formControlName="productDetail"></textarea><br>
     </div>
     <div class="notice" role="alert"
@@ -57,8 +71,8 @@
       Không được để trống
     </div>
     <br>
-    <div>
-      <p>Đấu giá trong thời gian :</p>
+    <div class="form-group col-sm-12">
+      <label>Đấu giá trong thời gian :</label>
       <mat-select class="form-control " formControlName="timeId">
         <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
           {{time.moTa}}
@@ -70,11 +84,12 @@
          *ngIf="productForm.get('timeId').invalid && productForm.get('timeId').touched">
       Không được để trống
     </div>
-    <div class="row d-flex justify-content-center mt-4">
+    <div class="col-sm-12 d-flex justify-content-center mt-4">
       <input class="btn btn-success" type="submit" value="Đăng" (click)="uploadDbImg()"
              [disabled]="productForm.invalid">
     </div>
   </form>
-<!--  {{ productForm.value | json}}-->
-
 </div>
+  {{ productForm.value | json}}
+
+

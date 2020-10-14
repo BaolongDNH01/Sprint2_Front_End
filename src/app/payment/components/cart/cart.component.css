@@ -85,3 +85,7 @@ a {
 .empty-cover {
   overflow: hidden;
 }
+
+.cost {
+  font-size: 17px;
+}

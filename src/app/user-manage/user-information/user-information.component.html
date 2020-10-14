@@ -1,7 +1,7 @@
 <div class="container text-white">
   <div class="w-50 bg-secondary pl-5 pr-5 pt-3 border">
     <h1 class="text-center">Thông tin người dùng</h1>
-    <form class="form-group" *ngIf="infoForm" [formGroup]="infoForm" (ngSubmit)="editInfo()">
+    <form class="form-group" *ngIf="infoForm" [formGroup]="infoForm" (ngSubmit)="checkEditPassword()" (click)="resetMessage()">
       <div class="row">
         <label>Tên đăng nhập
           <span *ngIf="(infoForm.get('username').hasError('required')) && infoForm.get('username').touched" class="list-inline mt-3 ml-2 text-warning">

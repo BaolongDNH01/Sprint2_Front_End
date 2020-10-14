@@ -1,30 +1,31 @@
 <div class="container-fluid bg-light">
-  <h4 class="pt-md-4">{{product.productName}}</h4>
+  <h4 class="pt-md-4">{{auction.productName}}</h4>
   <div class="row">
     <div class="col-md-3">
       <!-- Full-width images with number text -->
-      <div class="mySlides">
-        <img class="img-show" src="{{product.imageURL}}">
-      </div>
-      <div class="mySlides">
-        <img class="img-show" src="{{product.imageURL}}">
-      </div>
-      <div class="mySlides">
-        <img class="img-show" src="{{product.imageURL}}">
-      </div>
-      <div class="mySlides">
-        <img class="img-show" src="{{product.imageURL}}">
-      </div>
-      <div class="mySlides">
-        <img class="img-show" src="{{product.imageURL}}">
-      </div>
-      <div class="mySlides">
-        <img class="img-show" src="{{product.imageURL}}">
-      </div>
+
+      <!--      <div class="mySlides">-->
+      <!--        <img class="img-show" src="{{product.imageURL}}">-->
+      <!--      </div>-->
+      <!--      <div class="mySlides">-->
+      <!--        <img class="img-show" src="{{product.imageURL}}">-->
+      <!--      </div>-->
+      <!--      <div class="mySlides">-->
+      <!--        <img class="img-show" src="{{product.imageURL}}">-->
+      <!--      </div>-->
+      <!--      <div class="mySlides">-->
+      <!--        <img class="img-show" src="{{product.imageURL}}">-->
+      <!--      </div>-->
+      <!--      <div class="mySlides">-->
+      <!--        <img class="img-show" src="{{product.imageURL}}">-->
+      <!--      </div>-->
+      <!--      <div class="mySlides">-->
+      <!--        <img class="img-show" src="{{product.imageURL}}">-->
+      <!--      </div>-->
 
       <!-- Next and previous buttons -->
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <!--      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>-->
+      <!--      <a class="next" onclick="plusSlides(1)">&#10095;</a>-->
 
       <!-- Image text -->
       <div class="caption-container">
@@ -32,73 +33,39 @@
       </div>
     </div>
     <div class="col-md-4 pl-4">
-      <p>ID: {{product.productId}}</p>
-      <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:
-        <span class="colorTime">{{product.displayTimeDetail}}</span>
-      </p>
-      <ng-template #loggedOut>
-        <span class="colorTime m-0">Đã hết thời gian đấu giá</span>
-      </ng-template>
-      <p>Giá gốc: {{product.initialPrice}}</p>
-      <p>Mỗi lần tăng ít nhất: {{product.eachIncrease}}</p>
+      <p>ID: {{auction.productId}}</p>
+      <!--      <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:-->
+      <!--        <span class="colorTime">{{product.displayTimeDetail}}</span>-->
+      <!--      </p>-->
+      <!--      <ng-template #loggedOut>-->
+      <!--        <span class="colorTime m-0">Đã hết thời gian đấu giá</span>-->
+      <!--      </ng-template>-->
+      <p>Giá gốc: {{auction.initialPrice}}</p>
+      <p>Mỗi lần tăng ít nhất: {{auction.eachIncrease}}</p>
       <div class="row">
-        <form class="w-75 mx-auto" [formGroup]="bidderForm" (ngSubmit)="onSubmitBid()">
-        <div class="col-md-3 info-product pt-md-3">
-          Giá đấu:
-        </div>
-        <div class="col-md-5 info-product px-0 align-content-center">
-          <div class="price form-group d-flex text-center">
-<!--            <a href="#" class=" border rounded-left pt-md-2 pl-md-2 pr-md-2 ">-->
-<!--              <i class="fa fa-minus" aria-hidden="true"></i>-->
-<!--            </a>-->
-<!--            <select class="form-control" id="exampleFormControlSelect1">-->
-<!--              <option>190.000</option>-->
-<!--              <option>200.000</option>-->
-<!--              <option>210.000</option>-->
-<!--              <option>220.000</option>-->
-<!--              <option>230.000</option>-->
-<!--            </select>-->
-<!--            <a href="#" class="border rounded-right pt-md-2 pl-md-2 pr-md-2 ">-->
-<!--              <i class="fa fa-plus" aria-hidden="true"></i>-->
-<!--            </a>-->
-            <input class="form-control" type="text" formControlName="bidPrice">
-
-          </div>
+        <div class="col-md-8 info-product">
+          <p>Giá đấu tiếp theo:<input id="valueBidder" class="form-control" type="text"
+                                      value="{{valueNextBidder}}" formControlName="bidPrice" disabled></p>
         </div>
         <div class="col-md-4 info-product">
-          <input class="btn btn-success" type="submit" value="Đấu giá" [disabled]="bidderForm.invalid">
-          <!--          <button class="btn btn-primary" onClick="onSubmitBid()">Đấu giá</button>-->
+          <br>
+          <input class="btn btn-success" type="submit" value="Đấu giá" (click)="onSubmitBid()">
         </div>
-        </form>
       </div>
     </div>
     <div class="col-md-5">
       <!--      phương-->
-      <app-list-bidder [idProduct]="idProduct"></app-list-bidder>
+      <app-list-bidder [idAuction]="idAuction"></app-list-bidder>
     </div>
   </div>
   <hr>
   <h3>Hình ảnh</h3>
   <!-- Thumbnail images -->
   <div class="row">
-    <div class="column">
-      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(1)">
+    <div class="column" *ngFor="let img of listImg ;let i=index;">
+      <img class="demo cursor" src="{{img.imageURL}}" onclick="currentSlide(i)">
     </div>
-    <div class="column">
-      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(2)">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(3)">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(4)">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(5)">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(6)">
-    </div>
+
   </div>
   <hr>
   <h3>Thông tin chi tiết</h3>
@@ -127,40 +94,40 @@
 
 <!--Click de chuyen anh-->
 <script>
-  var slideIndex = 1;
-  showSlides(slideIndex);
+    var slideIndex = 1;
+    showSlides(slideIndex);
 
-  // Next/previous controls
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
 
-  // Thumbnail image controls
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
 
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("demo");
-    var captionText = document.getElementById("caption");
-    if (n > slides.length) {
-      slideIndex = 1
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
     }
-    if (n < 1) {
-      slideIndex = slides.length
-    }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-    captionText.innerHTML = dots[slideIndex - 1].alt;
-  }
 </script>
 
 <!--Yêu cầu đăng nhập -->
@@ -170,40 +137,40 @@
 
 <!--IPA comment facebook-->
 <script>
-  // Kiểm tra trạng thái đăng nhập
-  function checkLoginState() {
-    FB.getLoginStatus(function (response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  //Lấy trạng thái đăng nhập
-  FB.getLoginStatus(function (response) {
-    statusChangeCallback(response);
-  })
-
-  window.fbAsyncInit = function () {
-    FB.init({
-      appId: '{your-app-id}',
-      cookie: true,
-      xfbml: true,
-      version: '{api-version}'
-    });
-
-    FB.AppEvents.logPageView();
-
-  };
-
-  (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {
-      return;
+    // Kiểm tra trạng thái đăng nhập
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
     }
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
+
+    //Lấy trạng thái đăng nhập
+    FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+    })
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '{your-app-id}',
+            cookie: true,
+            xfbml: true,
+            version: '{api-version}'
+        });
+
+        FB.AppEvents.logPageView();
+
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 
 
