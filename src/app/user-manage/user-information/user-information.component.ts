@@ -23,13 +23,15 @@ export class UserInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userName = this.jwtService.getUsername();
-    if (this.userName === '' || this.userName === undefined || this.userName === null) {
-      //  đưa ra thông báo login
-      document.getElementById('control').click();
-    } else {
-      this.getUser();
-    }
+    // this.userName = this.jwtService.getUsername();
+    // if (this.userName === '' || this.userName === undefined || this.userName === null) {
+    //   //  đưa ra thông báo login
+    //   document.getElementById('control').click();
+    // } else {
+    //   this.getUser();
+    // }
+    this.userName = 'khanhquoc';
+    this.getUser();
   }
 
   getUser(): void {
@@ -56,7 +58,6 @@ export class UserInformationComponent implements OnInit {
   }
 
   editInfo(): void {
-    if (this.checkEditPassword()) {
       this.userEdit = this.infoForm.value;
       this.userEdit.password = this.passWord;
       this.userService.editUserInfo(this.userEdit, this.userName).subscribe(
@@ -71,13 +72,9 @@ export class UserInformationComponent implements OnInit {
           this.getUser();
         }
       );
-    } else {
-      document.getElementById('message').style.color = 'yellow';
-      this.message = '*lỗi các trường mật khẩu!';
-    }
   }
 
-  checkEditPassword(): boolean {
+  checkEditPassword(): void {
     const oldPass = document.getElementById('oldPass') as HTMLInputElement;
     const newPass = document.getElementById('newPass') as HTMLInputElement;
     const reNewPass = document.getElementById('reNewPass') as HTMLInputElement;
@@ -87,30 +84,41 @@ export class UserInformationComponent implements OnInit {
       newPass.style.border = 'none';
       reNewPass.style.border = 'none';
       this.passWord = this.user.password;
-      return true;
+      this.editInfo();
+      return;
     }
 
-    if (oldPass.value !== this.user.password) {
-      oldPass.style.border = '2px solid red';
-      newPass.style.border = 'none';
-      reNewPass.style.border = 'none';
-      return false;
-    } else {
-      oldPass.style.border = 'none';
-      if (newPass.value !== reNewPass.value || newPass.value === '') {
-        reNewPass.style.border = '2px solid red';
-        newPass.style.border = '2px solid red';
-        return false;
-      } else {
-        reNewPass.style.border = 'none';
-        newPass.style.border = 'none';
-        this.passWord = newPass.value;
-        return true;
+    this.userService.checkPassword(this.userName, oldPass.value).subscribe(
+      checkPass => {
+        if (!checkPass) {
+          oldPass.style.border = '2px solid red';
+          newPass.style.border = 'none';
+          reNewPass.style.border = 'none';
+          document.getElementById('message').style.color = 'yellow';
+          this.message = '*lỗi các trường mật khẩu!';
+        } else {
+          oldPass.style.border = 'none';
+          if (newPass.value !== reNewPass.value || newPass.value === '') {
+            reNewPass.style.border = '2px solid red';
+            newPass.style.border = '2px solid red';
+            document.getElementById('message').style.color = 'yellow';
+            this.message = '*lỗi các trường mật khẩu!';
+          } else {
+            reNewPass.style.border = 'none';
+            newPass.style.border = 'none';
+            this.passWord = newPass.value;
+            this.editInfo();
+          }
+        }
       }
-    }
+    );
+  }
+
+  resetMessage(): void{
+    this.message = '';
   }
 
   backToMenu(): void {
-  //  về trang trước
+    //  về trang trước
   }
 }
