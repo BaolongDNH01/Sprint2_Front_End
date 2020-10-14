@@ -27,6 +27,7 @@ export class ProductService {
   findById(id: number): Observable<Product> {
     return this.httpClient.get<Product>(this.API_URL + '/product/' + id);
   }
+
   // Châu => func dùng để thay đổi status khi product được duyệt
   editProduct(product: Product): Observable<void> {
     return this.httpClient.patch<void>(this.API_URL + '/product-edit/' + product.productId, product);
@@ -61,5 +62,9 @@ export class ProductService {
 
   saveImg(image: Image): Observable<Image> {
     return this.httpClient.post<Image>(this.API_URL + '/create-image', image);
+  }
+
+  getListImg(id: number): Observable<Image[]> {
+    return this.httpClient.get<Image[]>(this.API_URL + '/get-image-product/' + id);
   }
 }
