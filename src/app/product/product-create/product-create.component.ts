@@ -29,7 +29,7 @@ export class ProductCreateComponent implements OnInit {
   idProduct: number;
   nameImg: string;
   image = new Image();
-
+  roles: string[];
   constructor(private fb: FormBuilder, private productService: ProductService,
               private router: Router,
               private jwt: JwtService,
@@ -44,7 +44,16 @@ export class ProductCreateComponent implements OnInit {
       statusId: ['7', [Validators.required]],
       timeId: ['', [Validators.required]],
     });
-
+    this.roles = jwt.getAuthorities();
+    if (this.roles.length === 0) {
+      router.navigateByUrl('**');
+    }
+    this.roles.every(role => {
+      if (role === 'ROLE_MEMBER' || role === 'ROLE_MEMBER') {
+        router.navigateByUrl('**');
+        return;
+      }
+    });
   }
 
   ngOnInit(): void {
