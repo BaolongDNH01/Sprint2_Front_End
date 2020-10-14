@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Product} from './product';
 import {Category} from './category';
 import {AuctionTime} from './auction-time';
 import {StatusProduct} from './statusProduct';
 import {Image} from './image';
+import {JwtService} from '../login/services/jwt.service';
 
 
 @Injectable({
@@ -17,10 +18,13 @@ export class ProductService {
   API_URL = 'http://localhost:8080';
   private getAllProductApi = 'http://localhost:8080/getAllProduct';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private jwtService: JwtService) {
   }
 
   getAllProduct(): Observable<Product[]> {
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwtService.getToken());
     return this.httpClient.get<Product[]>(this.getAllProductApi);
   }
 
@@ -52,10 +56,14 @@ export class ProductService {
   private deleteProductsApi = 'http://localhost:8080/deleteProducts';
 
   findAllCategoryDto(): Observable<Category[]> {
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwtService.getToken());
     return this.httpClient.get<Category[]>(this.getAllCategoryDtoApi);
   }
 
   deleteProducts(list: number[]): Observable<any> {
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwtService.getToken());
     return this.httpClient.post<any>(this.deleteProductsApi, list);
   }
 
