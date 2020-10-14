@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './User';
 
-import {RecoverPassword} from "./recover-password/RecoverPassword";
+// import {RecoverPassword} from "./recover-password/RecoverPassword";
 import {JwtService} from '../login/services/jwt.service';
 import {RecoverPassword} from './recover-password/RecoverPassword';
 

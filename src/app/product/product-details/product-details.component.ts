@@ -7,6 +7,7 @@ import {DatePipe} from '@angular/common';
 import {UserService} from '../../user/user.service';
 import {JwtService} from '../../login/services/jwt.service';
 import {AuctionService} from '../../auction/auction.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -20,14 +21,18 @@ export class ProductDetailsComponent implements OnInit {
   bidder: Bidder = new Bidder();
   myDate = new Date();
   interval;
-
+  bidderForm: FormGroup;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
               private datePipe: DatePipe,
               private userService: UserService,
               private jwt: JwtService,
-              private auctionService: AuctionService) {
+              private auctionService: AuctionService,
+              private fb: FormBuilder) {
+    this.bidderForm = this.fb.group({
+      bidPrice: ['', [Validators.required]],
+    });
   }
 
   ngOnInit(): void {
@@ -52,7 +57,7 @@ export class ProductDetailsComponent implements OnInit {
         }
         console.log(this.product.displayTime);
         // @ts-ignore
-      this.product.displayTimeDetail = this.transformTime(this.product.displayTime);
+        this.product.displayTimeDetail = this.transformTime(this.product.displayTime);
       }, 1000
     );
   }
@@ -64,10 +69,13 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onSubmitBid(): void {
+    this.bidder = Object.assign({}, this.bidderForm.value);
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
-    // this.bidder.bidPrice=
     this.bidder.auctionId = this.product.productId;
     this.bidder.userName = this.jwt.getUsername();
     this.auctionService.saveBidderDto(this.bidder);
+    location.reload();
   }
 }
+
+
