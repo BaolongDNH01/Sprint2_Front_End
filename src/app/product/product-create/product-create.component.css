@@ -1,7 +1,47 @@
-.mat-select-value{
-  color: black;
-}
 
 .notice{
   color:red;
 }
+#files::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+#files {
+  color: transparent;
+}
+
+#files::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+#files::before {
+  content: 'Chọn tệp';
+  color: black;
+  display: inline-block;
+  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 50px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+#files:hover::before {
+  border-color: black;
+}
+#files:active {
+  outline: 0;
+}
+#files:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+p{
+  color: green;
+  font-weight:bold;
+}
+
