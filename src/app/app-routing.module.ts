@@ -11,6 +11,8 @@ import {DefaultLoadComponent} from './home-page/default-load/default-load.compon
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
 import { ErrorPageComponent } from './payment/components/error-page/error-page.component';
 import {ProductCreateComponent} from './product/product-create/product-create.component';
+import {ApprovalProductComponent} from './product/approval-product/approval-product.component';
+import {TransactionManagementComponent} from './transaction-management/transaction-management.component';
 
 
 const routes: Routes = [
@@ -22,7 +24,9 @@ const routes: Routes = [
       {path: 'list-auction', component: ListAuctionComponent},
       {path: 'recover-password', component: RecoverPasswordCodeComponent},
       {path: 'product-details/:id', component: ProductDetailsComponent},
-      {path: 'product-create', component: ProductCreateComponent}
+      {path: 'product-create', component: ProductCreateComponent},
+      {path: 'approval-product/:id', component: ApprovalProductComponent},
+      {path: 'transaction-management', component: TransactionManagementComponent}
     ]
   },
   {

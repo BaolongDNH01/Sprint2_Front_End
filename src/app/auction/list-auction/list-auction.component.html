@@ -39,7 +39,7 @@
             <td>{{list.statusName}}</td>
             <td>{{list.dayTimeStart | date: 'dd/MM/yyyy h:mm:ss a '}}</td>
             <td>{{list.dayTimeEnd}}</td>
-            <td><a href="" (click)="onStatusAuction(list.auctionId)">Cho phép</a></td>
+            <td><button type="button" class="btn btn-primary btn-sm" (click)="onStatusAuction(list.auctionId)">Cho phép</button></td>
             <td></td>
           </tr>
           </tbody>

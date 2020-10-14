@@ -46,6 +46,7 @@ export class ListAuctionComponent implements OnInit {
     this.auctionService.findAllProductAuction().subscribe(
       list => {
         this.auctionList = list;
+        console.log(this.auctionList);
         this.auctionListShow = this.auctionList;
       }, error => {
       },
@@ -57,7 +58,6 @@ export class ListAuctionComponent implements OnInit {
         this.auctionService.getAllStatusAuction().subscribe(
           list => {
             this.statusList = list;
-            console.log(this.statusList);
           }
         );
       }
@@ -85,6 +85,7 @@ export class ListAuctionComponent implements OnInit {
 
   onStatusAuction(auctionId: number): void {
     this.findProductByAuction(auctionId);
+
   }
 
   onEditStatusAuction(): void {
@@ -96,8 +97,11 @@ export class ListAuctionComponent implements OnInit {
       }, error => {
 
       }, () => {
+
       }
     );
+    // location.reload();
+    this.router.navigateByUrl('');
   }
 
   find(statusName: string): void {
