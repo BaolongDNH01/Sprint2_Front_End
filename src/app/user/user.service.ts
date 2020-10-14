@@ -6,6 +6,7 @@ import {User} from './User';
 // import {RecoverPassword} from "./recover-password/RecoverPassword";
 import {JwtService} from '../login/services/jwt.service';
 import {RecoverPassword} from './recover-password/RecoverPassword';
+import {ChangePassword} from './reset-password/ChangePassword';
 
 
 @Injectable({
@@ -54,7 +55,13 @@ export class UserService {
     return this.httpClient.post<any>(this.API_URL + '/recover-password', recoverPassword);
   }
   checkCode(confirmCode: string, username: string): Observable<string>{
-    return this.httpClient.post<string>(this.API_URL + '/check-code/' + confirmCode, {username});
+    return this.httpClient.get<string>(this.API_URL + '/check-code/' + confirmCode + '/' + username);
+  }
+  changePassword(changePassword: ChangePassword): Observable<any>{
+    return this.httpClient.post<any>(this.API_URL + '/change-password' , changePassword);
+  }
+  deleteCode(username: string): Observable<any>{
+    return this.httpClient.get<any>(this.API_URL + '/delete-code/' + username);
   }
   increasePoint(user: User, point: number): Observable<any>{
     user.point = user.point + point;

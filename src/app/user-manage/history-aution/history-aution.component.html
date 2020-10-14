@@ -15,7 +15,7 @@
     <tbody>
     <tr *ngFor="let bidder of listBidder |paginate: {
           id: 'listing_pagination',
-          itemsPerPage: 4,
+          itemsPerPage: 10,
           currentPage: currentPage,
           totalItems: totalItem}, index as i">
       <th>{{i}}</th>
@@ -28,6 +28,12 @@
     </tr>
     </tbody>
   </table>
+  <div>
+    <div class="text-center text-warning pt-5 pl-5" *ngIf="listBidder.length === 0">Do not have any data</div>
+  </div>
+  <div>
+    <pagination-controls *ngIf="listBidder.length > 10" id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
 </div>
 <button id="control" data-toggle="modal" data-target="#exampleModal" hidden></button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
