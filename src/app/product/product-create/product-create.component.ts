@@ -62,7 +62,7 @@ export class ProductCreateComponent implements OnInit {
   onSubmit() {
     this.product = Object.assign({}, this.productForm.value);
 
-    this.product.fullName = 'admin';
+    this.product.fullName = this.jwt.getUsername();
     this.product.productId = this.idProduct;
 
     console.log(this.idProduct);

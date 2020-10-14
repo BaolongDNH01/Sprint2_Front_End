@@ -132,10 +132,10 @@
           <td><a href="#">Sửa</a></td>
         </tr>
         </tbody>
-        <tr>
-          <td *ngIf="productListShow.length === 0">Do not have any product data</td>
-        </tr>
       </table>
+      <div>
+        <div class="text-center text-warning pt-2 pl-5" *ngIf="productListShow.length === 0">Do not have any product data</div>
+      </div>
     </div>
   </div>
 
@@ -152,7 +152,7 @@
       </button>
     </div>
     <div class="col-md-6 col-sm-6 text-center">
-      <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
+      <pagination-controls *ngIf="productListShow.length > 8" id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
     </div>
   </div>
 </div>

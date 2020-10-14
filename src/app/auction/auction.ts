@@ -11,6 +11,8 @@ export class Auction {
   auctionTime: number;
   statusId: number;
   statusName: string;
+  initialPrice: number;
+
   constructor() {
   }
 }

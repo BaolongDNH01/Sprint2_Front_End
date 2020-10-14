@@ -44,7 +44,12 @@ export class AuctionService {
     console.log('chua qua lun ne');
     return this.httpClient.get<StatusProduct[]>(this.URL + '/getAllStatusAuction');
   }
+
   saveBidderDto(bidder: Bidder): Observable<Bidder> {
     return this.httpClient.post<Bidder>(this.URL + '/create-bidder', bidder);
+  }
+
+  getBidderMax(id: number): Observable<number> {
+    return this.httpClient.get<number>(this.URL + '/get-bidder-max/' + id);
   }
 }
