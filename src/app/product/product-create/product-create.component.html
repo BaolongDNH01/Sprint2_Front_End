@@ -1,5 +1,5 @@
-<div class="container">
-  <h3 class="text-center">Đăng sản phẩm</h3>
+<div id="create" class="container-fluid">
+  <h2 class="text-center">Đăng sản phẩm</h2>
   <form class="w-75 mx-auto" [formGroup]="productForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <p>Tên sản phẩm :</p>
@@ -75,6 +75,6 @@
              [disabled]="productForm.invalid">
     </div>
   </form>
-  {{ productForm.value | json}}
+<!--  {{ productForm.value | json}}-->
 
 </div>
