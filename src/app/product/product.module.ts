@@ -13,6 +13,7 @@ import {environment} from '../../environments/environment';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 
 // @ts-ignore
 @NgModule({
@@ -20,12 +21,14 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     ProductDetailsComponent,
     ApprovalProductComponent,
     ProductManageComponent,
+    AdminAddProductComponent,
   ],
   exports: [
     ProductCreateComponent,
     ProductDetailsComponent,
     ApprovalProductComponent,
-    ProductManageComponent
+    ProductManageComponent,
+    AdminAddProductComponent
   ],
   imports: [
     CommonModule,

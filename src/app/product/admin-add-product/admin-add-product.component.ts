@@ -3,22 +3,25 @@ import {Product} from '../product';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../category';
 import {AuctionTime} from '../auction-time';
-import {ProductService} from '../product.service';
-import {Router} from '@angular/router';
-import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
 import {Image} from '../image';
+import {ProductService} from '../product.service';
+import {Router} from '@angular/router';
 import {JwtService} from '../../login/services/jwt.service';
-import {finalize} from 'rxjs/operators';
-import {newArray} from '@angular/compiler/src/util';
 import {DatePipe} from '@angular/common';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from 'rxjs/operators';
+import {UserService} from '../../user/user.service';
+import {User} from '../../user/User';
+
+declare var $: any;
 
 @Component({
-  selector: 'app-product-create',
-  templateUrl: './product-create.component.html',
-  styleUrls: ['./product-create.component.css']
+  selector: 'app-admin-add-product',
+  templateUrl: './admin-add-product.component.html',
+  styleUrls: ['./admin-add-product.component.css']
 })
-export class ProductCreateComponent implements OnInit {
+export class AdminAddProductComponent implements OnInit {
   product: Product;
   productForm: FormGroup;
   categoryList: Category[];
@@ -29,13 +32,19 @@ export class ProductCreateComponent implements OnInit {
   idProduct: number;
   nameImg: string;
   image = new Image();
-  role: string;
+  idUser: number;
+  detailUser: any;
+  loadUserStatus: boolean;
+  user: User;
+  userId: number;
+
 
   constructor(private fb: FormBuilder, private productService: ProductService,
               private router: Router,
               private jwt: JwtService,
               private datePipe: DatePipe,
-              private angularFireStorage: AngularFireStorage) {
+              private angularFireStorage: AngularFireStorage,
+              private userService: UserService) {
     this.productForm = this.fb.group({
       productName: ['', [Validators.required]],
       initialPrice: ['', [Validators.required, Validators.pattern(/\d+/)]],
@@ -44,8 +53,10 @@ export class ProductCreateComponent implements OnInit {
       categoryId: ['', [Validators.required]],
       statusId: ['7', [Validators.required]],
       timeId: ['', [Validators.required]],
+      userId: ['', Validators.required],
+      detailUser: ['']
     });
-
+    this.loadUserStatus = true;
   }
 
   ngOnInit(): void {
@@ -59,15 +70,39 @@ export class ProductCreateComponent implements OnInit {
 
   }
 
+  loadUser(): void {
+    if (this.productForm.value.userId != null) {
+      this.userService.findUserById(this.productForm.value.userId).subscribe(
+        (data) => {
+          this.user = data;
+        },
+        error => {
+          this.loadUserStatus = false;
+        },
+        () => {
+          const textAreaDetailUser = document.getElementById('detailUser');
+          this.detailUser = 'ID: ' + this.user.userId + '\n' + 'Tên đầy đủ: ' + this.user.fullName + '\nEmail: ' + this.user.email;
+          textAreaDetailUser.innerHTML = this.detailUser;
+          textAreaDetailUser.style.height = textAreaDetailUser.scrollHeight + 3 + 'px';
+        }
+      );
+    }
+  }
+
+  clearDetail(): void {
+    const userDetail = document.getElementById('detailUser') as HTMLInputElement;
+    userDetail.value = '';
+    const id = document.getElementById('userId') as HTMLInputElement;
+    id.value = '';
+    this.productForm.value.userId = '';
+  }
+
   // tslint:disable-next-line:typedef
   onSubmit() {
     this.product = Object.assign({}, this.productForm.value);
-
     this.product.fullName = this.jwt.getUsername();
     this.product.productId = this.idProduct;
-
     console.log(this.idProduct);
-
     console.log(this.product);
     this.productService.save(this.product).subscribe(
       next => {
