@@ -20,6 +20,7 @@ import {SendMailComponent} from './user/send-mail/send-mail.component';
 import {DeleteUserComponent} from './user/delete-user/delete-user.component';
 import {ActivatedAccountComponent} from './user/activated-account/activated-account.component';
 import {ErrorComponent} from './error/error.component';
+import {ResetPasswordComponent} from './user/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
       {path: 'auction-guide', component: AuctionGuideComponent},
       {path: '', component: DefaultLoadComponent},
       {path: 'list-auction', component: ListAuctionComponent},
-      {path: 'recover-password', component: RecoverPasswordCodeComponent},
+      {path: 'recover-password/:username', component: RecoverPasswordCodeComponent},
+      {path: 'reset-password/:username', component: ResetPasswordComponent},
       {path: 'product-details/:id', component: ProductDetailsComponent},
       {path: 'product-create', component: ProductCreateComponent},
       {path: 'list-user', component: ListUserComponent},
