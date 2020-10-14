@@ -42,29 +42,34 @@
       <p>Giá gốc: {{product.initialPrice}}</p>
       <p>Mỗi lần tăng ít nhất: {{product.eachIncrease}}</p>
       <div class="row">
+        <form class="w-75 mx-auto" [formGroup]="bidderForm" (ngSubmit)="onSubmitBid()">
         <div class="col-md-3 info-product pt-md-3">
           Giá đấu:
         </div>
         <div class="col-md-5 info-product px-0 align-content-center">
           <div class="price form-group d-flex text-center">
-            <a href="#" class=" border rounded-left pt-md-2 pl-md-2 pr-md-2 ">
-              <i class="fa fa-minus" aria-hidden="true"></i>
-            </a>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>190.000</option>
-              <option>200.000</option>
-              <option>210.000</option>
-              <option>220.000</option>
-              <option>230.000</option>
-            </select>
-            <a href="#" class="border rounded-right pt-md-2 pl-md-2 pr-md-2 ">
-              <i class="fa fa-plus" aria-hidden="true"></i>
-            </a>
+<!--            <a href="#" class=" border rounded-left pt-md-2 pl-md-2 pr-md-2 ">-->
+<!--              <i class="fa fa-minus" aria-hidden="true"></i>-->
+<!--            </a>-->
+<!--            <select class="form-control" id="exampleFormControlSelect1">-->
+<!--              <option>190.000</option>-->
+<!--              <option>200.000</option>-->
+<!--              <option>210.000</option>-->
+<!--              <option>220.000</option>-->
+<!--              <option>230.000</option>-->
+<!--            </select>-->
+<!--            <a href="#" class="border rounded-right pt-md-2 pl-md-2 pr-md-2 ">-->
+<!--              <i class="fa fa-plus" aria-hidden="true"></i>-->
+<!--            </a>-->
+            <input class="form-control" type="text" formControlName="bidPrice">
+
           </div>
         </div>
         <div class="col-md-4 info-product">
-          <button class="btn btn-primary" onClick="onSubmitBid()">Đấu giá</button>
+          <input class="btn btn-success" type="submit" value="Đấu giá" [disabled]="bidderForm.invalid">
+          <!--          <button class="btn btn-primary" onClick="onSubmitBid()">Đấu giá</button>-->
         </div>
+        </form>
       </div>
     </div>
     <div class="col-md-5">
@@ -108,14 +113,12 @@
   </ul>
   <hr>
   <h3>Bình luận</h3>
-  <textarea class="form-control" aria-label="With textarea" disabled>
-    </textarea>
+  <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default"
+       data-auto-logout-link="false" data-use-continue-as="true" data-width="">
+  </div>
+  <div id="fb-root"></div>
   <div class="input-group pt-md-3 pb-md-5">
-        <textarea class="form-control" aria-label="With textarea">
-        </textarea>
-    <div class="input-group-prepend">
-      <span class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nhận xét</span>
-    </div>
+    <span class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nhận xét</span>
   </div>
 
 
@@ -160,25 +163,24 @@
   }
 </script>
 
+<!--Yêu cầu đăng nhập -->
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v8.0&appId=335828794167120&autoLogAppEvents=1"
+        nonce="xQHz8pzZ"></script>
+
 <!--IPA comment facebook-->
 <script>
-  //Kiem tra dang nhap fb
+  // Kiểm tra trạng thái đăng nhập
+  function checkLoginState() {
+    FB.getLoginStatus(function (response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  //Lấy trạng thái đăng nhập
   FB.getLoginStatus(function (response) {
     statusChangeCallback(response);
   })
-
-  //Trang thai cua nguoi comment fb
-
-  // {
-  //   status: 'connected',
-  //     authResponse: {
-  //   accessToken: '...',
-  //     expiresIn:'...',
-  //     signedRequest:'...',
-  //     userID:'...'
-  // }
-  }
-
 
   window.fbAsyncInit = function () {
     FB.init({
@@ -203,4 +205,6 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 </script>
+
+
 

@@ -9,7 +9,7 @@ import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {ProductModule} from './product/product.module';
 import {HttpClientModule} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserModule} from './user/user.module';
 import {AuctionModule} from './auction/auction.module';
 import {HomePageModule} from './home-page/home-page.module';
@@ -34,6 +34,8 @@ import {
 } from 'ng-recaptcha';
 import {PaymentModule} from './payment/payment.module';
 import { ErrorComponent } from './error/error.component';
+
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 
 
@@ -62,7 +64,9 @@ import { ErrorComponent } from './error/error.component';
     ProductModule,
     SocialLoginModule,
     RecaptchaFormsModule,
-    RecaptchaModule
+    RecaptchaModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,

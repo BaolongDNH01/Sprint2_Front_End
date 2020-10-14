@@ -3,7 +3,8 @@
     <div class="col-md-10 margin-auto">
       <div class="border">
         <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
 
@@ -26,45 +27,46 @@
           </div>
         </nav>
         <div class="row">
-          <div class="display-flex mt-2 ml-4" >
+          <div class="display-flex mt-2 ml-4">
             <div class="input-group input-group-sm mb-3 width-search">
               <div class="input-group-prepend">
-                <span class="input-group-text" >Người đăng</span>
+                <span class="input-group-text">Người đăng</span>
               </div>
-              <input type="text" class="" style="width: 50%;" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              <input type="text" class="" style="width: 50%;" [(ngModel)]="keyWordUserPoster" aria-label="Small"
+                     aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3 width-search">
               <div class="input-group-prepend">
-                <span class="input-group-text" >Người mua</span>
+                <span class="input-group-text">Người mua</span>
               </div>
-              <input type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              <input type="text" class="" style="width: 50%" [(ngModel)]="keyWordUserBuy"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3 width-search">
               <div class="input-group-prepend">
-                <span class="input-group-text" >Tên sản phẩm</span>
+                <span class="input-group-text">Tên sản phẩm</span>
               </div>
-              <input type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              <input type="text" class="" [(ngModel)]="keyWordProductName" style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3 width-search">
               <div class="input-group-prepend">
-                <span class="input-group-text" >Thành tiền</span>
+                <span class="input-group-text">Thành tiền</span>
               </div>
-              <input type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              <input type="text" class=""  [(ngModel)]="keyWordTotalPrice" style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3 width-search">
               <div class="input-group-prepend">
-                <span class="input-group-text" >Tình trạng</span>
+                <span class="input-group-text">Tình trạng</span>
               </div>
-              <select type="text" class="" style="width: 50%"  aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                <option value="">Thành công</option>
-              </select>
+              <input type="text" class=""  [(ngModel)]="keyWordStatus" style="width: 50%" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
             </div>
 
-            <button type="button" style="width: 20%" class="btn btn-primary btn-sm width-search ml-5"> Lọc </button>
+            <button type="button" (click)="search()" style="width: 20%"
+                    class="btn btn-primary btn-sm width-search ml-5"> Lọc
+            </button>
           </div>
         </div>
 
@@ -99,7 +101,7 @@
                 <td>{{list.totalPrice}}</td>
                 <td>{{list.shipCost}}</td>
                 <td>{{list.statusCart}}</td>
-                <td><input type="checkbox"></td>
+                <td><input type="checkbox" (click)="chooseToDelete(list.cartItemId)"></td>
               </tr>
               </tbody>
             </table>
@@ -112,7 +114,7 @@
           <div class="col-md-7">
 
             <div>
-              <button type="button" class="btn btn-primary btn-sm"><i class="far fa-trash-alt">xóa</i></button>
+              <button type="button" (click)="deleteCartItem()" class="btn btn-primary btn-sm"><i class="far fa-trash-alt">xóa</i></button>
             </div>
 
 

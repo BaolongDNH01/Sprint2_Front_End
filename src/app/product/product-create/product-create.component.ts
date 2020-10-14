@@ -5,12 +5,12 @@ import {Category} from '../category';
 import {AuctionTime} from '../auction-time';
 import {ProductService} from '../product.service';
 import {Router} from '@angular/router';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Image} from '../image';
 import {JwtService} from '../../login/services/jwt.service';
+import {finalize} from 'rxjs/operators';
+import {newArray} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-product-create',
@@ -22,29 +22,26 @@ export class ProductCreateComponent implements OnInit {
   productForm: FormGroup;
   categoryList: Category[];
   auctionTimeList: AuctionTime[];
-  selectedFile: File = null;
-  private myImage: any;
-  uploadPercent;
-  downloadURL: Observable<string>;
-  image: Image;
+  selectedFile = new Array<File>();
+  downloadURL = new Array<string>();
 
   constructor(private fb: FormBuilder, private productService: ProductService,
               private router: Router,
               private jwt: JwtService,
-              private angularFireStorage: AngularFireStorage,
-              private angularFirestore: AngularFirestore) {
-  }
-
-  ngOnInit(): void {
+              private angularFireStorage: AngularFireStorage) {
     this.productForm = this.fb.group({
       productName: ['', [Validators.required]],
       initialPrice: ['', [Validators.required, Validators.pattern(/\d+/)]],
       eachIncrease: ['', [Validators.required, Validators.pattern(/\d+/)]],
       productDetail: ['', [Validators.required]],
       categoryId: ['', [Validators.required]],
-      statusId: ['1', [Validators.required]],
+      statusId: ['7', [Validators.required]],
       timeId: ['', [Validators.required]],
+      // imageURL: [this.downloadURL]
     });
+  }
+
+  ngOnInit(): void {
     this.findAllCategory();
     this.findAllAuctionTime();
   }
@@ -53,16 +50,17 @@ export class ProductCreateComponent implements OnInit {
   onSubmit() {
     this.product = Object.assign({}, this.productForm.value);
     this.product.userName = this.jwt.getUsername();
+
+
     console.log(this.product);
     this.productService.save(this.product).subscribe(
       next => {
         console.log('Create process!');
-        this.saveImage();
       }, error => {
         console.log('Create failed!');
       }
     );
-    this.router.navigateByUrl('');
+    // this.router.navigateByUrl('');
   }
 
   findAllCategory(): void {
@@ -79,44 +77,43 @@ export class ProductCreateComponent implements OnInit {
     this.productService.findAllAuctionTime().subscribe(
       next => {
         this.auctionTimeList = next;
-        console.log(next);
       }, error => {
         this.auctionTimeList = new Array();
       }
     );
   }
 
-  uploadFileImg() {
-    const file = this.selectedFile;
-    const filePath = `${this.myImage.id}`;
-    const fileRef = this.angularFireStorage.ref(filePath);
-    const task = this.angularFireStorage.upload(filePath, file);
-
-    this.uploadPercent = task.percentageChanges();
-
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().toPromise().then((url) => {
-          this.downloadURL = url;
-          this.myImage.set({
-            productId: this.product.productId,
-            image: this.downloadURL,
-            myId: this.myImage.id
-          });
-          console.log(this.downloadURL);
-        }).catch(err => {
-          console.log(err);
-        });
-      })
-    )
-      .subscribe();
+  // tslint:disable-next-line:typedef
+  uploadFileImg(event) {
+    this.selectedFile = [];
+    // this.downloadURL = [];
+    for (let i = 0; i < event.target.files.length; i++) {
+      this.selectedFile.push(event.target.files.item(i));
+    }
+    console.log(this.selectedFile);
+    // upload lên firebase
+    // tslint:disable-next-line:prefer-for-of
+    this.uploadDbImg();
   }
 
-  saveImage() {
-    // @ts-ignore
-    this.image.imageURL = this.downloadURL;
-    this.image.productId = this.product.productId;
-    console.log(this.image);
-    this.productService.saveImg(this.image);
+  // tslint:disable-next-line:typedef
+  uploadDbImg() {
+    for (let i = 0; i < this.selectedFile.length; i++) {
+      const filePath = 'files/' + Math.random() + this.selectedFile[i];
+      const fileRef = this.angularFireStorage.ref(filePath);
+      const task = this.angularFireStorage.upload(filePath, this.selectedFile[i]);
+      // lấy url vào mảng imageUrl
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().toPromise().then((url) => {
+            this.downloadURL.push(url);
+          }).catch(err => {
+            console.log(err);
+          });
+        })
+      )
+        .subscribe();
+    }
+    console.log(this.downloadURL);
   }
 }

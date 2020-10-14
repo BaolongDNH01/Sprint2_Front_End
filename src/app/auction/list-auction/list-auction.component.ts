@@ -68,7 +68,6 @@ export class ListAuctionComponent implements OnInit {
     this.auctionService.findById(id).subscribe(
       next => {
         this.auction = next;
-        console.log(next);
         this.id = this.auction.auctionId;
         this.timeoutAuction = new FormGroup({
           auctionId: new FormControl(this.auction.auctionId),
@@ -91,10 +90,14 @@ export class ListAuctionComponent implements OnInit {
   onEditStatusAuction(): void {
     this.getTimeNow();
     this.auction = Object.assign({}, this.timeoutAuction.value);
-    console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
-    this.auctionService.editAuction(this.auction).subscribe();
-    this.router.navigateByUrl('');
+    this.auctionService.editAuction(this.auction).subscribe(
+      next => {
+      }, error => {
+
+      }, () => {
+      }
+    );
   }
 
   find(statusName: string): void {
