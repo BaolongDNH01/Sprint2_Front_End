@@ -33,6 +33,7 @@ import {
   RecaptchaSettings
 } from 'ng-recaptcha';
 import {PaymentModule} from './payment/payment.module';
+import { ErrorComponent } from './error/error.component';
 
 
 
@@ -41,6 +42,7 @@ import {PaymentModule} from './payment/payment.module';
   declarations: [
     AppComponent,
     TransactionManagementComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,

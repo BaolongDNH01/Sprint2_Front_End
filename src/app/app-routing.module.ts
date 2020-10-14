@@ -9,6 +9,7 @@ import {ListAuctionComponent} from './auction/list-auction/list-auction.componen
 import {RecoverPasswordCodeComponent} from './user/recover-password-code/recover-password-code.component';
 import {DefaultLoadComponent} from './home-page/default-load/default-load.component';
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
+import {ErrorComponent} from './error/error.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,8 @@ const routes: Routes = [
         component: CartComponent
       }
     ]
-  }
+  },
+  {path: '**', component: ErrorComponent}
 ];
 
 @NgModule({
