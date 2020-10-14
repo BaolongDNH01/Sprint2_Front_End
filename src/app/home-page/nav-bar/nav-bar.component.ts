@@ -26,6 +26,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
   username: string;
   avatar: string;
   loggedIn = false;
+  role: string[];
 
   currentIndex = -1;
 
@@ -42,7 +43,6 @@ export class NavBarComponent implements OnInit, OnDestroy{
       // const getImageData = this.jwtService.getAvatar();
       this.avatar = this.jwtService.getAvatar();
       this.loggedIn = true;
-      console.log(this.username + '\n' + this.avatar + '\n' + this.loggedIn);
     }
     this.modalService.load$.subscribe(
       (index) => {
@@ -51,6 +51,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
         }
         this.renderComponent(this.currentIndex);
       });
+    this.role = this.jwtService.getAuthorities();
   }
 
   // tslint:disable-next-line:typedef
@@ -68,6 +69,19 @@ export class NavBarComponent implements OnInit, OnDestroy{
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent<ModalComponent>(componentFactory);
     componentRef.changeDetectorRef.detectChanges();
+  }
+
+  logOut(): void {
+    if (window.confirm('Are you sure to logout ?')) {
+      this.jwtService.logOut();
+      this.reloadPage();
+    }
+    this.loggedIn = false;
+  }
+
+  reloadPage(): void {
+    window.location.reload();
+    window.location.href = '';
   }
 
   ngOnDestroy(): void {
