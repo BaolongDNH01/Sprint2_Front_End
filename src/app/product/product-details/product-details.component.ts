@@ -99,8 +99,8 @@ export class ProductDetailsComponent implements OnInit {
     this.bidder.bidPrice = this.valueNextBidder;
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.bidder.auctionId = this.auction.auctionId;
-    this.bidder.userName = 'admin';
-    // this.jwt.getUsername();
+    this.bidder.userName = this.jwt.getUsername();;
+    // admin
     console.log(this.bidder);
     this.auctionService.saveBidderDto(this.bidder).subscribe();
     location.reload();
