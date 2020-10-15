@@ -65,14 +65,14 @@ export class AddUserComponent implements OnInit {
         this.userList = next;
       }, error => {console.log('error'); },
       () => {
-        this.userService.sendEmail(this.user).subscribe(
+        this.userService.sendEmail(this.user, this.formUser.value.recaptchaReactive).subscribe(
           next => {},
           error => {
             this.error = 'Tài khoản đã tồn tại';
             this.load = false;
           },
           () => {
-            this.router.navigateByUrl('fc-admin//send-email');
+            this.router.navigateByUrl('fc-admin/send-email');
           }
         );
       }
