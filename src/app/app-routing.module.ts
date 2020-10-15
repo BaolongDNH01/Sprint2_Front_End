@@ -36,7 +36,6 @@ const routes: Routes = [
     children: [
       {path: 'auction-guide', component: AuctionGuideComponent},
       {path: '', component: DefaultLoadComponent},
-      {path: 'list-auction', component: ListAuctionComponent},
       {path: 'recover-password/:username', component: RecoverPasswordCodeComponent},
       {path: 'reset-password/:username', component: ResetPasswordComponent},
       {path: 'product-details/:id', component: ProductDetailsComponent},
@@ -54,6 +53,8 @@ const routes: Routes = [
           {path: 'lock-user/:ids', component: LockUserComponent},
           {path: 'unlock-user/:ids', component: UnlockUserComponent},
           {path: 'send-email', component: SendMailComponent},
+          {path: 'list-auction', component: ListAuctionComponent},
+          {path: 'transaction-management', component: TransactionManagementComponent},
         ]}
 
     ]
