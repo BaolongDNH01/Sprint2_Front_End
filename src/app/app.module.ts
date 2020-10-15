@@ -36,6 +36,7 @@ import {PaymentModule} from './payment/payment.module';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { ErrorComponent } from './error/error.component';
 import { FunctionAdminComponent } from './function-admin/function-admin.component';
+import {FunctionUserModule} from './function-user/function-user.module';
 
 
 
@@ -67,7 +68,8 @@ import { FunctionAdminComponent } from './function-admin/function-admin.componen
     RecaptchaFormsModule,
     RecaptchaModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    FunctionUserModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,

@@ -1,4 +1,4 @@
-<div class="container font header-border">
+<div class="container-fluid font header-border">
   <!--    table title-->
   <div class="row header">
     <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 p-2">
@@ -129,7 +129,7 @@
           <td>{{product.statusName}}</td>
           <td>{{product.productDetail}}</td>
           <td><img src="{{product.image}}" alt="{{product.productName}}"></td>
-          <td><a href="#">Sửa</a></td>
+          <td><a class="text-success" (click)="goEditProduct()">Sửa</a></td>
         </tr>
         </tbody>
       </table>
@@ -146,7 +146,7 @@
         <i class="fa fa-trash-o" aria-hidden="true"></i>
         Xóa
       </button>
-      <button class="btn btn-outline-info ml-2">
+      <button class="btn btn-outline-info ml-2" (click)="goAddProduct()">
         <i class="fa fa-puzzle-piece" aria-hidden="true"></i>
         Thêm mới
       </button>

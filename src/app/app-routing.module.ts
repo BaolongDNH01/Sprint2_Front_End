@@ -27,6 +27,11 @@ import {ActivatedAccountComponent} from './user/activated-account/activated-acco
 import {ErrorComponent} from './error/error.component';
 import {ResetPasswordComponent} from './user/reset-password/reset-password.component';
 import {FunctionAdminComponent} from './function-admin/function-admin.component';
+import {ProductManageComponent} from './product/product-manage/product-manage.component';
+import {NavBarUserComponent} from './function-user/nav-bar-user/nav-bar-user.component';
+import {UserInformationComponent} from './user-manage/user-information/user-information.component';
+import {HistoryPostProductComponent} from './user-manage/history-post-product/history-post-product.component';
+import {HistoryAutionComponent} from './user-manage/history-aution/history-aution.component';
 
 
 
@@ -52,11 +57,17 @@ const routes: Routes = [
           {path: 'add-user', component: AddUserComponent},
           {path: 'lock-user/:ids', component: LockUserComponent},
           {path: 'unlock-user/:ids', component: UnlockUserComponent},
+          {path: 'productManage', component: ProductManageComponent},
           {path: 'send-email', component: SendMailComponent},
           {path: 'list-auction', component: ListAuctionComponent},
           {path: 'transaction-management', component: TransactionManagementComponent},
+        ]},
+      {path: 'userManage', component: NavBarUserComponent, children: [
+          {path: '', component: UserInformationComponent},
+          {path: 'historyPostProduct', component: HistoryPostProductComponent},
+          {path: 'historyAuction', component: HistoryAutionComponent}
+          //  chuc nang user
         ]}
-
     ]
   },
   {

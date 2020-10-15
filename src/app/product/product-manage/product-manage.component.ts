@@ -3,6 +3,7 @@ import {ProductService} from '../product.service';
 import {Product} from '../product';
 import {Category} from '../category';
 import {StatusProduct} from '../statusProduct';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-manage',
@@ -25,7 +26,8 @@ export class ProductManageComponent implements OnInit {
   countItemSuggest = 10;
   listProductsDelete: number[] = [];
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -222,5 +224,13 @@ export class ProductManageComponent implements OnInit {
         this.listProductsDelete = [];
       }
     );
+  }
+
+  goEditProduct(): void {
+    this.router.navigateByUrl('product-edit').then();
+  }
+
+  goAddProduct(): void {
+    this.router.navigateByUrl('product-create').then();
   }
 }
