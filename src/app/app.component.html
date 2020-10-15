@@ -1,16 +1,5 @@
 <div class="container-fluid">
   <app-nav-bar></app-nav-bar>
-  <div class="fix-bop-themes">
-    <div *ngIf="user === 'admin'" class="row">
-      <div class="col-md-2">
-        <app-function-admin></app-function-admin>
-      </div>
-      <div class="col-md-10">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-    <router-outlet *ngIf="user === 'member'"></router-outlet>
-  </div>
   <router-outlet></router-outlet>
 </div>
 
