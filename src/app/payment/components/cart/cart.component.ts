@@ -51,6 +51,8 @@ export class CartComponent implements OnInit {
     if (this.isEmpty || isNaN(this.userId)) {
       window.location.href = 'cart/error-page';
     } else {
+      window.localStorage.setItem('totalPrice', this.total.toString());
+      window.localStorage.setItem('shipCost', this.shipCost.toString());
       window.location.href = 'cart/payment-address';
     }
   }
