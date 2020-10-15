@@ -31,6 +31,7 @@ export class TransactionManagementComponent implements OnInit {
   keyWordTotalPrice: string;
   keyWordStatus: string;
   roles: string[];
+  curpage = 1;
 
   constructor(
     private cartItemService: CartItemService,
