@@ -9,24 +9,7 @@ import {JwtService} from './login/services/jwt.service';
 export class AppComponent implements OnInit{
   roles: string[];
   user: string;
-  constructor(private jwt: JwtService) {
-    this.roles = jwt.getAuthorities();
-    if (this.roles.length === 0){
-      this.user = 'member';
-      return;
-    }
-    this.roles.every(role => {
-      if (role === 'ROLE_MEMBER'){
-        this.user = 'member';
-        return;
-      }
-    });
-    this.roles.every(role => {
-      if (role === 'ROLE_ADMIN'){
-        this.user = 'admin';
-        return;
-      }
-    });
+  constructor() {
   }
 
   ngOnInit(): void {

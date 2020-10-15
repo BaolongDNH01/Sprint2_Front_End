@@ -64,7 +64,7 @@ export class DisplayProductAutionComponent implements OnInit {
   // Châu => Nơi nhúng chat box
   chatbox(): void {
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function() {
+    (function () {
       var s1 = document.createElement('script'), s0 = document.getElementsByTagName('script')[0];
       s1.async = true;
       s1.src = 'https://embed.tawk.to/5f6964cef0e7167d001284f1/default';
