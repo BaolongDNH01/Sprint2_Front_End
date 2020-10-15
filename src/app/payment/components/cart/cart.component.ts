@@ -50,6 +50,6 @@ export class CartComponent implements OnInit {
   }
 
   redirect(): void {
-    // this.route.navigateByUrl();
+    window.location.href = 'cart/error-page';
   }
 }

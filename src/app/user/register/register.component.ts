@@ -17,13 +17,15 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   passwordForm: FormGroup;
   newUser = new User();
-  KEY = '6LcIN88ZAAAAANNmXRhyKgePhkgK_kx1MJMRyGsE';
   usernameExist = false;
+  registerProcess = false;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private router: Router,
               private modalServiceService: ModalServiceService) {
+    console.log(this.registerProcess);
+    this.registerProcess = false;
   }
 
   ngOnInit(): void {
@@ -65,7 +67,6 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     if ((this.registerForm.valid) && (this.passwordForm.valid)) {
       console.log(this.registerForm.value.recaptchaReactive);
-      // this.newUser = Object.assign({}, this.registerForm.value);
       this.newUser.username = this.registerForm.value.username;
       this.newUser.fullName = this.registerForm.value.fullName;
       this.newUser.address = this.registerForm.value.address;
@@ -77,11 +78,21 @@ export class RegisterComponent implements OnInit {
       this.newUser.rank = 'Bạc';
       this.newUser.point = 0;
       this.newUser.flag = 'true';
-      console.log(this.newUser);
       this.userService.sendEmail(this.newUser, this.registerForm.value.recaptchaReactive).subscribe(
-        () => {},
-        error => {this.usernameExist = true; },
-        () => {this.router.navigateByUrl('/send-mail'); });
-    }else { console.log('error'); }
+        () => {
+          this.registerProcess = true;
+        },
+        error => {
+          this.registerProcess = false;
+          this.usernameExist = true;
+        },
+        () => {
+          this.registerProcess = false;
+          alert('Đăng Ký Tài Khoản Thành Công');
+          this.router.navigateByUrl('/');
+        });
+    } else {
+      console.log('error');
+    }
   }
 }
