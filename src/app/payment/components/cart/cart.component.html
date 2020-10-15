@@ -75,12 +75,12 @@
                   <div class="col-md-6">
                     <h2>{{item.product.productName}}</h2>
                     <ul class="pagination">
-                      <li class="page-item"><a class="page-link text-dark" disabled>1</a></li>
+                      <li class="page-item"><a class="page-link text-dark" disabled>{{item.quantity}}</a></li>
                     </ul>
                     <span class="badge badge-light">{{ item.product.category.categoryName}}</span>
                   </div>
                   <div class="col-md-3">
-                    <h3>{{item.winPrice | currency:'VND'}}</h3>
+                    <h3>{{item.winPrice | currency:'VND'}}</h3> 
                     <span>
                       <a class="text-primary" href="#">
                         <i class="fa fa-bookmark" aria-hidden="true"></i>
