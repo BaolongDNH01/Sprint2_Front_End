@@ -33,7 +33,7 @@ export class DetailUserComponent implements OnInit {
       }, error => {
         this.user = new User();
       }
-    )
+    );
   }
 
   ngOnInit(): void {

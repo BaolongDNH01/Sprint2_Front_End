@@ -48,9 +48,9 @@
                 Trường này không được để trống
               </span>
           <span
-            *ngIf="(usernameExist == true) && registerForm.controls['username'].touched"
+            *ngIf="(usernameExist === true) && registerForm.controls['username'].touched"
             class="errors mt-1 col-sm-12">
-                Trường này không được để trống
+                Tên đăng nhập đã tồn tại
               </span>
         </div>
         <div class="col-md-1">

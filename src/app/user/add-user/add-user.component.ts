@@ -72,7 +72,7 @@ export class AddUserComponent implements OnInit {
             this.load = false;
           },
           () => {
-            this.router.navigateByUrl('/send-email');
+            this.router.navigateByUrl('fc-admin//send-email');
           }
         );
       }
