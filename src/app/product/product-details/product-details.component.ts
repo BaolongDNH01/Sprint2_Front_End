@@ -20,7 +20,7 @@ import {Image} from '../image';
 export class ProductDetailsComponent implements OnInit {
   idAuction: number;
   product: Product;
-  bidder: Bidder=new Bidder();
+  bidder: Bidder = new Bidder();
   myDate = new Date();
   interval;
   bidderForm: FormGroup;
@@ -28,6 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   idProduct: number;
   listImg: Image[];
   valueNextBidder: number;
+  numbetTesst: number;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -53,9 +54,12 @@ export class ProductDetailsComponent implements OnInit {
         this.idProduct = this.auction.productId;
         this.productService.getListImg(this.auction.productId).subscribe(next => {
           this.listImg = next;
+
         });
         this.productService.findById(this.auction.productId).subscribe(next => {
           this.product = next;
+          this.product.displayTime = parseInt(localStorage.getItem('time' + this.auction.auctionId));
+          console.log(this.product.displayTime + 'time hien tai');
         });
         this.auctionService.getBidderMax(this.auction.auctionId).subscribe(next => {
           if (this.auction.initialPrice > next) {
@@ -66,8 +70,10 @@ export class ProductDetailsComponent implements OnInit {
         }, error => {
           this.valueNextBidder = this.auction.initialPrice + this.auction.eachIncrease;
         });
-        // this.product.displayTime = parseInt(localStorage.getItem('time' + (this.idProduct - 1)));
-        // this.localStoreage();
+        // console.log(this.auction.auctionId + 'time hien tai');
+        // this.product.displayTime = parseInt(localStorage.getItem('time' + this.auction.auctionId));
+        // console.log(this.numbetTesst + 'time dang chay cua product');
+        this.localStoreage();
 
 
       });
@@ -99,7 +105,8 @@ export class ProductDetailsComponent implements OnInit {
     this.bidder.bidPrice = this.valueNextBidder;
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.bidder.auctionId = this.auction.auctionId;
-    this.bidder.userName = this.jwt.getUsername();;
+    this.bidder.userName = this.jwt.getUsername();
+    ;
     // admin
     console.log(this.bidder);
     this.auctionService.saveBidderDto(this.bidder).subscribe();

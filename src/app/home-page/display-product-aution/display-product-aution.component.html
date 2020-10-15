@@ -9,12 +9,12 @@
         <p class="title-product-info">Click vào để xem chi tiết sản phẩm !</p>
         <div class="auction">
           <div class="time">
-            <div *ngIf="productDisplayList.auctionTime != 0; else loggedOut">
+<!--            <div *ngIf="productDisplayList.auctionTime != 0; else loggedOut">-->
               <span>{{productDisplayList.displayTime}}</span>
-            </div>
-            <ng-template #loggedOut>
-              ending...
-            </ng-template>
+<!--            </div>-->
+<!--            <ng-template #loggedOut>-->
+<!--              ending...-->
+<!--            </ng-template>-->
           </div>
           <span class="prince"><i class="fa fa-gavel"></i>{{productDisplayList.eachIncrease}}</span>
         </div>

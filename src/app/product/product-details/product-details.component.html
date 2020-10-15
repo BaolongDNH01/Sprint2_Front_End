@@ -24,12 +24,12 @@
     </div>
     <div class="col-md-4 pl-4">
       <p>ID: {{auction.productId}}</p>
-      <!--      <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:-->
-      <!--        <span class="colorTime">{{product.displayTimeDetail}}</span>-->
-      <!--      </p>-->
-      <!--      <ng-template #loggedOut>-->
-      <!--        <span class="colorTime m-0">Đã hết thời gian đấu giá</span>-->
-      <!--      </ng-template>-->
+            <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:
+              <span class="colorTime">{{product.displayTimeDetail}}</span>
+            </p>
+            <ng-template #loggedOut>
+              <span class="colorTime m-0">Đã hết thời gian đấu giá</span>
+            </ng-template>
       <p>Giá gốc: {{auction.initialPrice}}</p>
       <p>Mỗi lần tăng ít nhất: {{auction.eachIncrease}}</p>
       <div class="row">
