@@ -41,7 +41,7 @@ const routes: Routes = [
       {path: 'product-details/:id', component: ProductDetailsComponent},
       {path: 'product-create', component: ProductCreateComponent},
       {path: 'approval-product/:id', component: ApprovalProductComponent},
-      {path: 'send-email', component: SendMailComponent},
+      {path: 'transaction-management', component: TransactionManagementComponent},
       {path: 'activated-account/:token', component: ActivatedAccountComponent},
       {path: 'fc-admin', component: FunctionAdminComponent, children: [
           {path: '', component: ListUserComponent},
@@ -52,6 +52,7 @@ const routes: Routes = [
           {path: 'add-user', component: AddUserComponent},
           {path: 'lock-user/:ids', component: LockUserComponent},
           {path: 'unlock-user/:ids', component: UnlockUserComponent},
+          {path: 'send-email', component: SendMailComponent},
           {path: 'list-auction', component: ListAuctionComponent},
           {path: 'transaction-management', component: TransactionManagementComponent},
         ]}
