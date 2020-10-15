@@ -1,18 +1,20 @@
+<nav class=" col-12 mt-5 bg-title border-dark">
+  <h1 class="title">Quản lý giao dịch</h1>
+</nav>
 <div class="container">
   <div class="row">
-    <div class="col-md-10 margin-auto">
+    <div class="col-md-12 margin-auto">
       <div class="border">
         <nav class="navbar navbar-expand-lg navbar-light bg-light  ">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                   aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-
           <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
             <ul class="navbar-nav ml-5">
 
               <li class="nav-item ml-2">
-                <a class="nav-link" href="#">Quản lý thành viên </a>
+                <a class="nav-link" [routerLink]="['/fc-admin/list-user']" >Quản lý thành viên </a>
               </li>
 
               <li class="nav-item ml-2">
