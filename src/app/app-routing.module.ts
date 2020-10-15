@@ -59,7 +59,10 @@ const routes: Routes = [
           {path: 'add-user', component: AddUserComponent},
           {path: 'lock-user/:ids', component: LockUserComponent},
           {path: 'unlock-user/:ids', component: UnlockUserComponent},
-          {path: 'productManage', component: ProductManageComponent}
+          {path: 'productManage', component: ProductManageComponent},
+          {path: 'send-email', component: SendMailComponent},
+          {path: 'list-auction', component: ListAuctionComponent},
+          {path: 'transaction-management', component: TransactionManagementComponent},
         ]},
       {path: 'userManage', component: NavBarUserComponent, children: [
           {path: '', component: UserInformationComponent},
