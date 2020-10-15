@@ -15,10 +15,11 @@ export class PaymentOrderComponent implements OnInit {
   }
 
   convertPdf(): void {
-    const content: Element = document.getElementById('dataConvertPdf');
+    document.documentElement.scrollTop = 0;
+    const content: Element = document.getElementById('data');
     const options = {
-      image: {type: 'jpeg', quality: 2},
-      html2canvas: {xPosition: 0, yPosition: 0},
+      image: {type: 'jpeg', quality: 3, imageTimeout: 0},
+      html2canvas: {width: 810, height: 810},
       jsPDF: {unit: 'mm', format: 'a4', orientation: 'p'},
     };
 
