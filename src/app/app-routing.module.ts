@@ -41,14 +41,12 @@ const routes: Routes = [
     children: [
       {path: 'auction-guide', component: AuctionGuideComponent},
       {path: '', component: DefaultLoadComponent},
-      {path: 'list-auction', component: ListAuctionComponent},
       {path: 'recover-password/:username', component: RecoverPasswordCodeComponent},
       {path: 'reset-password/:username', component: ResetPasswordComponent},
       {path: 'product-details/:id', component: ProductDetailsComponent},
       {path: 'product-create', component: ProductCreateComponent},
       {path: 'approval-product/:id', component: ApprovalProductComponent},
       {path: 'transaction-management', component: TransactionManagementComponent},
-      {path: 'send-email', component: SendMailComponent},
       {path: 'activated-account/:token', component: ActivatedAccountComponent},
       {path: 'fc-admin', component: FunctionAdminComponent, children: [
           {path: '', component: ListUserComponent},
