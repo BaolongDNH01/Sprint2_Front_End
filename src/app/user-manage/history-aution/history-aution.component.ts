@@ -10,7 +10,7 @@ import {JwtService} from '../../login/services/jwt.service';
 })
 export class HistoryAutionComponent implements OnInit {
   listBidder: Bidder[];
-  userName = 'khanhne';
+  userName = '';
   currentPage: number;
   totalItem: number;
 
@@ -19,6 +19,7 @@ export class HistoryAutionComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = this.jwtService.getUsername();
+    this.userName = 'khanhquoc';
     if (this.userName === '' || this.userName === undefined || this.userName === null) {
       //  đưa ra thông báo login
       document.getElementById('control').click();

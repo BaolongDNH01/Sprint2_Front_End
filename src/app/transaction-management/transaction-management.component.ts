@@ -7,6 +7,9 @@ import {CartService} from '../payment/services/cart.service';
 import {Cart} from '../payment/models/cart';
 import {UserService} from '../user/user.service';
 import {User} from '../user/User';
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
+import {JwtService} from '../login/services/jwt.service';
 
 @Component({
   selector: 'app-transaction-management',
@@ -27,13 +30,26 @@ export class TransactionManagementComponent implements OnInit {
   keyWordProductName: string;
   keyWordTotalPrice: string;
   keyWordStatus: string;
+  roles: string[];
 
   constructor(
     private cartItemService: CartItemService,
     private auctionService: AuctionService,
     private cartService: CartService,
-    private userService: UserService
+    private userService: UserService,
+    private jwt: JwtService,
+    private router: Router
   ) {
+    this.roles = jwt.getAuthorities();
+    if (this.roles.length === 0) {
+      router.navigateByUrl('**');
+    }
+    this.roles.every(role => {
+      if (role === 'ROLE_MEMBER') {
+        router.navigateByUrl('**');
+        return;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -69,8 +85,8 @@ export class TransactionManagementComponent implements OnInit {
                   for (let k = 0; k < this.listCart.length; k++) {
                     this.cartItemList[i].shipCost = this.listCart[k].shipCost;
                     console.log(this.cartItemList[i].shipCost);
-                    this.cartItemList[i].totalPrice = this.listCart[k].totalPrice;
-                    this.cartItemList[i].statusCart = this.listCart[k].status;
+                    this.cartItemList[i].currentTotalPrice = this.listCart[k].currentTotalPrice;
+                    this.cartItemList[i].cartStatus = this.listCart[k].cartStatus;
                   }
                 }
               );
@@ -88,8 +104,8 @@ export class TransactionManagementComponent implements OnInit {
       return res.userName.match(this.keyWordUserPoster) &&
         res.userNameBuy.match(this.keyWordUserBuy) &&
         res.productName.match(this.keyWordProductName) &&
-        res.statusCart.toString().match(this.keyWordStatus) &&
-        res.totalPrice.toString().match(this.keyWordTotalPrice);
+        res.cartStatus.toString().match(this.keyWordStatus) &&
+        res.currentTotalPrice.toString().match(this.keyWordTotalPrice);
     });
   }
 

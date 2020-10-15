@@ -27,6 +27,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
   avatar: string;
   loggedIn = false;
   role: string[];
+  id: string;
 
   currentIndex = -1;
 
@@ -52,6 +53,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
         this.renderComponent(this.currentIndex);
       });
     this.role = this.jwtService.getAuthorities();
+    this.id = this.jwtService.getUserId();
   }
 
   // tslint:disable-next-line:typedef

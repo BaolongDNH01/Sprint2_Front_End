@@ -28,8 +28,16 @@
           <div *ngIf="avatar" class="nav-item mt-auto mb-auto mr-auto">
             <img [src]="getSantizeUrl(avatar)" class="rounded-circle" alt="avatar.jpg" id="avatar">
           </div>
-          <div class="nav-item mt-auto mb-auto mr-auto">
-            <a class="nav-link text-white" [routerLink]="">{{username | titlecase}}</a>
+          <div class="dropdown show mt-auto mb-auto mr-auto">
+            <a class="btn dropdown-toggle" role="button" id="dropdownMenuLink"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{username | titlecase}}
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" [routerLink]="'user/'+ id">Thông Tin Cá Nhân</a>
+              <a *ngIf="role.includes('ROLE_ADMIN')" class="dropdown-item" href="#">Quản Lý</a>
+              <a class="dropdown-item" (click)="logOut()">Đăng Xuất</a>
+            </div>
           </div>
         </div>
       </ng-container>

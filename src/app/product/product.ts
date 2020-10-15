@@ -19,6 +19,7 @@ export class Product {
   imageURL: [];
   displayTime: number;
   displayTimeDetail: number;
+  datePost: string;
 
   constructor() {
   }

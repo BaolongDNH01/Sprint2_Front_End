@@ -96,9 +96,9 @@ export class DisplayProductAutionComponent implements OnInit {
             // console.log(parseInt(localStorage.getItem('time' + 2)));
             // @ts-ignore
             // localStorage.setItem('time' + i, this.auctionList[i].auctionTime);
-            if (localStorage.getItem('time' + i) == 0) {
+            if (localStorage.getItem('time' + this.auctionList[i].auctionId) == undefined || localStorage.getItem('time' + this.auctionList[i].auctionId) == 0) {
               // @ts-ignore
-              localStorage.setItem('time' + i, this.auctionList[i].auctionTime);
+              localStorage.setItem('time' + this.auctionList[i].auctionId, this.auctionList[i].auctionTime);
             }
           }
         }
@@ -140,18 +140,18 @@ export class DisplayProductAutionComponent implements OnInit {
   localStoreage(): void {
     for (let i = 0; i < this.auctionList1.length; i++) {
       // @ts-ignore
-      this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId - 1)));
+      this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId)));
       console.log(this.auctionList1[i].auctionTime);
       this.interval = setInterval(() => {
         if (this.auctionList1[i].auctionTime == 0) {
           this.auctionList1[i].auctionTime = null;
-          localStorage.removeItem('time' + (this.auctionList1[i].auctionId - 1));
+          localStorage.removeItem('time' + (this.auctionList1[i].auctionId));
           this.findProductTimeOutById(this.auctionList1[i].auctionId);
         } else {
           this.auctionList1[i].auctionTime -= 1;
-          localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), this.auctionList1[i].auctionTime);
+          localStorage.setItem('time' + (this.auctionList1[i].auctionId), this.auctionList1[i].auctionTime);
           if (this.auctionList1[i].auctionTime < 0) {
-            localStorage.setItem('time' + (this.auctionList1[i].auctionId - 1), '0');
+            localStorage.setItem('time' + (this.auctionList1[i].auctionId), '0');
           }
         }
         this.auctionList1[i].displayTime = this.transformTime(this.auctionList1[i].auctionTime);

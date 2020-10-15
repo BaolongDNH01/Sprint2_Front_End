@@ -98,9 +98,9 @@
                 <td>{{list.userNameBuy}}</td>
                 <td>{{list.productName}}</td>
                 <td>1</td>
-                <td>{{list.totalPrice}}</td>
+                <td>{{list.currentTotalPrice}}</td>
                 <td>{{list.shipCost}}</td>
-                <td>{{list.statusCart}}</td>
+                <td>{{list.cartStatus}}</td>
                 <td><input type="checkbox" (click)="chooseToDelete(list.cartItemId)"></td>
               </tr>
               </tbody>
@@ -114,29 +114,12 @@
           <div class="col-md-7">
 
             <div>
-              <button type="button" (click)="deleteCartItem()" class="btn btn-primary btn-sm"><i class="far fa-trash-alt">xóa</i></button>
+              <button type="button" [disabled]="listCartItemDelete.length === 0" (click)="deleteCartItem()" class="btn btn-primary btn-sm"><i class="far fa-trash-alt">xóa</i></button>
             </div>
 
 
           </div>
 
-          <div class="col-md-3">
-            <nav aria-label="...">
-              <ul class="pagination">
-                <li class="page-item disabled">
-                  <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
         </div>
 
       </div>
