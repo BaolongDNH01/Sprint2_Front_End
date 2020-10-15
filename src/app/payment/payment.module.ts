@@ -9,11 +9,13 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 
 
 @NgModule({
-  declarations: [CartComponent, PaymentAddressComponent, PaymentMethodComponent, PaymentOrderComponent, ErrorPageComponent],
-  imports: [
-    CommonModule
-  ],
-  providers: [
-  ]
+    declarations: [CartComponent, PaymentAddressComponent, PaymentMethodComponent, PaymentOrderComponent, ErrorPageComponent],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        PaymentOrderComponent
+    ],
+    providers: []
 })
 export class PaymentModule { }
