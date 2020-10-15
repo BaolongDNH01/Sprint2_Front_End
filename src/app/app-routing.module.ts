@@ -22,6 +22,11 @@ import {DeleteUserComponent} from './user/delete-user/delete-user.component';
 import {ActivatedAccountComponent} from './user/activated-account/activated-account.component';
 import {ErrorComponent} from './error/error.component';
 import {ResetPasswordComponent} from './user/reset-password/reset-password.component';
+import {ProductManageComponent} from './product/product-manage/product-manage.component';
+import {UserInformationComponent} from './user-manage/user-information/user-information.component';
+import {HistoryPostProductComponent} from './user-manage/history-post-product/history-post-product.component';
+import {HistoryAutionComponent} from './user-manage/history-aution/history-aution.component';
+import {NavBarUserComponent} from './function-user/nav-bar-user/nav-bar-user.component';
 
 
 const routes: Routes = [
@@ -42,7 +47,14 @@ const routes: Routes = [
       {path: 'add-user', component: AddUserComponent},
       {path: 'send-email', component: SendMailComponent},
       {path: 'delete/:ids', component: DeleteUserComponent},
-      {path: 'activated-account/:token', component: ActivatedAccountComponent}
+      {path: 'activated-account/:token', component: ActivatedAccountComponent},
+      {path: 'productManage', component: ProductManageComponent},
+      {path: 'userManage', component: NavBarUserComponent, children: [
+          {path: '', component: UserInformationComponent},
+          {path: 'historyPostProduct', component: HistoryPostProductComponent},
+          {path: 'historyAuction', component: HistoryAutionComponent}
+        //  chuc nang user
+        ]}
     ]
   },
   {
