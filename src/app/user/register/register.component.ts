@@ -78,9 +78,9 @@ export class RegisterComponent implements OnInit {
       this.newUser.rank = 'Bạc';
       this.newUser.point = 0;
       this.newUser.flag = 'true';
+      this.registerProcess = true;
       this.userService.sendEmail(this.newUser, this.registerForm.value.recaptchaReactive).subscribe(
         () => {
-          this.registerProcess = true;
         },
         error => {
           this.registerProcess = false;
@@ -89,7 +89,7 @@ export class RegisterComponent implements OnInit {
         () => {
           this.registerProcess = false;
           alert('Đăng Ký Tài Khoản Thành Công');
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('').then(window.location.reload);
         });
     } else {
       console.log('error');

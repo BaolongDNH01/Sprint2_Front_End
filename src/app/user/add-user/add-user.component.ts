@@ -42,7 +42,8 @@ export class AddUserComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       idCard: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       enabled: ['false'],
-      confirmPassword: ['']
+      confirmPassword: [''],
+      recaptchaReactive: ['', Validators.required],
     });
   }
   addUser(): void {
@@ -71,7 +72,7 @@ export class AddUserComponent implements OnInit {
             this.load = false;
           },
           () => {
-            this.router.navigateByUrl('/send-email');
+            this.router.navigateByUrl('fc-admin//send-email');
           }
         );
       }
@@ -89,7 +90,8 @@ export class AddUserComponent implements OnInit {
       phone: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       idCard: ['', [Validators.required, Validators.pattern('[0-9]+'), Validators.maxLength(12), Validators.minLength(9)]],
       enabled: ['false'],
-      confirmPassword: ['']
+      confirmPassword: [''],
+      recaptchaReactive: ['', [Validators.required]]
     });
   }
   close(): void{
@@ -98,6 +100,11 @@ export class AddUserComponent implements OnInit {
   resetErrorPass(): void{
     this.errorPassword = '';
     this.formUser.patchValue({confirmPassword: ['']});
+  }
+  resolved(captchaResponse: string): void {
+    console.log(`Resolved response token: ${captchaResponse}`);
+    this.formUser.controls.recaptchaReactive.setValue(captchaResponse);
+    console.log(this.formUser.value.recaptchaReactive);
   }
 }
 

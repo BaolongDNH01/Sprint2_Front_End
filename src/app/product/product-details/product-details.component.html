@@ -3,25 +3,15 @@
   <div class="row">
     <div class="col-md-3">
       <!-- Full-width images with number text -->
-
-      <!--      <div class="mySlides">-->
-      <!--        <img class="img-show" src="{{product.imageURL}}">-->
-      <!--      </div>-->
-      <!--      <div class="mySlides">-->
-      <!--        <img class="img-show" src="{{product.imageURL}}">-->
-      <!--      </div>-->
-      <!--      <div class="mySlides">-->
-      <!--        <img class="img-show" src="{{product.imageURL}}">-->
-      <!--      </div>-->
-      <!--      <div class="mySlides">-->
-      <!--        <img class="img-show" src="{{product.imageURL}}">-->
-      <!--      </div>-->
-      <!--      <div class="mySlides">-->
-      <!--        <img class="img-show" src="{{product.imageURL}}">-->
-      <!--      </div>-->
-      <!--      <div class="mySlides">-->
-      <!--        <img class="img-show" src="{{product.imageURL}}">-->
-      <!--      </div>-->
+      <div class="mySlides">
+        <img class="img-show" src="{{product.imageURL}}">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="{{product.imageURL}}">
+      </div>
+      <div class="mySlides">
+        <img class="img-show" src="{{product.imageURL}}">
+      </div>
 
       <!-- Next and previous buttons -->
       <!--      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>-->
@@ -34,12 +24,12 @@
     </div>
     <div class="col-md-4 pl-4">
       <p>ID: {{auction.productId}}</p>
-      <!--      <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:-->
-      <!--        <span class="colorTime">{{product.displayTimeDetail}}</span>-->
-      <!--      </p>-->
-      <!--      <ng-template #loggedOut>-->
-      <!--        <span class="colorTime m-0">Đã hết thời gian đấu giá</span>-->
-      <!--      </ng-template>-->
+            <p *ngIf="product.displayTime != 0 ; else loggedOut">Thời gian:
+              <span class="colorTime">{{product.displayTimeDetail}}</span>
+            </p>
+            <ng-template #loggedOut>
+              <span class="colorTime m-0">Đã hết thời gian đấu giá</span>
+            </ng-template>
       <p>Giá gốc: {{auction.initialPrice}}</p>
       <p>Mỗi lần tăng ít nhất: {{auction.eachIncrease}}</p>
       <div class="row">
@@ -62,10 +52,15 @@
   <h3>Hình ảnh</h3>
   <!-- Thumbnail images -->
   <div class="row">
-    <div class="column" *ngFor="let img of listImg ;let i=index;">
-      <img class="demo cursor" src="{{img.imageURL}}" onclick="currentSlide(i)">
+    <div class="column">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(1)">
     </div>
-
+    <div class="column">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(2)">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="{{product.imageURL}}" onclick="currentSlide(3)">
+    </div>
   </div>
   <hr>
   <h3>Thông tin chi tiết</h3>
@@ -87,10 +82,7 @@
   <div class="input-group pt-md-3 pb-md-5">
     <span class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nhận xét</span>
   </div>
-
-
 </div>
-
 
 <!--Click de chuyen anh-->
 <script>

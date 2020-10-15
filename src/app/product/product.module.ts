@@ -14,6 +14,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
+import { AdminEditProductComponent } from './admin-edit-product/admin-edit-product.component';
 import {RouterModule} from '@angular/router';
 
 // @ts-ignore
@@ -23,6 +24,7 @@ import {RouterModule} from '@angular/router';
     ApprovalProductComponent,
     ProductManageComponent,
     AdminAddProductComponent,
+    AdminEditProductComponent,
   ],
   exports: [
     ProductCreateComponent,
@@ -31,19 +33,19 @@ import {RouterModule} from '@angular/router';
     ProductManageComponent,
     AdminAddProductComponent
   ],
-    imports: [
-        CommonModule,
-        AuctionModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        NgxPaginationModule,
-        FormsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireStorageModule,
-        AngularFireDatabaseModule,
-        AngularFirestoreModule.enablePersistence(),
-        RouterModule
-    ],
+  imports: [
+    CommonModule,
+    AuctionModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule.enablePersistence(),
+    RouterModule
+  ],
   providers: [DatePipe]
 })
 export class ProductModule {

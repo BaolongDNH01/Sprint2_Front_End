@@ -5,6 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Product} from '../../product/product';
 import {Router} from '@angular/router';
 import {StatusProduct} from '../../product/statusProduct';
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-list-auction',
@@ -25,11 +26,23 @@ export class ListAuctionComponent implements OnInit {
   numberCount = 1;
   curpage = 1;
   public now: Date = new Date();
+  roles: string[];
 
   constructor(
     private auctionService: AuctionService,
-    private router: Router
+    private router: Router,
+    private jwt: JwtService,
   ) {
+    this.roles = jwt.getAuthorities();
+    if (this.roles.length === 0) {
+      router.navigateByUrl('**');
+    }
+    this.roles.every(role => {
+      if (role === 'ROLE_MEMBER') {
+        router.navigateByUrl('**');
+        return;
+      }
+    });
   }
 
   getTimeNow(): void {
@@ -46,6 +59,7 @@ export class ListAuctionComponent implements OnInit {
     this.auctionService.findAllProductAuction().subscribe(
       list => {
         this.auctionList = list;
+        console.log(this.auctionList);
         this.auctionListShow = this.auctionList;
       }, error => {
       },
@@ -57,7 +71,6 @@ export class ListAuctionComponent implements OnInit {
         this.auctionService.getAllStatusAuction().subscribe(
           list => {
             this.statusList = list;
-            console.log(this.statusList);
           }
         );
       }
@@ -85,6 +98,7 @@ export class ListAuctionComponent implements OnInit {
 
   onStatusAuction(auctionId: number): void {
     this.findProductByAuction(auctionId);
+
   }
 
   onEditStatusAuction(): void {
@@ -96,8 +110,11 @@ export class ListAuctionComponent implements OnInit {
       }, error => {
 
       }, () => {
+
       }
     );
+    // location.reload();
+    this.router.navigateByUrl('');
   }
 
   find(statusName: string): void {

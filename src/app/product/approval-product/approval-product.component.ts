@@ -18,7 +18,7 @@ export class ApprovalProductComponent implements OnInit {
   id: number;
   approvalProduct: FormGroup;
   statusList: Status[];
-  auction: Auction=new Auction();
+  auction: Auction = new Auction();
   myDate = new Date();
 
   constructor(
@@ -34,13 +34,15 @@ export class ApprovalProductComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
       // tslint:disable-next-line:radix
       const id = parseInt(paramMap.get('id'));
-      this.productService.findById(2).subscribe(
+      this.productService.findById(id).subscribe(
         next => {
           this.product = next;
+          console.log(this.product);
           this.id = this.product.productId;
           this.approvalProduct = new FormGroup({
             productId: new FormControl(this.product.productId),
             productName: new FormControl(this.product.productName),
+            datePost: new FormControl(this.product.datePost),
             initialPrice: new FormControl(this.product.initialPrice),
             eachIncrease: new FormControl(this.product.eachIncrease),
             productDetail: new FormControl(this.product.productDetail),
@@ -57,13 +59,18 @@ export class ApprovalProductComponent implements OnInit {
   onApprovalProduct(): void {
     this.product = Object.assign({}, this.approvalProduct.value);
     this.product.productId = this.id;
-    this.productService.editProduct(this.product).subscribe();
-    console.log(this.product);
+    this.productService.editProduct(this.product).subscribe(
+      next => {
+
+      }, error => {
+
+      }, () => {
+      }
+    );
     // tạo auction khi duyệt
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auction.statusId = 1;
     this.auction.productId = this.product.productId;
-    console.log(this.auction);
     this.auctionService.save(this.auction).subscribe();
     // location.reload();
   }

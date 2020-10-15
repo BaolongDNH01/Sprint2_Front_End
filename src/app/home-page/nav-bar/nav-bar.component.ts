@@ -29,6 +29,10 @@ export class NavBarComponent implements OnInit, OnDestroy{
   role: string[];
   id: string;
 
+  // Thien: Check user login before check cart;
+  roles = [];
+  authority: string;
+
   currentIndex = -1;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver,
@@ -54,6 +58,20 @@ export class NavBarComponent implements OnInit, OnDestroy{
       });
     this.role = this.jwtService.getAuthorities();
     this.id = this.jwtService.getUserId();
+
+    // Thien: Handling user login before check cart
+    // Handling authorities granted
+    this.roles = this.jwtService.getAuthorities().map(r => r.replace('ROLE_', '').toLowerCase());
+    this.roles.every(role => {
+      if (role === 'ROLE_ADMIN') {
+        this.authority = 'admin';
+        return false;
+      } else if (role === 'ROLE_MEMBER') {
+        this.authority = 'member';
+        return false;
+      }
+      return true;
+    });
   }
 
   // tslint:disable-next-line:typedef

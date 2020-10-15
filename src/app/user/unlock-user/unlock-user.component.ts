@@ -60,11 +60,11 @@ export class UnlockUserComponent implements OnInit {
       next => {},
       error => {},
       () => {
-        this.router.navigateByUrl('/list-user');
+        this.router.navigateByUrl('fc-admin/list-user');
       }
     );
   }
   close(): void{
-    this.router.navigateByUrl('/list-user');
+    this.router.navigateByUrl('fc-admin/list-user');
   }
 }

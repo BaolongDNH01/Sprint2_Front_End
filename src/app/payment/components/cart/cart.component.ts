@@ -1,7 +1,6 @@
 import { Cart } from './../../models/cart';
 import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +12,7 @@ export class CartComponent implements OnInit {
   cartResponse: Cart;
   itemList: any[];
   isEmpty = false;
-  shipCost =  49000.0;
+  shipCost = 49000.0;
   total = 0.0;
 
   // tslint:disable-next-line: radix
@@ -21,7 +20,6 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +48,10 @@ export class CartComponent implements OnInit {
   }
 
   redirect(): void {
-    window.location.href = 'cart/error-page';
+    if (this.isEmpty || isNaN(this.userId)) {
+      window.location.href = 'cart/error-page';
+    } else {
+      window.location.href = 'cart/payment-address';
+    }
   }
 }

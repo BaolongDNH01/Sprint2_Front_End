@@ -2,7 +2,7 @@
   <nav class="col-md-12 navbar navbar-expand-lg">
     <div class="col-md-4 d-flex justify-content-center">
       <div class="logo">
-        <a class="navbar-brand text-white font-weight-bold font-italic" [routerLink]="">Bidding</a>
+        <a class="navbar-brand text-white font-weight-bold font-italic" routerLink="home">Bidding</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,7 +11,7 @@
     </div>
     <div class="col-md-8 collapse navbar-collapse d-flex align-content-center justify-content-end">
       <div class="nav-item mt-auto mb-auto">
-        <a class="nav-link text-white" routerLink="cart/get"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
+        <a class="nav-link text-white" routerLink="cart/get" *ngIf="role.includes('ROLE_MEMBER')"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>
           My Cart</a>
       </div>
       <div class="nav-item mt-auto mb-auto">
@@ -35,7 +35,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" [routerLink]="['userManage']">Thông Tin Cá Nhân</a>
-              <a *ngIf="role.includes('ROLE_ADMIN')" class="dropdown-item" [routerLink]="['productManage']">Quản Lý</a>
+              <a *ngIf="role.includes('ROLE_ADMIN')" class="dropdown-item" [routerLink]="['/fc-admin']">Quản Lý</a>
               <a class="dropdown-item" (click)="logOut()">Đăng Xuất</a>
             </div>
           </div>
