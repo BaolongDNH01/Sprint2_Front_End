@@ -9,7 +9,7 @@ import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-logi
 import { LoginInfo } from '../../models/login-info';
 import { AuthService } from '../../services/auth.service';
 import { JwtService } from '../../services/jwt.service';
-import {ModalServiceService} from "../../../home-page/modal-service.service";
+import {ModalServiceService} from '../../../home-page/modal-service.service';
 
 @Component({
   selector: 'app-auth-login',
@@ -25,6 +25,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   isLogInFailed = false;
 
+  userId: string;
   roles: string[] = [];
   username: string;
   authority: string;
@@ -98,6 +99,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   authLogin(loginInfo: LoginInfo): void {
     this.subscription = this.authService.authLogin(loginInfo).subscribe({
       next: data => {
+        this.jwtService.saveUserId(data.userId);
         this.jwtService.saveToken(data.token);
         this.jwtService.saveUsername(data.username);
         this.jwtService.saveAuthorities(data.authorities);

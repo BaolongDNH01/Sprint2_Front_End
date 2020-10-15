@@ -13,6 +13,8 @@ export class UserService {
   private editUserApi = 'http://localhost:8080/editUserInfo';
   private getAllProductByUNameApi = 'http://localhost:8080/getAllProductByUserName';
   private getAllBidderByUNameApi = 'http://localhost:8080/getAllBidderByUserName';
+  private changStatusProductToPostApi = 'http://localhost:8080/changStatusProductToPost';
+  private checkPasswordApi = 'http://localhost:8080/checkPassword';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -31,5 +33,13 @@ export class UserService {
 
   getAllBidderByUName(userName: string): Observable<Bidder[]> {
     return this.httpClient.get<Bidder[]>(this.getAllBidderByUNameApi + '/' + userName);
+  }
+
+  postProduct(productId: number): Observable<void> {
+    return this.httpClient.get<void>(this.changStatusProductToPostApi + '/' + productId);
+  }
+
+  checkPassword(userName: string, password: string): Observable<boolean> {
+    return this.httpClient.post<boolean>(this.checkPasswordApi + '/' + password, userName);
   }
 }

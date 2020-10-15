@@ -117,7 +117,7 @@
           <th scope="col">{{i + 1}}</th>
           <td>
             <label>
-              <input type="checkbox" (click)="chooseToDelete(product.productId)">
+              <input [checked]="listProductsDelete.includes(product.productId)" type="checkbox" (click)="chooseToDelete(product.productId)">
             </label>
           </td>
           <td>{{product.productId}}</td>
@@ -133,6 +133,9 @@
         </tr>
         </tbody>
       </table>
+      <div>
+        <div class="text-center text-warning pt-2 pl-5" *ngIf="productListShow.length === 0">Do not have any product data</div>
+      </div>
     </div>
   </div>
 
@@ -149,7 +152,7 @@
       </button>
     </div>
     <div class="col-md-6 col-sm-6 text-center">
-      <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
+      <pagination-controls *ngIf="productListShow.length > 8" id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="currentPage = $event"></pagination-controls>
     </div>
   </div>
 </div>

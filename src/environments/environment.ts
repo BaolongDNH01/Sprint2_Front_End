@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyCmiPOaWzKQod-EeS9aS-OVwxjyjugTMkw',
-    authDomain: 'daugia-sprint2-c0220h1.firebaseapp.com',
-    databaseURL: 'https://daugia-sprint2-c0220h1.firebaseio.com',
-    projectId: 'daugia-sprint2-c0220h1',
-    storageBucket: 'daugia-sprint2-c0220h1.appspot.com',
-    messagingSenderId: '256984120944',
-    appId: '1:256984120944:web:453c14ae38a204d671beb5',
-    measurementId: 'G-E3H8ZL729F'
+    apiKey: 'AIzaSyDLZx1TqKYtppL98LJBVDTQcv-KFaup300',
+    authDomain: 'angular-image-3eeea.firebaseapp.com',
+    databaseURL: 'https://angular-image-3eeea.firebaseio.com',
+    projectId: 'angular-image-3eeea',
+    storageBucket: 'angular-image-3eeea.appspot.com',
+    messagingSenderId: '144229249869',
+    appId: '1:144229249869:web:9aec0483224218d2927d04',
+    measurementId: 'G-K7GNG6XTGD'
   }
 };
 

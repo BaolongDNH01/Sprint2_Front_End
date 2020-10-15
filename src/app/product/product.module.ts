@@ -8,19 +8,27 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApprovalProductComponent} from './approval-product/approval-product.component';
 import {ProductManageComponent} from './product-manage/product-manage.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 
-
+// @ts-ignore
 @NgModule({
   declarations: [ProductCreateComponent,
     ProductDetailsComponent,
     ApprovalProductComponent,
-    ProductManageComponent
+    ProductManageComponent,
+    AdminAddProductComponent,
   ],
   exports: [
     ProductCreateComponent,
     ProductDetailsComponent,
     ApprovalProductComponent,
-    ProductManageComponent
+    ProductManageComponent,
+    AdminAddProductComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +36,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatSelectModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule.enablePersistence()
   ],
   providers: [DatePipe]
 })

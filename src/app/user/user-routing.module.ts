@@ -11,16 +11,6 @@ import {DeleteUserComponent} from './delete-user/delete-user.component';
 import {DetailUserComponent} from './detail-user/detail-user.component';
 
 const routes: Routes = [
-  {path: '', children: [
-      {path: 'list-user', component: ListUserComponent},
-      {path: 'lock-user/:ids', component: LockUserComponent},
-      {path: 'unlock-user/:ids', component: UnlockUserComponent},
-      {path: 'user/:id', component: DetailUserComponent},
-      {path: 'add-user', component: AddUserComponent},
-      {path: 'send-email', component: SendMailComponent},
-      {path: 'delete/:ids', component: DeleteUserComponent},
-      {path: 'activated-account/:token', component: ActivatedAccountComponent}
-    ]}
 ];
 
 @NgModule({

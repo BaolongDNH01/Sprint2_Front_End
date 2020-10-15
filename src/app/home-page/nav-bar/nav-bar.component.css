@@ -1,5 +1,19 @@
-#nav, .modal-header {
+#nav, .modal-header, .dropdown-menu {
   background-color: #1AB7EA;
+
+}
+.dropdown-item{
+  color: white;
+}
+.dropdown:hover, .dropdown-item:hover, .nav-item:hover {
+  cursor: pointer;
+}
+.dropdown-item:hover{
+  background-color: dimgrey;
+}
+
+.dropdown-menu{
+  color: white;
 }
 
 .nav-item, #back :hover {

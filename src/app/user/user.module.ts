@@ -16,6 +16,7 @@ import {DeleteUserComponent} from './delete-user/delete-user.component';
 import { DetailUserComponent } from './detail-user/detail-user.component';
 import {RecaptchaLoaderService, RecaptchaModule} from 'ng-recaptcha';
 import { RecoverPasswordCodeComponent } from './recover-password-code/recover-password-code.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 @NgModule({
@@ -29,9 +30,11 @@ import { RecoverPasswordCodeComponent } from './recover-password-code/recover-pa
   RecoverPasswordComponent,
     DeleteUserComponent,
     DetailUserComponent,
-    RecoverPasswordCodeComponent],
+    RecoverPasswordCodeComponent,
+    ResetPasswordComponent],
   exports: [
-    ListUserComponent
+    ListUserComponent,
+    ResetPasswordComponent
   ],
     imports: [
         CommonModule,

@@ -20,6 +20,7 @@ export class HistoryPostProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = this.jwtService.getUsername();
+    this.userName = 'khanhquoc';
     if (this.userName === '' || this.userName === undefined || this.userName === null) {
       //  đưa ra thông báo login
       document.getElementById('control').click();
@@ -39,6 +40,14 @@ export class HistoryPostProductComponent implements OnInit {
   }
 
   backToMenu(): void {
-  //  trả về trang trước khi vào
+    //  trả về trang trước khi vào
+  }
+
+  postProduct(productId: number): void {
+    this.userService.postProduct(productId).subscribe(
+      () => {},
+      e => console.log(e),
+      () => this.getAllProduct()
+    );
   }
 }
