@@ -85,7 +85,7 @@ export class ProductCreateComponent implements OnInit {
         console.log('Create failed!');
       }
     );
-    // this.router.navigateByUrl('');
+    this.router.navigateByUrl('/productManage');
   }
 
   findAllCategory(): void {
