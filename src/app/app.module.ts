@@ -35,6 +35,7 @@ import {
 import {PaymentModule} from './payment/payment.module';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { ErrorComponent } from './error/error.component';
+import { FunctionAdminComponent } from './function-admin/function-admin.component';
 
 
 
@@ -44,6 +45,7 @@ import { ErrorComponent } from './error/error.component';
     AppComponent,
     TransactionManagementComponent,
     ErrorComponent,
+    FunctionAdminComponent,
   ],
   imports: [
     BrowserModule,
