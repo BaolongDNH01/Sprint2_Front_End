@@ -12,6 +12,6 @@ export class CartItem {
   bidPrice: number;
   bidDateTime: string;
   shipCost: number;
-  totalPrice: number;
-  statusCart: number;
+  currentTotalPrice: number;
+  cartStatus: number;
 }
