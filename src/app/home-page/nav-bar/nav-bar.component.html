@@ -35,7 +35,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" [routerLink]="'user/'+ id">Thông Tin Cá Nhân</a>
-              <a *ngIf="role.includes('ROLE_ADMIN')" class="dropdown-item" href="#">Quản Lý</a>
+              <a *ngIf="role.includes('ROLE_ADMIN')" class="dropdown-item" [routerLink]="['/fc-admin']">Quản Lý</a>
               <a class="dropdown-item" (click)="logOut()">Đăng Xuất</a>
             </div>
           </div>

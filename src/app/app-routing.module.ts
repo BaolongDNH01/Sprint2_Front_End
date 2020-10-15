@@ -26,6 +26,7 @@ import {DeleteUserComponent} from './user/delete-user/delete-user.component';
 import {ActivatedAccountComponent} from './user/activated-account/activated-account.component';
 import {ErrorComponent} from './error/error.component';
 import {ResetPasswordComponent} from './user/reset-password/reset-password.component';
+import {FunctionAdminComponent} from './function-admin/function-admin.component';
 
 
 
@@ -40,18 +41,20 @@ const routes: Routes = [
       {path: 'reset-password/:username', component: ResetPasswordComponent},
       {path: 'product-details/:id', component: ProductDetailsComponent},
       {path: 'product-create', component: ProductCreateComponent},
-
       {path: 'approval-product/:id', component: ApprovalProductComponent},
       {path: 'transaction-management', component: TransactionManagementComponent},
-
-      {path: 'list-user', component: ListUserComponent},
-      {path: 'lock-user/:ids', component: LockUserComponent},
-      {path: 'unlock-user/:ids', component: UnlockUserComponent},
-      {path: 'user/:id', component: DetailUserComponent},
-      {path: 'add-user', component: AddUserComponent},
       {path: 'send-email', component: SendMailComponent},
-      {path: 'delete/:ids', component: DeleteUserComponent},
-      {path: 'activated-account/:token', component: ActivatedAccountComponent}
+      {path: 'activated-account/:token', component: ActivatedAccountComponent},
+      {path: 'fc-admin', component: FunctionAdminComponent, children: [
+          {path: '', component: ListUserComponent},
+          // link admin bỏ vào đây
+          {path: 'list-user', component: ListUserComponent},
+          {path: 'delete/:ids', component: DeleteUserComponent},
+          {path: 'user/:id', component: DetailUserComponent},
+          {path: 'add-user', component: AddUserComponent},
+          {path: 'lock-user/:ids', component: LockUserComponent},
+          {path: 'unlock-user/:ids', component: UnlockUserComponent},
+        ]}
 
     ]
   },

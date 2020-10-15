@@ -155,7 +155,7 @@ export class ListUserComponent implements OnInit {
       this.errorCheck = 'Các thành viên bạn đã bị khóa';
     }
     else {
-      this.router.navigateByUrl('/lock-user/' + idList);
+      this.router.navigateByUrl('fc-admin/lock-user/' + idList);
     }
   }
   unlockUser(): void{
@@ -173,14 +173,14 @@ export class ListUserComponent implements OnInit {
       this.errorCheck = 'Các thành viên bạn chọn chưa bị khóa';
     }
     else {
-      this.router.navigateByUrl('/unlock-user/' + idList);
+      this.router.navigateByUrl('fc-admin/unlock-user/' + idList);
     }
   }
   delete(): void{
       if (this.ids.length === 0){
       this.errorCheck = 'Bạn cần chọn ít nhất 1 thành viên';
     }else {
-      this.router.navigateByUrl('/delete/' + this.ids);
+      this.router.navigateByUrl('fc-admin/delete/' + this.ids);
     }
   }
 
