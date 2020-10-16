@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid border mt-2">
   <h1 class="text-info">Lịch sử đấu giá</h1>
   <table class="table table-bordered table-responsive-md text-center">
     <thead class="table thead-light">
@@ -18,7 +18,7 @@
           itemsPerPage: 10,
           currentPage: currentPage,
           totalItems: totalItem}, index as i">
-      <th>{{i}}</th>
+      <th>{{i + 1}}</th>
       <td>{{bidder.productId}}</td>
       <td>{{bidder.productName}}</td>
       <td>{{bidder.productDetail}}</td>

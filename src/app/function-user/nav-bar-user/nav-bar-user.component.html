@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2">
+      <ul class="list-group p-0 m-0 w-100 mt-2">
+        <li [routerLink]="['../userManage']" class="list-group-item btn-outline-secondary">Chỉnh sửa thông tin</li>
+        <li [routerLink]="['historyAuction']" class="list-group-item btn-outline-secondary">Lịch sử đấu giá</li>
+        <li [routerLink]="['historyPostProduct']" class="list-group-item btn-outline-secondary">Lịch sử đăng sản phẩm</li>
+      </ul>
+    </div>
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

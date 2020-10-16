@@ -15,6 +15,7 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AdminAddProductComponent } from './admin-add-product/admin-add-product.component';
 import { AdminEditProductComponent } from './admin-edit-product/admin-edit-product.component';
+import {RouterModule} from '@angular/router';
 
 // @ts-ignore
 @NgModule({
@@ -42,7 +43,8 @@ import { AdminEditProductComponent } from './admin-edit-product/admin-edit-produ
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    RouterModule
   ],
   providers: [DatePipe]
 })
