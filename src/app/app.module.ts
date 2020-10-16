@@ -38,6 +38,7 @@ import { ErrorComponent } from './error/error.component';
 import { FunctionAdminComponent } from './function-admin/function-admin.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {FunctionUserModule} from './function-user/function-user.module';
 
 
 
@@ -71,7 +72,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     Ng2SearchPipeModule,
     DragDropModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FunctionUserModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,

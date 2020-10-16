@@ -83,10 +83,13 @@ export class ProductDetailsComponent implements OnInit {
   localStoreage(): void {
     this.interval = setInterval(() => {
         if (this.product.displayTime === 0) {
-          // console.log('co bang ko hay ko bang ko');
+          console.log('co bang ko hay ko bang ko');
           this.product.displayTime = 0;
         } else {
           this.product.displayTime -= 1;
+          console.log(this.product.displayTime);
+          console.log(this.auction.auctionId);
+          // localStorage.setItem('time' + this.auction.auctionId, (this.product.displayTime).toString());
         }
         // console.log(this.product.displayTime);
         // @ts-ignore
@@ -106,7 +109,8 @@ export class ProductDetailsComponent implements OnInit {
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.bidder.auctionId = this.auction.auctionId;
     this.bidder.userName = this.jwt.getUsername();
-    ;
+
+
     // admin
     console.log(this.bidder);
     this.auctionService.saveBidderDto(this.bidder).subscribe();
