@@ -84,7 +84,6 @@ export class ProductDetailsComponent implements OnInit {
     this.interval = setInterval(() => {
         if (this.product.displayTime === 0) {
           console.log('co bang ko hay ko bang ko');
-          this.product.displayTime = 0;
         } else {
           this.product.displayTime -= 1;
           console.log(this.product.displayTime);
