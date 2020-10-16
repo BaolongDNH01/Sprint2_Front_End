@@ -36,7 +36,8 @@ import {PaymentModule} from './payment/payment.module';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import { ErrorComponent } from './error/error.component';
 import { FunctionAdminComponent } from './function-admin/function-admin.component';
-import {FunctionUserModule} from './function-user/function-user.module';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -69,7 +70,8 @@ import {FunctionUserModule} from './function-user/function-user.module';
     RecaptchaModule,
     FormsModule,
     Ng2SearchPipeModule,
-    FunctionUserModule
+    DragDropModule,
+    NgxPaginationModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,
