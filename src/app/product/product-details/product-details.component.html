@@ -30,8 +30,8 @@
             <ng-template #loggedOut>
               <span class="colorTime m-0">Đã hết thời gian đấu giá</span>
             </ng-template>
-      <p>Giá gốc: {{auction.initialPrice}}</p>
-      <p>Mỗi lần tăng ít nhất: {{auction.eachIncrease}}</p>
+      <p>Giá gốc: {{auction.initialPrice | currency: "VND":""}}</p>
+      <p>Mỗi lần tăng ít nhất: {{auction.eachIncrease | currency: "VND":""}}</p>
       <div class="row">
         <div class="col-md-3 info-product pt-md-3">
           Giá đấu:

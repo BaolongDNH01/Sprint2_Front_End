@@ -152,6 +152,8 @@ export class DisplayProductAutionComponent implements OnInit {
           localStorage.setItem('time' + (this.auctionList1[i].auctionId), this.auctionList1[i].auctionTime);
           if (this.auctionList1[i].auctionTime < 0) {
             localStorage.setItem('time' + (this.auctionList1[i].auctionId), '0');
+          }else if (this.auctionList1[i].auctionTime < 30){
+            localStorage.getItem('time' + (this.auctionList1[i].auctionId));
           }
         }
         this.auctionList1[i].displayTime = this.transformTime(this.auctionList1[i].auctionTime);

@@ -6,6 +6,9 @@ import {Product} from '../../product/product';
 import {Router} from '@angular/router';
 import {StatusProduct} from '../../product/statusProduct';
 import {JwtService} from '../../login/services/jwt.service';
+import {ProductService} from '../../product/product.service';
+import {UserService} from '../../user/user.service';
+import {loggedIn} from '@angular/fire/auth-guard';
 
 @Component({
   selector: 'app-list-auction',
@@ -27,11 +30,14 @@ export class ListAuctionComponent implements OnInit {
   curpage = 1;
   public now: Date = new Date();
   roles: string[];
+  point: number;
 
   constructor(
     private auctionService: AuctionService,
     private router: Router,
     private jwt: JwtService,
+    private productService: ProductService,
+    private userService: UserService
   ) {
     this.roles = jwt.getAuthorities();
     if (this.roles.length === 0) {
@@ -98,7 +104,26 @@ export class ListAuctionComponent implements OnInit {
 
   onStatusAuction(auctionId: number): void {
     this.findProductByAuction(auctionId);
-
+    this.auctionService.findById(auctionId).subscribe(
+      next => {
+        console.log(next);
+        this.productService.findById(next.productId).subscribe(
+          listProduct => {
+            this.userService.findUserById(listProduct.userId).subscribe(
+              userById => {
+                console.log(userById.point);
+                this.point = 5
+                console.log(this.point);
+                this.userService.increasePoint(userById, this.point).subscribe(
+                  check => {
+                  }
+                );
+              }
+            );
+          }
+        );
+      }
+    );
   }
 
   onEditStatusAuction(): void {
