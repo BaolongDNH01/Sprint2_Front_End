@@ -49,12 +49,6 @@ export class ProductCreateComponent implements OnInit {
     if (this.roles.length === 0) {
       router.navigateByUrl('**');
     }
-    this.roles.every(role => {
-      if (role === 'ROLE_MEMBER' || role === 'ROLE_MEMBER') {
-        router.navigateByUrl('**');
-        return;
-      }
-    });
   }
 
   ngOnInit(): void {
