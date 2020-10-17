@@ -14,9 +14,9 @@
 
               <label> - Tên sản phẩm : {{product.productName}}</label><br>
 
-              <label> - Giá ban đầu : {{product.initialPrice}}</label><br>
+              <label> - Giá ban đầu : {{product.initialPrice | currency: "VND":""}}</label><br>
 
-              <label> - Bước giá : {{product.eachIncrease}}</label><br>
+              <label> - Bước giá : {{product.eachIncrease | currency: "VND":""}}</label><br>
 
               <label> - Chi tiết sản phẩm : {{product.productDetail}}</label><br>
 
