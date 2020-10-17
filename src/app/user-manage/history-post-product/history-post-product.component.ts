@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../product';
 import {UserService} from '../user.service';
 import {JwtService} from '../../login/services/jwt.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-history-post-product',
@@ -15,7 +16,8 @@ export class HistoryPostProductComponent implements OnInit {
   totalItem: number;
 
   constructor(private userService: UserService,
-              private jwtService: JwtService) {
+              private jwtService: JwtService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -43,10 +45,6 @@ export class HistoryPostProductComponent implements OnInit {
   }
 
   postProduct(productId: number): void {
-    this.userService.postProduct(productId).subscribe(
-      () => {},
-      e => console.log(e),
-      () => this.getAllProduct()
-    );
+     this.router.navigateByUrl('approval-product/' + productId).then();
   }
 }
