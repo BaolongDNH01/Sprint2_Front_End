@@ -44,6 +44,7 @@ export class ListUserComponent implements OnInit {
       }, error => {
         this.userList = new Array();
       }, () => {
+        this.userList.splice(0, 1);
         this.pageMax = Math.ceil(this.userList.length / this.pageSize);
         this.page = 1;
         rankService.findAllRank().subscribe(
@@ -65,6 +66,7 @@ export class ListUserComponent implements OnInit {
       }, error => {
         this.userList = new Array();
       }, () => {
+        this.userList.splice(0, 1);
         if (this.valueId !== null){
           this.userList = this.userList.filter(res => {
             return (res.userId).toString().match(this.valueId.toString());
