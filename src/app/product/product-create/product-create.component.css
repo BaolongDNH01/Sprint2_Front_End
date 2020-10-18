@@ -52,3 +52,7 @@ p{
   clear: both;
   padding: 10px;
 }
+
+.mat-select-value {
+  color: black;
+}

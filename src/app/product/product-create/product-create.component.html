@@ -12,11 +12,11 @@
     <br>
     <div>
       <p>Chủng loại :</p>
-      <mat-select class="form-control" formControlName="categoryId" required>
-        <mat-option *ngFor="let category of categoryList" [value]="category.categoryId">
+      <select class="form-control" formControlName="categoryId" required>
+        <option *ngFor="let category of categoryList" [value]="category.categoryId">
           {{category.categoryName}}
-        </mat-option>
-      </mat-select>
+        </option>
+      </select>
     </div>
     <br>
     <div class="notice" role="alert"
@@ -59,11 +59,11 @@
     <br>
     <div>
       <p>Đấu giá trong thời gian :</p>
-      <mat-select class="form-control " formControlName="timeId">
-        <mat-option *ngFor="let time of auctionTimeList" [value]="time.timeId">
+      <select class="form-control" formControlName="timeId">
+        <option *ngFor="let time of auctionTimeList" [value]="time.timeId">
           {{time.moTa}}
-        </mat-option>
-      </mat-select>
+        </option>
+      </select>
     </div>
     <br>
     <div class="notice" role="alert"
