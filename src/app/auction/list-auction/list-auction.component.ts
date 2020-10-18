@@ -112,7 +112,7 @@ export class ListAuctionComponent implements OnInit {
             this.userService.findUserById(listProduct.userId).subscribe(
               userById => {
                 console.log(userById.point);
-                this.point = 5
+                this.point = 5;
                 console.log(this.point);
                 this.userService.increasePoint(userById, this.point).subscribe(
                   check => {
@@ -126,6 +126,51 @@ export class ListAuctionComponent implements OnInit {
     );
   }
 
+
+  onChangeStatusAuctionWithStatusFinish(auctionId: number): void {
+    this.findProductByAuctionInStatusFinish(auctionId);
+    this.auctionService.findById(auctionId).subscribe(
+      next => {
+        console.log(next);
+      }
+    );
+  }
+
+  findProductByAuctionInStatusFinish(id: number): void {
+    this.auctionService.findById(id).subscribe(
+      next => {
+        this.auction = next;
+        this.id = this.auction.auctionId;
+        this.timeoutAuction = new FormGroup({
+          auctionId: new FormControl(this.auction.auctionId),
+          dayTimeStart: new FormControl(this.now),
+          dayTimeEnd: new FormControl(this.auction.dayTimeEnd),
+          productId: new FormControl(this.auction.productId),
+          statusId: new FormControl(1),
+        });
+
+      }, error => {
+      }, () => {
+        this.onEditStatusAuctionWithStatusFinish();
+      });
+  }
+
+  onEditStatusAuctionWithStatusFinish(): void {
+    this.getTimeNow();
+    this.auction = Object.assign({}, this.timeoutAuction.value);
+    this.auction.auctionId = this.id;
+    this.auctionService.editAuction(this.auction).subscribe(
+      next => {
+      }, error => {
+
+      }, () => {
+
+      }
+    );
+    location.reload();
+  }
+
+
   onEditStatusAuction(): void {
     this.getTimeNow();
     this.auction = Object.assign({}, this.timeoutAuction.value);
@@ -138,7 +183,6 @@ export class ListAuctionComponent implements OnInit {
 
       }
     );
-    // location.reload();
     this.router.navigateByUrl('');
   }
 
