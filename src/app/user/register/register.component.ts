@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
 import {ValidatePassword} from './PasswordValidate';
 import {ModalServiceService} from '../../home-page/modal-service.service';
 
+
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -19,6 +21,7 @@ export class RegisterComponent implements OnInit {
   newUser = new User();
   usernameExist = false;
   registerProcess = false;
+  animationState = 'in';
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,

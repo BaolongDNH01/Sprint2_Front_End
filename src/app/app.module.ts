@@ -73,7 +73,8 @@ import {FunctionUserModule} from './function-user/function-user.module';
     Ng2SearchPipeModule,
     DragDropModule,
     NgxPaginationModule,
-    FunctionUserModule
+    FunctionUserModule,
+    BrowserAnimationsModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,

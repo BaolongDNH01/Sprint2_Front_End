@@ -34,6 +34,9 @@ import {HistoryPostProductComponent} from './user-manage/history-post-product/hi
 import {HistoryAutionComponent} from './user-manage/history-aution/history-aution.component';
 import { PaymentMethodComponent } from './payment/components/payment-method/payment-method.component';
 import { PaymentOrderComponent } from './payment/components/payment-order/payment-order.component';
+import {AdminEditProductComponent} from "./product/admin-edit-product/admin-edit-product.component";
+import {AdminAddProductComponent} from "./product/admin-add-product/admin-add-product.component";
+
 
 
 
@@ -50,6 +53,8 @@ const routes: Routes = [
       {path: 'approval-product/:id', component: ApprovalProductComponent},
       {path: 'transaction-management', component: TransactionManagementComponent},
       {path: 'activated-account/:token', component: ActivatedAccountComponent},
+      {path: 'edit-product/:id', component: AdminEditProductComponent},
+      {path: 'add-product', component: AdminAddProductComponent},
       {path: 'fc-admin', component: FunctionAdminComponent, children: [
           {path: '', component: ListUserComponent},
           // link admin bỏ vào đây
