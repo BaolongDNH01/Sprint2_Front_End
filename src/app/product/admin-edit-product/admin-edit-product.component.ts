@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Product} from '../product';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../category';
@@ -14,15 +14,17 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {UserService} from '../../user/user.service';
 import {finalize} from 'rxjs/operators';
 
+
 declare var $: any;
+
 @Component({
   selector: 'app-admin-edit-product',
   templateUrl: './admin-edit-product.component.html',
   styleUrls: ['./admin-edit-product.component.css']
 })
-export class AdminEditProductComponent implements OnInit {
+export class AdminEditProductComponent implements OnInit, AfterViewInit {
   product: Product;
-  productForm: FormGroup;
+  editForm: FormGroup;
   categoryList: Category[];
   auctionTimeList: AuctionTime[];
   selectedFile = new Array<File>();
@@ -37,6 +39,8 @@ export class AdminEditProductComponent implements OnInit {
   user: User;
   userId: number;
   id: string;
+  imageList: Image[];
+  baseImgList: Image[];
 
 
   constructor(private fb: FormBuilder, private productService: ProductService,
@@ -47,40 +51,49 @@ export class AdminEditProductComponent implements OnInit {
               private userService: UserService,
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      this.id = params.get('id');
-    },
-      error => {},
+        this.id = params.get('id');
+        console.log(this.id);
+        this.productService.findById(Number(this.id)).subscribe(data => {
+          this.product = data;
+          console.log(this.product);
+          this.editForm.patchValue(this.product);
+          this.productService.getListImg(this.product.productId).subscribe(
+            next => {
+              this.imageList = next;
+            }
+          );
+          this.loadUser();
+        });
+      },
+      error => {
+        console.log(error);
+      },
       () => {
-      this.productService.findById(Number(this.id)).subscribe(data => {
-        this.product = data;
-      });
       });
   }
 
   ngOnInit(): void {
     this.findAllCategory();
     this.findAllAuctionTime();
-    const arrDayTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss').toString().split(' ');
-    const idProductArr = arrDayTime[1].split(':');
     // tslint:disable-next-line:radix
     // this.idProduct = parseInt(Math.floor(Math.random() * Math.floor(2500)) + idProductArr.join(''));
-    this.productForm = this.fb.group({
-      productName: [this.product.productName, [Validators.required]],
-      initialPrice: [this.product.initialPrice, [Validators.required, Validators.pattern(/\d+/)]],
-      eachIncrease: [this.product.eachIncrease, [Validators.required, Validators.pattern(/\d+/)]],
-      productDetail: [this.product.productDetail, [Validators.required]],
-      categoryId: [this.product.categoryId, [Validators.required]],
-      statusId: [this.product.statusId, [Validators.required]],
-      timeId: [this.product.timeId, [Validators.required]],
-      userId: [this.id, Validators.required],
+    this.editForm = this.fb.group({
+      productName: ['', [Validators.required]],
+      initialPrice: ['', [Validators.required, Validators.pattern(/\d+/)]],
+      eachIncrease: ['', [Validators.required, Validators.pattern(/\d+/)]],
+      productDetail: ['', [Validators.required]],
+      categoryId: ['', [Validators.required]],
+      statusId: ['', [Validators.required]],
+      timeId: ['', [Validators.required]],
+      userId: ['', Validators.required],
       detailUser: ['']
     });
     this.loadUserStatus = true;
   }
 
   loadUser(): void {
-    if (this.productForm.value.userId != null) {
-      this.userService.findUserById(this.productForm.value.userId).subscribe(
+    if (this.editForm.value.userId != null) {
+      this.userService.findUserById(this.editForm.value.userId).subscribe(
         (data) => {
           this.user = data;
         },
@@ -102,24 +115,32 @@ export class AdminEditProductComponent implements OnInit {
     userDetail.value = '';
     const id = document.getElementById('userId') as HTMLInputElement;
     id.value = '';
-    this.productForm.value.userId = '';
+    this.editForm.value.userId = '';
   }
 
   // tslint:disable-next-line:typedef
   onSubmit() {
-    this.product = Object.assign({}, this.productForm.value);
-    this.product.fullName = this.jwt.getUsername();
-    this.product.productId = this.idProduct;
-    console.log(this.idProduct);
-    console.log(this.product);
-    this.productService.save(this.product).subscribe(
-      next => {
-        console.log('Create process!');
-      }, error => {
-        console.log('Create failed!');
-      }
-    );
-    // this.router.navigateByUrl('');
+    if (this.editForm.valid) {
+      this.product.productName = this.editForm.value.productName;
+      this.product.initialPrice = this.editForm.value.initialPrice;
+      this.product.eachIncrease = this.editForm.value.eachIncrease;
+      this.product.productDetail = this.editForm.value.productDetail;
+      this.product.categoryId = this.editForm.value.categoryId;
+      this.product.statusId = this.editForm.value.statusId;
+      this.product.timeId = this.editForm.value.timeId;
+      this.product.userId = this.editForm.value.userId;
+      console.log(this.product.timeId);
+      this.productService.adminEdit(this.product).subscribe(
+        next => {
+          const r = confirm('Cập Nhật Thành Công');
+          if (r) {
+            this.router.navigateByUrl('/fc-admin/productManage').then(window.location.reload);
+          }
+        }, error => {
+          alert('Đã xảy ra lỗi');
+        }
+      );
+    }
   }
 
   findAllCategory(): void {
@@ -138,19 +159,26 @@ export class AdminEditProductComponent implements OnInit {
         this.auctionTimeList = next;
       }, error => {
         this.auctionTimeList = new Array();
+        console.log(this.auctionTimeList);
       }
     );
   }
 
   // tslint:disable-next-line:typedef
-  uploadFileImg(event) {
-    this.selectedFile = [];
-    this.nameImg = '';
-    // this.downloadURL = [];
-    for (let i = 0; i < event.target.files.length; i++) {
-      this.selectedFile.push(event.target.files.item(i));
+  uploadFileImg(files) {
+    for (let i = this.selectedFile.length; i < files.length; i++) {
+      this.selectedFile.push(files.item(i));
       this.nameImg += this.selectedFile[i].name + ' ; ';
     }
+    const reader = new FileReader();
+    const img = new Image();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (event) => {
+      img.imageURL = reader.result.toString();
+    };
+    img.productId = this.product.productId;
+    img.imageId = null;
+    this.imageList.push(img);
   }
 
   // upload lên firebase
@@ -175,8 +203,21 @@ export class AdminEditProductComponent implements OnInit {
           });
         })
       )
-        .subscribe();
+        .subscribe(next => {
+        });
     }
+  }
 
+  ngAfterViewInit(): void {
+    // this.editForm.patchValue(this.product);
+  }
+
+  removeImg(index: number): void {
+    if (this.imageList[index].imageId != null) {
+      const id = this.imageList[index].imageId;
+      this.productService.deleteImg(id).subscribe(next => {
+        },
+        error => {console.log(error); });
+    }
   }
 }
