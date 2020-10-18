@@ -29,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   listImg: Image[];
   valueNextBidder: number;
   numbetTesst: number;
+  maxBidder: number;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -62,6 +63,7 @@ export class ProductDetailsComponent implements OnInit {
           console.log(this.product.displayTime + 'time hien tai');
         });
         this.auctionService.getBidderMax(this.auction.auctionId).subscribe(next => {
+          this.maxBidder = next;
           if (this.auction.initialPrice > next) {
             this.valueNextBidder = this.auction.initialPrice + this.auction.eachIncrease;
           } else {
@@ -84,11 +86,12 @@ export class ProductDetailsComponent implements OnInit {
     this.interval = setInterval(() => {
         if (this.product.displayTime === 0) {
           console.log('co bang ko hay ko bang ko');
+          localStorage.removeItem('time' + this.auction.auctionId);
+
         } else {
           this.product.displayTime -= 1;
           console.log(this.product.displayTime);
-          console.log(this.auction.auctionId);
-          // localStorage.setItem('time' + this.auction.auctionId, (this.product.displayTime).toString());
+          localStorage.setItem('time' + this.auction.auctionId, (this.product.displayTime).toString());
         }
         // console.log(this.product.displayTime);
         // @ts-ignore
@@ -107,13 +110,35 @@ export class ProductDetailsComponent implements OnInit {
     this.bidder.bidPrice = this.valueNextBidder;
     this.bidder.bidDateTime = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.bidder.auctionId = this.auction.auctionId;
+    if (this.product.displayTime < 30) {
+      this.product.displayTime = 30;
+      localStorage.setItem('time' + this.auction.auctionId, (this.product.displayTime).toString());
+    }
     this.bidder.userName = this.jwt.getUsername();
 
 
     // admin
     console.log(this.bidder);
-    this.auctionService.saveBidderDto(this.bidder).subscribe();
-    location.reload();
+    this.auctionService.saveBidderDto(this.bidder).subscribe(
+      next => {
+
+      }, error => {
+
+      }, () => {
+        window.location.reload();
+      }
+    );
+
+  }
+
+  minus(): void {
+    if (this.valueNextBidder > this.maxBidder + this.auction.eachIncrease) {
+      this.valueNextBidder -= this.auction.eachIncrease;
+    }
+  }
+
+  plus(): void {
+    this.valueNextBidder += this.auction.eachIncrease;
   }
 }
 

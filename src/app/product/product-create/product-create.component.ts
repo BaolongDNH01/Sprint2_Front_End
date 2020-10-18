@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../product';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../category';
 import {AuctionTime} from '../auction-time';
 import {ProductService} from '../product.service';
@@ -31,6 +31,7 @@ export class ProductCreateComponent implements OnInit {
   image = new Image();
   roles: string[];
 
+
   constructor(private fb: FormBuilder, private productService: ProductService,
               private router: Router,
               private jwt: JwtService,
@@ -44,6 +45,8 @@ export class ProductCreateComponent implements OnInit {
       categoryId: ['', [Validators.required]],
       statusId: ['7', [Validators.required]],
       timeId: ['', [Validators.required]],
+      numImg: ['', [Validators.required, Validators.max(5), Validators.min(2)]],
+      touchImg: ['']
     });
     this.roles = jwt.getAuthorities();
     if (this.roles.length === 0) {
@@ -79,7 +82,7 @@ export class ProductCreateComponent implements OnInit {
         console.log('Create failed!');
       }
     );
-    this.router.navigateByUrl('/productManage');
+    this.router.navigateByUrl('/userManage/historyPostProduct');
   }
 
   findAllCategory(): void {
@@ -111,6 +114,7 @@ export class ProductCreateComponent implements OnInit {
       this.selectedFile.push(event.target.files.item(i));
       this.nameImg += this.selectedFile[i].name + ' ; ';
     }
+    this.productForm.patchValue({numImg: this.selectedFile.length});
   }
 
   // upload lên firebase

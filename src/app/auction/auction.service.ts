@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Bidder} from './bidder';
 import {Auction} from './auction';
 import {Product} from '../product/product';
 import {StatusProduct} from '../product/statusProduct';
+import {JwtService} from '../login/services/jwt.service';
 
 
 @Injectable({
@@ -13,7 +14,8 @@ import {StatusProduct} from '../product/statusProduct';
 export class AuctionService {
   URL = 'http://localhost:8080';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private jwtService: JwtService) {
   }
 
   findBidderByAuctionId(auctionId: number): Observable<any> {
@@ -41,7 +43,8 @@ export class AuctionService {
 
 
   getAllStatusAuction(): Observable<StatusProduct[]> {
-    console.log('chua qua lun ne');
+    const headerAuth = new HttpHeaders();
+    headerAuth.append('admin', 'Bearer' + this.jwtService.getToken());
     return this.httpClient.get<StatusProduct[]>(this.URL + '/getAllStatusAuction');
   }
 
