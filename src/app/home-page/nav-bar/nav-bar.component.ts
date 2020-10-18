@@ -10,14 +10,18 @@ import {ModalComponent} from '../modalComponent';
 import {ModalServiceService} from '../modal-service.service';
 import {JwtService} from '../../login/services/jwt.service';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {fadeInAnimation, fadeOutAnimation} from 'angular-animations';
 
-
+declare var $: any;
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
+  animations: [
+    fadeInAnimation(),
+    fadeOutAnimation()]
 })
-export class NavBarComponent implements OnInit, OnDestroy{
+export class NavBarComponent implements OnInit, OnDestroy {
   @Input() modal: ModalForm[];
   @ViewChild(ModalFormDirective, {
     static: true
@@ -28,6 +32,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
   loggedIn = false;
   role: string[];
   id: string;
+  modalLoad = true;
 
   // Thien: Check user login before check cart;
   roles = [];
@@ -54,6 +59,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
         if (typeof index === 'number') {
           this.currentIndex = index;
         }
+        this.modalLoad = false;
         this.renderComponent(this.currentIndex);
       });
     this.role = this.jwtService.getAuthorities();
@@ -81,14 +87,18 @@ export class NavBarComponent implements OnInit, OnDestroy{
 
   // tslint:disable-next-line:typedef
   renderComponent(index: number) {
-    // this.currentIndex = (this.currentIndex + 1);
-    this.modalForm.viewContainerRef.clear();
-    const item = this.modal[index];
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.components);
-    const viewContainerRef = this.modalForm.viewContainerRef;
-    viewContainerRef.clear();
-    const componentRef = viewContainerRef.createComponent<ModalComponent>(componentFactory);
-    componentRef.changeDetectorRef.detectChanges();
+    $('.modal-body').slideDown(500, () => {
+      $('.modal-body').slideUp(500, () => {
+        $('.modal-body').slideDown(800);
+        this.modalForm.viewContainerRef.clear();
+        const item = this.modal[index];
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(item.components);
+        const viewContainerRef = this.modalForm.viewContainerRef;
+        viewContainerRef.clear();
+        const componentRef = viewContainerRef.createComponent<ModalComponent>(componentFactory);
+        componentRef.changeDetectorRef.detectChanges();
+      });
+    });
   }
 
   logOut(): void {
@@ -108,6 +118,7 @@ export class NavBarComponent implements OnInit, OnDestroy{
     this.username = null;
     this.avatar = null;
     this.loggedIn = false;
+    this.modalLoad = false;
   }
 
 }
