@@ -55,7 +55,7 @@
   <!-- Thumbnail images -->
   <div class="row">
     <div class="column" *ngFor="let item of listImg">
-      <img class="demo cursor" src="{{item.imageURL}}">
+      <img class="demo cursor" src="{{item.imageURL}}" onclick="currentSlide(1)">
     </div>
   </div>
 
@@ -71,13 +71,10 @@
     <li>ĐT: 0236 6517 021</li>
   </ul>
   <hr>
-  <h3>Bình luận</h3>
-  <div class="fb-login-button" data-size="medium" data-button-type="login_with" data-layout="default"
-       data-auto-logout-link="false" data-use-continue-as="true" data-width="">
-  </div>
-  <div id="fb-root"></div>
-  <div class="input-group pt-md-3 pb-md-5">
-    <span class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Nhận xét</span>
+  <button class="btn btn-success" (click)="loadPage()">Click để xem bình luận</button>
+  <div id="fb-root">
+    <div class="input-group pt-md-3 pb-md-5" *ngIf="auction">
+      <div class="fb-comments" data-href="http://localhost:4200/product-details/'{{idAuction}}'" data-numposts="5" data-width=""></div>
+    </div>
   </div>
 </div>
-

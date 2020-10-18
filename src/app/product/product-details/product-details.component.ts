@@ -139,6 +139,10 @@ export class ProductDetailsComponent implements OnInit {
   plus(): void {
     this.valueNextBidder += this.auction.eachIncrease;
   }
+
+  loadPage(): void {
+    window.location.reload();
+  }
 }
 
 
