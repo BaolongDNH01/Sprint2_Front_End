@@ -45,9 +45,14 @@
     <br>
     <div>
       <p>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)'
-                                    accept="image/*"><br></p>
+                                    accept="image/*" formControlName="touchImg"><br></p>
       <input id="nameImg" class="form-control" type="text" value="{{this.nameImg}}"  disabled><br>
     </div>
+    <div class="notice" role="alert"
+         *ngIf="productForm.get('numImg').invalid && productForm.get('touchImg').touched">
+      Cần 2 đến 5 hình ảnh
+    </div>
+    <br>
     <div>
       <p>Thông tin chi tiết :</p>
       <textarea class="form-control" id="comment" formControlName="productDetail"></textarea><br>
