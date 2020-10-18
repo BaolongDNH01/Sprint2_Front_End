@@ -73,6 +73,7 @@ export class ApprovalProductComponent implements OnInit {
     this.auction.productId = this.product.productId;
     this.auctionService.save(this.auction).subscribe();
     // location.reload();
+    this.router.navigateByUrl('/fc-admin/list-auction');
   }
 
   noApprovalProduct(): void {
