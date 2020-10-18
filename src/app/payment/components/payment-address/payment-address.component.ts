@@ -10,8 +10,8 @@ export class PaymentAddressComponent implements OnInit {
 
   paymentAddressForm: FormGroup;
 
-  totalPrice = 0;
-  shipCost = 0;
+  totalPrice: number;
+  shipCost: number;
 
   constructor(private fb: FormBuilder) { }
 
@@ -46,4 +46,9 @@ export class PaymentAddressComponent implements OnInit {
       && this.paymentAddressForm.get(field).touched;
   }
 
+  onContinue(): void {
+    console.log(this.paymentAddressForm);
+    window.localStorage.setItem('paymentAddress', JSON.stringify(this.paymentAddressForm.value));
+    window.location.href = 'cart/payment-method';
+  }
 }
