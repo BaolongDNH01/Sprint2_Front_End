@@ -32,6 +32,8 @@ import {NavBarUserComponent} from './function-user/nav-bar-user/nav-bar-user.com
 import {UserInformationComponent} from './user-manage/user-information/user-information.component';
 import {HistoryPostProductComponent} from './user-manage/history-post-product/history-post-product.component';
 import {HistoryAutionComponent} from './user-manage/history-aution/history-aution.component';
+import { PaymentMethodComponent } from './payment/components/payment-method/payment-method.component';
+import { PaymentOrderComponent } from './payment/components/payment-order/payment-order.component';
 
 
 
@@ -88,6 +90,14 @@ const routes: Routes = [
       {
         path: 'payment-address',
         component: PaymentAddressComponent
+      },
+      {
+        path: 'payment-method',
+        component: PaymentMethodComponent
+      },
+      {
+        path: 'payment-order',
+        component: PaymentOrderComponent
       }
     ]
   },
