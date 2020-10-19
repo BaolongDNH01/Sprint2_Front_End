@@ -98,6 +98,7 @@ export class HomeComponent implements OnInit {
     this.auction = Object.assign({}, this.timeoutAuction.value);
     console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
+    this.auction.dayTimeEnd = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auctionService.editAuction(this.auction).subscribe();
     location.reload();
   }
@@ -184,7 +185,7 @@ export class HomeComponent implements OnInit {
       arrFlag = arrFlag.sort((a, b) => {
         return a - b;
       });
-    } else if (a === 1){
+    } else if (a === 1) {
       arrFlag = arrFlag.sort((a, b) => {
         return b - a;
       });
