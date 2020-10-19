@@ -34,7 +34,7 @@
             <li class="dropdown col-2">
               <a href="#" class="test" style="text-decoration: none ; color: #5a6268"><span
                 class="navbar-toggler-icon "></span> </a>
-              <ul class="dropdown-menu" *ngFor="let category of listCategory">{{category.categoryName}}</ul>
+              <ul class="dropdown-menu" *ngFor="let category of listCategory" (click)="searchByCategory(category.categoryId)">{{category.categoryName}}</ul>
             </li>
           </ul>
           <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -52,7 +52,7 @@
               </li>
 
               <li class="nav-item col-2">
-                <a class="nav-link" href="#">Top user</a>
+                <a class="nav-link" (click)="findTopUser()">Top user</a>
               </li>
 
 
@@ -62,10 +62,8 @@
                   Mức giá
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Thấp -> Cao</a>
-                  <a class="dropdown-item" href="#">Cao -> Thấp</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Giảm giá nhiều</a>
+                  <a class="dropdown-item" (click)="shortAuctionByPrice(0)">Thấp -> Cao</a>
+                  <a class="dropdown-item" (click)="shortAuctionByPrice(1)">Cao -> Thấp</a>
                 </div>
               </li>
 
@@ -112,7 +110,7 @@
               </ng-template>
             </div>
             <span class="prince"><i
-              class="fa fa-gavel">&nbsp;&nbsp;</i>{{productDisplayList.eachIncrease | currency: "VND":""}}</span>
+              class="fa fa-gavel">&nbsp;&nbsp;</i>{{productDisplayList.initialPrice | currency: "VND":""}}</span>
           </div>
         </div>
       </a>
@@ -124,5 +122,40 @@
   <hr>
   <div class="col-md-12">
     <img width="100%" src="../../../assets/img/common/footer.png" alt="">
+  </div>
+</div>
+
+<button id="topU" data-toggle="modal" data-target="#exampleModal" hidden></button>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-warning" id="exampleModalLabel">
+          Top user
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="confirmBody">
+          <table class="table">
+            <tr class="bg-dark text-white">
+              <th>#</th>
+              <th>Tên</th>
+              <td>Điểm</td>
+            </tr>
+            <tr *ngFor="let user of listUser, index as i">
+              <th>{{i + 1}}</th>
+              <td>{{user.username}}</td>
+              <td>{{user.point}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
