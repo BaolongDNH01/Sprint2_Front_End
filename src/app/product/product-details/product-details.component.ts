@@ -55,7 +55,7 @@ export class ProductDetailsComponent implements OnInit {
         this.idProduct = this.auction.productId;
         this.productService.getListImg(this.auction.productId).subscribe(next => {
           this.listImg = next;
-
+          setTimeout(() => document.getElementById('img').click(), 1000);
         });
         this.productService.findById(this.auction.productId).subscribe(next => {
           this.product = next;
