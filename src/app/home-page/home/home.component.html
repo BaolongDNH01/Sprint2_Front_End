@@ -31,68 +31,10 @@
       <div class="col-md-12 p-0 m-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
           <ul class="nav nav-pills">
-            <li class="dropdown">
-              <a href="#" class="test" style="text-decoration: none ; color: #5a6268"> <span
-                class="navbar-toggler-icon "></span>Danh mục sản phẩm </a>
-              <ul class="dropdown-menu" id="menu1">
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/smartphone.svg" alt="" width="20px"> Điện thoại - máy
-                    tính bảng <i class="icon-arrow-right"></i></a>
-
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/tv-solid.svg" width="20px" alt=""> Điện tử - điện
-                    lạnh<i class="icon-arrow-right"></i></a>
-
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/headphones-alt-solid.svg" width="20px" alt=""> Phụ
-                    kiện - thiết bị số <i class="icon-arrow-right"></i></a>
-
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/laptop.svg" width="20px" alt=""> Laptop - thiết bị IT<i
-                    class="icon-arrow-right"></i></a>
-
-                </li>
-
-                <li>
-                  <a href="#"> <img src="../../../assets/img/icon/camera.svg" width="20px" alt=""> Máy ảnh - quay phim<i
-                    class="icon-arrow-right"></i></a>
-
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/washing-machine.svg" width="20px " alt=""> Điện gia
-                    dụng<i class="icon-arrow-right"></i></a>
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/cooker.svg" width="20px" alt=""> Nhà cửa - đời sống<i
-                    class="icon-arrow-right"></i></a>
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/fish-bone.svg" width="20px" alt="">Hàng tiêu dùng -
-                    thực phẩm<i class="icon-arrow-right"></i></a>
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/clock.svg" width="20px" alt=""> Đồ chơi - mẹ và bé<i
-                    class="icon-arrow-right"></i></a>
-
-                </li>
-
-                <li>
-                  <a href="#"><img src="../../../assets/img/icon/cosmetic.svg" width="20px" alt=""> Làm đẹp - sức khỏe
-                    <i class="icon-arrow-right"></i></a>
-                </li>
-
-
-              </ul>
+            <li class="dropdown col-2">
+              <a href="#" class="test" style="text-decoration: none ; color: #5a6268"><span
+                class="navbar-toggler-icon "></span> </a>
+              <ul class="dropdown-menu" *ngFor="let category of listCategory">{{category.categoryName}}</ul>
             </li>
           </ul>
           <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -101,20 +43,20 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <li class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
 
 
-              <li class="nav-item">
+              <li class="nav-item col-2">
                 <a class="nav-link" href="#">Kết quả </a>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-item col-2">
                 <a class="nav-link" href="#">Top user</a>
               </li>
 
 
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown  col-2">
                 <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                   Mức giá
@@ -127,24 +69,56 @@
                 </div>
               </li>
 
-              <li class="nav-item">
+              <li class="nav-item col-2">
                 <a class="nav-link" [routerLink]="['/auction-guide']">Hướng dẫn</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item col-3">
                 <a class="nav-link" [routerLink]="['/product-create']">Đăng sản phẩm</a>
               </li>
+
+              <li class="nav-item col-4">
+                <input class="form-control mr-sm-2 my-2 my-lg-0" [(ngModel)]="keyWordProductAuction" type="search"
+                       placeholder="Tìm kiếm sản phẩm"
+                       aria-label="Tìm kiếm" (click)="search()" >
+<!--                <button><i class="fa fa-search"></i></button>-->
+              </li>
+
             </ul>
-            <!--              <form class="form-inline my-2 my-lg-0">-->
-            <!--                <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm sản phẩm"-->
-            <!--                       aria-label="Tìm kiếm">-->
-            <!--              </form>-->
-          </div>
+
         </nav>
       </div>
     </div>
   </div>
   <!--Nơi sản phẩm-->
-  <app-display-product-aution></app-display-product-aution>
+
+
+  <div class="info-product-common mt-2 ">
+    <div *ngFor="let productDisplayList of auctionList1 | paginate: {itemsPerPage: 20, currentPage: curpage }"
+         class="borderStyle">
+      <a [routerLink]="['/product-details/', productDisplayList.auctionId]">
+        <div class="img-product"><img src="{{productDisplayList.imageURL}}" alt=""></div>
+        <div class="black-bg-product"></div>
+        <img class="eye" src="../../../assets/img/icon/right-arrow.svg" alt="">
+        <div class="content-product">
+          <p class="title-product">{{productDisplayList.productName}}</p>
+          <p class="title-product-info">Click vào để xem chi tiết sản phẩm !</p>
+          <div class="auction">
+            <div class="time">
+              <div *ngIf="productDisplayList.auctionTime != 0; else loggedOut">
+                <span>{{productDisplayList.displayTime}}</span>
+              </div>
+              <ng-template #loggedOut>
+                ending...
+              </ng-template>
+            </div>
+            <span class="prince"><i
+              class="fa fa-gavel">&nbsp;&nbsp;</i>{{productDisplayList.eachIncrease | currency: "VND":""}}</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <pagination-controls (pageChange)="curpage = $event"></pagination-controls>
 
 
   <hr>
