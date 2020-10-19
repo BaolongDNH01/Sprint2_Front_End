@@ -64,7 +64,7 @@
     </div>
     <div *ngIf="imageList.length != 0" class="form-group col-sm-12" >
       <div class="row d-inline-block" *ngFor="let img of imageList; index as i">
-        <div class="col-sm-4 content-img">
+        <div class="col-sm-3 content-img" style="width: 15rem; height: 15rem">
           <img [src]="img.imageURL" class="image card-img" alt="img">
           <div class="overlay">
             <a class="icon">
