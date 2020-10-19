@@ -8,6 +8,8 @@ import {Product} from '../../product/product';
 import {AuctionService} from '../../auction/auction.service';
 import {DatePipe} from '@angular/common';
 import {Category} from '../../product/category';
+import {User} from '../../user/User';
+import {UserService} from '../../user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -32,13 +34,15 @@ export class HomeComponent implements OnInit {
   keyWordProductAuction: string;
 
   listCategory: Category[];
+  listUser: User[];
 
   constructor(
     private router: Router,
     private httpClient: HttpClient,
     private productService: ProductService,
     private auctionService: AuctionService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private userService: UserService
   ) {
   }
 
@@ -95,7 +99,7 @@ export class HomeComponent implements OnInit {
     console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe();
-    // location.reload();
+    location.reload();
   }
 
   // Châu => Hiển thị tất cả sản phẩm có status là đang trong phiên đấu giá lên homepage
@@ -104,14 +108,14 @@ export class HomeComponent implements OnInit {
       list => {
         this.auctionList = list;
         for (let i = 0; i < this.auctionList.length; i++) {
-          if (this.auctionList[i].statusId === 2) {
+          if (this.auctionList[i].statusId == 2) {
             this.auctionList1.push(this.auctionList[i]);
             this.auctionList[i].auctionTime *= 60;
             // console.log(parseInt(localStorage.getItem('time' + i)));
             // console.log(parseInt(localStorage.getItem('time' + 2)));
             // @ts-ignore
             // localStorage.setItem('time' + i, this.auctionList[i].auctionTime);
-            if (localStorage.getItem('time' + this.auctionList[i].auctionId) === undefined || localStorage.getItem('time' + this.auctionList[i].auctionId) === 0) {
+            if (localStorage.getItem('time' + this.auctionList[i].auctionId) == undefined || localStorage.getItem('time' + this.auctionList[i].auctionId) == 0) {
               // @ts-ignore
               localStorage.setItem('time' + this.auctionList[i].auctionId, this.auctionList[i].auctionTime);
             }
@@ -147,7 +151,7 @@ export class HomeComponent implements OnInit {
           }
         }
         this.auctionList1[i].displayTime = this.transformTime(this.auctionList1[i].auctionTime);
-      }, 100);
+      }, 1000);
     }
   }
 
@@ -161,5 +165,50 @@ export class HomeComponent implements OnInit {
       return res.productName.match(this.keyWordProductAuction);
       // res.productName.match(this.keyWordProductAuction)
     });
+  }
+
+  searchByCategory(id: number): void {
+    this.auctionService.getAuctionByCategory(id).subscribe(
+      list => this.auctionList1 = list,
+      e => console.log(e)
+    );
+  }
+
+  shortAuctionByPrice(a: number): void {
+    let arrFlag: number[];
+    let arrSorted: any[];
+    for (let i = 0; i < this.auctionList1.length; i++) {
+      arrFlag.push(this.auctionList1[i].initialPrice);
+    }
+    if (a === 0) {
+      arrFlag = arrFlag.sort((a, b) => {
+        return a - b;
+      });
+    } else if (a === 1){
+      arrFlag = arrFlag.sort((a, b) => {
+        return b - a;
+      });
+    }
+
+
+    for (let i = 0; i < arrFlag.length; i++) {
+      for (let j = 0; j < this.auctionList1.length; j++) {
+        if (arrFlag[i] === this.auctionList1[j].initialPrice) {
+          arrSorted.push(this.auctionList1[j]);
+        }
+      }
+    }
+
+    this.auctionList1 = arrSorted;
+  }
+
+  findTopUser(): void {
+    this.userService.findTop5User().subscribe(
+      list => this.listUser = list,
+      e => console.log(e),
+      () => {
+        document.getElementById('topU').click();
+      }
+    );
   }
 }

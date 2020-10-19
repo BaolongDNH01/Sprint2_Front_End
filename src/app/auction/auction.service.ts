@@ -56,4 +56,8 @@ export class AuctionService {
   getBidderMax(id: number): Observable<number> {
     return this.httpClient.get<number>(this.URL + '/get-bidder-max/' + id);
   }
+
+  getAuctionByCategory(id: number): Observable<Auction[]> {
+    return this.httpClient.get<Auction[]>(this.URL + '/getAuctionByCategory/' + id);
+  }
 }
