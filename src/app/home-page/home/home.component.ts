@@ -10,6 +10,7 @@ import {DatePipe} from '@angular/common';
 import {Category} from '../../product/category';
 import {User} from '../../user/User';
 import {UserService} from '../../user/user.service';
+import {slideOutDownAnimation} from 'angular-animations';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   myDate = new Date();
   keyWordProductAuction: string;
 
-  listCategory: Category[];
+  listCategory: Category[] = [];
   listUser: User[];
 
   constructor(
@@ -54,14 +55,16 @@ export class HomeComponent implements OnInit {
 
   getAllCategory(): void {
     this.productService.findAllCategory().subscribe(
-      list => this.listCategory = list
+      list => {
+        this.listCategory = list;
+      }
     );
   }
 
   findProductTimeOutById(id: number): void {
     this.auctionService.findById(id).subscribe(
       next => {
-        console.log(next);
+        // console.log(next);
         this.auction = next;
         this.id = this.auction.auctionId;
         this.timeoutAuction = new FormGroup({
@@ -94,9 +97,9 @@ export class HomeComponent implements OnInit {
 
   // Châu => Khi time out thì set lại status
   onTimeOut(): void {
-    console.log('toi day chua');
+    // console.log('toi day chua');
     this.auction = Object.assign({}, this.timeoutAuction.value);
-    console.log(this.timeoutAuction.value);
+    // console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe();
     location.reload();
@@ -106,7 +109,8 @@ export class HomeComponent implements OnInit {
   displayProductAuction(): void {
     this.auctionService.findAllProductAuction().subscribe(
       list => {
-        this.auctionList = list;
+        this.auctionList1 = list;
+        this.auctionList1API = list;
         for (let i = 0; i < this.auctionList.length; i++) {
           if (this.auctionList[i].statusId == 2) {
             this.auctionList1.push(this.auctionList[i]);
@@ -134,11 +138,11 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.auctionList1.length; i++) {
       // @ts-ignore
       this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId)));
-      console.log(this.auctionList1[i].auctionTime);
+      // console.log(this.auctionList1[i].auctionTime);
       this.interval = setInterval(() => {
         if (this.auctionList1[i].auctionTime == 0) {
           this.auctionList1[i].auctionTime = null;
-          console.log('co qua day ko');
+          // console.log('co qua day ko');
           localStorage.removeItem('time' + (this.auctionList1[i].auctionId));
           this.findProductTimeOutById(this.auctionList1[i].auctionId);
         } else {
@@ -167,16 +171,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  searchByCategory(id: number): void {
-    this.auctionService.getAuctionByCategory(id).subscribe(
-      list => this.auctionList1 = list,
-      e => console.log(e)
-    );
+  searchByCategory(name: string): void {
+    this.auctionList1 = this.auctionList1API.filter(auction => {
+      return auction.categoryName.match(name);
+    });
   }
 
   shortAuctionByPrice(a: number): void {
-    let arrFlag: number[];
-    let arrSorted: any[];
+    let arrFlag: number[] = [];
+    let arrSorted: any[] = [];
     for (let i = 0; i < this.auctionList1.length; i++) {
       arrFlag.push(this.auctionList1[i].initialPrice);
     }
@@ -195,6 +198,8 @@ export class HomeComponent implements OnInit {
       for (let j = 0; j < this.auctionList1.length; j++) {
         if (arrFlag[i] === this.auctionList1[j].initialPrice) {
           arrSorted.push(this.auctionList1[j]);
+          this.auctionList1.splice(j, 1);
+          break;
         }
       }
     }

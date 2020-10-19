@@ -382,3 +382,21 @@ body {
   color: red;
 }
 
+.li-size{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #8b8a89;
+}
+
+.li-size:hover {
+  background-color: #e1f7f5;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: #e1f7f5 -2px -2px 4px 4px;
+  color: #ae1318;
+  padding-left: 50px;
+  transition: all ease 0.6s;
+}
+
