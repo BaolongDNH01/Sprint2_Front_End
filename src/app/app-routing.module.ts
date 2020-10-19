@@ -1,10 +1,8 @@
 import {CartComponent} from './payment/components/cart/cart.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomePageModule} from './home-page/home-page.module';
 import {AuctionGuideComponent} from './home-page/auction-guide/auction-guide.component';
 import {HomeComponent} from './home-page/home/home.component';
-import {DisplayProductAutionComponent} from './home-page/display-product-aution/display-product-aution.component';
 import {ListAuctionComponent} from './auction/list-auction/list-auction.component';
 import {RecoverPasswordCodeComponent} from './user/recover-password-code/recover-password-code.component';
 import {DefaultLoadComponent} from './home-page/default-load/default-load.component';
@@ -34,8 +32,9 @@ import {HistoryPostProductComponent} from './user-manage/history-post-product/hi
 import {HistoryAutionComponent} from './user-manage/history-aution/history-aution.component';
 import { PaymentMethodComponent } from './payment/components/payment-method/payment-method.component';
 import { PaymentOrderComponent } from './payment/components/payment-order/payment-order.component';
-import {AdminEditProductComponent} from "./product/admin-edit-product/admin-edit-product.component";
-import {AdminAddProductComponent} from "./product/admin-add-product/admin-add-product.component";
+import {AdminEditProductComponent} from './product/admin-edit-product/admin-edit-product.component';
+import {AdminAddProductComponent} from './product/admin-add-product/admin-add-product.component';
+import {AddWalletComponent} from './user/add-wallet/add-wallet.component';
 
 
 
@@ -72,7 +71,8 @@ const routes: Routes = [
       {path: 'userManage', component: NavBarUserComponent, children: [
           {path: '', component: UserInformationComponent},
           {path: 'historyPostProduct', component: HistoryPostProductComponent},
-          {path: 'historyAuction', component: HistoryAutionComponent}
+          {path: 'historyAuction', component: HistoryAutionComponent},
+          {path: 'add-wallet', component: AddWalletComponent}
           //  chuc nang user
         ]}
     ]
