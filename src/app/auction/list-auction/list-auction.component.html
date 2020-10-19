@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-10 m-auto">
+    <div class="col-12 m-auto">
       <div>
-        <nav class=" col-10 mt-5 bg-title border-dark">
+        <nav class=" col-12 mt-5 bg-title border-dark">
          <h1 class="title">Danh sách phiên đấu giá</h1>
         </nav>
-        <table class="table border col-10">
+        <table class="table border col-12">
           <thead class="thead-light">
           <tr>
             <th scope="col">#</th>
@@ -39,7 +39,8 @@
             <td>{{list.statusName}}</td>
             <td>{{list.dayTimeStart | date: 'dd/MM/yyyy h:mm:ss a '}}</td>
             <td>{{list.dayTimeEnd}}</td>
-            <td><button type="button" class="btn btn-primary btn-sm" (click)="onStatusAuction(list.auctionId)">Cho phép</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm" [hidden]="list.statusName == 'Kết thúc'" [disabled]="list.statusName == 'Đang đấu giá'"    (click)="onStatusAuction(list.auctionId)">Cho phép đấu giá</button></td>
+            <td><button type="button" class="btn btn-primary btn-sm" [disabled]="list.statusName == 'Kết thuc'" [hidden]="list.statusName == 'Chờ'" (click)="onChangeStatusAuctionWithStatusFinish(list.auctionId)">Trở lại chờ</button></td>
             <td></td>
           </tr>
           </tbody>
