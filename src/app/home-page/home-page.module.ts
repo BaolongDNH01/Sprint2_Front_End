@@ -12,6 +12,8 @@ import {AuthLoginComponent} from '../login/components/auth-login/auth-login.comp
 import {DisplayProductAjaxComponent} from './display-product-ajax/display-product-ajax.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DefaultLoadComponent } from './default-load/default-load.component';
+import { CarouselComponent } from './home/carousel/carousel/carousel.component';
+import { FooterComponent } from './home/footer/footer/footer.component';
 
 @NgModule({
   declarations: [HomeComponent,
@@ -21,7 +23,9 @@ import { DefaultLoadComponent } from './default-load/default-load.component';
     NavBarComponent,
     ModalFormDirective,
     DisplayProductAjaxComponent,
-    DefaultLoadComponent],
+    DefaultLoadComponent,
+    CarouselComponent,
+    FooterComponent],
   exports: [
     HomeComponent,
     AuctionGuideComponent,

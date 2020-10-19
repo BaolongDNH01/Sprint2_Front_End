@@ -1,0 +1,44 @@
+.custom-footer {
+  background: #1AB7EA;
+  color: lightcyan;
+}
+
+.logo-company {
+  width: 60%;
+  height: 50%;
+  margin-left: 10%;
+}
+
+.title{
+  color: darkslateblue;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.icon-contact i {
+  transition: all .3s;
+}
+
+.icon-contact i:hover {
+  transform: scale(1.3);
+}
+
+.icon-github{
+  color: black;
+}
+
+.icon-facebook{
+  color: mediumblue;
+}
+
+.icon-linked{
+  color: mediumblue;
+}
+
+.icon-twitter{
+  color: mediumblue;
+}
+
+.icon-instagram{
+  color: #AE2AB3;
+}
