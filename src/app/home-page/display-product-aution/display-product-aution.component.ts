@@ -53,7 +53,8 @@ export class DisplayProductAutionComponent implements OnInit {
         this.timeoutAuction = new FormGroup({
           auctionId: new FormControl(this.auction.auctionId),
           dayTimeStart: new FormControl(this.auction.dayTimeStart),
-          dayTimeEnd: new FormControl(this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss').toString().split(' ')),
+          dayTimeEnd: new FormControl(this.auction.dayTimeEnd),
+          // dayTimeEnd: new FormControl(this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss').toString().split(' ')),
           productId: new FormControl(this.auction.productId),
           statusId: new FormControl(3),
         });

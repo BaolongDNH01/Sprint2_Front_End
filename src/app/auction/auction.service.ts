@@ -34,6 +34,7 @@ export class AuctionService {
 
   // Châu => function sửa trong auction
   editAuction(auction: Auction): Observable<void> {
+    console.log('auction nè : ' + auction.productId);
     return this.httpClient.patch<void>(this.URL + '/auction-edit/' + auction.auctionId, auction);
   }
 

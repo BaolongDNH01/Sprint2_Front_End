@@ -12,6 +12,7 @@ import {AuthLoginComponent} from '../login/components/auth-login/auth-login.comp
 import {DisplayProductAjaxComponent} from './display-product-ajax/display-product-ajax.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DefaultLoadComponent } from './default-load/default-load.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [HomeComponent,
@@ -32,7 +33,8 @@ import { DefaultLoadComponent } from './default-load/default-load.component';
         CommonModule,
         RouterModule,
         LoginModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        FormsModule
     ]
 })
 export class HomePageModule {
