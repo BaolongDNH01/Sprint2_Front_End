@@ -22,12 +22,8 @@ export class HistoryPostProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.userName = this.jwtService.getUsername();
-    if (this.userName === '' || this.userName === undefined || this.userName === null) {
-      //  đưa ra thông báo login
-      document.getElementById('control').click();
-    } else {
-      this.getAllProduct();
-    }
+    this.getAllProduct();
+    console.log('sjkdfhvierusgoiuv');
   }
 
   getAllProduct(): void {
