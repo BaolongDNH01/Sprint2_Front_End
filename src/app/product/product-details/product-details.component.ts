@@ -85,7 +85,6 @@ export class ProductDetailsComponent implements OnInit {
   localStoreage(): void {
     this.interval = setInterval(() => {
         if (this.product.displayTime === 0) {
-          console.log('co bang ko hay ko bang ko');
           localStorage.removeItem('time' + this.auction.auctionId);
 
         } else {
@@ -139,6 +138,10 @@ export class ProductDetailsComponent implements OnInit {
 
   plus(): void {
     this.valueNextBidder += this.auction.eachIncrease;
+  }
+
+  loadPage(): void {
+    window.location.reload();
   }
 }
 
