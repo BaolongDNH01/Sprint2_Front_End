@@ -18,11 +18,13 @@ export class PaymentOrderComponent implements OnInit {
   shipCost: string;
   paymentMethod: string;
   shipMethod: string;
+  imgUrl: string;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.imgUrl = window.localStorage.getItem('imgUrl');
     this.orderCode = window.localStorage.getItem('orderCode');
     this.deliveryDate = window.localStorage.getItem('deliveryDate');
     this.orderStatus = window.localStorage.getItem('orderStatus');

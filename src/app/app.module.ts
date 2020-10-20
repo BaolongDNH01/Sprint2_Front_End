@@ -41,10 +41,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {FunctionUserModule} from './function-user/function-user.module';
 import {NgxPayPalModule} from 'ngx-paypal';
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
