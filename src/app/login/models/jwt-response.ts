@@ -4,5 +4,6 @@ export class JwtResponse {
   username: string;
   email: string;
   avatar: string;
+  wallet: string;
   authorities: string[];
 }

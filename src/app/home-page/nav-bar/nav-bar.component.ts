@@ -87,7 +87,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:typedef
   renderComponent(index: number) {
-    $('.modal-body').slideDown(500, () => {
+    // $('.modal-body').slideDown(500, () => {
       $('.modal-body').slideUp(500, () => {
         $('.modal-body').slideDown(800);
         this.modalForm.viewContainerRef.clear();
@@ -98,7 +98,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
         const componentRef = viewContainerRef.createComponent<ModalComponent>(componentFactory);
         componentRef.changeDetectorRef.detectChanges();
       });
-    });
+    // });
   }
 
   logOut(): void {
