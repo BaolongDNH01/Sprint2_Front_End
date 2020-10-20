@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ICreateOrderRequest, IPayPalConfig} from 'ngx-paypal';
-import {JwtService} from "../../login/services/jwt.service";
+import {JwtService} from '../../login/services/jwt.service';
 
 @Component({
   selector: 'app-add-wallet',
@@ -9,7 +9,7 @@ import {JwtService} from "../../login/services/jwt.service";
 })
 export class AddWalletComponent implements OnInit {
   balance: number;
-  constructor(private userService, private jwtService: JwtService) { }
+  constructor( private jwtService: JwtService) { }
 
   ngOnInit(): void {
     this.balance = Number(this.jwtService.getUserWallet());
