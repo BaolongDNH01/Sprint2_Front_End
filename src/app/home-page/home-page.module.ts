@@ -14,6 +14,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { DefaultLoadComponent } from './default-load/default-load.component';
 import { CarouselComponent } from './home/carousel/carousel/carousel.component';
 import { FooterComponent } from './home/footer/footer/footer.component';
+import {FormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [HomeComponent,
@@ -36,7 +38,8 @@ import { FooterComponent } from './home/footer/footer/footer.component';
         CommonModule,
         RouterModule,
         LoginModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        FormsModule
     ]
 })
 export class HomePageModule {

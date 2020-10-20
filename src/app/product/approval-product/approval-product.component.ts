@@ -71,8 +71,10 @@ export class ApprovalProductComponent implements OnInit {
     this.auction.dayTimeStart = this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss');
     this.auction.statusId = 1;
     this.auction.productId = this.product.productId;
+    console.log(this.auction);
     this.auctionService.save(this.auction).subscribe();
     // location.reload();
+    this.router.navigateByUrl('userManage/historyPostProduct');
   }
 
   noApprovalProduct(): void {

@@ -34,6 +34,7 @@ export class AuctionService {
 
   // Châu => function sửa trong auction
   editAuction(auction: Auction): Observable<void> {
+    console.log('auction nè : ' + auction.productId);
     return this.httpClient.patch<void>(this.URL + '/auction-edit/' + auction.auctionId, auction);
   }
 
@@ -54,5 +55,9 @@ export class AuctionService {
 
   getBidderMax(id: number): Observable<number> {
     return this.httpClient.get<number>(this.URL + '/get-bidder-max/' + id);
+  }
+
+  getAuctionByCategory(id: number): Observable<Auction[]> {
+    return this.httpClient.get<Auction[]>(this.URL + '/getAuctionByCategory/' + id);
   }
 }

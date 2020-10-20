@@ -213,11 +213,19 @@ export class AdminEditProductComponent implements OnInit, AfterViewInit {
   }
 
   removeImg(index: number): void {
+    console.log(index);
     if (this.imageList[index].imageId != null) {
       const id = this.imageList[index].imageId;
+      this.imageList.splice(index, 1);
       this.productService.deleteImg(id).subscribe(next => {
         },
-        error => {console.log(error); });
+        error => {
+        console.log(error); },
+        () => {
+        console.log('abc');
+        });
+    } else {
+      this.imageList.splice(index, 1);
     }
   }
 }

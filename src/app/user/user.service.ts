@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './User';
@@ -14,82 +14,100 @@ import {ChangePassword} from './reset-password/ChangePassword';
 })
 export class UserService {
   API_URL = 'http://localhost:8080';
-  constructor(private httpClient: HttpClient, private jwt: JwtService) { }
-  findAllUser(): Observable<User[]>{
+
+  constructor(private httpClient: HttpClient, private jwt: JwtService) {
+  }
+
+  findAllUser(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.API_URL + '/user');
   }
-  findUserById(userId: number): Observable<User>{
+
+  findUserById(userId: number): Observable<User> {
     return this.httpClient.get<User>(this.API_URL + '/user/' + userId);
   }
-  deleteUser(userId: number): Observable<User>{
+
+  deleteUser(userId: number): Observable<User> {
     return this.httpClient.delete<User>(this.API_URL + '/delete-user/' + userId);
   }
-  saveUser(user: User): Observable<any>{
+
+  saveUser(user: User): Observable<any> {
     return this.httpClient.post<any>(this.API_URL + '/add-user', user);
   }
-  lockUser(user: User[]): Observable<any>{
+
+  lockUser(user: User[]): Observable<any> {
     const headerAuth = new HttpHeaders();
     headerAuth.append('admin', 'Bearer' + this.jwt.getToken());
     return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
   }
-  sendEmail(user: User, response?: any): Observable<any>{
-    return this.httpClient.post<any>(this.API_URL + '/register?g-recaptcha-response=' + response, user );
+
+  sendEmail(user: User, response?: any): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + '/register?g-recaptcha-response=' + response, user);
   }
-  getUserByUserName(userName: string): Observable<User>{
+
+  getUserByUserName(userName: string): Observable<User> {
     return this.httpClient.get<User>(this.API_URL + '/getUserByUserName/' + userName);
   }
-  findAllUserActivated(): Observable<User[]>{
+
+  findAllUserActivated(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.API_URL + '/user-activated');
   }
-  unlockUser(userList: User[]): Observable<any>{
+
+  unlockUser(userList: User[]): Observable<any> {
     const headerAuth = new HttpHeaders();
     headerAuth.append('admin', 'Bearer' + this.jwt.getToken());
     return this.httpClient.post(this.API_URL + '/unlock-user', userList);
   }
-  deleteUsers(ids: string[]): Observable<any>{
+
+  deleteUsers(ids: string[]): Observable<any> {
     const headerAuth = new HttpHeaders();
     headerAuth.append('admin', 'Bearer' + this.jwt.getToken());
     return this.httpClient.delete<any>(this.API_URL + '/delete-users/' + ids);
   }
-  recoverRequest(recoverPassword: RecoverPassword): Observable<any>{
+
+  recoverRequest(recoverPassword: RecoverPassword): Observable<any> {
     return this.httpClient.post<any>(this.API_URL + '/recover-password', recoverPassword);
   }
-  checkCode(confirmCode: string, username: string): Observable<string>{
+
+  checkCode(confirmCode: string, username: string): Observable<string> {
     return this.httpClient.get<string>(this.API_URL + '/check-code/' + confirmCode + '/' + username);
   }
-  changePassword(changePassword: ChangePassword): Observable<any>{
-    return this.httpClient.post<any>(this.API_URL + '/change-password' , changePassword);
+
+  changePassword(changePassword: ChangePassword): Observable<any> {
+    return this.httpClient.post<any>(this.API_URL + '/change-password', changePassword);
   }
-  deleteCode(username: string): Observable<any>{
+
+  deleteCode(username: string): Observable<any> {
     return this.httpClient.get<any>(this.API_URL + '/delete-code/' + username);
   }
-  increasePoint(user: User, point: number): Observable<any>{
+
+  increasePoint(user: User, point: number): Observable<any> {
     user.point = user.point + point;
-    if (user.point > 2000){
+    if (user.point > 2000) {
       user.rank = 'Kim cương';
-    }else if (1000 <= user.point && user.point < 2000){
+    } else if (1000 <= user.point && user.point < 2000) {
       user.rank = 'Bạch kim';
-    }else if (500 <= user.point && user.point < 1000){
+    } else if (500 <= user.point && user.point < 1000) {
       user.rank = 'Vàng';
-    }else if (200 <= user.point && user.point < 500){
+    } else if (200 <= user.point && user.point < 500) {
       user.rank = 'Bạc';
-    }else if (0 <= user.point && user.point < 200){
+    } else if (0 <= user.point && user.point < 200) {
       user.rank = 'Đồng';
     }
     if (user.point > 0) {
       return this.httpClient.post<any>(this.API_URL + '/add-user', user);
-    }else if (-30 <= user.point && user.point < 0){
+    } else if (-30 <= user.point && user.point < 0) {
       user.timeLock = 7 * 24 * 60 * 60 * 1000;
       this.httpClient.post<any>(this.API_URL + '/add-user', user);
       return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
-    }else if (-50 <= user.point && -30 < user.point){
+    } else if (-50 <= user.point && -30 < user.point) {
       user.timeLock = 30 * 24 * 60 * 60 * 1000;
       this.httpClient.post<any>(this.API_URL + '/add-user', user);
       return this.httpClient.post<any>(this.API_URL + '/lock-user', user);
-    }else {
+    } else {
       return this.httpClient.delete<User>(this.API_URL + '/delete-user/' + user.userId);
     }
   }
+
   endowUser(user: User): number {
     switch (user.rank) {
       case 'Kim cương':
@@ -103,5 +121,9 @@ export class UserService {
       case 'Đồng':
         return 5;
     }
+  }
+
+  findTop5User(): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.API_URL + '/findTopUser');
   }
 }
