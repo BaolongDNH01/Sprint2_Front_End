@@ -13,6 +13,9 @@ export class Auction {
   statusName: string;
   initialPrice: number;
 
+  // khánh thêm sáng 10/20/2020 xóa comment
+  categoryName: string;
+
   constructor() {
   }
 }
