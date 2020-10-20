@@ -64,14 +64,12 @@ export class HomeComponent implements OnInit {
   findProductTimeOutById(id: number): void {
     this.auctionService.findById(id).subscribe(
       next => {
-        // console.log(next);
         this.auction = next;
         this.id = this.auction.auctionId;
         this.timeoutAuction = new FormGroup({
           auctionId: new FormControl(this.auction.auctionId),
           dayTimeStart: new FormControl(this.auction.dayTimeStart),
           dayTimeEnd: new FormControl(this.auction.dayTimeEnd),
-          // dayTimeEnd: new FormControl(this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss').toString().split(' ')),
           productId: new FormControl(this.auction.productId),
           statusId: new FormControl(3),
         });
@@ -97,9 +95,7 @@ export class HomeComponent implements OnInit {
 
   // Châu => Khi time out thì set lại status
   onTimeOut(): void {
-    // console.log('toi day chua');
     this.auction = Object.assign({}, this.timeoutAuction.value);
-    // console.log(this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe();
     location.reload();
@@ -109,16 +105,12 @@ export class HomeComponent implements OnInit {
   displayProductAuction(): void {
     this.auctionService.findAllProductAuction().subscribe(
       list => {
-        this.auctionList1 = list;
-        this.auctionList1API = list;
+        this.auctionList = list;
         for (let i = 0; i < this.auctionList.length; i++) {
           if (this.auctionList[i].statusId == 2) {
             this.auctionList1.push(this.auctionList[i]);
             this.auctionList[i].auctionTime *= 60;
-            // console.log(parseInt(localStorage.getItem('time' + i)));
-            // console.log(parseInt(localStorage.getItem('time' + 2)));
             // @ts-ignore
-            // localStorage.setItem('time' + i, this.auctionList[i].auctionTime);
             if (localStorage.getItem('time' + this.auctionList[i].auctionId) == undefined || localStorage.getItem('time' + this.auctionList[i].auctionId) == 0) {
               // @ts-ignore
               localStorage.setItem('time' + this.auctionList[i].auctionId, this.auctionList[i].auctionTime);
@@ -128,7 +120,7 @@ export class HomeComponent implements OnInit {
       }, error1 => {
 
       }, () => {
-        // this.auctionList1API = this.auctionList1;
+        this.auctionList1API = this.auctionList1;
         this.localStoreage();
       }
     );
@@ -138,11 +130,9 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.auctionList1.length; i++) {
       // @ts-ignore
       this.auctionList1[i].auctionTime = (localStorage.getItem('time' + (this.auctionList1[i].auctionId)));
-      // console.log(this.auctionList1[i].auctionTime);
       this.interval = setInterval(() => {
         if (this.auctionList1[i].auctionTime == 0) {
           this.auctionList1[i].auctionTime = null;
-          // console.log('co qua day ko');
           localStorage.removeItem('time' + (this.auctionList1[i].auctionId));
           this.findProductTimeOutById(this.auctionList1[i].auctionId);
         } else {
@@ -167,7 +157,6 @@ export class HomeComponent implements OnInit {
   search(): void {
     this.auctionList1 = this.auctionList1API.filter(res => {
       return res.productName.match(this.keyWordProductAuction);
-      // res.productName.match(this.keyWordProductAuction)
     });
   }
 

@@ -162,12 +162,11 @@ export class ListAuctionComponent implements OnInit {
     this.auctionService.editAuction(this.auction).subscribe(
       next => {
       }, error => {
-
+        this.listProductAuction();
       }, () => {
-
+        this.listProductAuction();
       }
     );
-    location.reload();
   }
 
 
@@ -176,11 +175,10 @@ export class ListAuctionComponent implements OnInit {
     this.auction = Object.assign({}, this.timeoutAuction.value);
     this.auction.auctionId = this.id;
     this.auctionService.editAuction(this.auction).subscribe(
-      next => {
-      }, error => {
-
-      }, () => {
-
+      () => {
+      },
+      () => {
+        this.listProductAuction();
       }
     );
     this.router.navigateByUrl('');

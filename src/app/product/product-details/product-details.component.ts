@@ -89,7 +89,6 @@ export class ProductDetailsComponent implements OnInit {
 
         } else {
           this.product.displayTime -= 1;
-          console.log(this.product.displayTime);
           localStorage.setItem('time' + this.auction.auctionId, (this.product.displayTime).toString());
         }
         // console.log(this.product.displayTime);

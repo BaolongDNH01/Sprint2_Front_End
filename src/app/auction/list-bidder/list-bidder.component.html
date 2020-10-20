@@ -10,7 +10,7 @@
     </thead>
       <tbody *ngFor="let bidder of bidderList ;let i=index;">
       <tr>
-        <td>{{bidder.bidPrice}}</td>
+        <td>{{bidder.bidPrice|currency:"VND":""}}</td>
         <td>{{bidder.bidDateTime}}</td>
         <td>{{bidder.userName}}</td>
       </tr>
