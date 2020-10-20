@@ -8,12 +8,14 @@ import { Cart } from '../models/cart';
 })
 export class CartService {
 
-  private CART_API = 'http://localhost:8080/cart/get';
-
+  private CART_API = 'http://localhost:8080/cart';
   constructor(private http: HttpClient) { }
 
   getCartByUserId(userId: number): Observable<Cart> {
-    console.log('toi roi ne may');
-    return this.http.get<Cart>(`${this.CART_API}/${userId}`);
+    return this.http.get<Cart>(`${this.CART_API}/get/${userId}`);
+  }
+
+  getInfoProductWinByUserId(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.CART_API}/get-product-win/${userId}`);
   }
 }

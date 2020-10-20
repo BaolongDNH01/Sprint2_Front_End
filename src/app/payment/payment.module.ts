@@ -8,6 +8,7 @@ import { PaymentAddressComponent } from './components/payment-address/payment-ad
 import { PaymentMethodComponent } from './components/payment-method/payment-method.component';
 import { PaymentOrderComponent } from './components/payment-order/payment-order.component';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
+import {NgxPayPalModule} from 'ngx-paypal';
 
 
 
@@ -17,7 +18,8 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPayPalModule
   ],
   providers: [
   ]

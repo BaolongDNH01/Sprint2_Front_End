@@ -39,6 +39,7 @@ import { FunctionAdminComponent } from './function-admin/function-admin.componen
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {FunctionUserModule} from './function-user/function-user.module';
+import {NgxPayPalModule} from 'ngx-paypal';
 
 
 
@@ -73,7 +74,8 @@ import {FunctionUserModule} from './function-user/function-user.module';
     Ng2SearchPipeModule,
     DragDropModule,
     NgxPaginationModule,
-    FunctionUserModule
+    FunctionUserModule,
+    NgxPayPalModule
   ],
 
   providers: [AngularFirestore, ModalServiceService,
