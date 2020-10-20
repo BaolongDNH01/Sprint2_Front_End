@@ -29,6 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   listImg: Image[];
   valueNextBidder: number;
   numbetTesst: number;
+  maxBidder: number;
 
   constructor(private productService: ProductService,
               private activatedRoute: ActivatedRoute,
@@ -54,7 +55,7 @@ export class ProductDetailsComponent implements OnInit {
         this.idProduct = this.auction.productId;
         this.productService.getListImg(this.auction.productId).subscribe(next => {
           this.listImg = next;
-
+          setTimeout(() => document.getElementById('img').click(), 1000);
         });
         this.productService.findById(this.auction.productId).subscribe(next => {
           this.product = next;
@@ -62,6 +63,7 @@ export class ProductDetailsComponent implements OnInit {
           console.log(this.product.displayTime + 'time hien tai');
         });
         this.auctionService.getBidderMax(this.auction.auctionId).subscribe(next => {
+          this.maxBidder = next;
           if (this.auction.initialPrice > next) {
             this.valueNextBidder = this.auction.initialPrice + this.auction.eachIncrease;
           } else {
@@ -83,7 +85,6 @@ export class ProductDetailsComponent implements OnInit {
   localStoreage(): void {
     this.interval = setInterval(() => {
         if (this.product.displayTime === 0) {
-          console.log('co bang ko hay ko bang ko');
           localStorage.removeItem('time' + this.auction.auctionId);
 
         } else {
@@ -127,6 +128,20 @@ export class ProductDetailsComponent implements OnInit {
       }
     );
 
+  }
+
+  minus(): void {
+    if (this.valueNextBidder > this.maxBidder + this.auction.eachIncrease) {
+      this.valueNextBidder -= this.auction.eachIncrease;
+    }
+  }
+
+  plus(): void {
+    this.valueNextBidder += this.auction.eachIncrease;
+  }
+
+  loadPage(): void {
+    window.location.reload();
   }
 }
 

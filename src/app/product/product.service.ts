@@ -9,6 +9,7 @@ import {Image} from './image';
 import {JwtService} from '../login/services/jwt.service';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -74,5 +75,12 @@ export class ProductService {
 
   getListImg(id: number): Observable<Image[]> {
     return this.httpClient.get<Image[]>(this.API_URL + '/get-image-product/' + id);
+  }
+
+  deleteImg(id: number): Observable<any>{
+    return this.httpClient.delete<any>(this.API_URL + '/delete-image/' + id);
+  }
+  adminEdit(product: Product): Observable<any>{
+    return this.httpClient.post<any>(this.API_URL + '/admin-edit', product);
   }
 }

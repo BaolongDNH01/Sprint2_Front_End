@@ -41,15 +41,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {FunctionUserModule} from './function-user/function-user.module';
 import {NgxPayPalModule} from 'ngx-paypal';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
     TransactionManagementComponent,
     ErrorComponent,
-    FunctionAdminComponent,
+    FunctionAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +72,7 @@ import {NgxPayPalModule} from 'ngx-paypal';
     DragDropModule,
     NgxPaginationModule,
     FunctionUserModule,
+    BrowserAnimationsModule,
     NgxPayPalModule
   ],
 

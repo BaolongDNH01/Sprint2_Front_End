@@ -14,13 +14,15 @@
 </head>
 <body class="mat-typography">
   <app-root></app-root>
-<!--  Click de chuyen anh-->
+
+<!--  Image Slide-->
   <script>
     var slideIndex = 1;
     showSlides(slideIndex);
 
     // Next/previous controls
     function plusSlides(n) {
+      console.log('da click')
       showSlides(slideIndex += n);
     }
 
@@ -34,26 +36,27 @@
       var slides = document.getElementsByClassName("mySlides");
       var dots = document.getElementsByClassName("demo");
       var captionText = document.getElementById("caption");
-      if (n > slides.length) {
-        slideIndex = 1
-      }
-      if (n < 1) {
-        slideIndex = slides.length
-      }
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
       for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
       }
       for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
       }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
-      captionText.innerHTML = dots[slideIndex - 1].alt;
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
     }
   </script>
 
+<<<<<<< HEAD
 <script
 src="https://www.paypal.com/sdk/js?client-id=ARUq5zpy71IGi6CG4SED9POwul2h16lpGuIfi-kciW468LaOpF-UEykmzVJyQpSG6hK8y9IEze_tS8_x&currency=USD">
 </script>
+=======
+<!--  IPA facebook-->
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v8.0&appId=771729253389522&autoLogAppEvents=1" nonce="cmYtLWSD"></script>
+>>>>>>> be165b0e0c0b0b05d6728c729c22a46e8e7bace3
 </body>
 </html>

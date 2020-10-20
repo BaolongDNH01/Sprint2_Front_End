@@ -50,6 +50,11 @@ export class ListUserComponent implements OnInit {
         rankService.findAllRank().subscribe(
           next => {
             this.rankList = next;
+            console.log(this.rankList);
+          }, error => {
+            this.rankList = new Array();
+          }, () => {
+            console.log(this.rankList);
           }
         );
       }

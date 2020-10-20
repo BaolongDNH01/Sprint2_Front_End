@@ -7,6 +7,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Status} from 'tslint/lib/runner';
 import {Auction} from '../../auction/auction';
 import {AuctionService} from '../../auction/auction.service';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-display-product-aution',
@@ -26,12 +27,14 @@ export class DisplayProductAutionComponent implements OnInit {
   display;
   interval;
   curpage = 1;
+  myDate = new Date();
 
   constructor(
     private router: Router,
     private httpClient: HttpClient,
     private productService: ProductService,
-    private auctionService: AuctionService
+    private auctionService: AuctionService,
+    private datePipe: DatePipe
   ) {
   }
 
@@ -51,6 +54,7 @@ export class DisplayProductAutionComponent implements OnInit {
           auctionId: new FormControl(this.auction.auctionId),
           dayTimeStart: new FormControl(this.auction.dayTimeStart),
           dayTimeEnd: new FormControl(this.auction.dayTimeEnd),
+          // dayTimeEnd: new FormControl(this.datePipe.transform(this.myDate, 'yyyy-MM-dd HH:mm:ss').toString().split(' ')),
           productId: new FormControl(this.auction.productId),
           statusId: new FormControl(3),
         });

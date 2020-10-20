@@ -1,0 +1,26 @@
+<div class="row justify-content-center">
+  <div class="card">
+    <p class="card-header col-sm-12 h3 font-weight-bold text-info text-capitalize">Nạp Tiền Vào Ví</p>
+    <div class="card-body col-sm-12">
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="text-dark"> Số dư hiện tại:</p>
+        </div>
+        <div class="col-sm-7">
+          <p>{{balance | currency:'VND':'code':'1.1-2'}}</p>
+        </div>
+        <div class="col-sm-4">
+          <label for="addAmount" class="text-dark">Số tiền nạp vào:</label>
+        </div>
+        <div class="col-sm-7">
+          <input id="addAmount" type="text" class="text-dark">
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+    </div>
+  </div>
+</div>
+
+abc

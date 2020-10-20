@@ -1,15 +1,12 @@
-import { FormatUsernameService } from '../../services/format-username.service';
-import { SocialSignUpInfo } from '../../models/social-signup-info';
 import {Component, OnInit, OnDestroy, Output, EventEmitter} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SocialAuthService, SocialUser } from 'angularx-social-login';
-import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 
 import { LoginInfo } from '../../models/login-info';
 import { AuthService } from '../../services/auth.service';
 import { JwtService } from '../../services/jwt.service';
 import {ModalServiceService} from '../../../home-page/modal-service.service';
+import {fadeInAnimation, fadeOutAnimation} from 'angular-animations';
 
 @Component({
   selector: 'app-auth-login',
@@ -21,7 +18,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   loginForm: FormGroup;
   loginInfo: LoginInfo;
-
+  state: boolean;
   isLoggedIn = false;
   isLogInFailed = false;
 
@@ -49,6 +46,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
   }
 
   loadForm(index: number): void{
+    this.state = false;
     this.modalServiceService.load(index);
   }
 
@@ -57,7 +55,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-
+    this.state = true;
     if (this.jwtService.getToken()) {
       this.isLoggedIn = true;
       this.username = this.jwtService.getUsername();

@@ -1,6 +1,6 @@
 <div class="col-md-8 m-auto card-body">
-  <p class="text-center h3 font-weight-bold card-header ">Đăng sản phẩm</p>
-  <form class="w-75 mx-auto" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <p class="text-center h3 font-weight-bold card-header ">Cập nhật thông tin sản phẩm</p>
+  <form class="w-75 mx-auto" [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="form-group col-sm-12">
       <label>Tên sản phẩm :</label>
       <input type="text" id="productName" class="form-control" formControlName="productName">
@@ -20,7 +20,7 @@
       <textarea class="form-control col-md-8" id="detailUser" type="text"></textarea>
     </div>
     <div class="notice" role="alert"
-         *ngIf="productForm.get('productName').invalid && productForm.get('productName').touched">
+         *ngIf="editForm.get('productName').invalid && editForm.get('productName').touched">
       Không được để trống
     </div>
     <br>
@@ -34,7 +34,7 @@
     </div>
     <br>
     <div class="notice" role="alert"
-         *ngIf="productForm.get('categoryId').invalid && productForm.get('categoryId').touched">
+         *ngIf="editForm.get('categoryId').invalid && editForm.get('categoryId').touched">
       Không được để trống
     </div>
     <br>
@@ -44,7 +44,7 @@
     </div>
     <br>
     <div class="notice" role="alert"
-         *ngIf="productForm.get('initialPrice').invalid && productForm.get('initialPrice').touched">
+         *ngIf="editForm.get('initialPrice').invalid && editForm.get('initialPrice').touched">
       Giá trị phải nhập là kiểu số
     </div>
     <br>
@@ -53,21 +53,33 @@
       <input class="form-control" type="text" formControlName="eachIncrease"><br>
     </div>
     <div class="notice" role="alert"
-         *ngIf="productForm.get('eachIncrease').invalid && productForm.get('eachIncrease').touched">
+         *ngIf="editForm.get('eachIncrease').invalid && editForm.get('eachIncrease').touched">
       Giá trị phải nhập là kiểu số
     </div>
     <br>
     <div class="form-group col-sm-12">
-      <label>Hình ảnh sản phẩm : <input id="files" type="file" multiple max="5" (change)='uploadFileImg($event)'
+      <label>Hình ảnh sản phẩm : <input #file id="files" type="file" multiple max="5" (change)='uploadFileImg(file.files)'
                                         accept="image/*"><br></label>
-      <input id="nameImg" class="form-control" type="text" value="{{this.nameImg}}"  disabled><br>
+      <input  id="nameImg" class="form-control" type="text" value="{{this.nameImg}}"  disabled><br>
+    </div>
+    <div *ngIf="imageList.length != 0" class="form-group col-sm-12" >
+      <div class="row d-inline-block" *ngFor="let img of imageList; index as i">
+        <div class="col-sm-3 content-img" style="width: 15rem; height: 15rem">
+          <img [src]="img.imageURL" class="image card-img" alt="img">
+          <div class="overlay">
+            <a class="icon">
+              <i class="fa fa-trash" (click)="removeImg(i)" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="form-group col-sm-12">
       <label>Thông tin chi tiết :</label>
       <textarea class="form-control" id="comment" formControlName="productDetail"></textarea><br>
     </div>
     <div class="notice" role="alert"
-         *ngIf="productForm.get('productDetail').invalid && productForm.get('productDetail').touched">
+         *ngIf="editForm.get('productDetail').invalid && editForm.get('productDetail').touched">
       Không được để trống
     </div>
     <br>
@@ -81,12 +93,12 @@
     </div>
     <br>
     <div class="notice" role="alert"
-         *ngIf="productForm.get('timeId').invalid && productForm.get('timeId').touched">
+         *ngIf="editForm.get('timeId').invalid && editForm.get('timeId').touched">
       Không được để trống
     </div>
     <div class="col-sm-12 d-flex justify-content-center mt-4">
-      <input class="btn btn-success" type="submit" value="Đăng" (click)="uploadDbImg()"
-             [disabled]="productForm.invalid">
+      <input class="btn btn-success" type="submit" value="Cập Nhật" (click)="uploadDbImg()"
+             [disabled]="editForm.invalid">
     </div>
   </form>
 </div>

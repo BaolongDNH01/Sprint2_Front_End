@@ -17,6 +17,8 @@ import { DetailUserComponent } from './detail-user/detail-user.component';
 import {RecaptchaLoaderService, RecaptchaModule} from 'ng-recaptcha';
 import { RecoverPasswordCodeComponent } from './recover-password-code/recover-password-code.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { AddWalletComponent } from './add-wallet/add-wallet.component';
+import {NgxPayPalModule} from "ngx-paypal";
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     DeleteUserComponent,
     DetailUserComponent,
     RecoverPasswordCodeComponent,
-    ResetPasswordComponent],
+    ResetPasswordComponent,
+    AddWalletComponent],
   exports: [
     ListUserComponent,
     ResetPasswordComponent
@@ -43,7 +46,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
         UserRoutingModule,
         ReactiveFormsModule,
         NgxPaginationModule,
-        RecaptchaModule
+        RecaptchaModule,
+        NgxPayPalModule
     ]
 })
 export class UserModule { }

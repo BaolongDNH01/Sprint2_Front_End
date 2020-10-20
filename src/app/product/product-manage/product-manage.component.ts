@@ -226,11 +226,11 @@ export class ProductManageComponent implements OnInit {
     );
   }
 
-  goEditProduct(): void {
-    this.router.navigateByUrl('product-edit').then();
+  goEditProduct(id: number): void {
+    this.router.navigateByUrl('edit-product/' + id).then();
   }
 
   goAddProduct(): void {
-    this.router.navigateByUrl('product-create').then();
+    this.router.navigateByUrl('add-product').then();
   }
 }
