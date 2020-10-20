@@ -6,6 +6,7 @@ const USERNAME_KEY = 'username';
 const EMAIL_KEY = 'email';
 const AVATAR_KEY = 'avatar';
 const AUTHORITIES_KEY = 'authorities';
+const USER_WALLET = 'wallet';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,15 @@ export class JwtService {
   saveUserId(userId: string): void {
     window.sessionStorage.removeItem(USER_ID);
     window.sessionStorage.setItem(USER_ID, userId);
+  }
+
+  saveUserWallet(wallet: number): void {
+    window.sessionStorage.removeItem(String(USER_WALLET));
+    window.sessionStorage.setItem(String(USER_WALLET), String(wallet));
+  }
+
+  getUserWallet(): string {
+    return sessionStorage.getItem(USER_WALLET);
   }
 
   getUserId(): string {

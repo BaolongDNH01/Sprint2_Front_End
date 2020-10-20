@@ -15,6 +15,7 @@ export class User {
   timeLock: number;
   rank: string;
   check = false;
+  wallet: number;
   confirmPassword = 'false';
   enabled = 'false';
   constructor() {

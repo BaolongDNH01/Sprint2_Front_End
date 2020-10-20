@@ -103,6 +103,7 @@ export class AuthLoginComponent implements OnInit, OnDestroy {
         this.jwtService.saveAuthorities(data.authorities);
         this.jwtService.saveEmail(data.email);
         this.jwtService.saveAvatar(data.avatar);
+        this.jwtService.saveUserWallet(Number(data.wallet));
         this.isLoggedIn = true;
         this.reloadPage();
 
