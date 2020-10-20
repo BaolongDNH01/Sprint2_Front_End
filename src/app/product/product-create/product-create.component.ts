@@ -39,8 +39,8 @@ export class ProductCreateComponent implements OnInit {
               private angularFireStorage: AngularFireStorage) {
     this.productForm = this.fb.group({
       productName: ['', [Validators.required]],
-      initialPrice: ['', [Validators.required, Validators.pattern(/\d+/)]],
-      eachIncrease: ['', [Validators.required, Validators.pattern(/\d+/)]],
+      initialPrice: ['', [Validators.required, Validators.min(0), Validators.max(10000000), Validators.pattern(/\d+/)]],
+      eachIncrease: ['', [Validators.required, Validators.min(0), Validators.pattern(/\d+/)]],
       productDetail: ['', [Validators.required]],
       categoryId: ['', [Validators.required]],
       statusId: ['7', [Validators.required]],
